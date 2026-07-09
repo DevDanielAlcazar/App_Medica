@@ -1,0 +1,56 @@
+{
+  "rules": [
+    {
+      "id": "R01",
+      "desc": "chunk_id required"
+    },
+    {
+      "id": "R02",
+      "desc": "source_ids required"
+    },
+    {
+      "id": "R03",
+      "desc": "language required"
+    },
+    {
+      "id": "R04",
+      "desc": "clinical_domain required"
+    },
+    {
+      "id": "R05",
+      "desc": "severity_level required"
+    },
+    {
+      "id": "R06",
+      "desc": "S5/S6 requires emergency action"
+    },
+    {
+      "id": "R07",
+      "desc": "safe_user_message required"
+    },
+    {
+      "id": "R08",
+      "desc": "must_not_say required"
+    },
+    {
+      "id": "R09",
+      "desc": "clinical_status valid"
+    },
+    {
+      "id": "R10",
+      "desc": "legal_status valid"
+    },
+    {
+      "id": "R11",
+      "desc": "production_allowed check"
+    },
+    {
+      "id": "R16",
+      "desc": "created_at required"
+    },
+    {
+      "id": "R20",
+      "desc": "evidence_summary required"
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "tome_id": "01_red_flags_triage",
+  "version": "0.1.0",
+  "domains": [
+    {
+      "domain": "emergencia_general",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "emergencia_general domain"
+    },
+    {
+      "domain": "dolor_toracico_cardiovascular",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "dolor_toracico_cardiovascular domain"
+    },
+    {
+      "domain": "neurologia_evento_cerebrovascular",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "neurologia_evento_cerebrovascular domain"
+    },
+    {
+      "domain": "respiratorio_disnea",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "respiratorio_disnea domain"
+    },
+    {
+      "domain": "pediatria_emergencia_general",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": true,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "pediatria_emergencia_general domain"
+    },
+    {
+      "domain": "pediatria_fiebre_lactante",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": true,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "pediatria_fiebre_lactante domain"
+    },
+    {
+      "domain": "alergia_anafilaxia",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "alergia_anafilaxia domain"
+    },
+    {
+      "domain": "toxicologia_intoxicacion",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "toxicologia_intoxicacion domain"
+    },
+    {
+      "domain": "salud_mental_crisis_autolesion",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "salud_mental_crisis_autolesion domain"
+    },
+    {
+      "domain": "embarazo_puerperio_urgencias",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": true,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "embarazo_puerperio_urgencias domain"
+    },
+    {
+      "domain": "toxicologia_monoxido_carbono",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "toxicologia_monoxido_carbono domain"
+    },
+    {
+      "domain": "infeccion_sepsis",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": true,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "infeccion_sepsis domain"
+    },
+    {
+      "domain": "neurologia_alteracion_mental",
+      "minimum_chunk_count": 0,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "neurologia_alteracion_mental domain"
+    },
+    {
+      "domain": "neurologia_convulsion_nueva",
+      "minimum_chunk_count": 0,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "neurologia_convulsion_nueva domain"
+    },
+    {
+      "domain": "trauma_craneocefalico",
+      "minimum_chunk_count": 0,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "trauma_craneocefalico domain"
+    },
+    {
+      "domain": "deshidratacion_severa",
+      "minimum_chunk_count": 0,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "deshidratacion_severa domain"
+    },
+    {
+      "domain": "inmunocomprometido_fiebre",
+      "minimum_chunk_count": 0,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "inmunocomprometido_fiebre domain"
+    },
+    {
+      "domain": "vision_loss",
+      "minimum_chunk_count": 0,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "vision_loss domain"
+    },
+    {
+      "domain": "cefalea_severa_repentina",
+      "minimum_chunk_count": 0,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "cefalea_severa_repentina domain"
+    },
+    {
+      "domain": "dolor_abdominal_severo",
+      "minimum_chunk_count": 0,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true,
+      "notes": "dolor_abdominal_severo domain"
+    }
+  ]
+}
