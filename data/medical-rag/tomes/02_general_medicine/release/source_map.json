@@ -1,0 +1,56 @@
+[
+  {
+    "source_id": "F_GM_001",
+    "title": "ADA Standards of Care in Diabetes—2024",
+    "publisher": "American Diabetes Association",
+    "url": "https://diabetesjournals.org/care/issue/47/Supplement_1",
+    "source_type": "clinical_guideline",
+    "jurisdiction": [
+      "global",
+      "us"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "approved",
+    "legal_review_status": "approved",
+    "medical_review_status": "approved",
+    "production_allowed": true
+  },
+  {
+    "source_id": "F_GM_002",
+    "title": "2017 ACC/AHA Guideline for High Blood Pressure in Adults",
+    "publisher": "American College of Cardiology / American Heart Association",
+    "url": "https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2017/11/09/11/41/2017-guideline-for-high-blood-pressure-in-adults",
+    "source_type": "clinical_guideline",
+    "jurisdiction": [
+      "global",
+      "us"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "approved",
+    "legal_review_status": "approved",
+    "medical_review_status": "approved",
+    "production_allowed": true
+  },
+  {
+    "source_id": "F_GM_003",
+    "title": "USPSTF - Colorectal Cancer: Screening",
+    "publisher": "US Preventive Services Task Force",
+    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+    "source_type": "clinical_guideline",
+    "jurisdiction": [
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "approved",
+    "legal_review_status": "approved",
+    "medical_review_status": "approved",
+    "production_allowed": true
+  }
+]

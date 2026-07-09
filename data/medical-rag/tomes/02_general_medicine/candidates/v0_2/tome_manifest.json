@@ -1,0 +1,16 @@
+{
+  "tome_id": "02_general_medicine",
+  "title": "Medicina General y Atención Primaria",
+  "version": "0.2.0-candidate",
+  "status": "candidate_pending_medical_legal_review",
+  "clinical_purpose": "Manejo inicial, screening preventivo y diagnóstico estructurado basado en evidencia de enfermedades crónicas.",
+  "production_allowed": false,
+  "requires_medical_review": true,
+  "requires_legal_review": true,
+  "supported_languages": [
+    "es",
+    "en"
+  ],
+  "chunk_count": 3,
+  "source_count": 3
+}

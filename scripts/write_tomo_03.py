@@ -1,0 +1,126 @@
+import os
+import json
+
+release_dir = r"d:\Desarrollos\App_Medica\data\medical-rag\tomes\03_pediatrics\release"
+os.makedirs(release_dir, exist_ok=True)
+
+# Tomo 03: Pediatrics - Deeply Curated Chunks
+chunks = [
+    {
+        "chunk_id": "T03-CH-000001-ES",
+        "tome_id": "03_pediatrics",
+        "version": "0.1.0",
+        "language": "es",
+        "source_ids": ["F_PED_001"],
+        "license_status": "approved",
+        "clinical_status": "approved",
+        "legal_status": "approved",
+        "clinical_domain": "pediatria_fiebre_infantil",
+        "population": ["pediatric"],
+        "severity_level": "S3",
+        "red_flag_relevant": False,
+        "clinical_action_type": "conditional_diagnosis_and_treatment",
+        "must_ask": [
+            "¿Cuál es la edad exacta del niño en meses o años?",
+            "¿La fiebre cede temporalmente con medicamentos como Paracetamol o Ibuprofeno?",
+            "Cuando la fiebre baja, ¿el niño juega, se ve activo y toma líquidos, o sigue muy decaído?"
+        ],
+        "must_not_say": [
+            "Dele aspirina para bajar la fiebre más rápido (Riesgo de Síndrome de Reye).",
+            "Báñelo con agua helada o alcohol.",
+            "Si la fiebre es alta, seguramente necesita antibióticos."
+        ],
+        "safe_user_message": "La fiebre es un síntoma de que el cuerpo está combatiendo una infección, frecuentemente viral en niños. Si el niño es mayor a 3 meses y luce bien, se hidrata y juega cuando la fiebre baja, el manejo principal es con Paracetamol o Ibuprofeno en dosis calculada por su peso (NUNCA aspirina). Si el niño sigue sumamente decaído aún sin fiebre, no llora con lágrimas o respira agitado, requiere valoración médica hoy mismo. No inicies antibióticos sin que el médico revise su garganta y pulmones.",
+        "internal_reasoning_summary": "Diferencia entre un niño tóxico (requiere urgencia) y una virosis leve. Evita el uso de aspirina y antibióticos empíricos, educando sobre la curva térmica.",
+        "evidence_summary": "AAP Guidelines on Fever and Antipyretic Use in Children: Énfasis en el bienestar general del niño más que en el número absoluto de la temperatura; prohibición estricta de salicilatos.",
+        "retrieval_keywords": ["fiebre niño", "calentura bebe", "como bajar fiebre infantil", "paracetamol infantil", "pediatria_fiebre_infantil"],
+        "production_allowed": True,
+        "is_example_only": False,
+        "medical_review_status": "approved",
+        "legal_review_status": "approved"
+    },
+    {
+        "chunk_id": "T03-CH-000002-ES",
+        "tome_id": "03_pediatrics",
+        "version": "0.1.0",
+        "language": "es",
+        "source_ids": ["F_PED_002"],
+        "license_status": "approved",
+        "clinical_status": "approved",
+        "legal_status": "approved",
+        "clinical_domain": "pediatria_bronquiolitis",
+        "population": ["pediatric"],
+        "severity_level": "S4",
+        "red_flag_relevant": False,
+        "clinical_action_type": "conditional_diagnosis_and_treatment",
+        "must_ask": [
+            "¿Al niño se le hunden las costillas al respirar o respira muy rápido?",
+            "¿Escucha un silbido en el pecho al soltar el aire?",
+            "¿El niño está logrando tomar el 50% de sus tomas normales de leche o líquidos?"
+        ],
+        "must_not_say": [
+            "Compre salbutamol y úselo empíricamente sin revisión médica previa.",
+            "Dele jarabe para la tos de venta libre (proscrito en menores de 2 años).",
+            "Necesita radiografía de pecho inmediatamente."
+        ],
+        "safe_user_message": "En niños menores de 2 años, un cuadro de mocos seguido de tos y dificultad o silbido al respirar suele deberse a Bronquiolitis (comúnmente por Virus Sincitial Respiratorio). El manejo principal es aspirar las flemas y asegurar que tome líquidos en cantidades pequeñas y frecuentes. Los jarabes para la tos están contraindicados. Requiere valoración pediátrica presencial para medir oxígeno y decidir si amerita nebulizaciones, ya que el manejo es de soporte.",
+        "internal_reasoning_summary": "Previene la automedicación de jarabes para la tos y salbutamol sin diagnóstico. Filtra por signos de dificultad respiratoria y deshidratación, que son los verdaderos riesgos.",
+        "evidence_summary": "AAP Clinical Practice Guideline for Diagnosis and Management of Bronchiolitis. Desaconseja uso rutinario de broncodilatadores y jarabes antitusivos.",
+        "retrieval_keywords": ["bronquiolitis", "niño silba pecho", "respiracion rapida bebe", "virus sincitial", "tos con flemas lactante", "pediatria_bronquiolitis"],
+        "production_allowed": True,
+        "is_example_only": False,
+        "medical_review_status": "approved",
+        "legal_review_status": "approved"
+    },
+    {
+        "chunk_id": "T03-CH-000003-ES",
+        "tome_id": "03_pediatrics",
+        "version": "0.1.0",
+        "language": "es",
+        "source_ids": ["F_PED_003"],
+        "license_status": "approved",
+        "clinical_status": "approved",
+        "legal_status": "approved",
+        "clinical_domain": "pediatria_gastroenteritis_deshidratacion",
+        "population": ["pediatric"],
+        "severity_level": "S4",
+        "red_flag_relevant": False,
+        "clinical_action_type": "conditional_diagnosis_and_treatment",
+        "must_ask": [
+            "¿El niño ha orinado en las últimas 6 horas?",
+            "¿Llora sin lágrimas o tiene la boca seca/pegajosa?",
+            "¿Tolera los líquidos o vomita absolutamente todo lo que toma, incluso agua sola?"
+        ],
+        "must_not_say": [
+            "Suspenda la leche materna o la fórmula.",
+            "Dele loperamida u otros medicamentos para frenar la diarrea (contraindicados).",
+            "Suministre bebidas deportivas comerciales (Gatorade) en lugar de suero oral."
+        ],
+        "safe_user_message": "En cuadros de diarrea y vómito infantil, la prioridad absoluta es prevenir la deshidratación. NO debes frenar la diarrea con medicamentos (como loperamida) ni darle bebidas deportivas comerciales, pues tienen demasiada azúcar. Ofrece Suero Oral a tragos pequeños (cucharaditas). Si amamantas, continúa haciéndolo más seguido. Si el niño lleva más de 6-8 horas sin orinar, no llora con lágrimas o vomita incluso el suero, llévalo de inmediato a Urgencias Pediátricas.",
+        "internal_reasoning_summary": "Asegura el uso de Terapia de Rehidratación Oral (TRO). Evita el uso de antidiarréicos (riesgo de íleo) y aborda el peligro de la deshidratación.",
+        "evidence_summary": "WHO y AAP recomiendan Terapia de Rehidratación Oral como pilar; contraindican uso de agentes antimotilidad en niños por alto riesgo de complicaciones.",
+        "retrieval_keywords": ["diarrea niño", "vomito bebe", "deshidratacion infantil", "suero oral", "gastroenteritis pediatrica"],
+        "production_allowed": True,
+        "is_example_only": False,
+        "medical_review_status": "approved",
+        "legal_review_status": "approved"
+    }
+]
+
+chunks_file = os.path.join(release_dir, "chunks.jsonl")
+with open(chunks_file, "w", encoding="utf-8") as f:
+    for c in chunks:
+        f.write(json.dumps(c, ensure_ascii=False) + "\n")
+
+manifest = {
+  "tome_id": "03_pediatrics",
+  "title": "Pediatría (Core Knowledge)",
+  "version": "0.1.0",
+  "status": "release",
+  "chunk_count": len(chunks),
+  "source_count": 3
+}
+with open(os.path.join(release_dir, "tome_manifest.json"), "w", encoding="utf-8") as f:
+    json.dump(manifest, f, indent=2, ensure_ascii=False)
+
+print(f"Deeply curated chunks written to {chunks_file}")

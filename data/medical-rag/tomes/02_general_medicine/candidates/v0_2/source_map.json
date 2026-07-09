@@ -1,0 +1,53 @@
+[
+  {
+    "source_id": "F_GM_004",
+    "title": "IDSA Guidelines on the Management of Community-Acquired Pneumonia",
+    "publisher": "Infectious Diseases Society of America",
+    "url": "https://www.idsociety.org/practice-guideline/community-acquired-pneumonia-cap/",
+    "source_type": "clinical_guideline",
+    "jurisdiction": [
+      "global"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F_GM_005",
+    "title": "WHO Routine Immunization Schedule",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization",
+    "source_type": "public_health_guidance",
+    "jurisdiction": [
+      "global"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F_GM_006",
+    "title": "ACG Clinical Guideline: Diagnosis and Management of Acute Gastroenteritis",
+    "publisher": "American College of Gastroenterology",
+    "url": "https://gi.org/guidelines/acute-gastroenteritis-guideline/",
+    "source_type": "clinical_guideline",
+    "jurisdiction": [
+      "global"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  }
+]

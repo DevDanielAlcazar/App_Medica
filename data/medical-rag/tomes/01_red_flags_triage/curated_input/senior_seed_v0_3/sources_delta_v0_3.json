@@ -1,0 +1,380 @@
+[
+  {
+    "source_id": "F029",
+    "title": "MedlinePlus Medical Encyclopedia — Recognizing medical emergencies",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/001927.htm",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F030",
+    "title": "MedlinePlus Medical Encyclopedia — Fever",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/003090.htm",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F031",
+    "title": "MedlinePlus Patient Instructions — When your baby or infant has a fever",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/patientinstructions/000319.htm",
+    "source_type": "patient_instruction",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F032",
+    "title": "CDC — Meningococcal Disease Symptoms and Complications",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/meningococcal/symptoms/index.html",
+    "source_type": "public_health_guidance",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F033",
+    "title": "MedlinePlus — Dehydration",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/dehydration.html",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F034",
+    "title": "CDC — Low Blood Sugar (Hypoglycemia)",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/diabetes/about/low-blood-sugar-hypoglycemia.html",
+    "source_type": "public_health_guidance",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F035",
+    "title": "CDC — Diabetic Ketoacidosis",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/diabetes/about/diabetic-ketoacidosis.html",
+    "source_type": "public_health_guidance",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F036",
+    "title": "MedlinePlus Medical Encyclopedia — Eye emergencies",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/000054.htm",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F037",
+    "title": "MedlinePlus — Eye Injuries",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/eyeinjuries.html",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F038",
+    "title": "MedlinePlus Medical Encyclopedia — Burns",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/000030.htm",
+    "source_type": "first_aid_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F039",
+    "title": "MedlinePlus Medical Encyclopedia — Electrical injury",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/000053.htm",
+    "source_type": "first_aid_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F040",
+    "title": "MedlinePlus Medical Encyclopedia — Non-fatal drowning",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/000046.htm",
+    "source_type": "first_aid_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F041",
+    "title": "WHO — Animal bites fact sheet",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/animal-bites",
+    "source_type": "public_health_guidance",
+    "jurisdiction": [
+      "global"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F042",
+    "title": "CDC Yellow Book — Rabies",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/rabies.html",
+    "source_type": "public_health_guidance",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F043",
+    "title": "MedlinePlus Medical Encyclopedia — Testicular torsion",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/000517.htm",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F044",
+    "title": "MedlinePlus Medical Encyclopedia — Ovarian cysts",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/001504.htm",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F045",
+    "title": "MedlinePlus — Ectopic Pregnancy",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ectopicpregnancy.html",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F046",
+    "title": "MedlinePlus Medical Encyclopedia — Bleeding",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/000045.htm",
+    "source_type": "first_aid_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F047",
+    "title": "MedlinePlus Medical Encyclopedia — Choking adult or child over 1 year",
+    "publisher": "National Library of Medicine / NIH",
+    "url": "https://medlineplus.gov/ency/article/000049.htm",
+    "source_type": "first_aid_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  },
+  {
+    "source_id": "F048",
+    "title": "American Heart Association — When to call 911 for high blood pressure",
+    "publisher": "American Heart Association",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/when-to-call-911-for-high-blood-pressure",
+    "source_type": "patient_reference",
+    "jurisdiction": [
+      "global",
+      "us",
+      "latam_reference"
+    ],
+    "language": [
+      "en"
+    ],
+    "license_review_status": "pending",
+    "legal_review_status": "pending",
+    "medical_review_status": "pending",
+    "production_allowed": false
+  }
+]

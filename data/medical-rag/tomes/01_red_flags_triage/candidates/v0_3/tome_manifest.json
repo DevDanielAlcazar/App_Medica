@@ -1,0 +1,10 @@
+{
+  "tome_id": "01_red_flags_triage",
+  "version": "0.3.0-candidate",
+  "status": "candidate_pending_medical_legal_review",
+  "production_allowed": false,
+  "based_on_release_version": "0.2.1",
+  "candidate_policy": "does_not_replace_approved_release_until_formal_review",
+  "new_sources_review_status": "pending",
+  "new_chunks_review_status": "pending"
+}
