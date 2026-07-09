@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://appmedica.mx/schemas/contributor_profile.schema.json",
+  "title": "Contributor Profile",
+  "description": "Perfil de contributor para Medical Knowledge RAG",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contributor_id",
+    "contributor_type",
+    "full_name",
+    "country",
+    "languages",
+    "credential_status",
+    "conflict_of_interest_status",
+    "allowed_contribution_types",
+    "review_owner",
+    "created_at"
+  ],
+  "properties": {
+    "contributor_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "ID único del contributor"
+    },
+    "contributor_type": {
+      "type": "string",
+      "enum": ["medical_specialist", "general_physician", "clinical_reviewer", "legal_reviewer", "source_author", "institutional_partner", "internal_curator"],
+      "description": "Tipo de contributor"
+    },
+    "full_name": {
+      "type": "string",
+      "description": "Nombre completo"
+    },
+    "organization": {
+      "type": "string",
+      "description": "Organización a la que pertenece"
+    },
+    "country": {
+      "type": "string",
+      "description": "País de origen"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "minItems": 1,
+      "description": "Idiomas que domina"
+    },
+    "specialties": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Especialidades médicas (si aplica)"
+    },
+    "credential_type": {
+      "type": "string",
+      "enum": ["cedula_profesional", "board_certification", "institutional_role", "author_rights", "legal_license", "internal_role", "other"],
+      "description": "Tipo de credencial"
+    },
+    "credential_reference": {
+      "type": "string",
+      "description": "Referencia a credencial (URL, número, etc.)"
+    },
+    "credential_status": {
+      "type": "string",
+      "enum": ["pending_verification", "verified", "rejected", "expired", "not_applicable"],
+      "description": "Estado de la credencial"
+    },
+    "identity_verification_status": {
+      "type": "string",
+      "enum": ["pending", "verified", "rejected", "not_applicable"],
+      "description": "Estado de verificación de identidad"
+    },
+    "conflict_of_interest_status": {
+      "type": "string",
+      "enum": ["pending", "disclosed", "none_declared", "requires_review"],
+      "description": "Estado de conflicto de interés"
+    },
+    "allowed_contribution_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["source_review", "clinical_annotation", "original_expert_note", "legal_review", "permission_grant", "tome_review"]
+      },
+      "minItems": 1,
+      "description": "Tipos de contribución permitidos"
+    },
+    "review_owner": {
+      "type": "string",
+      "description": "Quien supervisa este contributor"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha de registro"
+    },
+    "last_reviewed_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Última revisión"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notas adicionales"
+    }
+  }
+}

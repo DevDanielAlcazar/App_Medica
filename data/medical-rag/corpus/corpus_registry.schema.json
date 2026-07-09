@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://appmedica.mx/schemas/corpus_registry.schema.json",
+  "title": "Corpus Registry",
+  "description": "Registro de corpus/RAGs para retrieval clínico",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "corpus_id",
+    "name",
+    "corpus_type",
+    "status",
+    "included_tomes",
+    "jurisdictions",
+    "languages",
+    "owner"
+  ],
+  "properties": {
+    "corpus_id": {
+      "type": "string",
+      "pattern": "^corp-[a-z0-9-]+$",
+      "description": "ID único del corpus"
+    },
+    "name": {
+      "type": "string",
+      "description": "Nombre amigable"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descripción del corpus"
+    },
+    "corpus_type": {
+      "type": "string",
+      "enum": ["base", "specialty", "regional", "institutional", "partner_authorized", "experimental"],
+      "description": "Tipo de corpus"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "staging", "production", "deprecated", "archived"],
+      "description": "Estado del corpus"
+    },
+    "included_tomes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Tomos incluidos"
+    },
+    "excluded_tomes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tomos excluidos"
+    },
+    "jurisdictions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["global", "mx", "us", "latam", "other"]
+      },
+      "minItems": 1,
+      "description": "Jurisdicciones cubiertas"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "minItems": 1,
+      "description": "Idiomas soportados"
+    },
+    "patient_groups": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["adult", "pediatric", "pregnancy", "older_adult", "general"]
+      },
+      "minItems": 1,
+      "description": "Grupos de pacientes"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Dueño del corpus"
+    },
+    "version": {
+      "type": "string",
+      "description": "Versión semántica"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha de release"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notas"
+    }
+  }
+}

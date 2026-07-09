@@ -90,3 +90,21 @@ Ver `tomes/00_governance/` para taxonomía completa.
 - Cada chunk tiene `content_hash` y `license_status`.
 - Retrieval filtra por metadata: jurisdicción, edad, specialty, evidence_level.
 - Response incluye siempre referencias a fuentes usadas.
+
+## Extensibilidad futura
+
+El RAG está diseñado para crecer mediante nuevos tomos, corpus especializados, contribuciones de especialistas y permisos explícitos de autores/instituciones.
+
+## Contribuciones externas
+
+Ninguna contribución entra a producción sin validación de identidad/credenciales, licencia, revisión médica, revisión legal y evaluación RAG. Ver `contributors/` para el proceso completo.
+
+## RAG base vs RAGs adicionales
+
+El RAG base se construye con fuentes públicas/permitidas y curaduría interna. Los RAGs adicionales pueden ser regionales, por especialidad, institucionales o autorizados por autores. Ver `corpus/` para la política de branching.
+
+## Carpeta oficial de releases de tomos
+
+```
+data/medical-rag/tomes/<tome_id>/release/
+```

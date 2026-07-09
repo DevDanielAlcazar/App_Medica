@@ -1,0 +1,34 @@
+[
+  {
+    "permission_id": "perm-who-guideline-001",
+    "source_id": "who-001",
+    "rights_holder_name": "World Health Organization",
+    "rights_holder_type": "government",
+    "permission_status": "pending_signature",
+    "permission_scope": ["metadata_only", "rag_retrieval_internal"],
+    "territories": ["global"],
+    "languages": ["es", "en"],
+    "effective_date": "2024-01-15",
+    "expiration_date": null,
+    "revocation_terms": "Revocable por cambio de política WHO",
+    "evidence_files": ["license_copy.pdf", "permission_request_email.pdf"],
+    "legal_reviewer": "legal-team@appmedica.mx",
+    "notes": "Licencia CC BY-NC, restringido uso comercial directo"
+  },
+  {
+    "permission_id": "perm-author-book-001",
+    "source_id": "author-book-001",
+    "rights_holder_name": "[Nombre Autor]",
+    "rights_holder_type": "individual",
+    "permission_status": "pending_signature",
+    "permission_scope": ["metadata_only", "rag_retrieval_internal", "limited_quotation"],
+    "territories": ["global"],
+    "languages": ["en"],
+    "effective_date": "2024-01-15",
+    "expiration_date": "2025-01-15",
+    "revocation_terms": "Renovable anualmente",
+    "evidence_files": ["signed_permission.pdf"],
+    "legal_reviewer": "legal-team@appmedica.mx",
+    "notes": "Permiso para uso en RAG interno con atribución"
+  }
+]

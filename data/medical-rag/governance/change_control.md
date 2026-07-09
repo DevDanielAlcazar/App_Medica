@@ -28,13 +28,28 @@ Cada tomo debe tener CHANGELOG.md con:
 
 ## Proceso de cambio
 
-1. Crear rama `tome-XX-cambio-descripcion`.
-2. Actualizar chunks/conenido.
-3. Ejecutar tests de evaluación.
-4. Revisión médica si es contenido clínico.
-5. Revisión legal si cambia fuente.
-6. Merge a main.
-7. Actualizar versión en `tome_manifest.json`.
+1. Crear Change Request ID.
+2. Identificar tipo de cambio: chunk / tomo / corpus / metadata.
+3. Evaluar impacto clínico.
+4. Evaluar impacto legal.
+5. Evaluar impacto de retrieval.
+6. Ejecutar validaciones requeridas.
+7. Revisión médica si es contenido clínico.
+8. Revisión legal si cambia fuente/licencia.
+9. Merge a main.
+10. Actualizar versión en `tome_manifest.json`.
+11. Ejecutar rollback si es necesario.
+
+## Aprobadores
+
+- Médico: cambios clínicos.
+- Legal: cambios de licencia/fuente.
+- QA: cambios de retrieval.
+- Admin: deployments.
+
+## Rollback
+
+Cada cambio debe poderse revertir con `git revert` o migración down.
 
 ## Auditoría
 

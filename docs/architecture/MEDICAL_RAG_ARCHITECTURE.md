@@ -120,3 +120,38 @@ data/medical-rag/tomes/<tome_id>/release/
 - Filtros automáticos por metadata.
 - Logs sin PHI.
 - Versionado auditable.
+
+## Arquitectura extensible de corpus y contribuciones
+
+### Separación de concerns
+
+```
+Source Registry ──► Permission Registry ──► Contributor Registry ──► Tom Releases ──► Corpus Releases
+     │                   │                     │                     │            │
+     ▼                   ▼                     ▼                     ▼            ▼
+Fuentes con                Permisos              Contributors           Tomes         Corpora
+licencia                   explícitos           validados              aprobados     productivos
+```
+
+### Contribuciones externas
+
+- Source registry: fuentes con licencia.
+- Permission registry: permisos explícitos.
+- Contributor registry: médicos, autores, instituciones.
+- Cada contribución pasa por intake checklist.
+- Ninguna contribución externa salta gates.
+
+### Múltiples corpus
+
+- `base_global`: corpus base con seguridad clínica.
+- `regional_*`: adaptaciones por país.
+- `institutional_*`: corpus privados con permiso.
+- `specialty_*`: corpus por especialidad.
+- Branching aislado sin romper RAG base.
+
+### Deprecación segura
+
+- Chunks obsoletos se marcan `deprecated`.
+- No se eliminan físicamente sin traza.
+- RAG filtra chunks `deprecated` automáticamente.
+- Auditoría de cada deprecación.

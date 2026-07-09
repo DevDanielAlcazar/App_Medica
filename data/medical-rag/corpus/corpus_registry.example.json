@@ -1,0 +1,34 @@
+[
+  {
+    "corpus_id": "corp-base-global",
+    "name": "Base Global Corpus",
+    "description": "Corpus base con red flags y medicina general",
+    "corpus_type": "base",
+    "status": "draft",
+    "included_tomes": ["00_governance", "01_red_flags_triage", "02_clinical_history_anamnesis", "03_general_medicine_adult"],
+    "excluded_tomes": ["04_pediatrics_safe", "05_otc_symptomatic_recommendations"],
+    "jurisdictions": ["global"],
+    "languages": ["es", "en"],
+    "patient_groups": ["adult", "general"],
+    "owner": "admin@appmedica.mx",
+    "version": "0.1.0+rag",
+    "release_date": null,
+    "notes": "Corpus base, sin pediatría ni OTC aún no validados"
+  },
+  {
+    "corpus_id": "corp-mx-release",
+    "name": "México Release Corpus",
+    "description": "Corpus adaptado para México",
+    "corpus_type": "regional",
+    "status": "draft",
+    "included_tomes": ["00_governance", "01_red_flags_triage", "02_clinical_history_anamnesis", "03_general_medicine_adult", "09_multilingual_regionalization"],
+    "excluded_tomes": [],
+    "jurisdictions": ["mx"],
+    "languages": ["es"],
+    "patient_groups": ["adult", "pediatric", "general"],
+    "owner": "admin@appmedica.mx",
+    "version": "0.1.0+rag",
+    "release_date": null,
+    "notes": "Adaptado a normativa mexicana"
+  }
+]

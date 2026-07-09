@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://appmedica.mx/schemas/permission_record.schema.json",
+  "title": "Permission Record",
+  "description": "Registro de permisos para uso de contenido médico en RAG",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "permission_id",
+    "source_id",
+    "rights_holder_name",
+    "rights_holder_type",
+    "permission_status",
+    "permission_scope",
+    "territories",
+    "languages",
+    "effective_date",
+    "legal_reviewer"
+  ],
+  "properties": {
+    "permission_id": {
+      "type": "string",
+      "pattern": "^perm-[a-z0-9-]+$",
+      "description": "ID único del permiso"
+    },
+    "source_id": {
+      "type": "string",
+      "description": "ID de la fuente asociada"
+    },
+    "rights_holder_name": {
+      "type": "string",
+      "description": "Nombre del titular de derechos"
+    },
+    "rights_holder_type": {
+      "type": "string",
+      "enum": ["individual", "institution", "publisher", "government", "unknown"],
+      "description": "Tipo de titular"
+    },
+    "permission_status": {
+      "type": "string",
+      "enum": ["draft", "pending_signature", "granted", "rejected", "expired", "revoked", "legal_review_required"],
+      "description": "Estado del permiso"
+    },
+    "permission_scope": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["metadata_only", "limited_quotation", "rag_retrieval_internal", "rag_retrieval_product", "commercial_use", "redistribution", "translation", "derivative_summaries"]
+      },
+      "minItems": 1,
+      "description": "Ámbitos autorizados"
+    },
+    "territories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["global", "mx", "us", "latam", "other"]
+      },
+      "minItems": 1,
+      "description": "Territorios autorizados"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "minItems": 1,
+      "description": "Idiomas autorizados"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha de inicio"
+    },
+    "expiration_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Fecha de expiración (si aplica)"
+    },
+    "revocation_terms": {
+      "type": "string",
+      "description": "Términos de revocación"
+    },
+    "evidence_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Archivos de evidencia adjuntos"
+    },
+    "legal_reviewer": {
+      "type": "string",
+      "description": "Abogado que revisó"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notas adicionales"
+    }
+  }
+}

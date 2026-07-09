@@ -30,3 +30,29 @@
 3. Si rechazada → `rejected`.
 4. Si aprobada → crear tomo correspondiente.
 5. Documentar en CHANGELOG.
+
+## Criterios para contribuciones externas
+
+### Fuente pública oficial
+- Guía clínica emitida por organismo sanitario.
+- Public domain o CC BY compatible.
+
+### Fuente open access
+- CC BY, CC0.
+- Revisión legal de atribución.
+
+### Fuente privada autorizada
+- Permiso explícito en `permissions/`.
+- Scope de uso definido.
+
+### Autor individual autorizado
+- Firma de autorización.
+- Scope de uso definido.
+
+### Institución autorizada
+- Representante autorizado.
+- Material con permiso.
+
+## Regla de oro
+
+La experiencia clínica individual puede enriquecer anotaciones, pero no debe superar guías oficiales cuando exista contradicción.
