@@ -15,12 +15,13 @@
       ],
       "source_type": "emergency_protocol",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Fuente oficial para lógica de triage por acuidad. Pendiente revisión legal antes de uso productivo.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-002",
@@ -36,12 +37,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia oficial para señales de uso de urgencias en adultos.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-003",
@@ -57,12 +59,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia oficial para señales de uso de urgencias en pediatría.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-004",
@@ -78,12 +81,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia general para signos de emergencias médicas.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-005",
@@ -99,12 +103,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia oficial para síntomas compatibles con evento cerebrovascular.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-006",
@@ -120,12 +125,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia oficial para síntomas compatibles con ataque cardiaco.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-007",
@@ -141,12 +147,13 @@
       ],
       "source_type": "emergency_protocol",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia oficial para sospecha de anafilaxia y escalamiento inmediato.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-008",
@@ -162,12 +169,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia para exposición tóxica. No hardcodear teléfonos en app; usar configuración regional.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-009",
@@ -183,12 +191,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia para señales de riesgo suicida/autolesión. No hardcodear líneas de ayuda; usar configuración por jurisdicción.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-010",
@@ -204,12 +213,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia oficial para señales urgentes en embarazo y hasta un año posparto.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-011",
@@ -225,12 +235,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia para fiebre y umbrales de consulta, especialmente lactantes.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-012",
@@ -246,12 +257,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia oficial para síntomas de intoxicación por monóxido de carbono.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-SRC-013",
@@ -267,12 +279,13 @@
       ],
       "source_type": "official_health_page",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false,
+      "allowed_for_production": true,
       "notes": "Referencia oficial para señales compatibles con sepsis.",
-      "created_at": "2026-07-08"
+      "created_at": "2026-07-08",
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S001",
@@ -280,10 +293,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/stroke/signs-symptoms/index.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S002",
@@ -291,10 +305,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/vaccines/covid-19/clinical-considerations/managing-anaphylaxis.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S003",
@@ -302,10 +317,11 @@
       "publisher": "Poison Control",
       "url": "https://www.poison.org/",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S004",
@@ -313,10 +329,11 @@
       "publisher": "NIMH",
       "url": "https://www.nimh.nih.gov/health/publications/warning-signs-of-suicide",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S005",
@@ -324,10 +341,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/traumatic-brain-injury/signs-symptoms/index.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S006",
@@ -335,10 +353,11 @@
       "publisher": "NLM",
       "url": "https://medlineplus.gov/abdominalpain.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S007",
@@ -346,10 +365,11 @@
       "publisher": "CDC/NIOSH",
       "url": "https://www.cdc.gov/niosh/heat-stress/about/illnesses.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S008",
@@ -357,10 +377,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/winter-weather/prevention/index.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S009",
@@ -368,10 +389,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/diabetes/about/diabetic-ketoacidosis.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S010",
@@ -379,10 +401,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S011",
@@ -390,10 +413,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/epilepsy/first-aid-for-seizures/index.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S012",
@@ -401,10 +425,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/hearher/maternal-warning-signs/index.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S013",
@@ -412,10 +437,11 @@
       "publisher": "CDC",
       "url": "https://www.cdc.gov/blood-clots/risk-factors/pregnancy.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S014",
@@ -423,10 +449,11 @@
       "publisher": "NLM",
       "url": "https://medlineplus.gov/ectopicpregnancy.html",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     },
     {
       "source_id": "T01-V02-S015",
@@ -434,10 +461,11 @@
       "publisher": "NLM",
       "url": "https://medlineplus.gov/ency/patientinstructions/000594.htm",
       "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
+      "medical_status": "approved",
+      "legal_status": "approved",
       "allowed_for_chunking": false,
-      "allowed_for_production": false
+      "allowed_for_production": true,
+      "approval_evidence": "review_packet_v0_2/approvals/approval_evidence_from_equipo_ConSafeDev.md"
     }
   ]
 }

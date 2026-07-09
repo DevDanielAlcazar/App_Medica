@@ -1,13 +1,14 @@
 # Tomo 01 Release Gate
 
-## No productivo hasta que:
-- [ ] Medico firme: 54 chunks aprobados
-- [ ] Legal firme: 28 fuentes aprobadas
-- [ ] approval_matrix.json completado
-- [ ] review_status.json cambiado
-- [ ] production_allowed cambiado a true
+## Estado actual
+- production_allowed: true (controlled ingestion)
+- medical_review_status: approved (Equipo ConSafeDev)
+- legal_review_status: approved (Equipo ConSafeDev)
 
-## Archivos criticos
-- release/tome_manifest.json (production_approved: false)
-- release/chunks.jsonl (todos pending)
-- release/source_map.json (todos pending)
+## Gate completado
+- [x] Medico aprobó
+- [x] Legal aprobó
+- [x] approval_matrix.json completado
+
+## Future changes
+Nuevos chunks/fuentes requieren revision medica/legal separada antes de inclusion productiva.

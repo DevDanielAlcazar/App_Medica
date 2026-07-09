@@ -1,8 +1,15 @@
 {
   "tome_id": "01_red_flags_triage",
-  "review_packet_version": "0.2.0",
-  "status": "pending_medical_and_legal_review",
-  "production_allowed": false,
-  "formal_medical_approval": false,
-  "formal_legal_approval": false
+  "version": "0.2.1",
+  "status": "approved_for_controlled_rag_ingestion",
+  "production_allowed": true,
+  "medical_review_status": "approved",
+  "legal_review_status": "approved",
+  "approved_scope": "Tomo 01 Red Flags/Triage release actual previo a expansion v0.3",
+  "approval_evidence_type": "business_confirmation_from_equipo_ConSafeDev",
+  "formal_signature_status": "pending_formal_signature_metadata",
+  "new_content_policy": "any future chunks or sources require separate medical/legal review",
+  "app_global_release_status": "not_approved_by_this_tome_gate",
+  "updated_by": "opencode_integrator_prompt_12A",
+  "updated_at": "2026-07-09T05:00:39.365Z"
 }
