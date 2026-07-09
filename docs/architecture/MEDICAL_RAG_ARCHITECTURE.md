@@ -155,3 +155,23 @@ licencia                   explícitos           validados              aprobado
 - No se eliminan físicamente sin traza.
 - RAG filtra chunks `deprecated` automáticamente.
 - Auditoría de cada deprecación.
+
+## Release Pack del Tomo 01
+
+El Tomo 01 Red Flags/Triage tiene un release pack preparado en:
+
+```
+data/medical-rag/tomes/01_red_flags_triage/release/
+```
+
+Estado actual: `release_candidate_draft`.
+
+El pack incluye:
+- `tome_manifest.json` con status y production gates.
+- `source_map.json` con fuentes candidatas.
+- `contracts/chunk_contract.schema.json` para validación.
+- `retrieval_policy.json` con reglas de prioridad.
+- Templates de revisión clínica/legal/licencia.
+- Esqueleto de evaluación.
+
+Este pack NO contiene chunks clínicos reales. Está listo para que el arquitecto senior agregue contenido curado después de revisiones.

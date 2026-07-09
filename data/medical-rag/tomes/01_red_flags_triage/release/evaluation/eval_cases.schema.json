@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://appmedica.mx/schemas/tome_01_eval_case.schema.json",
+  "title": "Tomo 01 Evaluation Case",
+  "description": "Caso de evaluación para chunks del Tomo 01",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "language",
+    "population",
+    "expected_minimum_action",
+    "review_status"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "pattern": "^eval-[0-9]{3}$"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["es", "en"]
+    },
+    "population": {
+      "type": "string",
+      "enum": ["adult", "pediatric", "pregnancy", "older_adult", "immunocompromised", "general"]
+    },
+    "input_summary": {
+      "type": "string"
+    },
+    "expected_minimum_action": {
+      "type": "string",
+      "enum": [
+        "emergency_now",
+        "urgent_same_day",
+        "medical_visit",
+        "self_care_possible",
+        "ask_more_questions",
+        "insufficient_evidence"
+      ]
+    },
+    "must_detect": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "must_not_say": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_ids_expected": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "medical_reviewed", "approved", "rejected"]
+    }
+  }
+}

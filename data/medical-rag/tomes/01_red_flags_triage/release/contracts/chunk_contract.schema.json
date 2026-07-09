@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://appmedica.mx/schemas/tome_01_chunk.schema.json",
+  "title": "Tomo 01 Chunk Contract",
+  "description": "Contrato para chunks del Tomo 01 Red Flags/Triage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "chunk_id",
+    "tome_id",
+    "version",
+    "language",
+    "license_status",
+    "clinical_status",
+    "legal_status",
+    "clinical_domain",
+    "population",
+    "severity_level",
+    "red_flag_relevant",
+    "clinical_action_type",
+    "is_example_only",
+    "production_allowed"
+  ],
+  "properties": {
+    "chunk_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "description": "ID único del chunk"
+    },
+    "tome_id": {
+      "type": "string",
+      "const": "01_red_flags_triage"
+    },
+    "version": {
+      "type": "string",
+      "description": "Versión del chunk (semver+rag)"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["es", "en"]
+    },
+    "source_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs de fuentes usadas"
+    },
+    "license_status": {
+      "type": "string",
+      "enum": ["pending_license_review", "approved", "restricted", "rejected"]
+    },
+    "clinical_status": {
+      "type": "string",
+      "enum": ["draft", "pending_medical_review", "approved", "rejected", "deprecated"]
+    },
+    "legal_status": {
+      "type": "string",
+      "enum": ["pending_legal_review", "approved", "restricted", "rejected"]
+    },
+    "specialty": {
+      "type": "string",
+      "description": "Especialidad médica"
+    },
+    "clinical_domain": {
+      "type": "string",
+      "description": "Dominio clínico (D01-D30)"
+    },
+    "population": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["adult", "pediatric", "pregnancy", "older_adult", "immunocompromised", "general"]
+      },
+      "minItems": 1
+    },
+    "severity_level": {
+      "type": "string",
+      "enum": ["S0", "S1", "S2", "S3", "S4", "S5", "S6"]
+    },
+    "red_flag_relevant": {
+      "type": "boolean"
+    },
+    "clinical_action_type": {
+      "type": "string",
+      "enum": [
+        "emergency_now",
+        "urgent_same_day",
+        "medical_visit",
+        "self_care_possible",
+        "ask_more_questions",
+        "insufficient_evidence"
+      ]
+    },
+    "must_ask": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "must_not_say": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "safe_user_message": {
+      "type": "string",
+      "description": "Mensaje seguro para usuario"
+    },
+    "internal_reasoning_summary": {
+      "type": "string",
+      "description": "Notas de razonamiento interno"
+    },
+    "evidence_summary": {
+      "type": "string",
+      "description": "Resumen de evidencia clínica"
+    },
+    "retrieval_keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "reviewed_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "reviewers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "is_example_only": {
+      "type": "boolean",
+      "description": "Verdadero si es ejemplo sin valor clínico"
+    },
+    "production_allowed": {
+      "type": "boolean",
+      "description": "Verdadero solo si aprobado para producción"
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{"case_id":"eval-001","language":"es","population":"adult","input_summary":"[PLACEHOLDER: dolor torácico con disnea]","expected_minimum_action":"urgent_same_day","review_status":"draft"}
+{"case_id":"eval-002","language":"en","population":"adult","input_summary":"[PLACEHOLDER: chest pain with shortness of breath]","expected_minimum_action":"urgent_same_day","review_status":"draft"}
+{"case_id":"eval-003","language":"es","population":"pediatric","input_summary":"[PLACEHOLDER: niño con fiebre]","expected_minimum_action":"ask_more_questions","review_status":"draft"}

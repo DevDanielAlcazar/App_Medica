@@ -1,0 +1,35 @@
+{
+  "tome_id": "01_red_flags_triage",
+  "priority_rules": [
+    {
+      "condition": "red_flag_relevant == true",
+      "action": "elevate_priority"
+    },
+    {
+      "condition": "severity_level conflict",
+      "action": "select_highest_severity"
+    },
+    {
+      "condition": "population vulnerable",
+      "action": "increase_caution_threshold"
+    },
+    {
+      "condition": "insufficient_evidence",
+      "action": "ask_more_or_derivate"
+    }
+  ],
+  "ranking_strategy": [
+    "severity_level (desc)",
+    "population_risk (high to low)",
+    "source_evidence_level (A to X)",
+    "recency (desc)",
+    "jurisdiction_match (exact to global)",
+    "language_match (exact to other)"
+  ],
+  "emergency_precedence": "Tomo 01 overrides all other tomes when red_flag_relevant=true",
+  "fallback_behavior": {
+    "on_missing_evidence": "respond_with_insufficient_evidence_and_safe_path",
+    "on_conflict": "select_highest_severity",
+    "on_vulnerable_population": "elevate_severity_by_one_level"
+  }
+}

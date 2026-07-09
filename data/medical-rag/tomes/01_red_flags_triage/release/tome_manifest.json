@@ -1,0 +1,38 @@
+{
+  "tome_id": "01_red_flags_triage",
+  "tome_name": "Red Flags, Triage y Derivación Inmediata",
+  "version": "0.1.0-draft",
+  "status": "release_candidate_draft",
+  "clinical_status": "pending_medical_review",
+  "legal_status": "pending_legal_review",
+  "license_status": "pending_license_review",
+  "intended_use": [
+    "triage_safety_support",
+    "red_flag_detection_support",
+    "urgent_care_escalation_support",
+    "clinical_decision_support"
+  ],
+  "prohibited_use": [
+    "autonomous_diagnosis_without_review",
+    "controlled_medication_prescription",
+    "replacement_of_emergency_services",
+    "replacement_of_human_medical_judgment"
+  ],
+  "jurisdictions_initial": ["MX", "US", "LATAM", "EN_SPEAKING"],
+  "languages_initial": ["es", "en"],
+  "population_scope": [
+    "adult",
+    "pediatric",
+    "pregnancy",
+    "older_adult",
+    "immunocompromised"
+  ],
+  "highest_priority_rule": "when_in_doubt_escalate_to_human_or_emergency_care",
+  "production_gate": {
+    "requires_medical_signoff": true,
+    "requires_legal_signoff": true,
+    "requires_license_signoff": true,
+    "requires_under_triage_eval_pass": true,
+    "requires_bilingual_review": true
+  }
+}

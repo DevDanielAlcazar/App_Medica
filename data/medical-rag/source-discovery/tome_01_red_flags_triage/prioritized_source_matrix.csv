@@ -1,0 +1,15 @@
+source_id,title,publisher,authority_tier,clinical_priority,license_status,reuse_risk,coverage_score,relevance_score,review_order,notes
+F001,Basic Emergency Care: approach to the acutely ill and injured,WHO / ICRC,tier_1_official_global,critical,pending_license_review,medium,90,95,1,Core emergency care framework - ABCDE
+F009,Shortness of breath,NHS,tier_1_official_uk,critical,pending_license_review,low,95,90,2,Emergency breathing - high priority
+F011,Coronary heart disease — Symptoms,NHS,tier_1_official_uk,critical,pending_license_review,low,90,85,3,Chest pain/heart attack - critical red flags
+F002,Interagency Integrated Triage Tool,WHO,tier_1_official_global,critical,pending_license_review,medium,85,90,4,Acuity scoring framework
+F004,When to use the emergency room - child,MedlinePlus / NIH / NLM,tier_1_official_us,critical,pending_license_review,low,85,85,5,Pediatric emergency signs
+F008,Chest pain — Diagnosis / Other causes,NICE CKS,tier_1_official_uk,high,pending_license_review,high,80,80,6,Chest pain differential - requires NICE license
+F010,Stomach ache,NHS,tier_1_official_uk,high,pending_license_review,low,80,75,7,Abdominal pain emergency signs
+F003,When to use the emergency room - adult,MedlinePlus / NIH / NLM,tier_1_official_us,high,pending_license_review,low,75,75,8,Adult emergency signs
+F005,Flu emergency warning signs,CDC,tier_1_official_us,high,pending_license_review,low,75,75,9,Fever/respiratory emergency signs
+F006,COVID-19 emergency warning signs,CDC,tier_1_official_us,high,pending_license_review,low,75,80,10,Respiratory emergency signs
+F007,Chronic pain: Red flag signs and symptoms,NICE CKS,tier_1_official_uk,medium_high,pending_license_review,high,70,70,11,Pain red flags - requires NICE license
+F012,Guidance for emergency departments: initial assessment,NHS England,tier_1_official_uk,medium_high,pending_license_review,medium,70,65,12,Acuity scoring - NHS England specific
+F013,Emergency Department Triage,NCBI Bookshelf / StatPearls,tier_2_opencontent_questionable,medium_high,restricted_or_unclear_license_review,high,65,60,13,StatPearls - commercial license needed
+F014,Urgent Care, ER or Pediatrician? A Parent Guide,HealthyChildren.org / AAP,tier_2_institutional_resticted,high,restricted_or_unclear_license_review,high,65,65,14,AAP - explicit permission required

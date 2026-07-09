@@ -1,0 +1,66 @@
+{
+  "tome_id": "01_red_flags_triage",
+  "source_policy": "candidate_sources_only_until_reviewed",
+  "sources": [
+    {
+      "source_id": "F001",
+      "title": "WHO / ICRC Basic Emergency Care",
+      "publisher": "WHO / ICRC",
+      "url": "https://hlh.who.int/docs/librariesprovider4/hlh-documents/who-icrc-basic-emergency-care.pdf",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Candidate from Prompt 04 discovery pack"
+    },
+    {
+      "source_id": "F002",
+      "title": "WHO Interagency Integrated Triage Tool",
+      "publisher": "WHO",
+      "url": "https://www.who.int/tools/triage",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Candidate from Prompt 04 discovery pack"
+    },
+    {
+      "source_id": "F003",
+      "title": "MedlinePlus ER Adults",
+      "publisher": "NIH / NLM",
+      "url": "https://medlineplus.gov/ency/patientinstructions/000593.htm",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Candidate from Prompt 04 discovery pack"
+    },
+    {
+      "source_id": "F004",
+      "title": "MedlinePlus ER Child",
+      "publisher": "NIH / NLM",
+      "url": "https://medlineplus.gov/ency/patientinstructions/000594.htm",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Candidate from Prompt 04 discovery pack"
+    },
+    {
+      "source_id": "F009",
+      "title": "NHS Shortness of breath",
+      "publisher": "NHS",
+      "url": "https://www.nhs.uk/symptoms/shortness-of-breath/",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Candidate from Prompt 04 discovery pack"
+    }
+  ]
+}
