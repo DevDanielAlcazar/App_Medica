@@ -1,6 +1,12 @@
 # Changelog — Tomo 01 Red Flags/Triage
 
-## 0.1.0-draft
+## 0.1.0
+- Updated to awaiting_curated_input status.
+- Added curated_input folder structure with templates.
+- Added tools/medical-rag validation scripts.
+- Added coverage_matrix.md, clinical_safety_matrix.md.
+- Added red_flag_rules.md, es_en_translation_matrix.md.
+- No clinical content added (awaiting architect input).
 
 - Created release pack structure for Tome 01.
 - Added tome_manifest.json with status release_candidate_draft.

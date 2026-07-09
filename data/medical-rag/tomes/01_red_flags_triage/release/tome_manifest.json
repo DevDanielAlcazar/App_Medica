@@ -1,38 +1,18 @@
 {
   "tome_id": "01_red_flags_triage",
-  "tome_name": "Red Flags, Triage y Derivación Inmediata",
-  "version": "0.1.0-draft",
-  "status": "release_candidate_draft",
-  "clinical_status": "pending_medical_review",
-  "legal_status": "pending_legal_review",
-  "license_status": "pending_license_review",
-  "intended_use": [
-    "triage_safety_support",
-    "red_flag_detection_support",
-    "urgent_care_escalation_support",
-    "clinical_decision_support"
-  ],
-  "prohibited_use": [
-    "autonomous_diagnosis_without_review",
-    "controlled_medication_prescription",
-    "replacement_of_emergency_services",
-    "replacement_of_human_medical_judgment"
-  ],
-  "jurisdictions_initial": ["MX", "US", "LATAM", "EN_SPEAKING"],
-  "languages_initial": ["es", "en"],
-  "population_scope": [
-    "adult",
-    "pediatric",
-    "pregnancy",
-    "older_adult",
-    "immunocompromised"
-  ],
-  "highest_priority_rule": "when_in_doubt_escalate_to_human_or_emergency_care",
-  "production_gate": {
-    "requires_medical_signoff": true,
-    "requires_legal_signoff": true,
-    "requires_license_signoff": true,
-    "requires_under_triage_eval_pass": true,
-    "requires_bilingual_review": true
-  }
+  "title": "Red Flags, Triage y Derivación Inmediata",
+  "version": "0.1.0",
+  "status": "awaiting_curated_input",
+  "clinical_purpose": "Identificar señales de alarma y definir rutas seguras de derivación.",
+  "production_approved": false,
+  "requires_medical_review": true,
+  "requires_legal_review": true,
+  "requires_translation_review": true,
+  "contains_medication_recommendations": false,
+  "contains_controlled_substances": false,
+  "supported_languages": ["es", "en"],
+  "supported_jurisdictions": ["global", "mx", "us", "latam"],
+  "chunk_count": 0,
+  "source_count": 0,
+  "last_updated_at": "2026-07-08"
 }

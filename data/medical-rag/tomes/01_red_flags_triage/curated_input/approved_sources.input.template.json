@@ -1,0 +1,20 @@
+[
+  {
+    "source_id": "T01-SRC-TEMPLATE",
+    "title": "[PLACEHOLDER: Nombre de la fuente]",
+    "publisher": "[PLACEHOLDER: Organización]",
+    "url": "[PLACEHOLDER: https://...]",
+    "jurisdiction": ["global"],
+    "language": ["es", "en"],
+    "source_type": "guideline",
+    "license_status": "approved_for_rag",
+    "allowed_use": ["rag_retrieval", "clinical_reference"],
+    "not_allowed_use": ["model_training", "redistribution_without_attribution"],
+    "requires_attribution": true,
+    "requires_medical_review": true,
+    "requires_legal_review": true,
+    "review_status": "draft",
+    "last_checked_at": "2026-07-08",
+    "notes": "Plantilla - reemplazar con fuentes reales aprobadas"
+  }
+]
