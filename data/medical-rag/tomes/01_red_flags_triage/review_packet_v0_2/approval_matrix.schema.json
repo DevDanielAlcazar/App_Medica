@@ -1,0 +1,1 @@
+{"type":"object","properties":{"review_packet_version":{"type":"string"},"tome_id":{"type":"string"},"global_decision":{"enum":["approved","approved_with_changes","rejected","needs_more_review"]},"production_allowed":{"type":"boolean"}}}

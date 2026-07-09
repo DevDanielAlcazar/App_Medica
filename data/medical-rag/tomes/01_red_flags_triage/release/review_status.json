@@ -1,0 +1,8 @@
+{
+  "tome_id": "01_red_flags_triage",
+  "review_packet_version": "0.2.0",
+  "status": "pending_medical_and_legal_review",
+  "production_allowed": false,
+  "formal_medical_approval": false,
+  "formal_legal_approval": false
+}
