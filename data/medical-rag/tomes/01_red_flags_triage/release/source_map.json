@@ -3,64 +3,276 @@
   "source_policy": "candidate_sources_only_until_reviewed",
   "sources": [
     {
-      "source_id": "F001",
-      "title": "WHO / ICRC Basic Emergency Care",
-      "publisher": "WHO / ICRC",
-      "url": "https://hlh.who.int/docs/librariesprovider4/hlh-documents/who-icrc-basic-emergency-care.pdf",
-      "license_status": "pending_license_review",
-      "medical_status": "pending_medical_review",
-      "legal_status": "pending_legal_review",
-      "allowed_for_chunking": false,
-      "allowed_for_production": false,
-      "notes": "Candidate from Prompt 04 discovery pack"
-    },
-    {
-      "source_id": "F002",
-      "title": "WHO Interagency Integrated Triage Tool",
-      "publisher": "WHO",
+      "source_id": "T01-SRC-001",
+      "title": "Interagency Integrated Triage Tool",
+      "publisher": "World Health Organization",
       "url": "https://www.who.int/tools/triage",
+      "jurisdiction": [
+        "global"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "emergency_protocol",
       "license_status": "pending_license_review",
       "medical_status": "pending_medical_review",
       "legal_status": "pending_legal_review",
       "allowed_for_chunking": false,
       "allowed_for_production": false,
-      "notes": "Candidate from Prompt 04 discovery pack"
+      "notes": "Fuente oficial para lógica de triage por acuidad. Pendiente revisión legal antes de uso productivo.",
+      "created_at": "2026-07-08"
     },
     {
-      "source_id": "F003",
-      "title": "MedlinePlus ER Adults",
-      "publisher": "NIH / NLM",
+      "source_id": "T01-SRC-002",
+      "title": "When to use the emergency room - adult",
+      "publisher": "MedlinePlus / U.S. National Library of Medicine",
       "url": "https://medlineplus.gov/ency/patientinstructions/000593.htm",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
       "license_status": "pending_license_review",
       "medical_status": "pending_medical_review",
       "legal_status": "pending_legal_review",
       "allowed_for_chunking": false,
       "allowed_for_production": false,
-      "notes": "Candidate from Prompt 04 discovery pack"
+      "notes": "Referencia oficial para señales de uso de urgencias en adultos.",
+      "created_at": "2026-07-08"
     },
     {
-      "source_id": "F004",
-      "title": "MedlinePlus ER Child",
-      "publisher": "NIH / NLM",
+      "source_id": "T01-SRC-003",
+      "title": "When to use the emergency room - child",
+      "publisher": "MedlinePlus / U.S. National Library of Medicine",
       "url": "https://medlineplus.gov/ency/patientinstructions/000594.htm",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
       "license_status": "pending_license_review",
       "medical_status": "pending_medical_review",
       "legal_status": "pending_legal_review",
       "allowed_for_chunking": false,
       "allowed_for_production": false,
-      "notes": "Candidate from Prompt 04 discovery pack"
+      "notes": "Referencia oficial para señales de uso de urgencias en pediatría.",
+      "created_at": "2026-07-08"
     },
     {
-      "source_id": "F009",
-      "title": "NHS Shortness of breath",
-      "publisher": "NHS",
-      "url": "https://www.nhs.uk/symptoms/shortness-of-breath/",
+      "source_id": "T01-SRC-004",
+      "title": "Recognizing medical emergencies",
+      "publisher": "MedlinePlus / U.S. National Library of Medicine",
+      "url": "https://medlineplus.gov/ency/article/001927.htm",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
       "license_status": "pending_license_review",
       "medical_status": "pending_medical_review",
       "legal_status": "pending_legal_review",
       "allowed_for_chunking": false,
       "allowed_for_production": false,
-      "notes": "Candidate from Prompt 04 discovery pack"
+      "notes": "Referencia general para signos de emergencias médicas.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-005",
+      "title": "Signs and Symptoms of Stroke",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/stroke/signs-symptoms/index.html",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia oficial para síntomas compatibles con evento cerebrovascular.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-006",
+      "title": "About Heart Attack Symptoms, Risk, and Recovery",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/heart-disease/about/heart-attack.html",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia oficial para síntomas compatibles con ataque cardiaco.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-007",
+      "title": "Management of Anaphylaxis at COVID-19 Vaccination Sites",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/vaccines/covid-19/clinical-considerations/managing-anaphylaxis.html",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "emergency_protocol",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia oficial para sospecha de anafilaxia y escalamiento inmediato.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-008",
+      "title": "Poison Control",
+      "publisher": "Poison Control / National Capital Poison Center",
+      "url": "https://www.poison.org/",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia para exposición tóxica. No hardcodear teléfonos en app; usar configuración regional.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-009",
+      "title": "Warning Signs of Suicide",
+      "publisher": "National Institute of Mental Health",
+      "url": "https://www.nimh.nih.gov/health/publications/warning-signs-of-suicide",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia para señales de riesgo suicida/autolesión. No hardcodear líneas de ayuda; usar configuración por jurisdicción.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-010",
+      "title": "Urgent Maternal Warning Signs and Symptoms",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/hearher/maternal-warning-signs/index.html",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia oficial para señales urgentes en embarazo y hasta un año posparto.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-011",
+      "title": "Fever",
+      "publisher": "MedlinePlus / U.S. National Library of Medicine",
+      "url": "https://medlineplus.gov/ency/article/003090.htm",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia para fiebre y umbrales de consulta, especialmente lactantes.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-012",
+      "title": "Carbon Monoxide Poisoning Basics",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/carbon-monoxide/about/index.html",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia oficial para síntomas de intoxicación por monóxido de carbono.",
+      "created_at": "2026-07-08"
+    },
+    {
+      "source_id": "T01-SRC-013",
+      "title": "About Sepsis",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/sepsis/about/index.html",
+      "jurisdiction": [
+        "us",
+        "global_reference"
+      ],
+      "language": [
+        "en"
+      ],
+      "source_type": "official_health_page",
+      "license_status": "pending_license_review",
+      "medical_status": "pending_medical_review",
+      "legal_status": "pending_legal_review",
+      "allowed_for_chunking": false,
+      "allowed_for_production": false,
+      "notes": "Referencia oficial para señales compatibles con sepsis.",
+      "created_at": "2026-07-08"
     }
   ]
 }
