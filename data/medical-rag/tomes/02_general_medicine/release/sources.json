@@ -1,0 +1,109 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "license_strategy": "Do not ingest copyrighted/prohibited pages into embeddings. Use only allowed public-domain/copyright-free government content plus original synthesis, with final legal review.",
+  "excluded_sources": [
+    {
+      "title": "MedlinePlus / A.D.A.M. Medical Encyclopedia pages",
+      "reason": "The page terms explicitly prohibit automated extraction and AI/RAG dataset or embedding use without express written consent.",
+      "url_example": "https://medlineplus.gov/ency/article/003079.htm"
+    },
+    {
+      "title": "Commercial manuals, blogs, private clinics, WebMD/Mayo/Merck/MSD/etc.",
+      "reason": "Potential copyright/licensing restrictions or commercial editorial policies. Not used for generated chunks."
+    }
+  ],
+  "sources": {
+    "CDC-MAT-001": {
+      "title": "CDC - Use of Agency Materials",
+      "url": "https://www.cdc.gov/Other/agencymaterials.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Most CDC/ATSDR website information is public domain with attribution and non-endorsement requirements; exceptions exist.",
+      "used_for": "License governance and source policy."
+    },
+    "CDC-STROKE-001": {
+      "title": "CDC - Signs and Symptoms of Stroke",
+      "url": "https://www.cdc.gov/stroke/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "CDC public health page; verify exceptions before production redistribution.",
+      "used_for": "Stroke red flags and emergency escalation."
+    },
+    "CDC-DIAB-001": {
+      "title": "CDC - Symptoms of Diabetes",
+      "url": "https://www.cdc.gov/diabetes/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "CDC public health page; verify exceptions before production redistribution.",
+      "used_for": "Diabetes symptom prompts and metabolic risk screening."
+    },
+    "NHLBI-MI-001": {
+      "title": "NHLBI - Heart Attack Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "U.S. federal health topic; final legal review required before production reuse.",
+      "used_for": "Chest pain, myocardial infarction warning symptoms, emergency escalation."
+    },
+    "NHLBI-ASTHMA-001": {
+      "title": "NHLBI - Asthma Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/symptoms",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "U.S. federal health topic; final legal review required before production reuse.",
+      "used_for": "Wheeze, dyspnea, cough pattern, asthma worsening prompts."
+    },
+    "NHLBI-HTN-001": {
+      "title": "NHLBI - High Blood Pressure Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/high-blood-pressure/symptoms",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "U.S. federal health topic; final legal review required before production reuse.",
+      "used_for": "Hypertension assessment and high-risk symptom escalation."
+    },
+    "NHLBI-PNA-001": {
+      "title": "NHLBI - Pneumonia Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/pneumonia/symptoms",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "U.S. federal health topic; final legal review required before production reuse.",
+      "used_for": "Respiratory infection and pneumonia-oriented triage prompts."
+    },
+    "NIDDK-COPY-001": {
+      "title": "NIDDK - Copyright",
+      "url": "https://www.niddk.nih.gov/copyright",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "Majority of NIDDK information is copyright free; exceptions exist; acknowledge NIDDK and remove logos if editing.",
+      "used_for": "License governance."
+    },
+    "NIDDK-GERD-001": {
+      "title": "NIDDK - Symptoms & Causes of GER and GERD",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK copyright-free majority policy; final legal review required.",
+      "used_for": "GERD symptom pattern, dysphagia/bleeding/weight-loss escalation."
+    },
+    "NIDDK-GASTRO-001": {
+      "title": "NIDDK - Symptoms & Causes of Viral Gastroenteritis",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK copyright-free majority policy; final legal review required.",
+      "used_for": "Vomiting, diarrhea, dehydration and gastroenteritis escalation."
+    },
+    "NIDDK-CONST-001": {
+      "title": "NIDDK - Symptoms & Causes of Constipation",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK copyright-free majority policy; final legal review required.",
+      "used_for": "Constipation-oriented symptom history and red flags."
+    },
+    "NIDDK-IBS-001": {
+      "title": "NIDDK - Symptoms & Causes of Irritable Bowel Syndrome",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/irritable-bowel-syndrome/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK copyright-free majority policy; final legal review required.",
+      "used_for": "Chronic abdominal pain, bowel habit pattern and exclusion red flags."
+    },
+    "ORIGINAL-CLINICAL-FRAMEWORK-001": {
+      "title": "Original clinical intake and reasoning framework",
+      "url": "internal://authored-framework/anamnesis-general-medicine-v0.1",
+      "organization": "Generated original synthesis for App_Medica",
+      "license_notes": "Original authored synthesis; not copied from proprietary clinical manuals. Requires physician review.",
+      "used_for": "Question design, safety boundaries, structured clinical reasoning prompts."
+    }
+  }
+}
