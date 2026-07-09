@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://appmedica.mx/schemas/source_registry.schema.json",
+  "title": "Source Registry Entry",
+  "description": "Registro de fuentes médicas autorizadas para RAG",
+  "type": "object",
+  "required": [
+    "source_id",
+    "title",
+    "publisher",
+    "source_type",
+    "license_name",
+    "license_status",
+    "allowed_uses",
+    "jurisdictions",
+    "languages",
+    "last_accessed_at",
+    "review_owner"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "ID único identificador, lowercase con guiones"
+    },
+    "title": {
+      "type": "string",
+      "description": "Título de la fuente"
+    },
+    "publisher": {
+      "type": "string",
+      "description": "Editora u organización origen"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["guideline", "textbook", "article", "ontology", "official_site", "clinical_tool", "dataset", "policy", "other"],
+      "description": "Tipo de fuente"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL directa a la fuente"
+    },
+    "license_name": {
+      "type": "string",
+      "description": "Nombre de la licencia o acuerdo"
+    },
+    "license_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL a texto completo de la licencia"
+    },
+    "license_status": {
+      "type": "string",
+      "enum": ["approved", "pending_review", "rejected", "restricted"],
+      "description": "Estado de la licencia para uso en RAG"
+    },
+    "allowed_uses": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["rag_retrieval", "quotation_limited", "metadata_only", "internal_review"]
+      },
+      "minItems": 1,
+      "description": "Usos permitidos según licencia"
+    },
+    "prohibited_uses": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["model_training", "redistribution", "commercial_reuse", "verbatim_bulk_copy"]
+      },
+      "description": "Usos prohibidos según licencia"
+    },
+    "jurisdictions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["global", "mx", "us", "latam", "en"]
+      },
+      "minItems": 1,
+      "description": "Jurisdicciones donde aplica"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "minItems": 1,
+      "description": "Idiomas disponibles en la fuente"
+    },
+    "clinical_domains": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Dominios clínicos cubiertos"
+    },
+    "specialties": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Especialidades médicas cubiertas"
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": ["official_guideline", "systematic_review", "clinical_reference", "expert_consensus", "educational", "unknown"],
+      "description": "Nivel de evidencia de la fuente"
+    },
+    "last_accessed_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Última fecha de acceso a la fuente"
+    },
+    "last_reviewed_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Última fecha de revisión legal/médica"
+    },
+    "review_owner": {
+      "type": "string",
+      "description": "Responsable de la revisión (nombre/email)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notas adicionales sobre la fuente"
+    }
+  }
+}

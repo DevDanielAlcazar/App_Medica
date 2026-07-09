@@ -1,0 +1,20 @@
+{
+  "tome_id": "05_otc_symptomatic_recommendations",
+  "tome_name": "OTC Symptomatic Recommendations",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "Medicamentos de venta libre y recomendaciones sintomáticas con catálogo médico aprobado",
+  "clinical_domains": ["otc", "symptomatic_care"],
+  "specialties": ["all"],
+  "languages": ["es", "en"],
+  "jurisdictions": ["mx", "us", "latam"],
+  "evidence_level": "clinical_reference",
+  "license_status": "pending_review",
+  "created_at": "2024-01-15",
+  "last_updated": "2024-01-15",
+  "review_owner": "clinical-team@appmedica.mx",
+  "sources": [],
+  "chunk_count": 0,
+  "retention_policy": "indefinite",
+  "dependencies": ["00_governance", "01_red_flags_triage"]
+}
