@@ -1,0 +1,122 @@
+[
+  {
+    "source_id": "T01-V02-S001",
+    "title": "CDC Signs and Symptoms of Stroke",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/stroke/signs-symptoms/index.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S002",
+    "title": "CDC Anaphylaxis",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/vaccines/covid-19/clinical-considerations/managing-anaphylaxis.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S003",
+    "title": "Poison Control",
+    "publisher": "Poison Control",
+    "url": "https://www.poison.org/",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S004",
+    "title": "NIMH Suicide Warning Signs",
+    "publisher": "NIMH",
+    "url": "https://www.nimh.nih.gov/health/publications/warning-signs-of-suicide",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S005",
+    "title": "CDC TBI Concussion",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/traumatic-brain-injury/signs-symptoms/index.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S006",
+    "title": "MedlinePlus Abdominal Pain",
+    "publisher": "NLM",
+    "url": "https://medlineplus.gov/abdominalpain.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S007",
+    "title": "CDC Heat Illnesses",
+    "publisher": "CDC/NIOSH",
+    "url": "https://www.cdc.gov/niosh/heat-stress/about/illnesses.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S008",
+    "title": "CDC Hypothermia",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/winter-weather/prevention/index.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S009",
+    "title": "CDC Diabetic Ketoacidosis",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/diabetes/about/diabetic-ketoacidosis.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S010",
+    "title": "CDC Low Blood Sugar",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S011",
+    "title": "CDC Seizure First Aid",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/epilepsy/first-aid-for-seizures/index.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S012",
+    "title": "CDC Maternal Warning Signs",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/hearher/maternal-warning-signs/index.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S013",
+    "title": "CDC Pregnancy Blood Clots",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/blood-clots/risk-factors/pregnancy.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S014",
+    "title": "MedlinePlus Ectopic Pregnancy",
+    "publisher": "NLM",
+    "url": "https://medlineplus.gov/ectopicpregnancy.html",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  },
+  {
+    "source_id": "T01-V02-S015",
+    "title": "MedlinePlus Child ER",
+    "publisher": "NLM",
+    "url": "https://medlineplus.gov/ency/patientinstructions/000594.htm",
+    "license_status": "pending_legal_review",
+    "medical_review_status": "pending"
+  }
+]

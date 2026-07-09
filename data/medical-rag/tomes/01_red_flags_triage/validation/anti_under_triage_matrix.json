@@ -321,6 +321,231 @@
       "must_include_must_not_say": true,
       "under_triage_failure_is_blocker": true,
       "notes": "dolor_abdominal_severo domain"
+    },
+    {
+      "domain": "stroke_tia",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "anaphylaxis",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "poisoning_toxic_exposure",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "suicide_self_harm_crisis",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "head_injury_concussion_danger",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "severe_abdominal_pain",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "heat_stroke_heat_illness",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "hypothermia",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "diabetic_ketoacidosis_hyperglycemic_emergency",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "severe_hypoglycemia",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "seizure_emergency",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": false,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "pregnancy_postpartum_warning_signs",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": true,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "ectopic_pregnancy",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": true,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "pregnancy_blood_clot_pulmonary_embolism",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": true,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
+    },
+    {
+      "domain": "child_emergency_general",
+      "minimum_chunk_count": 1,
+      "required_severity_levels": [
+        "S5",
+        "S6"
+      ],
+      "must_have_action_types": [
+        "emergency_now"
+      ],
+      "vulnerable_population_required": true,
+      "must_include_safe_user_message": true,
+      "must_include_must_not_say": true,
+      "under_triage_failure_is_blocker": true
     }
   ]
 }

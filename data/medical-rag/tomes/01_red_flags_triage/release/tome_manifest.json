@@ -1,7 +1,7 @@
 {
   "tome_id": "01_red_flags_triage",
   "title": "Red Flags, Triage y Derivación Inmediata",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "release_candidate_clinical_review",
   "clinical_purpose": "Identificar señales de alarma y definir rutas seguras de derivación.",
   "production_approved": false,
@@ -20,7 +20,7 @@
     "us",
     "latam"
   ],
-  "chunk_count": 24,
-  "source_count": 13,
+  "chunk_count": 54,
+  "source_count": 28,
   "last_updated_at": "2026-07-08"
 }
