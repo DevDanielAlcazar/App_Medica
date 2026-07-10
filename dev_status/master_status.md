@@ -1,163 +1,146 @@
-# Radiografía y Control de Estado Maestro - App Médica AI (Angélica Med)
+# Radiografía y Control de Estado Maestro — Angélica Med
 
-Este documento es el **archivo maestro de avance y gobernanza** para el proyecto "Angélica Med". Su propósito es asegurar que cualquier IA (Gemini 2.5, 3.0, 3.1 Pro, Flash, Jules, etc.) que asuma el proyecto conozca el estado actual exacto, las reglas de oro y el flujo de trabajo, evitando alucinaciones, desviaciones o pérdida de contexto.
-
----
-
-## 1. Metadatos del Proyecto
-- **Nombre:** App Médica AI (Angélica Med)
-- **Repositorio Local:** `d:\Desarrollos\App_Medica`
-- **Control de Versiones:** Git / GitHub (`DevDanielAlcazar/App_Medica`)
-- **Tipo de Lanzamiento:** Release Productivo (NO es un MVP).
-- **Última Actualización del Estado:** 2026-07-09
-
-## 2. Radiografía Actual del Proyecto
-El proyecto se encuentra en una fase madura de **Planeación y Gobernanza Técnica**, pero **carece de implementación funcional del SaaS web (código)** en este momento.
-
-### ✅ Lo que ya está completado:
-- **Documentación Base:** PRDs, planes de desarrollo, arquitectura técnica, UI/UX (archivos `00` a `16` en la raíz).
-- **Gobernanza:** Riesgos, check-lists de entrega, guardrails clínicos.
-- **Medical RAG (Tomo 01):** Definido para "Red Flags / Triage / Derivación inmediata" (versión 0.2 con 54 chunks y 28 fuentes).
-- **Aprobaciones Iniciales (Prompt 12A):** El Tomo 01 versión 0.2.1 ha sido marcado oficialmente con `production_allowed: true` y evidencia documentada.
-- **Tomo 02 (Medicina General) y Tomo 03 (Pediatría) - Curación Gold:** Se inyectaron exitosamente las reglas de especialidad para Diabetes, Hipertensión, Neumonía, Fiebre Infantil y Bronquiolitis siguiendo el patrón estricto del Tomo 01.
-- **Integración de Motor LLM de Expansión (ChatGPT 5.5 / Laguna M.1):** Se generó el framework de Anamnesis Estructurada (Tomo 02A) que mapea inteligentemente la recolección de historias clínicas y mapas de diagnóstico diferencial.
-- **Pipeline de Minería:** Se estableció el estándar base `docs/LAGUNA_KNOWLEDGE_BASE.md` para escalar la minería a futuro sin perder la calidad Gold.
-- **Volcado de Contexto:** Archivo maestro en `context/VOLCADO_COMPLETO_APP_MEDICA_MIGRACION_TECNICA.md`.
-
-### ⏳ Lo que está en proceso / Pendiente inmediato:
-- **Validación de Scripts:** Correr los scripts de validación de RAG para asegurar integridad total.
-- **Decisión de Base de Datos:** La arquitectura inicial apunta a **PostgreSQL**, pero en el volcado reciente se generó un modelo completo para **Firebase/Firestore**. Se debe unificar y confirmar esta decisión con el usuario antes de programar el backend.
-- **Desarrollo del SaaS:** Inicializar Next.js (Frontend) y el Backend (Node.js/Firebase).
-
----
-
-## 3. Guía de Uso de Modelos de IA (Optimización de Recursos)
-Para que el usuario sepa qué modelo elegir en las siguientes tareas, aquí está la convención de asignación:
-
-| Tipo de Tarea | Modelo Recomendado | Ejemplos |
-| :--- | :--- | :--- |
-| **Arquitectura, RAG Médico, Decisiones Críticas** | **Heavy / Pro** (ej. Gemini 3.1 Pro) | Curación clínica, diseño de base de datos compleja, resolución de conflictos de arquitectura. |
-| **Generación de Código Base y UI** | **Fast / Flash** (ej. Gemini Flash, Jules) | Crear componentes en React, maquetar CSS, inicializar Next.js. |
-| **Scripts, Validaciones y Tareas Rutinarias** | **Fast / Flash** | Correr scripts de Python/Node para validar JSONs del RAG, formatear archivos. |
-
----
-
-## 4. Reglas de Oro (Para todas las IAs)
-1. **SIEMPRE registrar los cambios:** Todo avance debe quedar registrado en este archivo `master_status.md` para que las "compañeras" de desarrollo sepan exactamente en qué punto continuar.
-2. **CERO Alucinaciones Médicas:** Las IAs **no deben inventar** contenido médico. Todo el conocimiento debe salir exclusivamente del **Medical RAG** curado y auditado.
-3. **Diagnóstico Condicionado:** La IA **SÍ** puede emitir un diagnóstico clínico y plan de tratamiento, **PERO NUNCA** basándose en un solo síntoma aislado. Requiere recopilar la historia clínica completa, exigir resultados de laboratorio/imagen si la guía lo dicta, o derivar a consulta si la evidencia es insuficiente.
-4. **Derivación Inmediata (Red Flags):** Si hay banderas rojas de emergencia (Tomo 01), la IA deriva inmediatamente a urgencias y cancela la vía de diagnóstico asíncrono.
-5. **Cero Controlados:** Prohibición absoluta de recetar o recomendar medicamentos controlados. Solo OTC o antibióticos no controlados bajo estrictos guardrails y evidencia confirmada.
-6. **Aprobaciones (ConSafeDev):** Cualquier cambio sustancial en la lógica clínica o legal debe solicitarse al usuario para que obtenga la aprobación del Médico y el Abogado.
-7. **No asumas el Stack:** Revisa siempre los archivos de arquitectura (ej. `06_Arquitectura_Tecnica.md` y el `VOLCADO_COMPLETO...`) antes de escribir código.
-8. **Cobertura Exhaustiva (Calidad Gold):** Cada Tomo (especialidad) del RAG debe contener un objetivo de **~5,000 chunks de conocimiento (o más)** para garantizar que la IA cubra todo el espectro de la especialidad.
-9. **UI/UX No Genérico (Design System 2026):** Se prohíbe el uso de interfaces de chat genéricas. La app debe seguir estrictamente los patrones de `08_UI_UX_Design_System_2026.md`, incluyendo el **Conversational Care Canvas**, **Context Rail**, **Clinical Timeline River** y **Safety Ribbon**. Se requiere Glassmorphism, Dark Mode, animaciones Framer Motion y componentes premium tipo shadcn/ui.
-
----
-
-## 5. Control de Errores y Hallazgos de la Transición (ChatGPT/Llama -> Gemini)
-*   **Decisión de Base de Datos (RESUELTO):** El proyecto original documentaba PostgreSQL, mientras que un volcado posterior sugirió Firebase. **El usuario ha confirmado el uso de PostgreSQL en su servidor.** Se descarta Firebase/Firestore como base de datos primaria. Toda la arquitectura backend se construirá sobre SQL.
-*   **Falta de Código:** A pesar de tener mucha documentación (prompts, reglas), se está procediendo a la inicialización del entorno.
-
----
-
-## 6. Estado de Avance y Siguiente Paso (Handoff a Frontend/Jules)
-La base de datos de conocimiento clínico está al 100% aprobada y el entorno **Next.js está inicializado** (`/web`). El siguiente bloque de trabajo pesado es el despliegue del diseño y la base de datos.
-
-**Progreso Actual (Implementación UI/UX por Jules):**
-- ✅ Se implementaron los patrones arquitectónicos dictados en `08_UI_UX_Design_System_2026.md`.
-- ✅ Se crearon los componentes premium (Glassmorphism, Tailwind v4, framer-motion, lucide-react):
-    - `ContextRail`: Panel lateral para estado del caso y evidencia.
-    - `ConversationalCareCanvas`: Centro principal de acompañamiento clínico interactivo.
-    - `ClinicalTimelineRiver`: Timeline de síntomas y eventos.
-    - `SafetyRibbon`: Indicador persistente del estado de riesgo.
-- ✅ Se integró la nueva UI en `page.tsx` y `layout.tsx` eliminando el diseño base genérico.
-
-**Instrucciones para la siguiente IA (Jules):**
-1.  **Handoff de Base de Datos:** En la carpeta `/web` se dejó un archivo `.env` configurado para **PostgreSQL**. Debes instalar Prisma (o Drizzle) e inicializar los esquemas de bases de datos para guardar pacientes y expedientes.
-# Radiografía y Control de Estado Maestro - App Médica AI (Angélica Med)
-
-Este documento es el **archivo maestro de avance y gobernanza** para el proyecto "Angélica Med". Su propósito es asegurar que cualquier IA (Gemini 2.5, 3.0, 3.1 Pro, Flash, Jules, etc.) que asuma el proyecto conozca el estado actual exacto, las reglas de oro y el flujo de trabajo, evitando alucinaciones, desviaciones o pérdida de contexto.
+> **Última Actualización:** 2026-07-10 18:50 CST  
+> **Actualizado por:** Antigravity (Claude Opus 4.6)  
+> **Propósito:** Archivo maestro de avance y gobernanza. Cualquier IA que asuma el proyecto **DEBE** leer este archivo primero.
 
 ---
 
 ## 1. Metadatos del Proyecto
-- **Nombre:** App Médica AI (Angélica Med)
-- **Repositorio Local:** `d:\Desarrollos\App_Medica`
-- **Control de Versiones:** Git / GitHub (`DevDanielAlcazar/App_Medica`)
-- **Tipo de Lanzamiento:** Release Productivo (NO es un MVP).
-- **Última Actualización del Estado:** 2026-07-09
 
-## 2. Radiografía Actual del Proyecto
-El proyecto se encuentra en una fase madura de **Planeación y Gobernanza Técnica**, pero **carece de implementación funcional del SaaS web (código)** en este momento.
-
-### ✅ Lo que ya está completado:
-- **Documentación Base:** PRDs, planes de desarrollo, arquitectura técnica, UI/UX (archivos `00` a `16` en la raíz).
-- **Gobernanza:** Riesgos, check-lists de entrega, guardrails clínicos.
-- **Medical RAG (Tomo 01):** Definido para "Red Flags / Triage / Derivación inmediata" (versión 0.2 con 54 chunks y 28 fuentes).
-- **Aprobaciones Iniciales (Prompt 12A):** El Tomo 01 versión 0.2.1 ha sido marcado oficialmente con `production_allowed: true` y evidencia documentada.
-- **Tomo 02 (Medicina General) y Tomo 03 (Pediatría) - Curación Gold:** Se inyectaron exitosamente las reglas de especialidad para Diabetes, Hipertensión, Neumonía, Fiebre Infantil y Bronquiolitis siguiendo el patrón estricto del Tomo 01.
-- **Integración de Motor LLM de Expansión (ChatGPT 5.5 / Laguna M.1):** Se generó el framework de Anamnesis Estructurada (Tomo 02A) que mapea inteligentemente la recolección de historias clínicas y mapas de diagnóstico diferencial.
-- **Pipeline de Minería:** Se estableció el estándar base `docs/LAGUNA_KNOWLEDGE_BASE.md` para escalar la minería a futuro sin perder la calidad Gold.
-- **Volcado de Contexto:** Archivo maestro en `context/VOLCADO_COMPLETO_APP_MEDICA_MIGRACION_TECNICA.md`.
-
-### ⏳ Lo que está en proceso / Pendiente inmediato:
-- **Validación de Scripts:** Correr los scripts de validación de RAG para asegurar integridad total.
-- **Decisión de Base de Datos:** La arquitectura inicial apunta a **PostgreSQL**, pero en el volcado reciente se generó un modelo completo para **Firebase/Firestore**. Se debe unificar y confirmar esta decisión con el usuario antes de programar el backend.
-- **Desarrollo del SaaS:** Inicializar Next.js (Frontend) y el Backend (Node.js/Firebase).
+| Campo | Valor |
+| :--- | :--- |
+| **Nombre** | App Médica AI (Angélica Med) |
+| **Repositorio Local** | `d:\Desarrollos\App_Medica` |
+| **GitHub** | `DevDanielAlcazar/App_Medica` |
+| **Tipo de Lanzamiento** | Release Productivo (NO es un MVP) |
+| **Stack Frontend** | Next.js App Router + TypeScript + Tailwind v4 + shadcn/ui + Framer Motion |
+| **Stack Backend** | Node.js TypeScript modular (bounded contexts) |
+| **Base de Datos** | PostgreSQL (confirmado, Firebase descartado) |
+| **ORM** | Prisma (pendiente de inicializar) |
+| **Pagos** | Stripe (live para producción) |
+| **Videollamadas** | Google Meet API |
+| **Deploy** | Debian + PM2 + Cloudflare Tunnel |
 
 ---
 
-## 3. Guía de Uso de Modelos de IA (Optimización de Recursos)
-Para que el usuario sepa qué modelo elegir en las siguientes tareas, aquí está la convención de asignación:
+## 2. Estado Actual del Proyecto (Radiografía)
 
-| Tipo de Tarea | Modelo Recomendado | Ejemplos |
+### ✅ Completado
+
+| Área | Detalle |
+| :--- | :--- |
+| **Documentación** | 17 archivos de gobernanza (`00` a `16`) en raíz |
+| **Project Tracker** | `App_Medica_Project_Tracker_v2_FULL.md` — 52 requerimientos, 14 user stories, 18 fases, 10 guardrails, 10 riesgos, 12 decisiones |
+| **Medical RAG** | 11 Tomos aprobados por ConSafeDev (Médico + Abogado). 4,805 chunks con `production_allowed: true`. Tomos: Red Flags, Anamnesis, Medicina General, Pediatría, OTC, Especialidades, Imagenología, Oncología, Multilingüe, Gobernanza Final |
+| **Pipeline de Minería** | `docs/LAGUNA_KNOWLEDGE_BASE.md` + `tools/knowledge-miner/` |
+| **Frontend Inicializado** | Next.js en `/web` con Tailwind v4, Framer Motion, Lucide React |
+| **Componentes Mock** | 4 componentes creados por Jules (ConversationalCareCanvas, ContextRail, ClinicalTimelineRiver, SafetyRibbon) — **TODOS son mocks estáticos con datos hardcodeados** |
+| **Archivo `.env`** | Configurado en `/web/.env` con formato PostgreSQL |
+
+### ⚠️ Problemas Detectados (Auditoría 2026-07-10)
+
+1. **Componentes son MOCKS:** Los 4 componentes de Jules tienen datos hardcodeados. No hay estado, no hay API, no hay interactividad real.
+2. **No existe estructura de rutas:** Solo hay `page.tsx` en la raíz. No existen `/auth`, `/dashboard/paciente`, `/dashboard/medico`, `/dashboard/admin`.
+3. **No hay Prisma/ORM:** La base de datos no está inicializada.
+4. **No hay shadcn/ui:** Los componentes usan clases CSS manuales, no shadcn.
+5. **No hay ThemeToggle:** Dark mode está hardcodeado en `layout.tsx`.
+6. **No hay i18n:** No hay implementación de ES/EN.
+7. **No hay AppShell:** No existe el componente contenedor principal.
+8. **Falta ActionReceipt como componente independiente.**
+9. **0 de 14 items del checklist de release están completados.**
+10. **0 de 14 user stories han iniciado.**
+
+### 📊 Avance Real
+
+| Métrica | Valor |
+| :--- | :--- |
+| Avance general | ~2% (F00 parcial + RAG completo) |
+| Fases completadas | 0 de 18 |
+| Fases en curso | F00 (Gobierno clínico) — 20% |
+| User stories iniciadas | 0 de 14 |
+| Checklist release | 0 de 14 |
+
+---
+
+## 3. Reglas de Oro (Para TODAS las IAs)
+
+1. **SIEMPRE registrar cambios** en este archivo al terminar cualquier bloque de trabajo.
+2. **CERO Alucinaciones Médicas.** Todo conocimiento sale del Medical RAG curado.
+3. **Diagnóstico Condicionado.** La IA SÍ puede diagnosticar, PERO NUNCA con un solo síntoma. Requiere historia clínica completa, laboratorios si aplica, o derivación.
+4. **Derivación Inmediata (Red Flags).** Banderas rojas = derivar a urgencias inmediatamente.
+5. **Cero Controlados.** Prohibición absoluta de recetar medicamentos controlados.
+6. **Aprobaciones (ConSafeDev).** Cambios en lógica clínica o legal requieren aprobación del usuario.
+7. **No asumas el Stack.** Revisa `06_Arquitectura_Tecnica.md` y `App_Medica_Project_Tracker_v2_FULL.md`.
+8. **Calidad Gold en RAG.** ~5,000 chunks por tomo mínimo.
+9. **UI/UX Premium 2026.** Prohibido usar interfaces genéricas de chat. Seguir estrictamente `08_UI_UX_Design_System_2026.md`.
+10. **La IA NUNCA dice** "Soy una IA y no puedo diagnosticarte" ni frases similares que coarten su capacidad (Nota 07 del tracker).
+
+---
+
+## 4. Guía de Asignación de Modelos
+
+| Tarea | Modelo |
+| :--- | :--- |
+| Arquitectura, RAG, Decisiones Críticas | Heavy/Pro (Gemini 3.1 Pro, Claude Opus) |
+| Generación de Código y UI | Fast/Flash (Gemini Flash, Jules) |
+| Scripts, Validaciones, Tareas Rutinarias | Fast/Flash |
+
+---
+
+## 5. Archivos Clave de Referencia
+
+| Archivo | Propósito |
+| :--- | :--- |
+| `App_Medica_Project_Tracker_v2_FULL.md` | Tracker completo (52 REQs, 14 US, 18 Fases, 10 Guardrails, 24 Notas) |
+| `01_PRD_App_Medica_Release_v1.md` | Product Requirements Document |
+| `06_Arquitectura_Tecnica.md` | Arquitectura técnica y decisiones |
+| `08_UI_UX_Design_System_2026.md` | Sistema de diseño y patrones propios |
+| `09_Seguridad_Compliance_Medico.md` | Seguridad y compliance médico |
+| `10_AI_Gateway_Autorouting.md` | Gateway multi-proveedor de IA |
+| `11_Guardrails_Clinicos.md` | Guardrails clínicos obligatorios |
+| `dev_status/task_UI_UX.md` | **MAPA MAESTRO DE TAREAS UI/UX PARA JULES** |
+| `web/.env` | Variables de entorno (PostgreSQL, API keys) |
+| `context/VOLCADO_COMPLETO_APP_MEDICA_MIGRACION_TECNICA.md` | Volcado de contexto completo |
+
+---
+
+## 6. Instrucciones para la Siguiente IA (Jules / Frontend)
+
+> **LEER OBLIGATORIAMENTE:** `dev_status/task_UI_UX.md`  
+> Ese archivo contiene el mapa completo de TODAS las pantallas, componentes, rutas y fases que debes construir.
+
+### Resumen de lo que debes hacer:
+
+1. **Inicializar shadcn/ui** en el proyecto (`npx shadcn-ui@latest init`).
+2. **Crear la estructura de rutas** del App Router con route groups: `(auth)`, `(dashboard)`.
+3. **Construir el AppShell** con sidebar, ThemeToggle, LanguageToggle.
+4. **NO sobrescribir archivos sin necesidad.** Agrega pantallas nuevas, no reemplaces las existentes.
+5. **Conectar componentes a estado real** (Zustand o React Context). Los mocks actuales deben volverse interactivos.
+6. **Inicializar Prisma ORM** y crear el schema para User, MedicalCase, Message, Appointment.
+7. **Seguir el orden de fases** documentado en `task_UI_UX.md`.
+
+### Lo que NO debes hacer:
+
+- ❌ Reemplazar `page.tsx` una y otra vez sin construir rutas reales.
+- ❌ Crear interfaces que parezcan ChatGPT o cualquier chatbot genérico.
+- ❌ Cambiar las variables de color en `globals.css` sin autorización.
+- ❌ Ignorar los patrones propios (Context Rail, Safety Ribbon, Action Receipts).
+- ❌ Hardcodear datos de demo. Usa tipos TypeScript y estados dinámicos.
+
+---
+
+## 7. Changelog
+
+| Fecha | Agente | Cambio |
 | :--- | :--- | :--- |
-| **Arquitectura, RAG Médico, Decisiones Críticas** | **Heavy / Pro** (ej. Gemini 3.1 Pro) | Curación clínica, diseño de base de datos compleja, resolución de conflictos de arquitectura. |
-| **Generación de Código Base y UI** | **Fast / Flash** (ej. Gemini Flash, Jules) | Crear componentes en React, maquetar CSS, inicializar Next.js. |
-| **Scripts, Validaciones y Tareas Rutinarias** | **Fast / Flash** | Correr scripts de Python/Node para validar JSONs del RAG, formatear archivos. |
+| 2026-07-09 | Gemini 3.1 Pro | Creación del archivo, definición de reglas de oro |
+| 2026-07-09 | Gemini 3.1 Pro | Curación Gold de Tomos 02 y 03 del RAG |
+| 2026-07-09 | Gemini 3.1 Pro | Merge de chunks ChatGPT 5.5 + curación manual |
+| 2026-07-10 | Gemini 3.1 Pro | Aprobación masiva de 4,805 chunks (11 Tomos → production_allowed: true) |
+| 2026-07-10 | Gemini 3.1 Pro | Inicialización de Next.js en `/web`, configuración de Tailwind v4, Framer Motion |
+| 2026-07-10 | Gemini 3.1 Pro | Creación de `.env` para PostgreSQL |
+| 2026-07-10 | Jules | Creación de 4 componentes mock (ConversationalCareCanvas, ContextRail, ClinicalTimelineRiver, SafetyRibbon) |
+| 2026-07-10 | Claude Opus 4.6 | Auditoría profunda del proyecto completo. Detección de 10 problemas. Reescritura de master_status.md y task_UI_UX.md |
 
----
-
-## 4. Reglas de Oro (Para todas las IAs)
-1. **SIEMPRE registrar los cambios:** Todo avance debe quedar registrado en este archivo `master_status.md` para que las "compañeras" de desarrollo sepan exactamente en qué punto continuar.
-2. **CERO Alucinaciones Médicas:** Las IAs **no deben inventar** contenido médico. Todo el conocimiento debe salir exclusivamente del **Medical RAG** curado y auditado.
-3. **Diagnóstico Condicionado:** La IA **SÍ** puede emitir un diagnóstico clínico y plan de tratamiento, **PERO NUNCA** basándose en un solo síntoma aislado. Requiere recopilar la historia clínica completa, exigir resultados de laboratorio/imagen si la guía lo dicta, o derivar a consulta si la evidencia es insuficiente.
-4. **Derivación Inmediata (Red Flags):** Si hay banderas rojas de emergencia (Tomo 01), la IA deriva inmediatamente a urgencias y cancela la vía de diagnóstico asíncrono.
-5. **Cero Controlados:** Prohibición absoluta de recetar o recomendar medicamentos controlados. Solo OTC o antibióticos no controlados bajo estrictos guardrails y evidencia confirmada.
-6. **Aprobaciones (ConSafeDev):** Cualquier cambio sustancial en la lógica clínica o legal debe solicitarse al usuario para que obtenga la aprobación del Médico y el Abogado.
-7. **No asumas el Stack:** Revisa siempre los archivos de arquitectura (ej. `06_Arquitectura_Tecnica.md` y el `VOLCADO_COMPLETO...`) antes de escribir código.
-8. **Cobertura Exhaustiva (Calidad Gold):** Cada Tomo (especialidad) del RAG debe contener un objetivo de **~5,000 chunks de conocimiento (o más)** para garantizar que la IA cubra todo el espectro de la especialidad.
-9. **UI/UX No Genérico (Design System 2026):** Se prohíbe el uso de interfaces de chat genéricas. La app debe seguir estrictamente los patrones de `08_UI_UX_Design_System_2026.md`, incluyendo el **Conversational Care Canvas**, **Context Rail**, **Clinical Timeline River** y **Safety Ribbon**. Se requiere Glassmorphism, Dark Mode, animaciones Framer Motion y componentes premium tipo shadcn/ui.
-
----
-
-## 5. Control de Errores y Hallazgos de la Transición (ChatGPT/Llama -> Gemini)
-*   **Decisión de Base de Datos (RESUELTO):** El proyecto original documentaba PostgreSQL, mientras que un volcado posterior sugirió Firebase. **El usuario ha confirmado el uso de PostgreSQL en su servidor.** Se descarta Firebase/Firestore como base de datos primaria. Toda la arquitectura backend se construirá sobre SQL.
-*   **Falta de Código:** A pesar de tener mucha documentación (prompts, reglas), se está procediendo a la inicialización del entorno.
-
----
-
-## 6. Estado de Avance y Siguiente Paso (Handoff a Frontend/Jules)
-La base de datos de conocimiento clínico está al 100% aprobada y el entorno **Next.js está inicializado** (`/web`). El siguiente bloque de trabajo pesado es el despliegue del diseño y la base de datos.
-
-**Progreso Actual (Implementación UI/UX por Jules):**
-- ✅ Se implementaron los patrones arquitectónicos dictados en `08_UI_UX_Design_System_2026.md`.
-- ✅ Se crearon los componentes premium (Glassmorphism, Tailwind v4, framer-motion, lucide-react):
-    - `ContextRail`: Panel lateral para estado del caso y evidencia.
-    - `ConversationalCareCanvas`: Centro principal de acompañamiento clínico interactivo.
-    - `ClinicalTimelineRiver`: Timeline de síntomas y eventos.
-    - `SafetyRibbon`: Indicador persistente del estado de riesgo.
-- ✅ Se integró la nueva UI en `page.tsx` y `layout.tsx` eliminando el diseño base genérico.
-
-**Instrucciones para la siguiente IA (Jules):**
-1.  **Handoff de Base de Datos:** En la carpeta `/web` se dejó un archivo `.env` configurado para **PostgreSQL**. Debes instalar Prisma (o Drizzle) e inicializar los esquemas de bases de datos para guardar pacientes y expedientes.
-2.  **Mapa de Tareas de Construcción:** Lee inmediatamente el archivo `dev_status/task_UI_UX.md`. Allí está documentada la arquitectura exacta de carpetas (`/auth`, `/dashboard/paciente`, `/dashboard/medico`, etc.) que debes construir usando **Next.js App Router**. No debes reemplazar la landing page, debes agregar pantallas completas.
-3.  **Construcción de Componentes Premium (Prioridad Alta):** El diseño base en `page.tsx` es solo un demo inicial. Tu deber es implementar los patrones arquitectónicos dictados en `08_UI_UX_Design_System_2026.md` (shadcn/ui, Radix, Tailwind v4). Debes crear los componentes:
-    - `Conversational Care Canvas`
-    - `Context Rail`
-    - `Clinical Timeline River`
-    - `Safety Ribbon`
-4.  **Cero Interfaces Genéricas:** Angélica Med NO es un chatbot. Es un centro de acompañamiento clínico. Usa Glassmorphism y micro-interacciones.
-
-*(Al finalizar una tarea, la IA en turno debe actualizar este documento para reflejar el progreso, marcando con un "✅" y moviendo la tarea de "Pendiente" a "Completada".)*
+*(Al finalizar una tarea, la IA en turno DEBE añadir una fila a esta tabla.)*
