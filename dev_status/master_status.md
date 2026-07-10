@@ -19,8 +19,9 @@ El proyecto se encuentra en una fase madura de **Planeación y Gobernanza Técni
 - **Gobernanza:** Riesgos, check-lists de entrega, guardrails clínicos.
 - **Medical RAG (Tomo 01):** Definido para "Red Flags / Triage / Derivación inmediata" (versión 0.2 con 54 chunks y 28 fuentes).
 - **Aprobaciones Iniciales (Prompt 12A):** El Tomo 01 versión 0.2.1 ha sido marcado oficialmente con `production_allowed: true` y evidencia documentada.
-- **Expansión Candidata v0.3 (Prompt 12B):** Se generó la estructura de la expansión candidata v0.3 (nuevas fuentes y chunks sobre fiebre, deshidratación, sobredosis, etc.) en `candidates/v0_3/`, quedando en estado `pending` de revisión médico/legal sin contaminar el entorno de producción.
-- **Tomo 02 (Medicina General) - Candidate v0.1:** Se inició la curación del Tomo 02 (Primary Care) con fuentes Gold Standard (ADA 2024 para Diabetes, AHA/ACC para Hipertensión, USPSTF para Screening), generando la estructura candidata pendiente de revisión.
+- **Tomo 02 (Medicina General) y Tomo 03 (Pediatría) - Curación Gold:** Se inyectaron exitosamente las reglas de especialidad para Diabetes, Hipertensión, Neumonía, Fiebre Infantil y Bronquiolitis siguiendo el patrón estricto del Tomo 01.
+- **Integración de Motor LLM de Expansión (ChatGPT 5.5 / Laguna M.1):** Se generó el framework de Anamnesis Estructurada (Tomo 02A) que mapea inteligentemente la recolección de historias clínicas y mapas de diagnóstico diferencial.
+- **Pipeline de Minería:** Se estableció el estándar base `docs/LAGUNA_KNOWLEDGE_BASE.md` para escalar la minería a futuro sin perder la calidad Gold.
 - **Volcado de Contexto:** Archivo maestro en `context/VOLCADO_COMPLETO_APP_MEDICA_MIGRACION_TECNICA.md`.
 
 ### ⏳ Lo que está en proceso / Pendiente inmediato:
@@ -60,10 +61,10 @@ Para que el usuario sepa qué modelo elegir en las siguientes tareas, aquí est�
 ---
 
 ## 6. Próximo Lote de Tareas (Siguiente Paso)
-Ya que la carga de prompts estructurales del RAG ha avanzado, el siguiente lote se enfoca en inicializar el entorno técnico:
+Ya que la base de datos de conocimiento clínico ha sido corregida y blindada con calidad Gold, el siguiente paso crítico es levantar la estructura de la aplicación para poder interactuar con esta IA:
 
-1.  **Correr Scripts de Validación (Opcional):** Ejecutar scripts en `tools/medical-rag/` si es necesario asegurar el JSON.
-2.  **Inicialización del Frontend:** Crear el proyecto Next.js (`npx create-next-app@latest`) con TailwindCSS (si se confirma) en la raíz o subcarpeta.
-3.  **Setup de Base de Datos:** Confirmar y configurar el SDK de Firebase o PostgreSQL.
+1.  **Inicialización del Frontend:** Crear el proyecto Next.js (`npx create-next-app@latest`) en la raíz del proyecto.
+2.  **Setup de Base de Datos y Backend:** Configurar la conexión nativa a PostgreSQL.
+3.  **Implementación del UI/UX:** Desarrollar los componentes base de la interfaz (Glassmorphism, Modo Oscuro).
 
 *(Al finalizar una tarea, la IA en turno debe actualizar este documento para reflejar el progreso, marcando con un "✅" y moviendo la tarea de "Pendiente" a "Completada".)*

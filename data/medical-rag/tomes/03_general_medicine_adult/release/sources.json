@@ -1,0 +1,139 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "03_general_medicine_adult",
+  "license_strategy": "Original clinical synthesis supported by official government/public-domain-or-copyright-free sources where applicable. No proprietary medical manual text copied. Final legal review required before production embeddings.",
+  "excluded_sources": [
+    {
+      "title": "MedlinePlus / A.D.A.M. Medical Encyclopedia pages",
+      "reason": "Known restrictions against automated extraction / AI dataset / RAG embedding use without express written consent.",
+      "status": "excluded_from_embedding_corpus"
+    },
+    {
+      "title": "Commercial medical sites and proprietary manuals",
+      "reason": "Potential copyright/licensing restrictions; not used as source text.",
+      "status": "excluded_from_embedding_corpus"
+    }
+  ],
+  "sources": {
+    "ORIGINAL-ADULT-GM-001": {
+      "title": "Original adult general medicine clinical-reasoning synthesis",
+      "url": "internal://authored-framework/general-medicine-adult-v0.1",
+      "organization": "Generated original synthesis for App_Medica",
+      "license_notes": "Original authored synthesis; not copied from proprietary medical manuals. Requires physician review.",
+      "used_for": "Adult general medicine reasoning, safe boundaries, question sets, handoff structure."
+    },
+    "CDC-MAT-001": {
+      "title": "CDC - Use of Agency Materials",
+      "url": "https://www.cdc.gov/Other/agencymaterials.html",
+      "organization": "CDC",
+      "license_notes": "Most CDC information is public domain with attribution and non-endorsement requirements; exceptions exist.",
+      "used_for": "Source governance."
+    },
+    "CDC-STROKE-001": {
+      "title": "CDC - Signs and Symptoms of Stroke",
+      "url": "https://www.cdc.gov/stroke/signs-symptoms/index.html",
+      "organization": "CDC",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Stroke/TIA warning symptoms and urgent escalation."
+    },
+    "CDC-DIAB-001": {
+      "title": "CDC - Symptoms of Diabetes",
+      "url": "https://www.cdc.gov/diabetes/signs-symptoms/index.html",
+      "organization": "CDC",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Diabetes symptom recognition."
+    },
+    "CDC-STI-001": {
+      "title": "CDC - About Sexually Transmitted Infections",
+      "url": "https://www.cdc.gov/sti/about/index.html",
+      "organization": "CDC",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "STI risk framing and safe referral."
+    },
+    "NHLBI-MI-001": {
+      "title": "NHLBI - Heart Attack Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+      "organization": "NHLBI/NIH",
+      "license_notes": "U.S. federal health topic; final legal review required.",
+      "used_for": "Chest pain, myocardial infarction warning symptoms."
+    },
+    "NHLBI-HTN-001": {
+      "title": "NHLBI - High Blood Pressure Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/high-blood-pressure/symptoms",
+      "organization": "NHLBI/NIH",
+      "license_notes": "U.S. federal health topic; final legal review required.",
+      "used_for": "Hypertension and hypertensive emergency red flags."
+    },
+    "NHLBI-ASTHMA-001": {
+      "title": "NHLBI - Asthma Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/symptoms",
+      "organization": "NHLBI/NIH",
+      "license_notes": "U.S. federal health topic; final legal review required.",
+      "used_for": "Asthma/wheeze/dyspnea escalation."
+    },
+    "NHLBI-PNA-001": {
+      "title": "NHLBI - Pneumonia Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/pneumonia/symptoms",
+      "organization": "NHLBI/NIH",
+      "license_notes": "U.S. federal health topic; final legal review required.",
+      "used_for": "Pneumonia respiratory symptoms."
+    },
+    "NIDDK-COPY-001": {
+      "title": "NIDDK - Copyright",
+      "url": "https://www.niddk.nih.gov/copyright",
+      "organization": "NIDDK/NIH",
+      "license_notes": "Majority of NIDDK information is copyright free; exceptions exist.",
+      "used_for": "Source governance."
+    },
+    "NIDDK-GERD-001": {
+      "title": "NIDDK - GER & GERD Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults/symptoms-causes",
+      "organization": "NIDDK/NIH",
+      "license_notes": "Final legal review required.",
+      "used_for": "GERD, dyspepsia, alarm features."
+    },
+    "NIDDK-GASTRO-001": {
+      "title": "NIDDK - Viral Gastroenteritis Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes",
+      "organization": "NIDDK/NIH",
+      "license_notes": "Final legal review required.",
+      "used_for": "Gastroenteritis, vomiting, diarrhea, dehydration."
+    },
+    "NIDDK-STONES-001": {
+      "title": "NIDDK - Kidney Stones Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/symptoms-causes",
+      "organization": "NIDDK/NIH",
+      "license_notes": "Final legal review required.",
+      "used_for": "Renal colic/kidney stone symptom patterns."
+    },
+    "NIDDK-CONST-001": {
+      "title": "NIDDK - Constipation Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/symptoms-causes",
+      "organization": "NIDDK/NIH",
+      "license_notes": "Final legal review required.",
+      "used_for": "Constipation red flags and symptom characterization."
+    },
+    "NIDDK-IBS-001": {
+      "title": "NIDDK - Irritable Bowel Syndrome Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/irritable-bowel-syndrome/symptoms-causes",
+      "organization": "NIDDK/NIH",
+      "license_notes": "Final legal review required.",
+      "used_for": "IBS-like symptoms and exclusion red flags."
+    },
+    "NIMH-DEP-001": {
+      "title": "NIMH - Depression",
+      "url": "https://www.nimh.nih.gov/health/topics/depression",
+      "organization": "NIMH/NIH",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Depression definition, impairment and suicide-risk boundary."
+    },
+    "NIMH-ANX-001": {
+      "title": "NIMH - Anxiety Disorders",
+      "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
+      "organization": "NIMH/NIH",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Anxiety/panic framing and referral."
+    }
+  }
+}

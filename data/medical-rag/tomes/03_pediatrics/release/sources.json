@@ -1,0 +1,111 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "03_pediatrics",
+  "license_strategy": "Original pediatric clinical synthesis supported by official government/public-domain-or-copyright-free sources where applicable. No proprietary pediatric manual text copied. Final legal review required before production embeddings.",
+  "excluded_sources": [
+    {
+      "title": "MedlinePlus / A.D.A.M. Medical Encyclopedia pages",
+      "reason": "Known restrictions against automated extraction / AI dataset / RAG embedding use without express written consent.",
+      "status": "excluded_from_embedding_corpus"
+    },
+    {
+      "title": "AAP / HealthyChildren and commercial medical sites",
+      "reason": "High-quality clinically, but not ingested into chunks because of licensing/copyright uncertainty for RAG embeddings.",
+      "status": "excluded_from_embedding_corpus"
+    }
+  ],
+  "sources": {
+    "ORIGINAL-PEDS-001": {
+      "title": "Original pediatric clinical-reasoning synthesis",
+      "url": "internal://authored-framework/pediatrics-v0.1",
+      "organization": "Generated original synthesis for App_Medica",
+      "license_notes": "Original authored synthesis; not copied from proprietary pediatric manuals. Requires pediatrician review.",
+      "used_for": "Pediatric question design, risk stratification, red flags, AI safety boundaries."
+    },
+    "CDC-MAT-001": {
+      "title": "CDC - Use of Agency Materials",
+      "url": "https://www.cdc.gov/Other/agencymaterials.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Most CDC/ATSDR information is public domain with attribution and non-endorsement requirements; exceptions exist.",
+      "used_for": "License governance."
+    },
+    "CDC-FLU-001": {
+      "title": "CDC - Signs and Symptoms of Flu",
+      "url": "https://www.cdc.gov/flu/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Pediatric flu symptoms and emergency warning signs."
+    },
+    "CDC-RSV-001": {
+      "title": "CDC - RSV in Infants and Young Children",
+      "url": "https://www.cdc.gov/rsv/infants-young-children/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "RSV, bronchiolitis, infant respiratory risk."
+    },
+    "CDC-CONCUSSION-001": {
+      "title": "CDC HEADS UP - Signs and Symptoms of Concussion",
+      "url": "https://www.cdc.gov/heads-up/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Pediatric concussion symptoms and danger signs."
+    },
+    "CDC-DIAB-001": {
+      "title": "CDC - Symptoms of Diabetes",
+      "url": "https://www.cdc.gov/diabetes/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Diabetes symptom recognition."
+    },
+    "NHLBI-ASTHMA-SYM-001": {
+      "title": "NHLBI - Asthma Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/symptoms",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "U.S. federal health topic; final legal review required.",
+      "used_for": "Asthma symptoms and asthma pattern recognition."
+    },
+    "NHLBI-ASTHMA-CHILD-001": {
+      "title": "NHLBI - Asthma in Children",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/children",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "U.S. federal health topic; final legal review required.",
+      "used_for": "Pediatric asthma differences, asthma action plan and 911 triggers."
+    },
+    "NHLBI-ASTHMA-ATTACK-001": {
+      "title": "NHLBI - Asthma Attack",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/attacks",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "U.S. federal health topic; final legal review required.",
+      "used_for": "Asthma attack emergency escalation."
+    },
+    "NIDDK-COPY-001": {
+      "title": "NIDDK - Copyright",
+      "url": "https://www.niddk.nih.gov/copyright",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "Majority of NIDDK information is copyright free; exceptions exist.",
+      "used_for": "License governance."
+    },
+    "NIDDK-GASTRO-001": {
+      "title": "NIDDK - Viral Gastroenteritis Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK majority copyright-free policy; final legal review required.",
+      "used_for": "Vomiting, diarrhea, gastroenteritis and dehydration risk."
+    },
+    "NIDDK-CONST-001": {
+      "title": "NIDDK - Constipation Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/constipation/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK majority copyright-free policy; final legal review required.",
+      "used_for": "Constipation symptoms and warning patterns."
+    },
+    "NIDDK-STONES-001": {
+      "title": "NIDDK - Kidney Stones Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK majority copyright-free policy; final legal review required.",
+      "used_for": "Flank pain, hematuria, renal colic orientation."
+    }
+  }
+}
