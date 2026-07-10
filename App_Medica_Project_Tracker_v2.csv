@@ -1,0 +1,19 @@
+App Médica — Release Público v1.0,Release tracker v2
+Fecha base: 2026-07-08,Delivery: Equipo Glouu · Arquitectura/Dev Senior: ChatGPT
+,
+KPI,Valor
+Avance general,0.011111111111111112
+Fases completadas,0
+Fases bloqueadas,0
+Requerimientos aprobados,52
+Riesgos críticos,5
+Checklist release pendiente,14
+Decisiones cerradas,10
+Decisiones pendientes,2
+,
+Principios de release,
+1,"Release productivo, no MVP: no se libera sin gates clínicos, legales, seguridad, pagos y soporte."
+2,IA con guardrails: puede orientar/diagnosticar y recomendar OTC solo con evidencia suficiente; controlados prohibidos.
+3,"Datos de salud sensibles: mínimo privilegio, cifrado, auditoría, retención y eliminación por usuario."
+4,"Multi-país por configuración: México/EE.UU./LatAm/inglés, pero cada país requiere policy pack antes de activación real."
+5,"Operación eficiente en servidor local Debian: offload seguro al cliente, colas, caché y PM2/Cloudflare Tunnel."
