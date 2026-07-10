@@ -56,15 +56,15 @@ Para que el usuario sepa qué modelo elegir en las siguientes tareas, aquí est�
 
 ## 5. Control de Errores y Hallazgos de la Transición (ChatGPT/Llama -> Gemini)
 *   **Decisión de Base de Datos (RESUELTO):** El proyecto original documentaba PostgreSQL, mientras que un volcado posterior sugirió Firebase. **El usuario ha confirmado el uso de PostgreSQL en su servidor.** Se descarta Firebase/Firestore como base de datos primaria. Toda la arquitectura backend se construirá sobre SQL.
-*   **Falta de Código:** A pesar de tener mucha documentación (prompts, reglas), no hay un `package.json` ni entorno inicializado de Next.js en la raíz. La transición requiere pasar de la teoría a la inicialización del repositorio.
+*   **Falta de Código:** A pesar de tener mucha documentación (prompts, reglas), se está procediendo a la inicialización del entorno.
 
 ---
 
 ## 6. Próximo Lote de Tareas (Siguiente Paso)
-Ya que la base de datos de conocimiento clínico ha sido corregida y blindada con calidad Gold, el siguiente paso crítico es levantar la estructura de la aplicación para poder interactuar con esta IA:
+Ya que la base de datos de conocimiento clínico ha sido blindada y la **Aplicación Frontend Next.js está inicializada** con diseño Premium, el siguiente paso crítico es levantar la conexión a la base de datos de producción:
 
-1.  **Inicialización del Frontend:** Crear el proyecto Next.js (`npx create-next-app@latest`) en la raíz del proyecto.
-2.  **Setup de Base de Datos y Backend:** Configurar la conexión nativa a PostgreSQL.
-3.  **Implementación del UI/UX:** Desarrollar los componentes base de la interfaz (Glassmorphism, Modo Oscuro).
+1.  **✅ Inicialización del Frontend:** Completado (Next.js, Tailwind v4, Glassmorphism, Dark Mode).
+2.  **Setup de Base de Datos y Backend:** Instalar Prisma o Drizzle ORM y configurar la conexión nativa a PostgreSQL para manejar los expedientes de pacientes y logs de chat.
+3.  **Integración RAG-Frontend:** Crear los endpoints `/api/chat` para que el Frontend hable con el motor RAG utilizando las reglas de los 11 Tomos aprobados.
 
 *(Al finalizar una tarea, la IA en turno debe actualizar este documento para reflejar el progreso, marcando con un "✅" y moviendo la tarea de "Pendiente" a "Completada".)*
