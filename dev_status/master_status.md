@@ -64,13 +64,18 @@ Para que el usuario sepa qué modelo elegir en las siguientes tareas, aquí est�
 ## 6. Estado de Avance y Siguiente Paso (Handoff a Frontend/Jules)
 La base de datos de conocimiento clínico está al 100% aprobada y el entorno **Next.js está inicializado** (`/web`). El siguiente bloque de trabajo pesado es el despliegue del diseño y la base de datos.
 
-**Instrucciones para la siguiente IA (Jules):**
+**Progreso Actual (Implementación UI/UX por Jules):**
+- ✅ Se implementaron los patrones arquitectónicos dictados en `08_UI_UX_Design_System_2026.md`.
+- ✅ Se crearon los componentes premium (Glassmorphism, Tailwind v4, framer-motion, lucide-react):
+    - `ContextRail`: Panel lateral para estado del caso y evidencia.
+    - `ConversationalCareCanvas`: Centro principal de acompañamiento clínico interactivo.
+    - `ClinicalTimelineRiver`: Timeline de síntomas y eventos.
+    - `SafetyRibbon`: Indicador persistente del estado de riesgo.
+- ✅ Se integró la nueva UI en `page.tsx` y `layout.tsx` eliminando el diseño base genérico.
+
+**Instrucciones para la siguiente IA / Siguientes Pasos:**
 1.  **Handoff de Base de Datos:** En la carpeta `/web` se dejó un archivo `.env` configurado para **PostgreSQL**. Debes instalar Prisma (o Drizzle) e inicializar los esquemas de bases de datos para guardar pacientes y expedientes.
-2.  **Construcción de Componentes Premium (Prioridad Alta):** El diseño base en `page.tsx` es solo un demo inicial. Tu deber es implementar los patrones arquitectónicos dictados en `08_UI_UX_Design_System_2026.md` (shadcn/ui, Radix, Tailwind v4). Debes crear los componentes:
-    - `Conversational Care Canvas`
-    - `Context Rail`
-    - `Clinical Timeline River`
-    - `Safety Ribbon`
-3.  **Cero Interfaces Genéricas:** Angélica Med NO es un chatbot. Es un centro de acompañamiento clínico. Usa Glassmorphism y micro-interacciones.
+2.  **Lógica Interactiva y Estado Global:** Conectar los componentes UI estáticos creados a un estado global (ej. Zustand o Context) para manejar el flujo real de datos (envío de mensajes, actualizaciones del timeline).
+3.  **Responsive Design Avanzado:** Implementar lógica de Drawer/BottomSheet para móviles en los componentes `ContextRail` y `ClinicalTimelineRiver`.
 
 *(Al finalizar una tarea, la IA en turno debe actualizar este documento para reflejar el progreso, marcando con un "✅" y moviendo la tarea de "Pendiente" a "Completada".)*

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SafetyRibbon } from "@/components/SafetyRibbon";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,8 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="dark">
-      <body className="antialiased font-sans">
-        {children}
+      <body className="antialiased font-sans flex flex-col h-screen overflow-hidden">
+        <SafetyRibbon status="warning" />
+        <div className="flex-1 overflow-hidden">
+          {children}
+        </div>
       </body>
     </html>
   );
