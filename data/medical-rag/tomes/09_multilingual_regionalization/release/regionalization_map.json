@@ -1,0 +1,891 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "09_multilingual_regionalization",
+  "status": "draft_requires_clinical_legal_localization_privacy_review",
+  "regions": {
+    "mx": {
+      "label": "México",
+      "lang": "es-MX",
+      "care": [
+        "urgencias",
+        "emergencias",
+        "doctor",
+        "médico general",
+        "medicina familiar",
+        "pediatra",
+        "ginecólogo",
+        "neumólogo",
+        "neurólogo",
+        "cardiólogo",
+        "farmacia"
+      ],
+      "symptoms": [
+        "dolor de panza",
+        "gripa",
+        "calentura",
+        "presión",
+        "azúcar",
+        "ronchas",
+        "flemas",
+        "se me duerme",
+        "me falta el aire"
+      ],
+      "meds": [
+        "paracetamol",
+        "acetaminofén",
+        "ibuprofeno",
+        "naproxeno",
+        "loratadina",
+        "cetirizina",
+        "difenhidramina",
+        "suero oral"
+      ],
+      "notes": "No degradar urgencia por costo/acceso; usar lenguaje claro; confirmar ubicación solo si se requieren recursos locales",
+      "src": [
+        "ORIGINAL-MULTI-001"
+      ]
+    },
+    "latam_general": {
+      "label": "LatAm general",
+      "lang": "es-419",
+      "care": [
+        "urgencias",
+        "emergencias",
+        "médico general",
+        "clínica",
+        "hospital",
+        "especialista",
+        "pediatría",
+        "ginecología"
+      ],
+      "symptoms": [
+        "dolor de barriga",
+        "fiebre",
+        "gripe",
+        "presión alta",
+        "azúcar alta",
+        "alergia",
+        "ahogo",
+        "mareo"
+      ],
+      "meds": [
+        "paracetamol",
+        "acetaminofén",
+        "ibuprofeno",
+        "diclofenaco",
+        "loratadina",
+        "salbutamol",
+        "suero oral"
+      ],
+      "notes": "Evitar localismos excesivos; preguntar país para líneas, fármacos y servicios",
+      "src": [
+        "ORIGINAL-MULTI-001"
+      ]
+    },
+    "us_en": {
+      "label": "Estados Unidos inglés",
+      "lang": "en-US",
+      "care": [
+        "ER",
+        "emergency room",
+        "urgent care",
+        "primary care",
+        "family medicine",
+        "pediatrician",
+        "OB-GYN",
+        "specialist",
+        "pharmacist"
+      ],
+      "symptoms": [
+        "chest pain",
+        "shortness of breath",
+        "dizziness",
+        "fever",
+        "rash",
+        "vomiting",
+        "diarrhea",
+        "weakness"
+      ],
+      "meds": [
+        "acetaminophen",
+        "ibuprofen",
+        "naproxen",
+        "diphenhydramine",
+        "pseudoephedrine",
+        "oral rehydration solution"
+      ],
+      "notes": "Do not assume urgent care equals emergency for S6; verify active ingredient names",
+      "src": [
+        "ORIGINAL-MULTI-001"
+      ]
+    },
+    "us_es": {
+      "label": "Estados Unidos español",
+      "lang": "es-US",
+      "care": [
+        "sala de emergencias",
+        "urgencias",
+        "clínica de cuidado urgente",
+        "doctor primario",
+        "pediatra",
+        "ginecólogo",
+        "farmacéutico"
+      ],
+      "symptoms": [
+        "dolor de pecho",
+        "falta de aire",
+        "mareo",
+        "fiebre",
+        "salpullido",
+        "vómito",
+        "diarrea",
+        "debilidad"
+      ],
+      "meds": [
+        "acetaminofén",
+        "Tylenol",
+        "ibuprofeno",
+        "Advil",
+        "Benadryl",
+        "suero oral"
+      ],
+      "notes": "Bilingüe: mapear marcas comunes a ingrediente activo; no dar números locales sin verificación",
+      "src": [
+        "ORIGINAL-MULTI-001"
+      ]
+    },
+    "es_es": {
+      "label": "España",
+      "lang": "es-ES",
+      "care": [
+        "urgencias",
+        "emergencias",
+        "médico de cabecera",
+        "centro de salud",
+        "especialista",
+        "pediatra",
+        "matrona",
+        "farmacéutico"
+      ],
+      "symptoms": [
+        "catarro",
+        "dolor abdominal",
+        "fiebre",
+        "mareo",
+        "disnea",
+        "erupción",
+        "vómitos",
+        "diarrea"
+      ],
+      "meds": [
+        "paracetamol",
+        "ibuprofeno",
+        "naproxeno",
+        "loratadina",
+        "cetirizina",
+        "suero oral"
+      ],
+      "notes": "Distinguir urgencias hospitalarias vs atención primaria; nombres comerciales varían",
+      "src": [
+        "ORIGINAL-MULTI-001"
+      ]
+    },
+    "br_pt": {
+      "label": "Brasil portugués",
+      "lang": "pt-BR",
+      "care": [
+        "pronto-socorro",
+        "emergência",
+        "urgência",
+        "médico de família",
+        "pediatra",
+        "ginecologista",
+        "farmacêutico"
+      ],
+      "symptoms": [
+        "dor no peito",
+        "falta de ar",
+        "febre",
+        "tontura",
+        "vômitos",
+        "diarreia",
+        "manchas"
+      ],
+      "meds": [
+        "paracetamol",
+        "acetaminofeno",
+        "ibuprofeno",
+        "loratadina",
+        "soro de reidratação oral"
+      ],
+      "notes": "Si usuario escribe portugués, mantener idioma o pedir preferencia; red flags no cambian",
+      "src": [
+        "ORIGINAL-MULTI-001"
+      ]
+    },
+    "fr_fr": {
+      "label": "Francia/francés general",
+      "lang": "fr-FR",
+      "care": [
+        "urgences",
+        "médecin généraliste",
+        "pédiatre",
+        "gynécologue",
+        "pharmacien",
+        "spécialiste"
+      ],
+      "symptoms": [
+        "douleur thoracique",
+        "essoufflement",
+        "fièvre",
+        "vertiges",
+        "vomissements",
+        "diarrhée",
+        "éruption"
+      ],
+      "meds": [
+        "paracétamol",
+        "ibuprofène",
+        "loratadine",
+        "cétirizine",
+        "solution de réhydratation orale"
+      ],
+      "notes": "Mantener criterios clínicos y verificar recursos locales si se mencionan",
+      "src": [
+        "ORIGINAL-MULTI-001"
+      ]
+    }
+  },
+  "local_terms": {
+    "calentura": {
+      "canonical": "fiebre",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "temperatura corporal elevada o sensación febril",
+      "ask": "preguntar temperatura exacta, método, edad y duración",
+      "red": [
+        "fiebre en menor de 3 meses",
+        "rigidez cuello",
+        "confusión",
+        "dificultad respiratoria"
+      ],
+      "sev": "S5"
+    },
+    "gripa_gripe": {
+      "canonical": "síndrome respiratorio viral",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES"
+      ],
+      "meaning": "resfriado/influenza-like según región",
+      "ask": "preguntar fiebre, tos, disnea, duración, riesgo",
+      "red": [
+        "dificultad respiratoria",
+        "dolor torácico",
+        "labios morados",
+        "deshidratación"
+      ],
+      "sev": "S5"
+    },
+    "dolor_panza_barriga": {
+      "canonical": "dolor abdominal",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES"
+      ],
+      "meaning": "dolor en abdomen;puede ser GI, urinario, gineco o quirúrgico",
+      "ask": "localización, severidad, vómito, fiebre, embarazo, sangre",
+      "red": [
+        "abdomen rígido",
+        "dolor severo",
+        "vómito verde",
+        "embarazo con dolor"
+      ],
+      "sev": "S5"
+    },
+    "presion": {
+      "canonical": "presión arterial",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "puede referirse a hipertensión o presión baja",
+      "ask": "preguntar cifra, unidad, síntomas, mediciones repetidas",
+      "red": [
+        "dolor torácico",
+        "déficit neurológico",
+        "disnea",
+        "confusión"
+      ],
+      "sev": "S5"
+    },
+    "azucar": {
+      "canonical": "glucosa sanguínea",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "diabetes, glucosa alta/baja o medición capilar",
+      "ask": "preguntar valor, unidad, síntomas, diabetes, medicamentos",
+      "red": [
+        "confusión",
+        "convulsión",
+        "vómitos",
+        "respiración profunda"
+      ],
+      "sev": "S6"
+    },
+    "ronchas": {
+      "canonical": "urticaria/rash",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "lesiones elevadas que pican;puede ser alergia",
+      "ask": "preguntar exposición, respiración, hinchazón, vómitos",
+      "red": [
+        "dificultad respiratoria",
+        "hinchazón lengua",
+        "desmayo",
+        "vómitos repetidos"
+      ],
+      "sev": "S6"
+    },
+    "flemas": {
+      "canonical": "esputo/flema",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "moco expulsado al toser",
+      "ask": "preguntar color, sangre, fiebre, disnea, duración",
+      "red": [
+        "sangre",
+        "disnea",
+        "dolor torácico",
+        "fiebre persistente"
+      ],
+      "sev": "S5"
+    },
+    "se_me_duerme": {
+      "canonical": "entumecimiento/hormigueo",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "parestesias;puede ser neurológico, vascular o compresión nerviosa",
+      "ask": "preguntar lado, inicio súbito, fuerza, habla, cara",
+      "red": [
+        "debilidad súbita",
+        "cara caída",
+        "habla alterada",
+        "dolor torácico"
+      ],
+      "sev": "S6"
+    },
+    "falta_aire_ahogo": {
+      "canonical": "disnea",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-US"
+      ],
+      "meaning": "sensación de no poder respirar",
+      "ask": "preguntar inicio, reposo/esfuerzo, dolor pecho, color, saturación",
+      "red": [
+        "reposo",
+        "cianosis",
+        "dolor torácico",
+        "confusión"
+      ],
+      "sev": "S6"
+    },
+    "salpullido": {
+      "canonical": "rash/erupción",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-US"
+      ],
+      "meaning": "erupción cutánea",
+      "ask": "fiebre, dolor, mucosas, medicamentos, exposición",
+      "red": [
+        "púrpura",
+        "fiebre y mal estado",
+        "mucosas",
+        "dolor intenso"
+      ],
+      "sev": "S6"
+    },
+    "mareo": {
+      "canonical": "mareo/vértigo/presíncope",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES"
+      ],
+      "meaning": "puede ser vértigo, desmayo próximo, debilidad o ansiedad",
+      "ask": "aclarar giro, desmayo, neuro, pecho, glucosa",
+      "red": [
+        "déficit neurológico",
+        "síncope",
+        "dolor torácico",
+        "glucosa baja"
+      ],
+      "sev": "S5"
+    },
+    "empacho": {
+      "canonical": "dispepsia/indigestión coloquial",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "término cultural no diagnóstico",
+      "ask": "preguntar dolor, vómito, fiebre, heces, ingesta",
+      "red": [
+        "dolor severo",
+        "vómito persistente",
+        "sangre",
+        "deshidratación"
+      ],
+      "sev": "S4"
+    },
+    "mal_de_orin": {
+      "canonical": "síntomas urinarios",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "ardor, frecuencia o infección urinaria coloquial",
+      "ask": "preguntar fiebre, dolor lumbar, embarazo, sangre",
+      "red": [
+        "fiebre con dolor costado",
+        "embarazo",
+        "vómitos",
+        "sepsis"
+      ],
+      "sev": "S5"
+    },
+    "ataque_de_nervios": {
+      "canonical": "crisis de ansiedad/pánico o crisis emocional",
+      "langs": [
+        "es-MX",
+        "es-419"
+      ],
+      "meaning": "puede ocultar cardiopulmonar, neurología o suicidio",
+      "ask": "preguntar dolor pecho, disnea, síncope, autolesión, sustancias",
+      "red": [
+        "dolor torácico",
+        "síncope",
+        "suicidio",
+        "psicosis"
+      ],
+      "sev": "S6"
+    }
+  },
+  "unit_rules": {
+    "temperature_c_f": {
+      "label": "temperatura °C/°F",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "units": [
+        "°C",
+        "°F"
+      ],
+      "rule": "convertir F a C y C a F;registrar unidad original;fiebre pediátrica depende de edad",
+      "red": [
+        "fiebre lactante",
+        "hipotermia",
+        "temperatura extrema"
+      ],
+      "src": [
+        "NIST-SI-001"
+      ]
+    },
+    "weight_kg_lb": {
+      "label": "peso kg/lb",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "units": [
+        "kg",
+        "lb"
+      ],
+      "rule": "convertir lb a kg para dosis;registrar peso original;validar decimal",
+      "red": [
+        "dosis pediátrica",
+        "desnutrición",
+        "edema"
+      ],
+      "src": [
+        "NIST-SI-001"
+      ]
+    },
+    "height_cm_in": {
+      "label": "estatura cm/in",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "units": [
+        "cm",
+        "in",
+        "ft"
+      ],
+      "rule": "normalizar para IMC/crecimiento;no mezclar pies/pulgadas",
+      "red": [
+        "pediatría crecimiento",
+        "fragilidad"
+      ],
+      "src": [
+        "NIST-SI-001"
+      ]
+    },
+    "glucose_mgdl_mmoll": {
+      "label": "glucosa mg/dL/mmol/L",
+      "pop": [
+        "adult",
+        "pediatric",
+        "pregnancy",
+        "older_adult"
+      ],
+      "units": [
+        "mg/dL",
+        "mmol/L"
+      ],
+      "rule": "convertir con factor correcto;preguntar tipo de muestra;no interpretar sin contexto",
+      "red": [
+        "hipoglucemia",
+        "DKA",
+        "confusión",
+        "convulsión"
+      ],
+      "src": [
+        "NIST-SI-001"
+      ]
+    },
+    "blood_pressure_mmhg": {
+      "label": "presión arterial mmHg",
+      "pop": [
+        "adult",
+        "pregnancy",
+        "older_adult"
+      ],
+      "units": [
+        "mmHg"
+      ],
+      "rule": "confirmar sistólica/diastólica;posición;repetición;síntomas",
+      "red": [
+        "dolor torácico",
+        "déficit neurológico",
+        "embarazo",
+        "disnea"
+      ],
+      "src": [
+        "NIST-SI-001"
+      ]
+    },
+    "oxygen_saturation_percent": {
+      "label": "saturación de oxígeno %",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "units": [
+        "% SpO2"
+      ],
+      "rule": "confirmar dispositivo, perfusión, altitud, síntomas;observación clínica manda",
+      "red": [
+        "disnea",
+        "cianosis",
+        "confusión",
+        "tiraje"
+      ],
+      "src": [
+        "NIST-SI-001"
+      ]
+    },
+    "dose_mg_ml": {
+      "label": "dosis mg, mL y concentración",
+      "pop": [
+        "adult",
+        "pediatric"
+      ],
+      "units": [
+        "mg",
+        "mL",
+        "mg/mL",
+        "mg/5mL"
+      ],
+      "rule": "normalizar concentración;no confundir mg con mL;requiere producto exacto",
+      "red": [
+        "sobredosis",
+        "pediatría",
+        "duplicados"
+      ],
+      "src": [
+        "FDA-DRUGFACTS-001"
+      ]
+    },
+    "lab_units_general": {
+      "label": "unidades de laboratorio",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "units": [
+        "varias"
+      ],
+      "rule": "usar rango del laboratorio;no convertir sin saber analito;pedir unidades y referencia",
+      "red": [
+        "resultado crítico",
+        "electrolitos",
+        "renal",
+        "coagulación"
+      ],
+      "src": [
+        "NIST-SI-001"
+      ]
+    }
+  },
+  "medication_synonyms": {
+    "paracetamol_acetaminophen": {
+      "label": "paracetamol / acetaminofén / acetaminophen / APAP",
+      "cls": "analgesic_antipyretic",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES",
+        "en-US"
+      ],
+      "names": [
+        "paracetamol",
+        "acetaminofén",
+        "acetaminophen",
+        "APAP",
+        "Tylenol"
+      ],
+      "risks": [
+        "riesgo duplicado en antigripales",
+        "hepatotoxicidad por sobredosis",
+        "requiere máximo 24h"
+      ],
+      "src": [
+        "FDA-DRUGFACTS-001"
+      ]
+    },
+    "ibuprofen": {
+      "label": "ibuprofeno / ibuprofen",
+      "cls": "nsaid",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES",
+        "en-US"
+      ],
+      "names": [
+        "ibuprofeno",
+        "ibuprofen",
+        "Advil",
+        "Motrin"
+      ],
+      "risks": [
+        "evitar duplicar AINE",
+        "riñón",
+        "úlcera",
+        "sangrado",
+        "embarazo avanzado"
+      ],
+      "src": [
+        "FDA-DRUGFACTS-001"
+      ]
+    },
+    "naproxen": {
+      "label": "naproxeno / naproxen",
+      "cls": "nsaid",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES",
+        "en-US"
+      ],
+      "names": [
+        "naproxeno",
+        "naproxen",
+        "Aleve"
+      ],
+      "risks": [
+        "no combinar con ibuprofeno/aspirina",
+        "riesgo GI/renal/cardiovascular"
+      ],
+      "src": [
+        "FDA-DRUGFACTS-001"
+      ]
+    },
+    "aspirin": {
+      "label": "aspirina / ácido acetilsalicílico / aspirin / ASA",
+      "cls": "salicylate",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES",
+        "en-US"
+      ],
+      "names": [
+        "aspirina",
+        "ácido acetilsalicílico",
+        "AAS",
+        "ASA",
+        "aspirin"
+      ],
+      "risks": [
+        "no usar pediatría sin indicación",
+        "riesgo sangrado",
+        "anticoagulantes"
+      ],
+      "src": [
+        "FDA-DRUGFACTS-001"
+      ]
+    },
+    "diphenhydramine": {
+      "label": "difenhidramina / diphenhydramine",
+      "cls": "first_gen_antihistamine",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "en-US"
+      ],
+      "names": [
+        "difenhidramina",
+        "diphenhydramine",
+        "Benadryl"
+      ],
+      "risks": [
+        "sedación",
+        "sobredosis",
+        "abuso adolescente",
+        "duplicado nocturno"
+      ],
+      "src": [
+        "FDA-DRUGFACTS-001"
+      ]
+    },
+    "loratadine": {
+      "label": "loratadina / loratadine",
+      "cls": "second_gen_antihistamine",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES",
+        "en-US"
+      ],
+      "names": [
+        "loratadina",
+        "loratadine",
+        "Claritin"
+      ],
+      "risks": [
+        "verificar combinación con pseudoefedrina",
+        "alergia severa no se maneja solo con antihistamínico"
+      ],
+      "src": [
+        "FDA-DRUGFACTS-001"
+      ]
+    },
+    "pseudoephedrine": {
+      "label": "pseudoefedrina / pseudoephedrine",
+      "cls": "decongestant",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "en-US"
+      ],
+      "names": [
+        "pseudoefedrina",
+        "pseudoephedrine",
+        "Sudafed"
+      ],
+      "risks": [
+        "regulación varía",
+        "hipertensión",
+        "cardiopatía",
+        "estimulantes"
+      ],
+      "src": [
+        "FDA-DRUGFACTS-001"
+      ]
+    },
+    "oral_rehydration_solution": {
+      "label": "suero oral / SRO / oral rehydration solution / ORS",
+      "cls": "rehydration",
+      "langs": [
+        "es-MX",
+        "es-419",
+        "es-ES",
+        "en-US"
+      ],
+      "names": [
+        "suero oral",
+        "vida suero oral",
+        "SRO",
+        "ORS",
+        "oral rehydration solution"
+      ],
+      "risks": [
+        "no sustituye urgencias si deshidratación severa",
+        "bebidas deportivas no equivalen"
+      ],
+      "src": [
+        "ORIGINAL-MULTI-001"
+      ]
+    }
+  },
+  "emergency_phrases": [
+    {
+      "language_region": "es-MX",
+      "phrase": "Por seguridad, esto necesita atención de urgencias ahora. No lo manejen solo en casa."
+    },
+    {
+      "language_region": "es-419",
+      "phrase": "Por seguridad, esto requiere valoración urgente ahora. No esperes una cita rutinaria."
+    },
+    {
+      "language_region": "en-US",
+      "phrase": "For safety, this needs emergency medical care now. Do not manage this at home only."
+    },
+    {
+      "language_region": "es-US",
+      "phrase": "Por seguridad, esto necesita atención en emergencias ahora. No esperes si hay estos síntomas."
+    },
+    {
+      "language_region": "pt-BR",
+      "phrase": "Por segurança, isso precisa de atendimento de emergência agora. Não tente manejar apenas em casa."
+    },
+    {
+      "language_region": "fr-FR",
+      "phrase": "Par sécurité, cela nécessite des soins d’urgence maintenant. N’attendez pas une consultation de routine."
+    }
+  ],
+  "principles": {
+    "clinical_severity_invariant": true,
+    "active_ingredient_over_brand": true,
+    "fail_closed_on_ambiguous_units": true,
+    "runtime_verify_local_resources": true,
+    "do_not_invent_country_specific_legal_steps": true,
+    "preserve_uncertainty": true,
+    "expand_retrieval_with_local_and_canonical_terms": true
+  }
+}

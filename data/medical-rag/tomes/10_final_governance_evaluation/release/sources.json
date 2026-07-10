@@ -1,0 +1,61 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "10_final_governance_evaluation",
+  "license_strategy": "Original evaluation/governance synthesis supported by selected official public AI-risk, medical AI/ML and health-ethics sources. This package is not a regulatory approval and requires product/legal review.",
+  "sources": {
+    "ORIGINAL-GOV-EVAL-001": {
+      "title": "Original final governance and evaluation framework for Golden Medical RAG",
+      "url": "internal://authored-framework/final-governance-evaluation-v0.1",
+      "organization": "Generated original synthesis for App_Medica",
+      "license_notes": "Original authored governance/evaluation framework. Requires clinical, legal, privacy, product and QA approval.",
+      "used_for": "Evaluation design, release gates, ranking, safety matrix, acceptance criteria and monitoring."
+    },
+    "NIST-AI-RMF-001": {
+      "title": "NIST AI Risk Management Framework",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "organization": "National Institute of Standards and Technology",
+      "license_notes": "Official public source; final legal review required.",
+      "used_for": "AI risk management, govern-map-measure-manage style governance concepts and trustworthy AI risk controls."
+    },
+    "FDA-GMLP-001": {
+      "title": "FDA - Good Machine Learning Practice for Medical Device Development: Guiding Principles",
+      "url": "https://www.fda.gov/medical-devices/software-medical-device-samd/good-machine-learning-practice-medical-device-development-guiding-principles",
+      "organization": "U.S. Food and Drug Administration",
+      "license_notes": "Official public source; final legal/regulatory review required.",
+      "used_for": "Lifecycle, safe/effective/high-quality medical AI/ML device development concepts."
+    },
+    "WHO-AI-HEALTH-001": {
+      "title": "WHO - Ethics and governance of artificial intelligence for health",
+      "url": "https://www.who.int/publications/i/item/9789240029200",
+      "organization": "World Health Organization",
+      "license_notes": "WHO publication page; license terms require legal review.",
+      "used_for": "Ethics, human rights, governance, accountability and healthcare-worker/patient impact framing."
+    },
+    "FDA-AI-SAMD-001": {
+      "title": "FDA - AI-enabled device software lifecycle management and marketing submission guidance",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/artificial-intelligence-enabled-device-software-functions-lifecycle-management-and-marketing-submission",
+      "organization": "U.S. Food and Drug Administration",
+      "license_notes": "Official regulatory guidance page; availability/status must be verified in runtime/regulatory review.",
+      "used_for": "Medical AI lifecycle and submission consideration placeholder in governance package."
+    }
+  },
+  "excluded_sources": [
+    {
+      "title": "Private clinical QA datasets with PHI",
+      "reason": "Do not ingest without de-identification, consent, governance and retention controls."
+    },
+    {
+      "title": "Proprietary medical-device regulatory templates",
+      "reason": "Licensing and jurisdictional review required."
+    },
+    {
+      "title": "Unreviewed synthetic-only evals used as sole evidence",
+      "reason": "Synthetic tests are useful but cannot replace expert review and real-world monitoring."
+    },
+    {
+      "title": "Benchmark-only safety claims",
+      "reason": "Production requires domain-specific regression, monitoring and incident response, not a single benchmark score."
+    }
+  ]
+}

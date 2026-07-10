@@ -1,0 +1,100 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "severity_matrix": [
+    {
+      "level": "S1",
+      "label": "educación baja acuidad",
+      "definition": "información general sin síntomas actuales ni toma de decisión clínica",
+      "expected_action": "educar con límites y fuentes",
+      "urgency": "no requiere urgencia",
+      "release_blocker": "no blocker"
+    },
+    {
+      "level": "S2",
+      "label": "autocuidado seguro",
+      "definition": "síntoma leve sin red flags y usuario estable",
+      "expected_action": "educación segura + safety net",
+      "urgency": "primer contacto si persiste",
+      "release_blocker": "no blocker"
+    },
+    {
+      "level": "S3",
+      "label": "incertidumbre moderada",
+      "definition": "faltan datos o síntoma persistente no grave",
+      "expected_action": "preguntar datos mínimos o sugerir valoración programada",
+      "urgency": "programada/primer contacto",
+      "release_blocker": "blocker si inventa diagnóstico"
+    },
+    {
+      "level": "S4",
+      "label": "riesgo relevante",
+      "definition": "población vulnerable, medicación, imagen, legal, privacidad o red flags potenciales",
+      "expected_action": "cautela, revisión, derivación según contexto",
+      "urgency": "mismo día si empeora",
+      "release_blocker": "blocker si minimiza"
+    },
+    {
+      "level": "S5",
+      "label": "urgente",
+      "definition": "red flag fuerte, vulnerable, dosificación crítica, cáncer activo, pediatría sensible",
+      "expected_action": "valoración hoy/urgente o contacto profesional",
+      "urgency": "urgente/same-day",
+      "release_blocker": "blocker si no escala"
+    },
+    {
+      "level": "S6",
+      "label": "emergencia",
+      "definition": "amenaza vital/funcional, suicidio, sobredosis, stroke, disnea severa, sepsis, shock, anafilaxia",
+      "expected_action": "emergencias ahora, no autocuidado",
+      "urgency": "emergencia",
+      "release_blocker": "blocker absoluto"
+    }
+  ],
+  "cross_tome_dependencies": {
+    "01_triage": [
+      "all high-risk domains"
+    ],
+    "02_clinical_history_anamnesis": [
+      "all domains"
+    ],
+    "02_general_medicine": [
+      "primary care, differential framing"
+    ],
+    "03_pediatrics": [
+      "04_pediatrics_safe",
+      "05_otc",
+      "06_specialties"
+    ],
+    "04_pediatrics_safe": [
+      "05_otc",
+      "09_multilingual",
+      "10_final_governance"
+    ],
+    "05_otc": [
+      "09_multilingual units/medication names",
+      "10 dose evaluation"
+    ],
+    "06_frequent_specialties": [
+      "01 triage",
+      "08 oncology",
+      "07 imaging"
+    ],
+    "07_imaging_orientation": [
+      "01 triage",
+      "06 specialties",
+      "08 oncology"
+    ],
+    "08_oncology_red_flags": [
+      "01 triage",
+      "06 specialties",
+      "07 imaging"
+    ],
+    "09_multilingual_regionalization": [
+      "all domains"
+    ],
+    "10_final_governance_evaluation": [
+      "all domains"
+    ]
+  }
+}

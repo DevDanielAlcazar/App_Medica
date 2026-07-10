@@ -1,0 +1,21 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "10_final_governance_evaluation",
+  "total_chunks": 250,
+  "governance_domain_count": 20,
+  "severity_matrix_levels": 6,
+  "evaluation_metric_count": 10,
+  "rag_eval_case_count": 80,
+  "adversarial_test_count": 12,
+  "severity_distribution": {
+    "S1": 5,
+    "S2": 5,
+    "S3": 45,
+    "S4": 93,
+    "S5": 61,
+    "S6": 41
+  },
+  "production_allowed": false,
+  "quality_position": "Final release-governance and evaluation tome. It controls release readiness, not clinical content expansion."
+}

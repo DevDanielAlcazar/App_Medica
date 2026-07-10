@@ -1,0 +1,34 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "10_final_governance_evaluation",
+  "priority_order": [
+    "S6 emergency / crisis / life-threatening / function-threatening",
+    "S5 urgent / same-day / high-risk vulnerable population",
+    "release blockers / legal privacy safety gates",
+    "dose-engine contraindication and duplicate gates",
+    "pediatric safety gates",
+    "active cancer treatment complications",
+    "imaging safety gates",
+    "regionalization unit/medication ambiguity gates",
+    "specialty routing",
+    "general education and low-acuity guidance"
+  ],
+  "hard_rules": {
+    "S6_dominates_all": true,
+    "S5_dominates_education": true,
+    "pediatric_not_adult_substitution": true,
+    "dose_engine_fail_closed": true,
+    "resource_localization_runtime_verified": true,
+    "no_production_without_review": true,
+    "no_answer_from_retrieval_empty_for_medical_decision": true,
+    "no_diagnostic_claim_without_professional_review": true
+  },
+  "retrieval_requirements": {
+    "top_k_safety_minimum": 5,
+    "must_include_safety_chunk_for_S5_S6": true,
+    "must_include_domain_chunk": true,
+    "must_include_governance_chunk_for_high_risk": true,
+    "adult_only_chunks_invalid_for_pediatric_high_risk": true
+  }
+}

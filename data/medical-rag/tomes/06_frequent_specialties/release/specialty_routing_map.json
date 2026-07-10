@@ -1,0 +1,2328 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "06_frequent_specialties",
+  "status": "draft_requires_clinical_legal_regional_review",
+  "specialties": {
+    "medicina_familiar": {
+      "label": "medicina familiar / primer contacto",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "síntomas comunes no urgentes",
+        "prevención",
+        "seguimiento crónico",
+        "coordinación de referencias"
+      ],
+      "symptoms": [
+        "fiebre leve",
+        "tos leve",
+        "fatiga",
+        "dolor muscular",
+        "presión/glucosa"
+      ],
+      "red": [
+        "dolor torácico",
+        "disnea",
+        "déficit neurológico",
+        "confusión",
+        "sangrado importante"
+      ],
+      "tests": [
+        "signos vitales",
+        "exploración",
+        "laboratorio básico",
+        "tamizaje",
+        "revisión medicamentos"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "urgencias": {
+      "label": "urgencias / emergencias",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult",
+        "pregnancy"
+      ],
+      "scope": [
+        "amenaza vital",
+        "síntomas súbitos graves",
+        "trauma",
+        "intoxicación",
+        "sangrado",
+        "sepsis",
+        "autolesión"
+      ],
+      "symptoms": [
+        "dolor torácico",
+        "disnea",
+        "ACV",
+        "convulsión",
+        "anafilaxia",
+        "sobredosis"
+      ],
+      "red": [
+        "ABCDE comprometido",
+        "alteración conciencia",
+        "cianosis",
+        "shock",
+        "déficit focal",
+        "intoxicación"
+      ],
+      "tests": [
+        "triaje",
+        "signos vitales",
+        "ECG",
+        "laboratorio urgente",
+        "imagen urgente"
+      ],
+      "src": [
+        "CDC-STROKE-001",
+        "NHLBI-MI-001",
+        "NIMH-SUICIDE-001"
+      ]
+    },
+    "cardiologia": {
+      "label": "cardiología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "adolescent"
+      ],
+      "scope": [
+        "dolor torácico no emergente",
+        "palpitaciones",
+        "hipertensión compleja",
+        "síncope cardiaco",
+        "insuficiencia cardiaca"
+      ],
+      "symptoms": [
+        "palpitaciones",
+        "dolor con esfuerzo",
+        "edema",
+        "disnea de esfuerzo",
+        "síncope"
+      ],
+      "red": [
+        "dolor torácico con disnea",
+        "palpitaciones con desmayo",
+        "síncope ejercicio",
+        "shock"
+      ],
+      "tests": [
+        "ECG",
+        "Holter",
+        "ecocardiograma",
+        "prueba esfuerzo",
+        "perfil lipídico"
+      ],
+      "src": [
+        "NHLBI-MI-001"
+      ]
+    },
+    "neumologia": {
+      "label": "neumología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "scope": [
+        "asma",
+        "EPOC",
+        "tos crónica",
+        "disnea crónica",
+        "neumonía compleja"
+      ],
+      "symptoms": [
+        "tos crónica",
+        "sibilancias",
+        "disnea",
+        "flema persistente",
+        "hemoptisis no masiva"
+      ],
+      "red": [
+        "disnea reposo",
+        "cianosis",
+        "hemoptisis significativa",
+        "dolor torácico",
+        "saturación baja"
+      ],
+      "tests": [
+        "espirometría",
+        "oximetría",
+        "radiografía",
+        "TC",
+        "función pulmonar"
+      ],
+      "src": [
+        "NHLBI-ASTHMA-001"
+      ]
+    },
+    "neurologia": {
+      "label": "neurología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "scope": [
+        "cefalea recurrente",
+        "migraña",
+        "epilepsia",
+        "neuropatía",
+        "temblor",
+        "memoria"
+      ],
+      "symptoms": [
+        "cefalea",
+        "hormigueo",
+        "temblor",
+        "convulsiones previas",
+        "debilidad crónica"
+      ],
+      "red": [
+        "déficit súbito",
+        "BE FAST positivo",
+        "peor cefalea",
+        "convulsión activa",
+        "confusión aguda"
+      ],
+      "tests": [
+        "exploración neurológica",
+        "RM/TC",
+        "EEG",
+        "EMG",
+        "evaluación cognitiva"
+      ],
+      "src": [
+        "CDC-STROKE-001"
+      ]
+    },
+    "gastroenterologia": {
+      "label": "gastroenterología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "scope": [
+        "reflujo persistente",
+        "dolor abdominal crónico",
+        "diarrea crónica",
+        "estreñimiento complejo",
+        "sangrado estabilizado"
+      ],
+      "symptoms": [
+        "agruras",
+        "dolor abdominal",
+        "diarrea persistente",
+        "estreñimiento",
+        "disfagia"
+      ],
+      "red": [
+        "sangrado activo",
+        "heces negras",
+        "dolor abdominal severo",
+        "vómito persistente",
+        "pérdida peso"
+      ],
+      "tests": [
+        "endoscopia",
+        "colonoscopia",
+        "laboratorio hepático",
+        "ultrasonido",
+        "copro"
+      ],
+      "src": [
+        "NIDDK-GERD-001",
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    "endocrinologia": {
+      "label": "endocrinología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric",
+        "pregnancy"
+      ],
+      "scope": [
+        "diabetes compleja",
+        "tiroides",
+        "alteraciones hormonales",
+        "osteoporosis",
+        "obesidad con comorbilidad"
+      ],
+      "symptoms": [
+        "sed/orina",
+        "glucosa alta/baja",
+        "palpitaciones con pérdida peso",
+        "fatiga con frío"
+      ],
+      "red": [
+        "cetoacidosis",
+        "hipoglucemia con confusión",
+        "deshidratación severa",
+        "tormenta tiroidea"
+      ],
+      "tests": [
+        "glucosa",
+        "HbA1c",
+        "perfil tiroideo",
+        "electrolitos",
+        "perfil hormonal"
+      ],
+      "src": [
+        "CDC-DIAB-001"
+      ]
+    },
+    "nefrologia": {
+      "label": "nefrología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "scope": [
+        "enfermedad renal crónica",
+        "proteinuria",
+        "hematuria glomerular",
+        "electrolitos",
+        "hipertensión renal"
+      ],
+      "symptoms": [
+        "orina espumosa",
+        "hinchazón",
+        "poca orina",
+        "creatinina elevada"
+      ],
+      "red": [
+        "anuria",
+        "confusión",
+        "disnea por sobrecarga",
+        "edema severo",
+        "hipertensión con síntomas"
+      ],
+      "tests": [
+        "creatinina",
+        "eGFR",
+        "EGO",
+        "proteinuria",
+        "electrolitos",
+        "ultrasonido renal"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "urologia": {
+      "label": "urología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric",
+        "adolescent"
+      ],
+      "scope": [
+        "síntomas urinarios",
+        "hematuria",
+        "cólico renal",
+        "retención urinaria",
+        "dolor testicular",
+        "síntomas prostáticos"
+      ],
+      "symptoms": [
+        "ardor urinario",
+        "sangre orina",
+        "dolor costado",
+        "chorro débil",
+        "dolor testicular"
+      ],
+      "red": [
+        "retención dolorosa",
+        "dolor testicular súbito",
+        "fiebre con dolor lumbar",
+        "hematuria con coágulos"
+      ],
+      "tests": [
+        "EGO",
+        "urocultivo",
+        "ultrasonido",
+        "TC litos",
+        "cistoscopia"
+      ],
+      "src": [
+        "CDC-STI-001"
+      ]
+    },
+    "ginecologia_obstetricia": {
+      "label": "ginecología / obstetricia",
+      "pop": [
+        "adult",
+        "adolescent",
+        "pregnancy"
+      ],
+      "scope": [
+        "dolor pélvico",
+        "sangrado uterino",
+        "embarazo",
+        "anticoncepción",
+        "flujo vaginal",
+        "menopausia"
+      ],
+      "symptoms": [
+        "dolor pélvico",
+        "sangrado",
+        "flujo",
+        "comezón vaginal",
+        "retraso menstrual"
+      ],
+      "red": [
+        "embarazo con dolor/sangrado",
+        "sangrado con mareo",
+        "dolor pélvico súbito",
+        "agresión sexual"
+      ],
+      "tests": [
+        "prueba embarazo",
+        "ultrasonido",
+        "exploración",
+        "NAAT ITS",
+        "Papanicolaou"
+      ],
+      "src": [
+        "CDC-STI-001"
+      ]
+    },
+    "dermatologia": {
+      "label": "dermatología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "scope": [
+        "rash crónico",
+        "acné",
+        "eczema",
+        "psoriasis",
+        "lesiones pigmentadas",
+        "infecciones piel"
+      ],
+      "symptoms": [
+        "manchas",
+        "ronchas",
+        "comezón",
+        "acné",
+        "lesión que cambia"
+      ],
+      "red": [
+        "rash con fiebre",
+        "petequias",
+        "púrpura",
+        "mucosas",
+        "dolor desproporcionado",
+        "rápida expansión"
+      ],
+      "tests": [
+        "dermatoscopia",
+        "biopsia",
+        "cultivo",
+        "KOH",
+        "fotografía seriada"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "alergologia": {
+      "label": "alergología / inmunología",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "rinitis alérgica",
+        "asma alérgica",
+        "urticaria crónica",
+        "alergia alimentaria",
+        "inmunodeficiencia"
+      ],
+      "symptoms": [
+        "estornudos",
+        "urticaria recurrente",
+        "angioedema",
+        "infecciones recurrentes"
+      ],
+      "red": [
+        "anafilaxia",
+        "dificultad respiratoria",
+        "hinchazón lengua",
+        "desmayo tras exposición"
+      ],
+      "tests": [
+        "pruebas cutáneas",
+        "IgE",
+        "espirometría",
+        "diario exposiciones"
+      ],
+      "src": [
+        "NHLBI-ASTHMA-001"
+      ]
+    },
+    "otorrino": {
+      "label": "otorrinolaringología / ENT",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "sinusitis recurrente",
+        "otitis recurrente",
+        "vértigo periférico",
+        "ronquido",
+        "disfonía",
+        "pérdida auditiva"
+      ],
+      "symptoms": [
+        "dolor oído",
+        "congestión crónica",
+        "ronquera",
+        "vértigo",
+        "zumbido"
+      ],
+      "red": [
+        "babeo",
+        "estridor",
+        "voz apagada",
+        "hinchazón cuello",
+        "pérdida auditiva súbita"
+      ],
+      "tests": [
+        "otoscopia",
+        "audiometría",
+        "nasofibroscopia",
+        "timpanometría",
+        "estudio sueño"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "oftalmologia": {
+      "label": "oftalmología",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "dolor ocular",
+        "ojo rojo complejo",
+        "visión borrosa",
+        "diabetes ocular",
+        "glaucoma",
+        "catarata",
+        "trauma ocular"
+      ],
+      "symptoms": [
+        "ojo rojo",
+        "dolor ocular",
+        "visión borrosa",
+        "flotadores",
+        "destellos"
+      ],
+      "red": [
+        "pérdida visual súbita",
+        "dolor intenso",
+        "trauma/químico",
+        "halos con náusea",
+        "fotofobia"
+      ],
+      "tests": [
+        "agudeza visual",
+        "fondo ojo",
+        "presión intraocular",
+        "lámpara hendidura",
+        "OCT"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "psiquiatria": {
+      "label": "psiquiatría / salud mental",
+      "pop": [
+        "adult",
+        "pediatric",
+        "adolescent",
+        "older_adult"
+      ],
+      "scope": [
+        "depresión",
+        "ansiedad",
+        "bipolaridad",
+        "psicosis",
+        "insomnio complejo",
+        "adicciones"
+      ],
+      "symptoms": [
+        "ánimo bajo",
+        "ansiedad",
+        "pánico",
+        "insomnio",
+        "alucinaciones",
+        "consumo problemático"
+      ],
+      "red": [
+        "suicidio con plan",
+        "medios disponibles",
+        "psicosis con órdenes",
+        "violencia",
+        "intoxicación"
+      ],
+      "tests": [
+        "evaluación psiquiátrica",
+        "escalas",
+        "revisión sustancias",
+        "plan seguridad"
+      ],
+      "src": [
+        "NIMH-SUICIDE-001"
+      ]
+    },
+    "ortopedia": {
+      "label": "traumatología / ortopedia",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "fracturas",
+        "luxaciones",
+        "dolor articular",
+        "mecánico",
+        "lesiones deportivas",
+        "dolor espalda"
+      ],
+      "symptoms": [
+        "dolor articular",
+        "hinchazón",
+        "trauma",
+        "no apoya",
+        "deformidad"
+      ],
+      "red": [
+        "deformidad",
+        "piel fría distal",
+        "entumecimiento",
+        "fractura abierta",
+        "déficit neurológico"
+      ],
+      "tests": [
+        "radiografía",
+        "exploración neurovascular",
+        "RM",
+        "US",
+        "funcional"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "reumatologia": {
+      "label": "reumatología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "scope": [
+        "artritis inflamatoria",
+        "dolor articular crónico",
+        "autoinmune",
+        "lupus",
+        "vasculitis",
+        "gota compleja"
+      ],
+      "symptoms": [
+        "rigidez matutina",
+        "articulaciones hinchadas",
+        "rash con dolor articular",
+        "sequedad"
+      ],
+      "red": [
+        "articulación roja caliente con fiebre",
+        "púrpura",
+        "disnea",
+        "riñón afectado"
+      ],
+      "tests": [
+        "VSG",
+        "PCR",
+        "ANA",
+        "RF",
+        "antiCCP",
+        "EGO",
+        "imagen articular"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "infectologia": {
+      "label": "infectología",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult",
+        "pregnancy"
+      ],
+      "scope": [
+        "infecciones recurrentes",
+        "fiebre prolongada",
+        "VIH/ITS complejas",
+        "inmunosupresión",
+        "viajero"
+      ],
+      "symptoms": [
+        "fiebre prolongada",
+        "sudoración nocturna",
+        "infecciones recurrentes",
+        "exposición ITS"
+      ],
+      "red": [
+        "sepsis",
+        "fiebre inmunosupresión",
+        "rigidez cuello",
+        "rash purpúrico",
+        "hipotensión"
+      ],
+      "tests": [
+        "cultivos",
+        "PCR",
+        "serologías",
+        "hemocultivos",
+        "antibiograma"
+      ],
+      "src": [
+        "CDC-STI-001"
+      ]
+    },
+    "hematologia": {
+      "label": "hematología",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "anemia compleja",
+        "plaquetas",
+        "coagulación",
+        "trombosis recurrente",
+        "moretones",
+        "sangrado"
+      ],
+      "symptoms": [
+        "fatiga con anemia",
+        "moretones",
+        "sangrado fácil",
+        "ganglios",
+        "trombosis"
+      ],
+      "red": [
+        "sangrado activo",
+        "petequias con fiebre",
+        "palidez con síncope",
+        "neutropenia febril"
+      ],
+      "tests": [
+        "biometría",
+        "frotis",
+        "ferritina",
+        "B12",
+        "coagulación",
+        "médula ósea"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "oncologia": {
+      "label": "oncología",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "sospecha/diagnóstico cáncer",
+        "masas persistentes",
+        "pérdida peso",
+        "seguimiento oncológico"
+      ],
+      "symptoms": [
+        "masa persistente",
+        "pérdida de peso",
+        "sangrado inexplicado",
+        "dolor óseo",
+        "ganglios duros"
+      ],
+      "red": [
+        "fiebre en quimioterapia",
+        "compresión medular",
+        "sangrado",
+        "confusión",
+        "disnea"
+      ],
+      "tests": [
+        "imagen dirigida",
+        "biopsia",
+        "laboratorio",
+        "estadificación"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "geriatria": {
+      "label": "geriatría",
+      "pop": [
+        "older_adult"
+      ],
+      "scope": [
+        "fragilidad",
+        "polifarmacia",
+        "caídas",
+        "deterioro cognitivo",
+        "delirium",
+        "síndromes geriátricos"
+      ],
+      "symptoms": [
+        "caídas",
+        "confusión",
+        "pérdida funcional",
+        "pérdida peso",
+        "mareos"
+      ],
+      "red": [
+        "delirium agudo",
+        "caída con anticoagulantes",
+        "síncope",
+        "abuso/negligencia"
+      ],
+      "tests": [
+        "evaluación funcional",
+        "medicamentos",
+        "cognición",
+        "caídas",
+        "nutrición"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "pediatria": {
+      "label": "pediatría",
+      "pop": [
+        "pediatric",
+        "adolescent"
+      ],
+      "scope": [
+        "crecimiento",
+        "desarrollo",
+        "fiebre estable",
+        "vacunas",
+        "nutrición",
+        "conducta"
+      ],
+      "symptoms": [
+        "fiebre estable",
+        "tos leve",
+        "vómitos leves",
+        "estreñimiento",
+        "rash leve"
+      ],
+      "red": [
+        "menor 3 meses fiebre",
+        "dificultad respiratoria",
+        "letargo",
+        "deshidratación",
+        "convulsión"
+      ],
+      "tests": [
+        "peso/talla",
+        "exploración",
+        "vacunas",
+        "EGO",
+        "desarrollo"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "cirugia_general": {
+      "label": "cirugía general",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "abdomen quirúrgico",
+        "hernias",
+        "vesícula",
+        "apendicitis",
+        "abscesos",
+        "pared abdominal"
+      ],
+      "symptoms": [
+        "dolor abdominal localizado",
+        "hernia",
+        "dolor postcomida",
+        "bulto doloroso"
+      ],
+      "red": [
+        "abdomen rígido",
+        "dolor severo",
+        "vómito bilioso",
+        "hernia encarcelada",
+        "sepsis"
+      ],
+      "tests": [
+        "exploración",
+        "ultrasonido",
+        "TC",
+        "laboratorio inflamatorio"
+      ],
+      "src": [
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    "rehabilitacion": {
+      "label": "rehabilitación / fisioterapia",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "recuperación funcional",
+        "dolor musculoesquelético estable",
+        "postlesión",
+        "postquirúrgico",
+        "prevención caídas"
+      ],
+      "symptoms": [
+        "dolor mecánico",
+        "debilidad postlesión",
+        "rigidez",
+        "limitación funcional"
+      ],
+      "red": [
+        "déficit neurológico progresivo",
+        "fractura sospechada",
+        "fiebre con dolor espalda",
+        "cauda equina"
+      ],
+      "tests": [
+        "función",
+        "rango movimiento",
+        "fuerza",
+        "marcha",
+        "balance"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "nutricion": {
+      "label": "nutrición clínica",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult",
+        "pregnancy"
+      ],
+      "scope": [
+        "manejo dietético",
+        "diabetes",
+        "obesidad",
+        "desnutrición",
+        "alergias alimentarias",
+        "embarazo"
+      ],
+      "symptoms": [
+        "pérdida/aumento peso",
+        "dieta diabetes",
+        "estreñimiento dietario",
+        "desnutrición"
+      ],
+      "red": [
+        "pérdida peso marcada",
+        "deshidratación",
+        "TCA con desmayo",
+        "diabetes con vómitos"
+      ],
+      "tests": [
+        "historia dietaria",
+        "peso/talla",
+        "IMC",
+        "percentiles",
+        "laboratorio nutricional"
+      ],
+      "src": [
+        "CDC-DIAB-001"
+      ]
+    },
+    "sueno": {
+      "label": "medicina del sueño",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "insomnio crónico",
+        "apnea sueño",
+        "somnolencia diurna",
+        "ronquido",
+        "ritmo circadiano"
+      ],
+      "symptoms": [
+        "ronquido",
+        "pausas respiratorias",
+        "somnolencia",
+        "insomnio",
+        "piernas inquietas"
+      ],
+      "red": [
+        "somnolencia al conducir",
+        "cianosis nocturna",
+        "dolor torácico nocturno",
+        "suicidio"
+      ],
+      "tests": [
+        "polisomnografía",
+        "diario sueño",
+        "escala somnolencia",
+        "actigrafía"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "dolor_paliativos": {
+      "label": "medicina del dolor / paliativos",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "scope": [
+        "dolor crónico complejo",
+        "dolor oncológico",
+        "síntomas enfermedad avanzada",
+        "calidad de vida"
+      ],
+      "symptoms": [
+        "dolor persistente",
+        "dolor neuropático",
+        "disnea crónica avanzada",
+        "síntomas oncológicos"
+      ],
+      "red": [
+        "dolor súbito severo",
+        "déficit neurológico",
+        "sobredosis opioide",
+        "suicidio",
+        "compresión medular"
+      ],
+      "tests": [
+        "escala dolor",
+        "función",
+        "medicamentos",
+        "objetivos cuidado"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "toxicologia": {
+      "label": "toxicología",
+      "pop": [
+        "adult",
+        "pediatric",
+        "adolescent",
+        "older_adult"
+      ],
+      "scope": [
+        "ingesta accidental",
+        "sobredosis",
+        "exposición química",
+        "monóxido",
+        "interacciones tóxicas"
+      ],
+      "symptoms": [
+        "tomó pastillas",
+        "bebió químico",
+        "somnolencia tras sustancia",
+        "varios enfermos"
+      ],
+      "red": [
+        "alteración conciencia",
+        "convulsión",
+        "disnea",
+        "cáustico",
+        "intencionalidad suicida"
+      ],
+      "tests": [
+        "sustancia",
+        "tiempo",
+        "cantidad",
+        "signos vitales",
+        "ECG",
+        "toxicología"
+      ],
+      "src": [
+        "NIMH-SUICIDE-001"
+      ]
+    },
+    "odontologia": {
+      "label": "odontología / cirugía oral",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "scope": [
+        "dolor dental",
+        "caries",
+        "abscesos",
+        "trauma dental",
+        "sangrado oral",
+        "encía"
+      ],
+      "symptoms": [
+        "dolor muela",
+        "hinchazón encía",
+        "sangrado encía",
+        "trauma dental"
+      ],
+      "red": [
+        "hinchazón cara/cuello",
+        "dificultad tragar/respirar",
+        "fiebre",
+        "trismus"
+      ],
+      "tests": [
+        "exploración dental",
+        "radiografía dental",
+        "evaluación absceso"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "vascular": {
+      "label": "cirugía vascular / medicina vascular",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "scope": [
+        "arterial periférica",
+        "varices",
+        "trombosis",
+        "insuficiencia venosa",
+        "aneurismas",
+        "úlceras"
+      ],
+      "symptoms": [
+        "pierna hinchada",
+        "dolor al caminar",
+        "pie frío",
+        "úlceras",
+        "pierna cambia color"
+      ],
+      "red": [
+        "pierna unilateral hinchada",
+        "pie frío súbito",
+        "disnea con TVP",
+        "isquemia aguda"
+      ],
+      "tests": [
+        "índice tobillo-brazo",
+        "Doppler",
+        "angioTC",
+        "pulsos"
+      ],
+      "src": [
+        "NHLBI-MI-001"
+      ]
+    },
+    "hepatologia": {
+      "label": "hepatología",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "scope": [
+        "enfermedad hepática crónica",
+        "ictericia",
+        "hepatitis",
+        "cirrosis",
+        "hígado graso"
+      ],
+      "symptoms": [
+        "ojos amarillos",
+        "orina oscura",
+        "comezón",
+        "abdomen hinchado"
+      ],
+      "red": [
+        "confusión",
+        "sangrado digestivo",
+        "fiebre con ictericia",
+        "vómito sangre"
+      ],
+      "tests": [
+        "perfil hepático",
+        "coagulación",
+        "ultrasonido",
+        "serologías",
+        "elastografía"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    "coloproctologia": {
+      "label": "coloproctología",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "scope": [
+        "hemorroides",
+        "fisuras",
+        "sangrado rectal estable",
+        "dolor anal",
+        "lesiones anales"
+      ],
+      "symptoms": [
+        "sangre roja",
+        "dolor anal",
+        "bulto anal",
+        "comezón",
+        "secreción"
+      ],
+      "red": [
+        "sangrado abundante",
+        "heces negras",
+        "pérdida peso",
+        "anemia",
+        "fiebre perianal"
+      ],
+      "tests": [
+        "exploración anorrectal",
+        "anoscopia",
+        "colonoscopia",
+        "biometría"
+      ],
+      "src": [
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    "preventiva": {
+      "label": "medicina preventiva / chequeo",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult",
+        "pregnancy"
+      ],
+      "scope": [
+        "tamizajes",
+        "vacunación",
+        "estilo vida",
+        "prevención cardiovascular/metabólica",
+        "detección temprana"
+      ],
+      "symptoms": [
+        "chequeo",
+        "antecedentes familiares",
+        "prevención diabetes",
+        "vacunas"
+      ],
+      "red": [
+        "síntoma activo grave",
+        "pérdida peso",
+        "sangrado",
+        "dolor torácico",
+        "déficit neurológico"
+      ],
+      "tests": [
+        "presión",
+        "glucosa",
+        "HbA1c",
+        "lípidos",
+        "vacunas",
+        "tamizajes"
+      ],
+      "src": [
+        "CDC-DIAB-001",
+        "NHLBI-MI-001"
+      ]
+    }
+  },
+  "symptom_routes": [
+    {
+      "sym": "dolor torácico",
+      "preferred": "emergencia/cardiología",
+      "specs": [
+        "urgencias",
+        "cardiologia"
+      ],
+      "red": [
+        "dolor opresivo",
+        "disnea",
+        "sudoración",
+        "náusea",
+        "irradiación",
+        "síncope"
+      ],
+      "src": [
+        "NHLBI-MI-001"
+      ]
+    },
+    {
+      "sym": "palpitaciones",
+      "preferred": "cardiología",
+      "specs": [
+        "cardiologia",
+        "medicina_familiar"
+      ],
+      "red": [
+        "síncope",
+        "dolor torácico",
+        "disnea",
+        "cardiopatía",
+        "frecuencia sostenida"
+      ],
+      "src": [
+        "NHLBI-MI-001"
+      ]
+    },
+    {
+      "sym": "disnea",
+      "preferred": "urgencias/neumología/cardiología",
+      "specs": [
+        "urgencias",
+        "neumologia",
+        "cardiologia"
+      ],
+      "red": [
+        "reposo",
+        "cianosis",
+        "dolor torácico",
+        "confusión",
+        "saturación baja"
+      ],
+      "src": [
+        "NHLBI-ASTHMA-001"
+      ]
+    },
+    {
+      "sym": "tos crónica",
+      "preferred": "neumología/primer contacto",
+      "specs": [
+        "neumologia",
+        "medicina_familiar"
+      ],
+      "red": [
+        "hemoptisis",
+        "pérdida peso",
+        "sudoración nocturna",
+        "disnea progresiva"
+      ],
+      "src": [
+        "NHLBI-ASTHMA-001"
+      ]
+    },
+    {
+      "sym": "tos con sangre",
+      "preferred": "urgencias/neumología",
+      "specs": [
+        "urgencias",
+        "neumologia"
+      ],
+      "red": [
+        "cantidad abundante",
+        "disnea",
+        "dolor torácico",
+        "anticoagulantes",
+        "cáncer"
+      ],
+      "src": [
+        "NHLBI-ASTHMA-001"
+      ]
+    },
+    {
+      "sym": "cefalea súbita severa",
+      "preferred": "urgencias/neurología",
+      "specs": [
+        "urgencias",
+        "neurologia"
+      ],
+      "red": [
+        "peor de vida",
+        "déficit neurológico",
+        "rigidez cuello",
+        "convulsión"
+      ],
+      "src": [
+        "CDC-STROKE-001"
+      ]
+    },
+    {
+      "sym": "cefalea recurrente",
+      "preferred": "neurología/primer contacto",
+      "specs": [
+        "neurologia",
+        "medicina_familiar"
+      ],
+      "red": [
+        "cambio patrón",
+        "déficit",
+        "fiebre",
+        "embarazo",
+        "cáncer"
+      ],
+      "src": [
+        "CDC-STROKE-001"
+      ]
+    },
+    {
+      "sym": "debilidad unilateral",
+      "preferred": "urgencias/neurología",
+      "specs": [
+        "urgencias",
+        "neurologia"
+      ],
+      "red": [
+        "inicio súbito",
+        "habla alterada",
+        "visión alterada",
+        "ataxia"
+      ],
+      "src": [
+        "CDC-STROKE-001"
+      ]
+    },
+    {
+      "sym": "convulsión",
+      "preferred": "urgencias/neurología",
+      "specs": [
+        "urgencias",
+        "neurologia"
+      ],
+      "red": [
+        "activa",
+        "primera vez",
+        "repetida",
+        "embarazo",
+        "trauma",
+        "no recupera"
+      ],
+      "src": [
+        "CDC-STROKE-001"
+      ]
+    },
+    {
+      "sym": "mareo vértigo",
+      "preferred": "neurología/ENT/cardiología",
+      "specs": [
+        "neurologia",
+        "otorrino",
+        "cardiologia"
+      ],
+      "red": [
+        "déficit neurológico",
+        "síncope",
+        "dolor torácico",
+        "visión doble",
+        "ataxia"
+      ],
+      "src": [
+        "CDC-STROKE-001"
+      ]
+    },
+    {
+      "sym": "dolor abdominal severo",
+      "preferred": "urgencias/cirugía general/gastro",
+      "specs": [
+        "urgencias",
+        "cirugia_general",
+        "gastroenterologia"
+      ],
+      "red": [
+        "abdomen rígido",
+        "vómito persistente",
+        "sangre",
+        "desmayo",
+        "embarazo"
+      ],
+      "src": [
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    {
+      "sym": "reflujo frecuente",
+      "preferred": "gastroenterología",
+      "specs": [
+        "gastroenterologia",
+        "medicina_familiar"
+      ],
+      "red": [
+        "disfagia",
+        "sangrado",
+        "pérdida peso",
+        "dolor torácico"
+      ],
+      "src": [
+        "NIDDK-GERD-001"
+      ]
+    },
+    {
+      "sym": "diarrea crónica",
+      "preferred": "gastroenterología",
+      "specs": [
+        "gastroenterologia",
+        "medicina_familiar"
+      ],
+      "red": [
+        "sangre",
+        "pérdida peso",
+        "fiebre",
+        "deshidratación"
+      ],
+      "src": [
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    {
+      "sym": "vómitos persistentes",
+      "preferred": "urgencias/gastro",
+      "specs": [
+        "urgencias",
+        "gastroenterologia"
+      ],
+      "red": [
+        "deshidratación",
+        "sangre",
+        "bilioso",
+        "dolor severo",
+        "confusión"
+      ],
+      "src": [
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    {
+      "sym": "estreñimiento crónico",
+      "preferred": "primer contacto/gastro/coloproctología",
+      "specs": [
+        "medicina_familiar",
+        "gastroenterologia",
+        "coloproctologia"
+      ],
+      "red": [
+        "vómitos",
+        "no gases",
+        "sangre",
+        "pérdida peso",
+        "dolor severo"
+      ],
+      "src": [
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    {
+      "sym": "sangre en heces",
+      "preferred": "gastro/coloproctología/urgencias",
+      "specs": [
+        "gastroenterologia",
+        "coloproctologia",
+        "urgencias"
+      ],
+      "red": [
+        "sangrado abundante",
+        "mareo",
+        "heces negras",
+        "dolor severo"
+      ],
+      "src": [
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    {
+      "sym": "ictericia",
+      "preferred": "hepatología/gastro/urgencias",
+      "specs": [
+        "hepatologia",
+        "gastroenterologia",
+        "urgencias"
+      ],
+      "red": [
+        "confusión",
+        "fiebre",
+        "sangrado",
+        "dolor intenso",
+        "embarazo"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "sed y orina excesiva",
+      "preferred": "endocrinología/primer contacto/urgencias",
+      "specs": [
+        "endocrinologia",
+        "medicina_familiar",
+        "urgencias"
+      ],
+      "red": [
+        "vómitos",
+        "dolor abdominal",
+        "somnolencia",
+        "respiración profunda"
+      ],
+      "src": [
+        "CDC-DIAB-001"
+      ]
+    },
+    {
+      "sym": "glucosa baja",
+      "preferred": "urgencias/endocrinología",
+      "specs": [
+        "urgencias",
+        "endocrinologia"
+      ],
+      "red": [
+        "confusión",
+        "convulsión",
+        "desmayo",
+        "no puede tragar"
+      ],
+      "src": [
+        "CDC-DIAB-001"
+      ]
+    },
+    {
+      "sym": "fatiga persistente",
+      "preferred": "primer contacto/endocrino/hematología/salud mental",
+      "specs": [
+        "medicina_familiar",
+        "endocrinologia",
+        "hematologia",
+        "psiquiatria"
+      ],
+      "red": [
+        "dolor torácico",
+        "disnea",
+        "síncope",
+        "pérdida peso",
+        "sangrado",
+        "suicidio"
+      ],
+      "src": [
+        "CDC-DIAB-001"
+      ]
+    },
+    {
+      "sym": "pérdida de peso involuntaria",
+      "preferred": "primer contacto/gastro/endocrino/oncología",
+      "specs": [
+        "medicina_familiar",
+        "gastroenterologia",
+        "endocrinologia",
+        "oncologia"
+      ],
+      "red": [
+        "fiebre",
+        "sudoración nocturna",
+        "sangrado",
+        "disfagia",
+        "masa"
+      ],
+      "src": [
+        "CDC-DIAB-001"
+      ]
+    },
+    {
+      "sym": "sangre en orina",
+      "preferred": "urología/nefrología/urgencias",
+      "specs": [
+        "urologia",
+        "nefrologia",
+        "urgencias"
+      ],
+      "red": [
+        "coágulos",
+        "retención",
+        "fiebre",
+        "dolor intenso",
+        "edema"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "dolor costado renal",
+      "preferred": "urología/urgencias",
+      "specs": [
+        "urologia",
+        "urgencias"
+      ],
+      "red": [
+        "fiebre",
+        "anuria",
+        "dolor incontrolable",
+        "embarazo",
+        "vómitos"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "ardor al orinar",
+      "preferred": "primer contacto/urología/gineco",
+      "specs": [
+        "medicina_familiar",
+        "urologia",
+        "ginecologia_obstetricia"
+      ],
+      "red": [
+        "fiebre",
+        "dolor lumbar",
+        "embarazo",
+        "vómitos",
+        "hombre con fiebre"
+      ],
+      "src": [
+        "CDC-STI-001"
+      ]
+    },
+    {
+      "sym": "dolor testicular súbito",
+      "preferred": "urgencias/urología",
+      "specs": [
+        "urgencias",
+        "urologia"
+      ],
+      "red": [
+        "súbito",
+        "náusea",
+        "testículo alto",
+        "dolor severo"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "dolor pélvico",
+      "preferred": "ginecología/urgencias",
+      "specs": [
+        "ginecologia_obstetricia",
+        "urgencias"
+      ],
+      "red": [
+        "embarazo posible",
+        "sangrado",
+        "desmayo",
+        "fiebre",
+        "dolor súbito"
+      ],
+      "src": [
+        "CDC-STI-001"
+      ]
+    },
+    {
+      "sym": "sangrado vaginal anormal",
+      "preferred": "ginecología/urgencias",
+      "specs": [
+        "ginecologia_obstetricia",
+        "urgencias"
+      ],
+      "red": [
+        "embarazo",
+        "mareo",
+        "abundante",
+        "posmenopausia",
+        "dolor severo"
+      ],
+      "src": [
+        "CDC-STI-001"
+      ]
+    },
+    {
+      "sym": "flujo genital",
+      "preferred": "ginecología/urología/infectología",
+      "specs": [
+        "ginecologia_obstetricia",
+        "urologia",
+        "infectologia"
+      ],
+      "red": [
+        "dolor pélvico con fiebre",
+        "embarazo",
+        "agresión sexual",
+        "dolor testicular"
+      ],
+      "src": [
+        "CDC-STI-001"
+      ]
+    },
+    {
+      "sym": "rash con fiebre",
+      "preferred": "urgencias/dermatología/infectología",
+      "specs": [
+        "urgencias",
+        "dermatologia",
+        "infectologia"
+      ],
+      "red": [
+        "púrpura",
+        "mucosas",
+        "mal estado",
+        "dolor intenso",
+        "rápida expansión"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "lesión pigmentada que cambia",
+      "preferred": "dermatología",
+      "specs": [
+        "dermatologia"
+      ],
+      "red": [
+        "asimetría",
+        "bordes irregulares",
+        "color múltiple",
+        "crece",
+        "sangra"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "urticaria recurrente",
+      "preferred": "alergología/dermatología",
+      "specs": [
+        "alergologia",
+        "dermatologia"
+      ],
+      "red": [
+        "anafilaxia",
+        "hinchazón lengua",
+        "disnea",
+        "desmayo"
+      ],
+      "src": [
+        "NHLBI-ASTHMA-001"
+      ]
+    },
+    {
+      "sym": "dolor ocular",
+      "preferred": "oftalmología/urgencias",
+      "specs": [
+        "oftalmologia",
+        "urgencias"
+      ],
+      "red": [
+        "visión alterada",
+        "trauma",
+        "químico",
+        "dolor intenso",
+        "fotofobia"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "pérdida visual súbita",
+      "preferred": "urgencias/oftalmología/neurología",
+      "specs": [
+        "urgencias",
+        "oftalmologia",
+        "neurologia"
+      ],
+      "red": [
+        "súbita",
+        "dolor ocular",
+        "déficit neurológico",
+        "trauma"
+      ],
+      "src": [
+        "CDC-STROKE-001"
+      ]
+    },
+    {
+      "sym": "dolor oído recurrente",
+      "preferred": "ENT/primer contacto",
+      "specs": [
+        "otorrino",
+        "medicina_familiar"
+      ],
+      "red": [
+        "mastoiditis",
+        "parálisis facial",
+        "vértigo severo",
+        "fiebre lactante"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "dolor garganta con babeo",
+      "preferred": "urgencias/ENT",
+      "specs": [
+        "urgencias",
+        "otorrino"
+      ],
+      "red": [
+        "babeo",
+        "no traga saliva",
+        "voz apagada",
+        "estridor"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "ronquido pausas respiratorias",
+      "preferred": "sueño/ENT/neumología",
+      "specs": [
+        "sueno",
+        "otorrino",
+        "neumologia"
+      ],
+      "red": [
+        "somnolencia al conducir",
+        "cianosis",
+        "niño con apneas severas"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "dolor lumbar",
+      "preferred": "primer contacto/ortopedia/rehab/urgencias",
+      "specs": [
+        "medicina_familiar",
+        "ortopedia",
+        "rehabilitacion",
+        "urgencias"
+      ],
+      "red": [
+        "pérdida esfínteres",
+        "debilidad progresiva",
+        "fiebre",
+        "cáncer",
+        "trauma"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "dolor articular inflamatorio",
+      "preferred": "reumatología/ortopedia",
+      "specs": [
+        "reumatologia",
+        "ortopedia"
+      ],
+      "red": [
+        "articulación caliente con fiebre",
+        "no apoya",
+        "inmunosupresión"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "trauma deformidad",
+      "preferred": "urgencias/ortopedia",
+      "specs": [
+        "urgencias",
+        "ortopedia"
+      ],
+      "red": [
+        "deformidad",
+        "fractura abierta",
+        "déficit vascular",
+        "dolor desproporcionado"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "caídas adulto mayor",
+      "preferred": "geriatría/primer contacto/urgencias",
+      "specs": [
+        "geriatria",
+        "medicina_familiar",
+        "urgencias"
+      ],
+      "red": [
+        "anticoagulantes",
+        "golpe cabeza",
+        "síncope",
+        "fractura",
+        "confusión"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "ánimo bajo",
+      "preferred": "salud mental/primer contacto",
+      "specs": [
+        "psiquiatria",
+        "medicina_familiar"
+      ],
+      "red": [
+        "suicidio",
+        "plan",
+        "psicosis",
+        "incapacidad autocuidado"
+      ],
+      "src": [
+        "NIMH-SUICIDE-001"
+      ]
+    },
+    {
+      "sym": "ansiedad pánico",
+      "preferred": "salud mental/primer contacto/urgencias",
+      "specs": [
+        "psiquiatria",
+        "medicina_familiar",
+        "urgencias"
+      ],
+      "red": [
+        "dolor torácico",
+        "síncope",
+        "disnea severa",
+        "suicidio"
+      ],
+      "src": [
+        "NIMH-SUICIDE-001"
+      ]
+    },
+    {
+      "sym": "autolesión suicidio",
+      "preferred": "urgencias/salud mental",
+      "specs": [
+        "urgencias",
+        "psiquiatria"
+      ],
+      "red": [
+        "plan",
+        "medios",
+        "intento",
+        "intoxicación",
+        "psicosis"
+      ],
+      "src": [
+        "NIMH-SUICIDE-001"
+      ]
+    },
+    {
+      "sym": "sobredosis intoxicación",
+      "preferred": "urgencias/toxicología",
+      "specs": [
+        "urgencias",
+        "toxicologia"
+      ],
+      "red": [
+        "alteración conciencia",
+        "convulsión",
+        "dificultad respiratoria",
+        "cáustico",
+        "intencional"
+      ],
+      "src": [
+        "NIMH-SUICIDE-001"
+      ]
+    },
+    {
+      "sym": "fiebre prolongada",
+      "preferred": "primer contacto/infectología/hematología/oncología",
+      "specs": [
+        "medicina_familiar",
+        "infectologia",
+        "hematologia",
+        "oncologia"
+      ],
+      "red": [
+        "confusión",
+        "inmunosupresión",
+        "pérdida peso",
+        "rash purpúrico",
+        "sepsis"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "ganglios persistentes",
+      "preferred": "primer contacto/hematología/oncología/infectología",
+      "specs": [
+        "medicina_familiar",
+        "hematologia",
+        "oncologia",
+        "infectologia"
+      ],
+      "red": [
+        "duros fijos",
+        "supraclavicular",
+        "pérdida peso",
+        "sudoración nocturna"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "moretones sangrado fácil",
+      "preferred": "hematología/urgencias",
+      "specs": [
+        "hematologia",
+        "urgencias"
+      ],
+      "red": [
+        "sangrado activo",
+        "petequias con fiebre",
+        "palidez",
+        "anticoagulantes"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "dolor dental hinchazón",
+      "preferred": "odontología/urgencias",
+      "specs": [
+        "odontologia",
+        "urgencias"
+      ],
+      "red": [
+        "hinchazón cuello",
+        "dificultad respirar/tragar",
+        "fiebre",
+        "trismus"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "herida crónica pierna",
+      "preferred": "vascular/dermatología/primer contacto",
+      "specs": [
+        "vascular",
+        "dermatologia",
+        "medicina_familiar"
+      ],
+      "red": [
+        "fiebre",
+        "necrosis",
+        "dolor severo",
+        "diabetes",
+        "infección rápida"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "dolor al caminar pantorrilla",
+      "preferred": "vascular/primer contacto",
+      "specs": [
+        "vascular",
+        "medicina_familiar"
+      ],
+      "red": [
+        "pie frío súbito",
+        "dolor reposo",
+        "herida no sana",
+        "cambio color"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "quemadura",
+      "preferred": "urgencias/cirugía/dermatología",
+      "specs": [
+        "urgencias",
+        "cirugia_general",
+        "dermatologia"
+      ],
+      "red": [
+        "cara/vía aérea",
+        "eléctrica",
+        "química",
+        "extensa",
+        "bebé"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "masa o bulto persistente",
+      "preferred": "primer contacto/oncología/cirugía",
+      "specs": [
+        "medicina_familiar",
+        "oncologia",
+        "cirugia_general"
+      ],
+      "red": [
+        "crece rápido",
+        "duro fijo",
+        "pérdida peso",
+        "sangra",
+        "dolor nocturno"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "acné severo",
+      "preferred": "dermatología",
+      "specs": [
+        "dermatologia"
+      ],
+      "red": [
+        "dolor nodular",
+        "cicatrices",
+        "depresión severa",
+        "infección"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "falla de crecimiento infantil",
+      "preferred": "pediatría/nutrición/endocrino",
+      "specs": [
+        "pediatria",
+        "nutricion",
+        "endocrinologia"
+      ],
+      "red": [
+        "deshidratación",
+        "letargo",
+        "vómitos persistentes",
+        "negligencia"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "trastorno alimentario",
+      "preferred": "salud mental/nutrición/urgencias",
+      "specs": [
+        "psiquiatria",
+        "nutricion",
+        "urgencias"
+      ],
+      "red": [
+        "desmayo",
+        "dolor torácico",
+        "purga frecuente",
+        "suicidio",
+        "deshidratación"
+      ],
+      "src": [
+        "NIMH-SUICIDE-001"
+      ]
+    },
+    {
+      "sym": "dolor oncológico",
+      "preferred": "oncología/dolor/paliativos/urgencias",
+      "specs": [
+        "oncologia",
+        "dolor_paliativos",
+        "urgencias"
+      ],
+      "red": [
+        "déficit neurológico",
+        "fiebre en quimio",
+        "dolor severo",
+        "confusión"
+      ],
+      "src": [
+        "ORIGINAL-SPECIALTIES-001"
+      ]
+    },
+    {
+      "sym": "chequeo preventivo",
+      "preferred": "medicina preventiva/primer contacto",
+      "specs": [
+        "preventiva",
+        "medicina_familiar"
+      ],
+      "red": [
+        "síntoma activo grave",
+        "sangrado",
+        "dolor torácico",
+        "pérdida peso"
+      ],
+      "src": [
+        "CDC-DIAB-001"
+      ]
+    }
+  ],
+  "routing_principles": {
+    "emergency_over_specialty": true,
+    "primary_care_default_for_stable_unspecific": true,
+    "pediatric_layer_required_for_children": true,
+    "pregnancy_changes_routing": true
+  }
+}

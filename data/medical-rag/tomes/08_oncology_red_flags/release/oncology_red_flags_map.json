@@ -1,0 +1,1113 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "08_oncology_red_flags",
+  "status": "draft_requires_oncology_clinical_legal_review",
+  "general_red_flags": {
+    "perdida_peso_inexplicada": {
+      "label": "pérdida de peso inexplicada",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "bajó de peso sin intentarlo",
+        "ropa queda floja",
+        "apetito bajo",
+        "debilidad"
+      ],
+      "diff": [
+        "cáncer",
+        "endocrino",
+        "infección crónica",
+        "depresión",
+        "gastrointestinal",
+        "desnutrición"
+      ],
+      "red": [
+        "pérdida rápida",
+        "caquexia",
+        "disfagia",
+        "sangrado",
+        "fiebre nocturna",
+        "masa",
+        "adulto mayor frágil"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "fatiga_severa_persistente": {
+      "label": "fatiga severa persistente",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "cansancio que no mejora",
+        "no puede trabajar",
+        "debilidad marcada",
+        "somnolencia"
+      ],
+      "diff": [
+        "anemia",
+        "cáncer hematológico",
+        "infección",
+        "endocrino",
+        "depresión",
+        "medicamentos"
+      ],
+      "red": [
+        "disnea",
+        "dolor torácico",
+        "síncope",
+        "palidez marcada",
+        "sangrado",
+        "fiebre",
+        "suicidio"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "fiebre_sudoracion_nocturna": {
+      "label": "fiebre o sudoración nocturna sin causa",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "fiebre recurrente",
+        "sudoración nocturna empapada",
+        "escalofríos",
+        "pérdida peso"
+      ],
+      "diff": [
+        "linfoma",
+        "leucemia",
+        "infección",
+        "autoinmune",
+        "tuberculosis",
+        "endocrino"
+      ],
+      "red": [
+        "inmunosupresión",
+        "confusión",
+        "hipotensión",
+        "petequias",
+        "catéter",
+        "quimioterapia"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001",
+        "NCI-INFECTION-001"
+      ]
+    },
+    "masa_bulto_persistente": {
+      "label": "masa, bulto o ganglio persistente",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "bulto cuello",
+        "axila",
+        "ingle",
+        "mama",
+        "abdomen",
+        "crece",
+        "duro"
+      ],
+      "diff": [
+        "benigno",
+        "infección",
+        "quiste",
+        "linfoma",
+        "metástasis",
+        "tumor sólido"
+      ],
+      "red": [
+        "crece rápido",
+        "duro fijo",
+        "supraclavicular",
+        "pérdida peso",
+        "fiebre",
+        "dolor severo"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "sangrado_sin_causa": {
+      "label": "sangrado o moretones sin causa",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "moretones",
+        "encías sangran",
+        "nariz sangra",
+        "sangrado fácil",
+        "petequias"
+      ],
+      "diff": [
+        "plaquetas bajas",
+        "leucemia",
+        "coagulopatía",
+        "anticoagulantes",
+        "enfermedad hepática"
+      ],
+      "red": [
+        "sangrado activo",
+        "palidez",
+        "síncope",
+        "petequias con fiebre",
+        "anticoagulantes",
+        "trauma"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "sangre_heces": {
+      "label": "sangre en heces o cambio intestinal persistente",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "symptoms": [
+        "sangre roja",
+        "heces negras",
+        "cambio hábito",
+        "diarrea/estreñimiento persistente"
+      ],
+      "diff": [
+        "hemorroides",
+        "fisura",
+        "colitis",
+        "cáncer colorectal",
+        "infección"
+      ],
+      "red": [
+        "heces negras",
+        "mareo",
+        "anemia",
+        "pérdida peso",
+        "dolor severo",
+        "obstrucción"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "sangre_orina": {
+      "label": "sangre en orina",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "symptoms": [
+        "orina roja",
+        "café",
+        "coágulos",
+        "ardor",
+        "dolor costado"
+      ],
+      "diff": [
+        "UTI",
+        "lito",
+        "cáncer vejiga/riñón",
+        "glomerular",
+        "trauma"
+      ],
+      "red": [
+        "coágulos",
+        "retención",
+        "fiebre",
+        "dolor severo",
+        "anuria",
+        "anticoagulantes"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "sangrado_vaginal_anormal": {
+      "label": "sangrado vaginal anormal",
+      "pop": [
+        "adult",
+        "adolescent",
+        "older_adult",
+        "pregnancy"
+      ],
+      "symptoms": [
+        "sangrado entre periodos",
+        "posmenopausia",
+        "después sexo",
+        "abundante"
+      ],
+      "diff": [
+        "embarazo",
+        "hormonal",
+        "miomas",
+        "cervical",
+        "endometrial",
+        "infección"
+      ],
+      "red": [
+        "embarazo",
+        "posmenopausia",
+        "mareo",
+        "dolor pélvico",
+        "sangrado abundante",
+        "agresión"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "tos_ronquera_persistente": {
+      "label": "tos o ronquera persistente",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "symptoms": [
+        "tos semanas",
+        "ronquera",
+        "tos con sangre",
+        "fumador",
+        "disnea"
+      ],
+      "diff": [
+        "infección",
+        "asma",
+        "EPOC",
+        "reflujo",
+        "cáncer pulmón/laringe"
+      ],
+      "red": [
+        "hemoptisis",
+        "disnea",
+        "dolor torácico",
+        "pérdida peso",
+        "fumador",
+        "estridor"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "dificultad_tragar": {
+      "label": "dificultad para tragar persistente",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "symptoms": [
+        "se atora",
+        "dolor al tragar",
+        "comida se queda",
+        "pérdida peso"
+      ],
+      "diff": [
+        "reflujo",
+        "estenosis",
+        "neurológico",
+        "cáncer esófago/cabeza-cuello"
+      ],
+      "red": [
+        "no puede tragar saliva",
+        "aspiración",
+        "pérdida peso",
+        "vómitos sangre",
+        "dolor torácico"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "indigestion_reflujo_persistente": {
+      "label": "indigestión o acidez que no se resuelve",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "symptoms": [
+        "agruras frecuentes",
+        "dolor después de comer",
+        "náusea",
+        "llenura temprana"
+      ],
+      "diff": [
+        "GERD",
+        "úlcera",
+        "vesícula",
+        "gástrico",
+        "pancreático",
+        "cardiaco"
+      ],
+      "red": [
+        "dolor torácico",
+        "disfagia",
+        "sangrado",
+        "pérdida peso",
+        "vómitos persistentes"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "dolor_persistente_inexplicable": {
+      "label": "dolor persistente inexplicable",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "dolor que no mejora",
+        "dolor nocturno",
+        "analgésicos no ayudan",
+        "limitación"
+      ],
+      "diff": [
+        "musculoesquelético",
+        "inflamatorio",
+        "neuropático",
+        "metástasis",
+        "infección"
+      ],
+      "red": [
+        "dolor severo",
+        "neurológico",
+        "pérdida peso",
+        "fiebre",
+        "cáncer previo",
+        "trauma"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "dolor_oseo_nocturno": {
+      "label": "dolor óseo nocturno o progresivo",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "dolor hueso",
+        "despierta noche",
+        "cojera",
+        "fractura fácil",
+        "dolor espalda"
+      ],
+      "diff": [
+        "trauma",
+        "infección",
+        "metástasis",
+        "leucemia",
+        "osteosarcoma",
+        "mieloma"
+      ],
+      "red": [
+        "debilidad",
+        "fractura",
+        "fiebre",
+        "pérdida peso",
+        "dolor espalda con vejiga/intestino"
+      ],
+      "src": [
+        "ORIGINAL-ONC-001"
+      ]
+    },
+    "cambio_lunar_herida_no_cicatriza": {
+      "label": "cambio en lunar o herida que no cicatriza",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "lunar cambia",
+        "asimetría",
+        "borde irregular",
+        "sangra",
+        "úlcera no cierra"
+      ],
+      "diff": [
+        "melanoma",
+        "basocelular",
+        "escamoso",
+        "infección",
+        "trauma"
+      ],
+      "red": [
+        "crece rápido",
+        "sangrado",
+        "dolor",
+        "pigmento irregular",
+        "inmunosupresión"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "lesion_boca_persistente": {
+      "label": "lesión oral persistente",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "symptoms": [
+        "parche blanco/rojo",
+        "úlcera",
+        "bulto",
+        "boca sangra",
+        "dolor/numbness"
+      ],
+      "diff": [
+        "aftas",
+        "infección",
+        "trauma",
+        "oral cancer",
+        "leucoplasia"
+      ],
+      "red": [
+        "no cicatriza",
+        "sangra",
+        "dificultad tragar",
+        "fumador/alcohol",
+        "pérdida peso"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "cambios_mama": {
+      "label": "cambios en mama",
+      "pop": [
+        "adult",
+        "older_adult",
+        "adolescent"
+      ],
+      "symptoms": [
+        "bulto",
+        "piel dimpled",
+        "secreción pezón",
+        "cambio pezón",
+        "dolor focal"
+      ],
+      "diff": [
+        "quiste",
+        "fibroadenoma",
+        "mastitis",
+        "cáncer mama",
+        "ginecomastia"
+      ],
+      "red": [
+        "secreción sanguinolenta",
+        "piel naranja",
+        "retracción",
+        "masa dura",
+        "ganglio axilar"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001",
+        "NCI-MAMMO-001"
+      ]
+    },
+    "hinchazon_abdominal_saciedad": {
+      "label": "distensión abdominal o saciedad temprana persistente",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "symptoms": [
+        "se llena rápido",
+        "abdomen crece",
+        "náusea",
+        "cambio apetito"
+      ],
+      "diff": [
+        "GI",
+        "ovario",
+        "ascitis",
+        "funcional",
+        "hígado"
+      ],
+      "red": [
+        "dolor severo",
+        "vómitos persistentes",
+        "pérdida peso",
+        "sangrado",
+        "ictericia"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "ictericia": {
+      "label": "ictericia o piel/ojos amarillos",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "ojos amarillos",
+        "orina oscura",
+        "heces claras",
+        "comezón"
+      ],
+      "diff": [
+        "hepatitis",
+        "obstrucción biliar",
+        "cáncer páncreas/hígado",
+        "hemólisis"
+      ],
+      "red": [
+        "confusión",
+        "fiebre",
+        "dolor severo",
+        "sangrado",
+        "embarazo",
+        "sepsis"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "cefalea_convulsion_nueva": {
+      "label": "cefalea persistente, convulsión o cambios neurológicos nuevos",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "cefalea nueva",
+        "convulsión",
+        "visión cambia",
+        "cara caída",
+        "audición cambia"
+      ],
+      "diff": [
+        "migraña",
+        "ACV",
+        "masa intracraneal",
+        "infección",
+        "metabólico"
+      ],
+      "red": [
+        "déficit súbito",
+        "peor cefalea",
+        "convulsión activa",
+        "confusión",
+        "papiledema",
+        "fiebre rigidez"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001",
+        "CDC-STROKE-001"
+      ]
+    },
+    "ganglio_supraclavicular": {
+      "label": "ganglio supraclavicular o duro fijo",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "symptoms": [
+        "bulto encima clavícula",
+        "duro",
+        "fijo",
+        "crece",
+        "no duele"
+      ],
+      "diff": [
+        "infección",
+        "linfoma",
+        "metástasis",
+        "inflamatorio"
+      ],
+      "red": [
+        "crecimiento",
+        "pérdida peso",
+        "fiebre nocturna",
+        "sudores",
+        "tos",
+        "disfagia"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    }
+  },
+  "active_cancer_complications": {
+    "fiebre_quimioterapia": {
+      "label": "fiebre durante quimioterapia o tratamiento oncológico",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "temperatura",
+        "escalofríos",
+        "catéter",
+        "tos",
+        "orina dolorosa",
+        "diarrea"
+      ],
+      "diff": [
+        "infección",
+        "neutropenia",
+        "sepsis",
+        "catéter infectado"
+      ],
+      "red": [
+        "fiebre 38 C o más",
+        "escalofríos",
+        "confusión",
+        "hipotensión",
+        "dificultad respirar",
+        "catéter rojo"
+      ],
+      "src": [
+        "NCI-INFECTION-001"
+      ]
+    },
+    "dolor_espalda_cancer": {
+      "label": "dolor de espalda en paciente con cáncer",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "dolor nuevo",
+        "nocturno",
+        "progresivo",
+        "radicular",
+        "debilidad"
+      ],
+      "diff": [
+        "metástasis",
+        "fractura",
+        "compresión medular",
+        "infección",
+        "degenerativo"
+      ],
+      "red": [
+        "debilidad",
+        "pérdida sensibilidad",
+        "retención/incontinencia",
+        "dolor severo",
+        "fiebre",
+        "trauma"
+      ],
+      "src": [
+        "ORIGINAL-ONC-001"
+      ]
+    },
+    "disnea_cancer": {
+      "label": "disnea en paciente oncológico",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "falta aire",
+        "tos",
+        "dolor pecho",
+        "taquicardia",
+        "fatiga"
+      ],
+      "diff": [
+        "embolismo",
+        "neumonía",
+        "derrame",
+        "anemia",
+        "progresión",
+        "cardiotoxicidad"
+      ],
+      "red": [
+        "reposo",
+        "cianosis",
+        "dolor torácico",
+        "hemoptisis",
+        "confusión",
+        "saturación baja"
+      ],
+      "src": [
+        "NHLBI-MI-001"
+      ]
+    },
+    "sangrado_cancer": {
+      "label": "sangrado en paciente oncológico",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "nariz",
+        "encías",
+        "heces",
+        "orina",
+        "moretones",
+        "petequias"
+      ],
+      "diff": [
+        "plaquetas bajas",
+        "coagulación",
+        "anticoagulantes",
+        "tumor",
+        "GI/GU"
+      ],
+      "red": [
+        "sangrado activo",
+        "mareo",
+        "palidez",
+        "heces negras",
+        "vómito sangre",
+        "petequias fiebre"
+      ],
+      "src": [
+        "NCI-INFECTION-001"
+      ]
+    },
+    "dolor_severo_cancer": {
+      "label": "dolor severo en cáncer activo",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "dolor nuevo",
+        "dolor irruptivo",
+        "dolor óseo",
+        "dolor neuropático"
+      ],
+      "diff": [
+        "progresión",
+        "fractura",
+        "compresión",
+        "infección",
+        "efecto tratamiento"
+      ],
+      "red": [
+        "déficit neurológico",
+        "dolor intratable",
+        "fiebre",
+        "confusión",
+        "sedación por opioides"
+      ],
+      "src": [
+        "ORIGINAL-ONC-001"
+      ]
+    },
+    "confusion_cancer": {
+      "label": "confusión en paciente oncológico",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "desorientación",
+        "somnolencia",
+        "agitación",
+        "alucinación"
+      ],
+      "diff": [
+        "infección",
+        "metabólico",
+        "medicamento",
+        "metástasis",
+        "hipercalcemia"
+      ],
+      "red": [
+        "fiebre",
+        "déficit focal",
+        "convulsión",
+        "deshidratación",
+        "sedación",
+        "hipoxia"
+      ],
+      "src": [
+        "NCI-INFECTION-001",
+        "CDC-STROKE-001"
+      ]
+    },
+    "cateter_central": {
+      "label": "catéter central con signos de infección",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "enrojecimiento",
+        "dolor",
+        "secreción",
+        "fiebre",
+        "escalofríos"
+      ],
+      "diff": [
+        "infección local",
+        "bacteriemia",
+        "sepsis",
+        "trombosis"
+      ],
+      "red": [
+        "fiebre",
+        "escalofríos",
+        "secreción",
+        "línea roja",
+        "confusión",
+        "hipotensión"
+      ],
+      "src": [
+        "NCI-INFECTION-001"
+      ]
+    },
+    "neutropenia_sospechada": {
+      "label": "neutropenia o defensas bajas sospechadas",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "quimio reciente",
+        "glóbulos bajos",
+        "fiebre",
+        "úlceras boca",
+        "infección"
+      ],
+      "diff": [
+        "neutropenia",
+        "sepsis",
+        "infección oportunista",
+        "efecto tratamiento"
+      ],
+      "red": [
+        "fiebre",
+        "escalofríos",
+        "mal estado",
+        "catéter",
+        "diarrea severa",
+        "disnea"
+      ],
+      "src": [
+        "NCI-INFECTION-001"
+      ]
+    },
+    "compresion_medular_sospecha": {
+      "label": "compresión medular sospechada en cáncer",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "symptoms": [
+        "dolor espalda",
+        "debilidad",
+        "pérdida sensibilidad",
+        "problemas vejiga/intestino"
+      ],
+      "diff": [
+        "metástasis vertebral",
+        "fractura",
+        "absceso",
+        "hematoma"
+      ],
+      "red": [
+        "debilidad",
+        "anestesia silla montar",
+        "retención",
+        "incontinencia",
+        "dolor severo progresivo"
+      ],
+      "src": [
+        "ORIGINAL-ONC-001"
+      ]
+    },
+    "sindrome_vena_cava": {
+      "label": "síndrome de vena cava superior sospechado",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "symptoms": [
+        "hinchazón cara/cuello",
+        "venas cuello",
+        "disnea",
+        "tos",
+        "cefalea"
+      ],
+      "diff": [
+        "masa mediastinal",
+        "trombosis",
+        "linfoma",
+        "pulmón"
+      ],
+      "red": [
+        "disnea severa",
+        "estridor",
+        "confusión",
+        "sincope",
+        "edema cerebral"
+      ],
+      "src": [
+        "ORIGINAL-ONC-001"
+      ]
+    }
+  },
+  "screening_vs_symptoms": {
+    "mama": {
+      "label": "cáncer de mama",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "screening": [
+        "mamografía",
+        "autoobservación",
+        "exploración clínica según contexto"
+      ],
+      "red": [
+        "masa",
+        "secreción",
+        "piel naranja",
+        "retracción pezón",
+        "ganglio axilar"
+      ],
+      "src": [
+        "NCI-MAMMO-001"
+      ]
+    },
+    "colon_recto": {
+      "label": "cáncer colorrectal",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "screening": [
+        "tamizaje por edad/riesgo",
+        "colonoscopia/FIT según guía local"
+      ],
+      "red": [
+        "sangre heces",
+        "cambio hábito",
+        "pérdida peso",
+        "anemia",
+        "dolor abdominal"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "cervix": {
+      "label": "cáncer cervicouterino",
+      "pop": [
+        "adult",
+        "adolescent"
+      ],
+      "screening": [
+        "Papanicolaou/VPH según edad/riesgo local"
+      ],
+      "red": [
+        "sangrado postcoital",
+        "flujo persistente",
+        "dolor pélvico",
+        "sangrado anormal"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "piel": {
+      "label": "cáncer de piel / melanoma",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "screening": [
+        "revisión de lesiones",
+        "ABCDE",
+        "dermatoscopia por especialista"
+      ],
+      "red": [
+        "lunar cambia",
+        "sangra",
+        "asimétrico",
+        "borde irregular",
+        "color múltiple"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "pulmon": {
+      "label": "cáncer de pulmón",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "screening": [
+        "tamizaje TC baja dosis en alto riesgo según guía local"
+      ],
+      "red": [
+        "tos persistente",
+        "hemoptisis",
+        "disnea",
+        "pérdida peso",
+        "dolor pecho"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    },
+    "prostata": {
+      "label": "cáncer de próstata",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "screening": [
+        "decisión compartida PSA según edad/riesgo local"
+      ],
+      "red": [
+        "dificultad orinar",
+        "sangre orina",
+        "dolor óseo",
+        "pérdida peso"
+      ],
+      "src": [
+        "NCI-SYMPTOMS-001"
+      ]
+    }
+  },
+  "safety_principles": {
+    "do_not_diagnose_cancer": true,
+    "persistent_progressive_unexplained_symptoms_need_medical_review": true,
+    "active_cancer_fever_or_neurologic_or_bleeding_or_respiratory_symptoms_escalate": true,
+    "screening_is_not_diagnostic_evaluation_for_symptoms": true,
+    "otc_should_not_mask_fever_during_cancer_treatment": true
+  }
+}

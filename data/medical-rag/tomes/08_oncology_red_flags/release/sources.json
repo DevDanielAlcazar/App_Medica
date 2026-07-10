@@ -1,0 +1,75 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "08_oncology_red_flags",
+  "license_strategy": "Original oncology red-flag synthesis supported by official public NCI/NIH/CDC sources. Do not embed proprietary NCCN/ESMO/ASCO guideline text, oncology pathways, or copyrighted patient materials without permission.",
+  "sources": {
+    "ORIGINAL-ONC-001": {
+      "title": "Original oncology red-flag and cancer-care safety framework",
+      "url": "internal://authored-framework/oncology-red-flags-v0.1",
+      "organization": "Generated original synthesis for App_Medica",
+      "license_notes": "Original authored synthesis; requires oncology/clinical/legal review.",
+      "used_for": "Cancer red-flag screening, oncology emergency gates, triage, handoff and AI boundaries."
+    },
+    "NCI-SYMPTOMS-001": {
+      "title": "NCI - Symptoms of Cancer",
+      "url": "https://www.cancer.gov/about-cancer/diagnosis-staging/symptoms",
+      "organization": "National Cancer Institute",
+      "license_notes": "Official public NCI source; final legal review required.",
+      "used_for": "General persistent symptoms and cancer warning symptom framework."
+    },
+    "NCI-INFECTION-001": {
+      "title": "NCI - Infection and Neutropenia during Cancer Treatment",
+      "url": "https://www.cancer.gov/about-cancer/treatment/side-effects/infection",
+      "organization": "National Cancer Institute",
+      "license_notes": "Official public NCI source; final legal review required.",
+      "used_for": "Fever/infection in cancer treatment, masking fever with OTC medication, urgent attention."
+    },
+    "NCI-MAMMO-001": {
+      "title": "NCI - Mammograms",
+      "url": "https://www.cancer.gov/types/breast/screening/mammograms",
+      "organization": "National Cancer Institute",
+      "license_notes": "Official public NCI source; final legal review required.",
+      "used_for": "Breast mass, mammography, BI-RADS literacy and callback framing."
+    },
+    "CDC-STROKE-001": {
+      "title": "CDC - Signs and Symptoms of Stroke",
+      "url": "https://www.cdc.gov/stroke/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Neurologic emergency override."
+    },
+    "NHLBI-MI-001": {
+      "title": "NHLBI - Heart Attack Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Chest pain emergency override in cancer patients."
+    },
+    "NIMH-SUICIDE-001": {
+      "title": "NIMH - Suicide Prevention",
+      "url": "https://www.nimh.nih.gov/health/topics/suicide-prevention",
+      "organization": "National Institute of Mental Health",
+      "license_notes": "Official .gov source; final legal review required.",
+      "used_for": "Cancer distress, self-harm and crisis escalation."
+    }
+  },
+  "excluded_sources": [
+    {
+      "title": "NCCN/ASCO/ESMO proprietary guideline text copied verbatim",
+      "reason": "Not ingested to avoid copyright/licensing issues."
+    },
+    {
+      "title": "Hospital-specific oncology pathways",
+      "reason": "Requires local authorization and clinical governance."
+    },
+    {
+      "title": "Cancer forums, social media, anecdotal stories",
+      "reason": "Not appropriate as evidence for clinical red-flag routing."
+    },
+    {
+      "title": "Commercial tumor-marker screening claims",
+      "reason": "Not treated as evidence equivalent to clinical guidelines."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "06_frequent_specialties",
+  "total_chunks": 612,
+  "specialty_count": 33,
+  "symptom_route_count": 57,
+  "governance_rule_count": 30,
+  "severity_distribution": {
+    "S2": 137,
+    "S3": 244,
+    "S4": 131,
+    "S5": 7,
+    "S6": 93
+  },
+  "production_allowed": false,
+  "quality_position": "Specialty-router and handoff tomo. Emergency red flags must outrank referral preparation."
+}

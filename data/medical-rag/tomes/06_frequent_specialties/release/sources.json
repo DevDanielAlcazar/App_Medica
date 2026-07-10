@@ -1,0 +1,67 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "06_frequent_specialties",
+  "license_strategy": "Original clinical routing synthesis supported by selected official public sources for red flags. Do not embed proprietary specialty guidelines or copyrighted society manuals without permission.",
+  "sources": {
+    "ORIGINAL-SPECIALTIES-001": {
+      "title": "Original frequent-specialties routing and handoff framework",
+      "url": "internal://authored-framework/frequent-specialties-v0.1",
+      "organization": "Generated original synthesis for App_Medica"
+    },
+    "CDC-STROKE-001": {
+      "title": "CDC - Signs and Symptoms of Stroke",
+      "url": "https://www.cdc.gov/stroke/signs-symptoms/index.html",
+      "organization": "CDC"
+    },
+    "NHLBI-MI-001": {
+      "title": "NHLBI - Heart Attack Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+      "organization": "NHLBI/NIH"
+    },
+    "NHLBI-ASTHMA-001": {
+      "title": "NHLBI - Asthma Symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/symptoms",
+      "organization": "NHLBI/NIH"
+    },
+    "NIDDK-GERD-001": {
+      "title": "NIDDK - GERD Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults/symptoms-causes",
+      "organization": "NIDDK/NIH"
+    },
+    "NIDDK-GASTRO-001": {
+      "title": "NIDDK - Viral Gastroenteritis Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes",
+      "organization": "NIDDK/NIH"
+    },
+    "CDC-DIAB-001": {
+      "title": "CDC - Symptoms of Diabetes",
+      "url": "https://www.cdc.gov/diabetes/signs-symptoms/index.html",
+      "organization": "CDC"
+    },
+    "NIMH-SUICIDE-001": {
+      "title": "NIMH - Suicide Prevention",
+      "url": "https://www.nimh.nih.gov/health/topics/suicide-prevention",
+      "organization": "NIMH/NIH"
+    },
+    "CDC-STI-001": {
+      "title": "CDC - About Sexually Transmitted Infections",
+      "url": "https://www.cdc.gov/sti/about/index.html",
+      "organization": "CDC"
+    }
+  },
+  "excluded_sources": [
+    {
+      "title": "Proprietary specialty society guidelines and paywalled manuals",
+      "reason": "Not ingested to avoid copyright/licensing issues."
+    },
+    {
+      "title": "Hospital-specific referral criteria",
+      "reason": "Requires local authorization and regionalization."
+    },
+    {
+      "title": "Blogs, forums, social-media medical advice",
+      "reason": "Not appropriate for clinical routing."
+    }
+  ]
+}

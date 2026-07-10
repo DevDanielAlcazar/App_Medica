@@ -1,0 +1,1407 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "status": "draft_requires_physician_pharmacist_legal_runtime_label_validation",
+  "hard_rule": "No dose calculation if age/weight/product/concentration/route/last dose/24h total/contraindications/label verification are incomplete.",
+  "medications": {
+    "acetaminophen_paracetamol": {
+      "name": "acetaminofén / paracetamol",
+      "class": "analgesic_antipyretic",
+      "otc_status": "otc_common",
+      "indications": [
+        "fiebre",
+        "dolor leve a moderado",
+        "dolor de cabeza",
+        "dolor muscular",
+        "dolor dental"
+      ],
+      "adult_dose_text": "Adulto: usar etiqueta del producto. Dosis común: 325-650 mg cada 4-6 h o 1,000 mg cada 6-8 h; máximo conservador del motor: 3,000 mg/día salvo etiqueta/criterio médico que permita otro máximo; nunca exceder 4,000 mg/día.",
+      "pediatric_dose_text": "Pediatría: solo si edad/peso/concentración están claros y no hay red flags. Rango común: 10-15 mg/kg/dosis cada 4-6 h; máximo operativo conservador: 5 dosis/24 h y 75 mg/kg/día; menores de 2 años requieren indicación de profesional o etiqueta específica.",
+      "hard_contraindications": [
+        "alergia a acetaminofén/paracetamol",
+        "enfermedad hepática grave",
+        "sospecha de sobredosis",
+        "uso simultáneo de múltiples productos con acetaminofén/APAP/paracetamol"
+      ],
+      "cautions": [
+        "alcohol",
+        "bajo peso adulto",
+        "enfermedad hepática",
+        "warfarina/anticoagulación crónica",
+        "desnutrición",
+        "ayuno prolongado"
+      ],
+      "red_flags": [
+        "sobredosis real o posible",
+        "ictericia",
+        "dolor abdominal severo",
+        "confusión",
+        "vómitos persistentes",
+        "fiebre en lactante pequeño",
+        "fiebre persistente"
+      ],
+      "source_ids": [
+        "FDA-APAP-001",
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "ibuprofen": {
+      "name": "ibuprofeno",
+      "class": "nsaid",
+      "otc_status": "otc_common",
+      "indications": [
+        "fiebre",
+        "dolor",
+        "dolor muscular",
+        "dolor dental",
+        "dolor menstrual",
+        "inflamación leve"
+      ],
+      "adult_dose_text": "Adulto OTC: 200-400 mg cada 4-6 h con agua/alimento según tolerancia; máximo OTC 1,200 mg/día salvo indicación médica.",
+      "pediatric_dose_text": "Pediatría: no usar en menores de 6 meses salvo indicación médica. Rango común: 5-10 mg/kg/dosis cada 6-8 h; máximo operativo conservador: 30 mg/kg/día o etiqueta local si menor; requiere peso, concentración y ausencia de deshidratación/vómitos persistentes.",
+      "hard_contraindications": [
+        "alergia a ibuprofeno/NSAID",
+        "reacción asmática a aspirina/NSAID",
+        "sangrado digestivo activo",
+        "úlcera activa",
+        "enfermedad renal significativa",
+        "deshidratación significativa",
+        "tercer trimestre de embarazo"
+      ],
+      "cautions": [
+        "anticoagulantes",
+        "antiagregantes",
+        "corticoides",
+        "hipertensión",
+        "insuficiencia cardiaca",
+        "enfermedad renal",
+        "adulto mayor",
+        "antecedente de úlcera"
+      ],
+      "red_flags": [
+        "dolor abdominal severo",
+        "vómito con sangre",
+        "heces negras",
+        "poca orina",
+        "deshidratación",
+        "dolor torácico",
+        "dificultad respiratoria"
+      ],
+      "source_ids": [
+        "FDA-NSAID-001",
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "naproxen_sodium": {
+      "name": "naproxeno sódico",
+      "class": "nsaid",
+      "otc_status": "otc_adult_12_plus",
+      "indications": [
+        "dolor",
+        "dolor muscular",
+        "dolor menstrual",
+        "dolor dental",
+        "dolor de espalda leve"
+      ],
+      "adult_dose_text": "Adulto/≥12 años según etiqueta OTC: 220 mg cada 8-12 h; primera dosis puede ser 440 mg; máximo OTC típico 660 mg/día. No usar más de 10 días por dolor sin evaluación.",
+      "pediatric_dose_text": "No usar OTC en menores de 12 años salvo indicación médica/prescripción. Para niños, requerir receta y no calcular desde reglas OTC.",
+      "hard_contraindications": [
+        "alergia a NSAID",
+        "sangrado digestivo",
+        "úlcera activa",
+        "enfermedad renal significativa",
+        "tercer trimestre embarazo",
+        "uso simultáneo con otro NSAID"
+      ],
+      "cautions": [
+        "anticoagulantes",
+        "hipertensión",
+        "cardiopatía",
+        "adulto mayor",
+        "corticoides",
+        "enfermedad renal/hepática"
+      ],
+      "red_flags": [
+        "sangrado",
+        "dolor torácico",
+        "disnea",
+        "edema severo",
+        "heces negras",
+        "vómito con sangre"
+      ],
+      "source_ids": [
+        "FDA-NSAID-001",
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "aspirin": {
+      "name": "ácido acetilsalicílico / aspirina",
+      "class": "salicylate_nsaid",
+      "otc_status": "otc_restricted",
+      "indications": [
+        "dolor adulto",
+        "fiebre adulto",
+        "antiagregación solo si indicada por médico"
+      ],
+      "adult_dose_text": "Adulto para dolor/fiebre: seguir etiqueta; dosis común 325-650 mg cada 4 h o 975 mg cada 6 h; máximo depende de etiqueta. Para uso cardioprotector, solo según indicación médica.",
+      "pediatric_dose_text": "No recomendar para niños/adolescentes, especialmente con síntomas virales, varicela o influenza, salvo indicación médica específica.",
+      "hard_contraindications": [
+        "niño/adolescente con enfermedad viral",
+        "alergia a aspirina/NSAID",
+        "sangrado",
+        "úlcera activa",
+        "anticoagulantes sin médico",
+        "embarazo avanzado"
+      ],
+      "cautions": [
+        "asma sensible a NSAID",
+        "enfermedad renal",
+        "gastritis/úlcera",
+        "cirugía/procedimientos",
+        "alcohol"
+      ],
+      "red_flags": [
+        "sangrado",
+        "tinnitus",
+        "vómitos persistentes",
+        "confusión",
+        "respiración rápida",
+        "posible sobredosis"
+      ],
+      "source_ids": [
+        "FDA-NSAID-001",
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "cetirizine": {
+      "name": "cetirizina",
+      "class": "second_generation_antihistamine",
+      "otc_status": "otc_common",
+      "indications": [
+        "rinitis alérgica",
+        "estornudos",
+        "comezón nasal/ocular",
+        "urticaria leve"
+      ],
+      "adult_dose_text": "Adultos y ≥6 años: 5-10 mg una vez al día; máximo 10 mg/día salvo indicación médica.",
+      "pediatric_dose_text": "Niños 2-5 años: 2.5 mg una vez al día; puede requerir profesional/etiqueta para aumentar hasta máximo 5 mg/día. Menores de 2 años: no usar OTC sin profesional.",
+      "hard_contraindications": [
+        "alergia a cetirizina/levocetirizina/hidroxicina",
+        "anafilaxia o dificultad respiratoria actual como motivo de consulta sin emergencia"
+      ],
+      "cautions": [
+        "somnolencia",
+        "alcohol/sedantes",
+        "enfermedad renal",
+        "adulto mayor",
+        "embarazo/lactancia consultar"
+      ],
+      "red_flags": [
+        "hinchazón lengua/garganta",
+        "dificultad respiratoria",
+        "mareo/desmayo",
+        "ronchas con vómitos o respiración difícil"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "loratadine": {
+      "name": "loratadina",
+      "class": "second_generation_antihistamine",
+      "otc_status": "otc_common",
+      "indications": [
+        "rinitis alérgica",
+        "estornudos",
+        "comezón",
+        "urticaria leve"
+      ],
+      "adult_dose_text": "Adultos y ≥6 años: 10 mg una vez al día; máximo 10 mg/día.",
+      "pediatric_dose_text": "Niños 2-5 años: 5 mg una vez al día. Menores de 2 años: no usar OTC sin profesional.",
+      "hard_contraindications": [
+        "alergia a loratadina/desloratadina",
+        "anafilaxia actual como motivo de consulta"
+      ],
+      "cautions": [
+        "enfermedad hepática",
+        "enfermedad renal",
+        "embarazo/lactancia consultar",
+        "productos combinados con pseudoefedrina"
+      ],
+      "red_flags": [
+        "dificultad respiratoria",
+        "hinchazón de lengua/garganta",
+        "desmayo",
+        "ronchas generalizadas con síntomas sistémicos"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "fexofenadine": {
+      "name": "fexofenadina",
+      "class": "second_generation_antihistamine",
+      "otc_status": "otc_common",
+      "indications": [
+        "rinitis alérgica",
+        "urticaria leve",
+        "estornudos",
+        "comezón"
+      ],
+      "adult_dose_text": "Adultos y ≥12 años: 60 mg cada 12 h o 180 mg una vez al día según etiqueta; máximo según producto.",
+      "pediatric_dose_text": "Niños 6-11 años: 30 mg cada 12 h según etiqueta. Menores de 6 años: verificar producto/indicación profesional.",
+      "hard_contraindications": [
+        "alergia a fexofenadina",
+        "anafilaxia actual sin emergencia"
+      ],
+      "cautions": [
+        "antiácidos con aluminio/magnesio",
+        "jugos de fruta pueden reducir absorción",
+        "enfermedad renal",
+        "embarazo/lactancia consultar"
+      ],
+      "red_flags": [
+        "dificultad respiratoria",
+        "hinchazón facial/lengua",
+        "desmayo",
+        "urticaria con vómitos repetidos"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "diphenhydramine": {
+      "name": "difenhidramina",
+      "class": "first_generation_antihistamine",
+      "otc_status": "otc_high_caution",
+      "indications": [
+        "alergia",
+        "urticaria leve",
+        "comezón",
+        "reacción local leve"
+      ],
+      "adult_dose_text": "Adultos y ≥12 años: 25-50 mg cada 4-6 h; máximo típico 300 mg/día por etiqueta. No usar para sedar menores.",
+      "pediatric_dose_text": "Niños 6-11 años: 12.5-25 mg cada 4-6 h; máximo típico 150 mg/día por etiqueta. Menores de 6 años: solo si profesional lo indicó.",
+      "hard_contraindications": [
+        "menor de 6 años sin indicación médica",
+        "uso para dormir/sedar niño",
+        "sobredosis o reto viral",
+        "glaucoma de ángulo cerrado",
+        "retención urinaria grave",
+        "uso con otros sedantes sin médico"
+      ],
+      "cautions": [
+        "somnolencia",
+        "paradoja de excitación en niños",
+        "alcohol",
+        "benzodiacepinas/opioides",
+        "adulto mayor",
+        "asma/EPOC",
+        "adolescente con riesgo de abuso"
+      ],
+      "red_flags": [
+        "somnolencia extrema",
+        "alucinaciones",
+        "convulsión",
+        "ritmo cardiaco irregular",
+        "dificultad respiratoria",
+        "ingesta intencional"
+      ],
+      "source_ids": [
+        "FDA-DIPHEN-001",
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001",
+        "NIMH-SUICIDE-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "pseudoephedrine": {
+      "name": "pseudoefedrina",
+      "class": "oral_decongestant",
+      "otc_status": "behind_counter_or_regulated",
+      "indications": [
+        "congestión nasal",
+        "presión sinusal por resfriado/alergia"
+      ],
+      "adult_dose_text": "Adultos y ≥12 años: 60 mg cada 4-6 h o formulación extendida según etiqueta; máximo típico 240 mg/día.",
+      "pediatric_dose_text": "Niños 6-11 años: 30 mg cada 4-6 h; máximo típico 120 mg/día por etiqueta. Menores de 6 años: no usar sin profesional; evitar en menores pequeños.",
+      "hard_contraindications": [
+        "uso de IMAO en últimos 14 días",
+        "hipertensión severa",
+        "cardiopatía significativa",
+        "hipertiroidismo no controlado",
+        "retención urinaria/prostata problemática",
+        "menores pequeños sin indicación"
+      ],
+      "cautions": [
+        "ansiedad/insomnio",
+        "palpitaciones",
+        "embarazo/lactancia",
+        "diabetes",
+        "glaucoma",
+        "otros estimulantes"
+      ],
+      "red_flags": [
+        "dolor torácico",
+        "palpitaciones severas",
+        "presión muy alta",
+        "dificultad respiratoria",
+        "confusión"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "oral_phenylephrine": {
+      "name": "fenilefrina oral",
+      "class": "oral_decongestant_low_efficacy",
+      "otc_status": "not_preferred_due_efficacy_concerns",
+      "indications": [
+        "congestión nasal"
+      ],
+      "adult_dose_text": "No priorizar como recomendación OTC oral para congestión; la FDA propuso retirar fenilefrina oral como ingrediente decongestivo OTC por falta de eficacia. Si el producto ya se usa, seguir etiqueta y advertir eficacia limitada.",
+      "pediatric_dose_text": "No priorizar en pediatría. Preferir medidas no farmacológicas y valoración si hay red flags.",
+      "hard_contraindications": [
+        "hipertensión",
+        "cardiopatía",
+        "hipertiroidismo",
+        "IMAO",
+        "menores pequeños"
+      ],
+      "cautions": [
+        "ineficacia oral",
+        "palpitaciones",
+        "insomnio",
+        "productos combinados"
+      ],
+      "red_flags": [
+        "dificultad respiratoria",
+        "dolor torácico",
+        "fiebre prolongada",
+        "lactante pequeño",
+        "sin mejoría con empeoramiento"
+      ],
+      "source_ids": [
+        "FDA-PHENYLEPHRINE-001",
+        "FDA-DRUGFACTS-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "oxymetazoline_nasal": {
+      "name": "oximetazolina nasal",
+      "class": "topical_nasal_decongestant",
+      "otc_status": "otc_short_course",
+      "indications": [
+        "congestión nasal"
+      ],
+      "adult_dose_text": "Adultos y niños según etiqueta, típicamente ≥6 años: 2-3 pulverizaciones por fosa cada 10-12 h; no más de 2 dosis/24 h y no usar más de 3 días.",
+      "pediatric_dose_text": "No usar en menores según etiqueta local sin profesional. En pediatría, verificar edad del producto; no usar en lactantes/menores pequeños sin indicación.",
+      "hard_contraindications": [
+        "uso más de 3 días",
+        "menor bajo edad de etiqueta",
+        "hipersensibilidad",
+        "uso de múltiples descongestionantes"
+      ],
+      "cautions": [
+        "hipertensión",
+        "cardiopatía",
+        "hipertiroidismo",
+        "glaucoma",
+        "rebote nasal por uso excesivo"
+      ],
+      "red_flags": [
+        "dificultad respiratoria",
+        "epistaxis severa",
+        "dolor facial intenso con fiebre",
+        "síntomas neurológicos"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "dextromethorphan": {
+      "name": "dextrometorfano",
+      "class": "antitussive",
+      "otc_status": "otc_caution",
+      "indications": [
+        "tos seca irritativa"
+      ],
+      "adult_dose_text": "Adultos y ≥12 años: 10-20 mg cada 4 h o 30 mg cada 6-8 h; máximo típico 120 mg/día según etiqueta.",
+      "pediatric_dose_text": "Niños 6-11 años: 5-10 mg cada 4 h o 15 mg cada 6-8 h; máximo típico 60 mg/día. Niños 4-5: solo etiqueta específica, máximo típico 30 mg/día. Menores de 4: no usar OTC.",
+      "hard_contraindications": [
+        "uso de IMAO en últimos 14 días",
+        "tos con dificultad respiratoria",
+        "tos con sangre",
+        "sospecha de sobredosis/abuso",
+        "menores bajo edad de etiqueta"
+      ],
+      "cautions": [
+        "ISRS/IRSN/serotoninérgicos",
+        "adolescente con abuso",
+        "productos combinados",
+        "enfermedad hepática"
+      ],
+      "red_flags": [
+        "dificultad respiratoria",
+        "cianosis",
+        "tos con sangre",
+        "somnolencia extrema",
+        "alucinaciones",
+        "ingesta intencional"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001",
+        "NIMH-SUICIDE-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "guaifenesin": {
+      "name": "guaifenesina",
+      "class": "expectorant",
+      "otc_status": "otc_common",
+      "indications": [
+        "tos con flema espesa",
+        "congestión de pecho"
+      ],
+      "adult_dose_text": "Adultos y ≥12 años: liberación inmediata 200-400 mg cada 4 h; máximo típico 2,400 mg/día. Liberación prolongada: 600-1,200 mg cada 12 h según etiqueta.",
+      "pediatric_dose_text": "Niños 6-11: 100-200 mg cada 4 h; máximo típico 1,200 mg/día. Niños 4-5: 50-100 mg cada 4 h; máximo típico 600 mg/día. Menores de 4: no usar OTC.",
+      "hard_contraindications": [
+        "menor bajo edad de etiqueta",
+        "dificultad respiratoria",
+        "tos crónica sin evaluación",
+        "tos con sangre"
+      ],
+      "cautions": [
+        "productos combinados",
+        "deshidratación",
+        "asma/EPOC",
+        "tos persistente >7 días"
+      ],
+      "red_flags": [
+        "fiebre persistente",
+        "disnea",
+        "dolor torácico",
+        "saturación baja",
+        "hemoptisis"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "loperamide": {
+      "name": "loperamida",
+      "class": "antidiarrheal",
+      "otc_status": "otc_adult_caution",
+      "indications": [
+        "diarrea aguda no sanguinolenta en adulto"
+      ],
+      "adult_dose_text": "Adultos: 4 mg iniciales, luego 2 mg después de cada evacuación líquida; máximo OTC 8 mg/día y no usar más de 2 días sin evaluación.",
+      "pediatric_dose_text": "No recomendar OTC en niños sin profesional. Nunca en menores de 2 años.",
+      "hard_contraindications": [
+        "diarrea con sangre",
+        "fiebre alta",
+        "dolor abdominal severo",
+        "colitis/C. difficile sospechada",
+        "menor de 2 años",
+        "sobredosis"
+      ],
+      "cautions": [
+        "embarazo/lactancia",
+        "enfermedad hepática",
+        "ancianos",
+        "productos que prolongan QT",
+        "estreñimiento/distensión"
+      ],
+      "red_flags": [
+        "sangre en heces",
+        "deshidratación",
+        "fiebre alta",
+        "dolor severo",
+        "distensión",
+        "somnolencia"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001",
+        "NIDDK-GASTRO-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "bismuth_subsalicylate": {
+      "name": "subsalicilato de bismuto",
+      "class": "antidiarrheal_antacid_salicylate",
+      "otc_status": "otc_adult_caution",
+      "indications": [
+        "diarrea leve adulto",
+        "indigestión",
+        "náusea leve"
+      ],
+      "adult_dose_text": "Adultos: seguir etiqueta; dosis común 524 mg cada 30-60 min según necesidad; máximo típico 8 dosis/24 h; no usar más de 2 días para diarrea sin evaluación.",
+      "pediatric_dose_text": "Evitar en niños/adolescentes con enfermedad viral por salicilato/Reye; no usar pediátrico sin profesional.",
+      "hard_contraindications": [
+        "alergia a aspirina/salicilatos",
+        "niño/adolescente con gripe/varicela",
+        "sangrado",
+        "anticoagulantes",
+        "úlcera activa"
+      ],
+      "cautions": [
+        "embarazo",
+        "enfermedad renal",
+        "gota",
+        "diabetes con comorbilidad",
+        "heces/lengua negras benignas pueden confundir sangrado"
+      ],
+      "red_flags": [
+        "sangre en heces",
+        "fiebre alta",
+        "dolor abdominal severo",
+        "deshidratación",
+        "tinnitus/confusión"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "oral_rehydration_solution": {
+      "name": "solución de rehidratación oral",
+      "class": "rehydration",
+      "otc_status": "otc_first_line",
+      "indications": [
+        "diarrea",
+        "vómito",
+        "riesgo de deshidratación",
+        "gastroenteritis"
+      ],
+      "adult_dose_text": "Adultos: sorbos frecuentes; aumentar tras cada evacuación líquida o vómito según tolerancia. Si hay deshidratación moderada/severa, valoración médica.",
+      "pediatric_dose_text": "Pediatría: sorbos pequeños y frecuentes; si vomita, esperar 5-10 min y reiniciar más lento. La fórmula 75 mL/kg en 4 h pertenece a rehidratación supervisada/guías clínicas; no reemplaza valoración si hay red flags.",
+      "hard_contraindications": [
+        "letargo",
+        "shock",
+        "no puede beber",
+        "vómitos persistentes incontrolables",
+        "deshidratación severa",
+        "sangre en heces con mal estado"
+      ],
+      "cautions": [
+        "diabetes",
+        "enfermedad renal",
+        "lactante pequeño",
+        "desnutrición",
+        "bebidas deportivas/jugos no equivalen a SRO"
+      ],
+      "red_flags": [
+        "no orina",
+        "ojos hundidos",
+        "somnolencia",
+        "boca seca",
+        "sin lágrimas",
+        "sangre",
+        "dolor severo"
+      ],
+      "source_ids": [
+        "CDC-ORS-001",
+        "NIDDK-GASTRO-001",
+        "CDC-FLU-PEDS-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "famotidine": {
+      "name": "famotidina",
+      "class": "h2_blocker",
+      "otc_status": "otc_adult",
+      "indications": [
+        "acidez",
+        "agruras",
+        "reflujo ocasional",
+        "indigestión ácida"
+      ],
+      "adult_dose_text": "Adultos y ≥12 años según etiqueta: 10-20 mg una o dos veces al día; máximo típico 40 mg/día OTC. Si síntomas >14 días o frecuentes, evaluación.",
+      "pediatric_dose_text": "No recomendar dosificación OTC pediátrica sin profesional/etiqueta específica.",
+      "hard_contraindications": [
+        "dolor torácico opresivo",
+        "disfagia",
+        "vómito con sangre",
+        "heces negras",
+        "pérdida de peso",
+        "alergia a famotidina/H2"
+      ],
+      "cautions": [
+        "enfermedad renal",
+        "adulto mayor",
+        "embarazo/lactancia",
+        "otros síntomas cardiacos"
+      ],
+      "red_flags": [
+        "dolor torácico",
+        "sudoración",
+        "disnea",
+        "sangrado digestivo",
+        "disfagia",
+        "pérdida de peso"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "omeprazole_otc": {
+      "name": "omeprazol OTC",
+      "class": "proton_pump_inhibitor",
+      "otc_status": "otc_adult_short_course",
+      "indications": [
+        "acidez frecuente en adulto"
+      ],
+      "adult_dose_text": "Adultos ≥18 años: 20 mg una vez al día antes de comer por 14 días; no repetir curso con frecuencia mayor a la etiqueta, típicamente no más de cada 4 meses sin médico.",
+      "pediatric_dose_text": "No usar OTC pediátrico sin profesional.",
+      "hard_contraindications": [
+        "dolor torácico",
+        "disfagia",
+        "vómitos persistentes",
+        "sangrado",
+        "pérdida de peso",
+        "heces negras"
+      ],
+      "cautions": [
+        "uso crónico",
+        "embarazo/lactancia",
+        "enfermedad hepática",
+        "interacciones medicamentosas",
+        "síntomas nuevos en adulto mayor"
+      ],
+      "red_flags": [
+        "dolor torácico",
+        "sangrado",
+        "disfagia",
+        "pérdida de peso",
+        "vómito persistente"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "calcium_carbonate_antacid": {
+      "name": "carbonato de calcio antiácido",
+      "class": "antacid",
+      "otc_status": "otc_common",
+      "indications": [
+        "agruras ocasionales",
+        "indigestión ácida"
+      ],
+      "adult_dose_text": "Adultos: seguir etiqueta porque la concentración varía por tableta; no exceder máximo diario del producto ni uso prolongado sin evaluación.",
+      "pediatric_dose_text": "No dosificar pediátrico sin etiqueta específica/profesional.",
+      "hard_contraindications": [
+        "dolor torácico",
+        "enfermedad renal significativa",
+        "hipercalcemia",
+        "uso excesivo",
+        "síntomas de sangrado digestivo"
+      ],
+      "cautions": [
+        "interacciones por quelación con otros medicamentos",
+        "estreñimiento",
+        "cálculos renales",
+        "embarazo consultar si uso frecuente"
+      ],
+      "red_flags": [
+        "dolor torácico",
+        "disfagia",
+        "pérdida de peso",
+        "heces negras",
+        "vómitos persistentes"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "polyethylene_glycol_3350": {
+      "name": "polietilenglicol 3350",
+      "class": "osmotic_laxative",
+      "otc_status": "otc_adult_caution",
+      "indications": [
+        "estreñimiento ocasional adulto"
+      ],
+      "adult_dose_text": "Adultos: dosis típica OTC 17 g disueltos en líquido una vez al día; no usar más de 7 días sin evaluación.",
+      "pediatric_dose_text": "No recomendar dosificación pediátrica sin profesional, aunque se use en práctica clínica; requiere edad/peso/diagnóstico.",
+      "hard_contraindications": [
+        "obstrucción intestinal sospechada",
+        "abdomen rígido/distendido severo",
+        "vómitos",
+        "dolor severo",
+        "sangrado rectal"
+      ],
+      "cautions": [
+        "enfermedad renal",
+        "uso prolongado",
+        "deshidratación",
+        "cambios bruscos en hábito intestinal"
+      ],
+      "red_flags": [
+        "no expulsa gases",
+        "vómitos",
+        "distensión marcada",
+        "sangre",
+        "pérdida peso",
+        "dolor severo"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "psyllium": {
+      "name": "psyllium / fibra soluble",
+      "class": "bulk_forming_laxative",
+      "otc_status": "otc_common",
+      "indications": [
+        "estreñimiento ocasional",
+        "regularidad intestinal"
+      ],
+      "adult_dose_text": "Adultos: seguir etiqueta; tomar con abundante agua. No tomar seco. Separar de otros medicamentos si etiqueta lo indica.",
+      "pediatric_dose_text": "Pediatría: solo con etiqueta específica/profesional; riesgo de atragantamiento si no se administra con suficiente líquido.",
+      "hard_contraindications": [
+        "dificultad para tragar",
+        "obstrucción intestinal",
+        "dolor abdominal severo",
+        "vómitos",
+        "impactación fecal sospechada"
+      ],
+      "cautions": [
+        "diabetes",
+        "medicamentos concomitantes",
+        "poca ingesta de líquidos",
+        "adulto mayor"
+      ],
+      "red_flags": [
+        "dolor severo",
+        "vómitos",
+        "no gases",
+        "sangrado",
+        "pérdida de peso"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "hydrocortisone_1_topical": {
+      "name": "hidrocortisona 1% tópica",
+      "class": "topical_corticosteroid_low_potency",
+      "otc_status": "otc_topical",
+      "indications": [
+        "comezón leve",
+        "dermatitis leve",
+        "picadura",
+        "eczema leve localizado"
+      ],
+      "adult_dose_text": "Adultos: aplicar capa delgada 1-4 veces al día según etiqueta por pocos días; si no mejora o empeora, valoración.",
+      "pediatric_dose_text": "Niños: usar con alta cautela, capa delgada y periodo corto solo si etiqueta lo permite; evitar bebés, cara, pañal/genitales, grandes áreas u oclusión sin profesional.",
+      "hard_contraindications": [
+        "infección de piel no tratada",
+        "herida abierta profunda",
+        "varicela/herpes en zona",
+        "cara/ojos/genitales sin indicación",
+        "bebé sin indicación"
+      ],
+      "cautions": [
+        "uso prolongado",
+        "piel delgada",
+        "diabetes",
+        "inmunosupresión",
+        "oclusivos"
+      ],
+      "red_flags": [
+        "fiebre",
+        "dolor intenso",
+        "pus",
+        "rápida expansión",
+        "rash con mucosas",
+        "petequias/púrpura"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "clotrimazole_topical": {
+      "name": "clotrimazol tópico",
+      "class": "topical_antifungal",
+      "otc_status": "otc_topical",
+      "indications": [
+        "tiña",
+        "pie de atleta",
+        "candidiasis cutánea leve",
+        "comezón por hongo"
+      ],
+      "adult_dose_text": "Aplicar según etiqueta, comúnmente 2 veces al día durante 2-4 semanas según localización. Continuar el curso indicado aunque mejore antes.",
+      "pediatric_dose_text": "Pediatría: usar solo si cuadro compatible, zona no extensa y etiqueta permite; lactantes/pañal recurrente requiere profesional.",
+      "hard_contraindications": [
+        "infección extensa",
+        "celulitis",
+        "fiebre",
+        "dolor intenso",
+        "herida abierta",
+        "cara/ojos/genitales internos"
+      ],
+      "cautions": [
+        "diabetes",
+        "inmunosupresión",
+        "embarazo",
+        "no mejora en 1-2 semanas",
+        "diagnóstico incierto"
+      ],
+      "red_flags": [
+        "pus",
+        "dolor intenso",
+        "fiebre",
+        "rápida expansión",
+        "cara/ojo",
+        "inmunosupresión"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "terbinafine_topical": {
+      "name": "terbinafina tópica",
+      "class": "topical_antifungal",
+      "otc_status": "otc_topical",
+      "indications": [
+        "pie de atleta",
+        "tiña corporal",
+        "tiña inguinal"
+      ],
+      "adult_dose_text": "Aplicar según etiqueta, comúnmente 1-2 veces al día por 1-2 semanas según producto/localización.",
+      "pediatric_dose_text": "Pediatría: verificar etiqueta; no usar en lactantes/zonas extensas sin profesional.",
+      "hard_contraindications": [
+        "infección bacteriana",
+        "herida abierta",
+        "rash extenso",
+        "cara/ojos",
+        "diagnóstico incierto"
+      ],
+      "cautions": [
+        "embarazo/lactancia",
+        "diabetes",
+        "inmunosupresión",
+        "no mejora"
+      ],
+      "red_flags": [
+        "fiebre",
+        "dolor intenso",
+        "pus",
+        "rápida expansión",
+        "inmunosupresión"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "benzoyl_peroxide": {
+      "name": "peróxido de benzoilo",
+      "class": "topical_acne",
+      "otc_status": "otc_topical",
+      "indications": [
+        "acné leve"
+      ],
+      "adult_dose_text": "Iniciar concentración baja si es posible; aplicar capa delgada 1 vez al día y aumentar según tolerancia/etiqueta. Evitar ojos, labios y mucosas.",
+      "pediatric_dose_text": "Adolescentes: usar según etiqueta; menores pequeños o acné severo requiere evaluación.",
+      "hard_contraindications": [
+        "alergia",
+        "quemadura severa",
+        "rash extenso",
+        "dolor intenso",
+        "acné noduloquístico severo"
+      ],
+      "cautions": [
+        "irritación",
+        "resequedad",
+        "decolora telas",
+        "piel sensible",
+        "uso con retinoides/ácidos"
+      ],
+      "red_flags": [
+        "hinchazón facial",
+        "dificultad respirar",
+        "quemadura severa",
+        "dolor intenso",
+        "infección"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "artificial_tears": {
+      "name": "lágrimas artificiales",
+      "class": "ocular_lubricant",
+      "otc_status": "otc_common",
+      "indications": [
+        "ojo seco",
+        "irritación leve"
+      ],
+      "adult_dose_text": "Usar según etiqueta; gotas lubricantes sin conservador pueden usarse con mayor frecuencia según necesidad y etiqueta.",
+      "pediatric_dose_text": "Pediatría: generalmente baja absorción, pero si hay dolor, visión alterada, trauma o secreción intensa, valoración.",
+      "hard_contraindications": [
+        "dolor ocular severo",
+        "pérdida visual",
+        "trauma/químico",
+        "uso con lentes de contacto si producto no compatible",
+        "infección severa"
+      ],
+      "cautions": [
+        "contaminación del gotero",
+        "conservadores",
+        "lentes de contacto",
+        "síntomas persistentes"
+      ],
+      "red_flags": [
+        "dolor intenso",
+        "visión borrosa súbita",
+        "fotofobia",
+        "trauma",
+        "químico en ojo",
+        "hinchazón orbital"
+      ],
+      "source_ids": [
+        "FDA-DRUGFACTS-001",
+        "DAILYMED-LABEL-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    },
+    "saline_nasal": {
+      "name": "solución salina nasal",
+      "class": "non_drug_supportive",
+      "otc_status": "otc_low_risk",
+      "indications": [
+        "congestión nasal",
+        "sequedad nasal",
+        "resfriado",
+        "alergia"
+      ],
+      "adult_dose_text": "Usar según etiqueta; sprays/gotas salinas pueden repetirse con bajo riesgo si se usan de forma higiénica.",
+      "pediatric_dose_text": "Lactantes/niños: gotas/spray salino y aspiración suave pueden ayudar; evitar aspiración agresiva; si dificultad respiratoria o mala ingesta, valoración.",
+      "hard_contraindications": [
+        "epistaxis severa",
+        "trauma nasal",
+        "dificultad respiratoria",
+        "cuerpo extraño nasal sospechado"
+      ],
+      "cautions": [
+        "higiene del aplicador",
+        "agua estéril/destilada si irrigación",
+        "no compartir dispositivos",
+        "aspiración nasal excesiva"
+      ],
+      "red_flags": [
+        "dificultad respiratoria",
+        "lactante no come",
+        "cianosis",
+        "fiebre en lactante",
+        "secreción unilateral fétida"
+      ],
+      "source_ids": [
+        "CDC-RSV-001",
+        "CDC-FLU-PEDS-001",
+        "FDA-DRUGFACTS-001"
+      ],
+      "runtime_requirements": [
+        "country_or_label_region",
+        "exact_product_name",
+        "active_ingredient",
+        "strength_concentration",
+        "dosage_form",
+        "route",
+        "patient_age",
+        "patient_weight_kg_if_pediatric_or_weight_based",
+        "last_dose_datetime",
+        "all_doses_last_24h",
+        "concurrent_meds_and_multisymptom_products",
+        "contraindication_screen"
+      ]
+    }
+  },
+  "calculation_principles": {
+    "rolling_window_24h": true,
+    "fail_closed": true,
+    "prefer_single_ingredient_products": true,
+    "product_label_over_generic_rule": true,
+    "prescription_over_otc_rule": "Use exact prescription if valid, legible and current; do not modify.",
+    "pediatric_rounding": "Conservative, measurable with proper oral syringe; do not use kitchen spoons.",
+    "audit_required": true
+  }
+}

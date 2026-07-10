@@ -1,0 +1,781 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "07_imaging_orientation",
+  "status": "draft_requires_radiology_clinical_legal_review",
+  "modalities": {
+    "xray": {
+      "label": "radiografía simple",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult",
+        "pregnancy"
+      ],
+      "uses": [
+        "fractura",
+        "luxación",
+        "tórax inicial",
+        "abdomen seleccionado",
+        "alineación ósea",
+        "cuerpo extraño radiopaco"
+      ],
+      "benefits": [
+        "rápida",
+        "ampliamente disponible",
+        "bajo costo relativo",
+        "útil en hueso y tórax"
+      ],
+      "limits": [
+        "radiación ionizante",
+        "menor detalle en tejidos blandos",
+        "embarazo requiere aviso",
+        "no descarta todo"
+      ],
+      "red": [
+        "dolor severo",
+        "deformidad",
+        "déficit neurovascular",
+        "dificultad respiratoria",
+        "dolor torácico",
+        "trauma mayor"
+      ],
+      "prep": [
+        "quitar metal",
+        "posicionamiento",
+        "posible protección",
+        "informar embarazo",
+        "llevar orden y estudios previos"
+      ],
+      "src": [
+        "FDA-XRAY-001"
+      ]
+    },
+    "ultrasound": {
+      "label": "ultrasonido / ecografía",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult",
+        "pregnancy"
+      ],
+      "uses": [
+        "embarazo",
+        "vesícula",
+        "riñón",
+        "vejiga",
+        "tiroides",
+        "testículo",
+        "pelvis",
+        "Doppler",
+        "partes blandas"
+      ],
+      "benefits": [
+        "sin radiación ionizante",
+        "dinámico",
+        "útil en líquidos y vasos",
+        "útil embarazo"
+      ],
+      "limits": [
+        "operador-dependiente",
+        "limitado por gas/obesidad/hueso",
+        "no ve todo",
+        "puede requerir ayuno o vejiga llena"
+      ],
+      "red": [
+        "dolor testicular súbito",
+        "embarazo con dolor/sangrado",
+        "abdomen agudo",
+        "isquemia extremidad",
+        "shock"
+      ],
+      "prep": [
+        "ayuno si abdominal",
+        "vejiga llena si pélvico",
+        "ropa cómoda",
+        "informar dolor/localización"
+      ],
+      "src": [
+        "ORIGINAL-IMAGING-001"
+      ]
+    },
+    "ct": {
+      "label": "TAC / tomografía computarizada",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult",
+        "pregnancy"
+      ],
+      "uses": [
+        "trauma",
+        "abdomen agudo",
+        "hemorragia",
+        "pulmón",
+        "litiasis",
+        "vascular con contraste",
+        "estadificación oncológica"
+      ],
+      "benefits": [
+        "rápida",
+        "alto detalle anatómico",
+        "útil en urgencias",
+        "detecta sangrado/trauma"
+      ],
+      "limits": [
+        "radiación ionizante mayor que radiografía",
+        "contraste yodado puede causar reacción o problema renal en algunos",
+        "embarazo/pediatría requieren justificación"
+      ],
+      "red": [
+        "déficit neurológico súbito",
+        "trauma mayor",
+        "dolor abdominal severo",
+        "dolor torácico",
+        "sepsis",
+        "shock"
+      ],
+      "prep": [
+        "informar embarazo",
+        "función renal si contraste",
+        "alergias contraste",
+        "metformina según protocolo",
+        "ayuno si contraste",
+        "estudios previos"
+      ],
+      "src": [
+        "NCI-CT-001"
+      ]
+    },
+    "mri": {
+      "label": "RM / resonancia magnética",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult",
+        "pregnancy"
+      ],
+      "uses": [
+        "cerebro",
+        "médula",
+        "articulaciones",
+        "tejidos blandos",
+        "hígado",
+        "pelvis",
+        "cardiaca seleccionada"
+      ],
+      "benefits": [
+        "excelente tejidos blandos",
+        "sin radiación ionizante",
+        "multiplanar"
+      ],
+      "limits": [
+        "implantes/metales",
+        "claustrofobia",
+        "tiempo largo",
+        "ruido",
+        "gadolino puede requerir función renal",
+        "no ideal si inestable"
+      ],
+      "red": [
+        "déficit neurológico agudo",
+        "compresión medular",
+        "cauda equina",
+        "infección profunda",
+        "trauma inestable"
+      ],
+      "prep": [
+        "screening de implantes",
+        "retirar metal",
+        "informar marcapasos/implantes",
+        "función renal si contraste",
+        "claustrofobia",
+        "embarazo"
+      ],
+      "src": [
+        "NIBIB-MRI-001"
+      ]
+    },
+    "mammography": {
+      "label": "mastografía / mamografía",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "uses": [
+        "tamizaje mama",
+        "masa mamaria",
+        "microcalcificaciones",
+        "seguimiento de hallazgos",
+        "densidad mamaria"
+      ],
+      "benefits": [
+        "detecta lesiones tempranas",
+        "estandarización de calidad",
+        "comparación con previas"
+      ],
+      "limits": [
+        "radiación baja",
+        "compresión",
+        "densidad mamaria puede ocultar lesiones",
+        "puede requerir US/RM complementaria"
+      ],
+      "red": [
+        "masa nueva",
+        "secreción sanguinolenta",
+        "piel naranja",
+        "retracción pezón",
+        "ganglio axilar",
+        "dolor focal persistente"
+      ],
+      "prep": [
+        "llevar estudios previos",
+        "evitar desodorante/talco",
+        "informar implantes",
+        "informar embarazo",
+        "lugar certificado"
+      ],
+      "src": [
+        "FDA-MQSA-001"
+      ]
+    },
+    "fluoroscopy": {
+      "label": "fluoroscopía / estudios dinámicos contrastados",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "uses": [
+        "tránsito gastrointestinal",
+        "deglución",
+        "artrografía",
+        "procedimientos guiados",
+        "urología contrastada"
+      ],
+      "benefits": [
+        "visualiza movimiento y paso de contraste",
+        "guía procedimientos"
+      ],
+      "limits": [
+        "radiación",
+        "contraste oral/rectal/IV según estudio",
+        "preparación específica",
+        "embarazo aviso"
+      ],
+      "red": [
+        "aspiración",
+        "perforación sospechada",
+        "abdomen agudo",
+        "reacción contraste",
+        "dolor severo"
+      ],
+      "prep": [
+        "seguir ayuno/preparación",
+        "informar embarazo",
+        "alergias",
+        "problemas deglución",
+        "medicamentos"
+      ],
+      "src": [
+        "FDA-XRAY-001"
+      ]
+    },
+    "nuclear_medicine": {
+      "label": "medicina nuclear / gammagrafía",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "uses": [
+        "hueso",
+        "tiroides",
+        "renal",
+        "cardiaca perfusión",
+        "infección",
+        "función orgánica"
+      ],
+      "benefits": [
+        "información funcional",
+        "detecta actividad metabólica/fisiológica"
+      ],
+      "limits": [
+        "radiotrazador",
+        "tiempo de espera",
+        "embarazo/lactancia requiere aviso",
+        "menor resolución anatómica"
+      ],
+      "red": [
+        "dolor torácico agudo",
+        "disnea severa",
+        "reacción",
+        "embarazo no informado",
+        "inestabilidad"
+      ],
+      "prep": [
+        "hidratarse si indican",
+        "informar embarazo/lactancia",
+        "medicamentos",
+        "estudios previos",
+        "tiempos prolongados"
+      ],
+      "src": [
+        "ORIGINAL-IMAGING-001"
+      ]
+    },
+    "pet_ct": {
+      "label": "PET/CT",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "uses": [
+        "oncología",
+        "estadificación",
+        "respuesta tratamiento",
+        "recurrencia",
+        "inflamación/infección seleccionada"
+      ],
+      "benefits": [
+        "información metabólica + anatómica",
+        "útil en cáncer seleccionado"
+      ],
+      "limits": [
+        "radiación",
+        "glucosa afecta FDG",
+        "preparación estricta",
+        "hallazgos incidentales"
+      ],
+      "red": [
+        "fiebre neutropenia",
+        "compresión medular",
+        "disnea",
+        "confusión",
+        "dolor severo oncológico"
+      ],
+      "prep": [
+        "ayuno",
+        "glucosa controlada",
+        "evitar ejercicio previo",
+        "informar embarazo/lactancia",
+        "tratamientos recientes"
+      ],
+      "src": [
+        "NCI-CT-001"
+      ]
+    },
+    "dexa": {
+      "label": "DEXA / densitometría ósea",
+      "pop": [
+        "adult",
+        "older_adult"
+      ],
+      "uses": [
+        "osteoporosis",
+        "riesgo fractura",
+        "seguimiento densidad mineral ósea"
+      ],
+      "benefits": [
+        "baja radiación",
+        "rápido",
+        "cuantifica densidad mineral"
+      ],
+      "limits": [
+        "no evalúa todo dolor óseo",
+        "artefactos por prótesis",
+        "embarazo aviso"
+      ],
+      "red": [
+        "fractura por fragilidad reciente",
+        "dolor óseo severo",
+        "déficit neurológico",
+        "caídas recurrentes"
+      ],
+      "prep": [
+        "evitar calcio antes si protocolo",
+        "ropa sin metal",
+        "informar fracturas/protesis",
+        "llevar estudios previos"
+      ],
+      "src": [
+        "FDA-XRAY-001"
+      ]
+    },
+    "angiography": {
+      "label": "angiografía / angioTAC / angioRM",
+      "pop": [
+        "adult",
+        "older_adult",
+        "pediatric"
+      ],
+      "uses": [
+        "aneurisma",
+        "disección",
+        "trombosis",
+        "embolismo",
+        "isquemia",
+        "vasos cerebrales/coronarios/periféricos"
+      ],
+      "benefits": [
+        "evalúa vasos",
+        "útil en urgencias vasculares",
+        "puede guiar intervención"
+      ],
+      "limits": [
+        "contraste",
+        "renal/alergia",
+        "TAC usa radiación",
+        "RM tiene implantes/metales"
+      ],
+      "red": [
+        "déficit neurológico súbito",
+        "dolor torácico desgarrante",
+        "extremidad fría",
+        "pierna hinchada con disnea",
+        "shock"
+      ],
+      "prep": [
+        "función renal",
+        "alergias",
+        "embarazo",
+        "implantes si RM",
+        "medicamentos anticoagulantes"
+      ],
+      "src": [
+        "CDC-STROKE-001",
+        "NHLBI-MI-001"
+      ]
+    },
+    "interventional_radiology": {
+      "label": "radiología intervencionista",
+      "pop": [
+        "adult",
+        "pediatric",
+        "older_adult"
+      ],
+      "uses": [
+        "biopsia",
+        "drenaje",
+        "embolización",
+        "acceso vascular",
+        "ablación",
+        "procedimientos guiados"
+      ],
+      "benefits": [
+        "mínimamente invasiva",
+        "imagen guía tratamiento",
+        "puede evitar cirugía abierta"
+      ],
+      "limits": [
+        "sangrado",
+        "infección",
+        "contraste",
+        "sedación",
+        "anticoagulantes",
+        "preparación estricta"
+      ],
+      "red": [
+        "sangrado activo",
+        "sepsis",
+        "dolor severo postprocedimiento",
+        "fiebre",
+        "dificultad respiratoria"
+      ],
+      "prep": [
+        "ayuno",
+        "coagulación",
+        "anticoagulantes",
+        "alergias",
+        "acompañante",
+        "consentimiento",
+        "estudios previos"
+      ],
+      "src": [
+        "ORIGINAL-IMAGING-001"
+      ]
+    }
+  },
+  "body_regions": {
+    "cabeza_neuro": {
+      "label": "cabeza / neuroimagen",
+      "symptoms": [
+        "cefalea",
+        "trauma craneal",
+        "déficit neurológico",
+        "convulsión",
+        "mareo",
+        "memoria"
+      ],
+      "modalities": [
+        "TAC",
+        "RM",
+        "angioTAC",
+        "angioRM"
+      ],
+      "red": [
+        "déficit súbito",
+        "peor cefalea",
+        "convulsión activa",
+        "confusión",
+        "trauma con anticoagulantes",
+        "fiebre rigidez cuello"
+      ],
+      "src": [
+        "CDC-STROKE-001"
+      ]
+    },
+    "torax": {
+      "label": "tórax / pulmón / corazón",
+      "symptoms": [
+        "tos",
+        "disnea",
+        "dolor torácico",
+        "neumonía",
+        "embolismo",
+        "masa pulmonar"
+      ],
+      "modalities": [
+        "radiografía",
+        "TAC",
+        "angioTAC",
+        "ecocardiograma",
+        "medicina nuclear"
+      ],
+      "red": [
+        "dolor torácico con disnea",
+        "hemoptisis",
+        "shock",
+        "cianosis",
+        "saturación baja"
+      ],
+      "src": [
+        "NHLBI-MI-001",
+        "NHLBI-ASTHMA-001"
+      ]
+    },
+    "abdomen": {
+      "label": "abdomen general",
+      "symptoms": [
+        "dolor abdominal",
+        "vómitos",
+        "diarrea",
+        "masa",
+        "apendicitis",
+        "obstrucción"
+      ],
+      "modalities": [
+        "ultrasonido",
+        "TAC",
+        "RM",
+        "fluoroscopía"
+      ],
+      "red": [
+        "abdomen rígido",
+        "dolor severo",
+        "vómito bilioso",
+        "sangre",
+        "shock",
+        "embarazo"
+      ],
+      "src": [
+        "NIDDK-GASTRO-001"
+      ]
+    },
+    "pelvis_gine": {
+      "label": "pelvis ginecológica / obstétrica",
+      "symptoms": [
+        "dolor pélvico",
+        "sangrado",
+        "embarazo",
+        "quiste",
+        "mioma",
+        "torsión",
+        "EPI"
+      ],
+      "modalities": [
+        "ultrasonido",
+        "RM",
+        "TAC urgencia seleccionada"
+      ],
+      "red": [
+        "embarazo con dolor/sangrado",
+        "sangrado abundante",
+        "dolor súbito",
+        "desmayo",
+        "fiebre pélvica"
+      ],
+      "src": [
+        "ORIGINAL-IMAGING-001"
+      ]
+    },
+    "renal_urologico": {
+      "label": "renal / urológico",
+      "symptoms": [
+        "dolor costado",
+        "hematuria",
+        "litiasis",
+        "hidronefrosis",
+        "retención",
+        "vejiga"
+      ],
+      "modalities": [
+        "ultrasonido",
+        "TAC",
+        "uroTAC",
+        "RM urológica"
+      ],
+      "red": [
+        "fiebre con dolor lumbar",
+        "anuria",
+        "dolor incontrolable",
+        "coágulos",
+        "embarazo"
+      ],
+      "src": [
+        "ORIGINAL-IMAGING-001"
+      ]
+    },
+    "musculo_esqueletico": {
+      "label": "músculo-esquelético",
+      "symptoms": [
+        "fractura",
+        "luxación",
+        "dolor articular",
+        "tendón",
+        "ligamento",
+        "dolor espalda"
+      ],
+      "modalities": [
+        "radiografía",
+        "ultrasonido",
+        "RM",
+        "TAC"
+      ],
+      "red": [
+        "deformidad",
+        "fractura abierta",
+        "déficit neurovascular",
+        "cauda equina",
+        "fiebre con dolor espalda"
+      ],
+      "src": [
+        "ORIGINAL-IMAGING-001"
+      ]
+    },
+    "vascular": {
+      "label": "vascular",
+      "symptoms": [
+        "trombosis",
+        "aneurisma",
+        "isquemia",
+        "estenosis",
+        "dolor pierna",
+        "embolismo"
+      ],
+      "modalities": [
+        "Doppler",
+        "angioTAC",
+        "angioRM",
+        "angiografía"
+      ],
+      "red": [
+        "extremidad fría súbita",
+        "pierna hinchada con disnea",
+        "dolor torácico",
+        "shock"
+      ],
+      "src": [
+        "NHLBI-MI-001"
+      ]
+    },
+    "mama": {
+      "label": "mama",
+      "symptoms": [
+        "tamizaje",
+        "masa",
+        "dolor focal",
+        "secreción",
+        "densidad mamaria"
+      ],
+      "modalities": [
+        "mastografía",
+        "ultrasonido",
+        "RM mama",
+        "biopsia guiada"
+      ],
+      "red": [
+        "masa nueva",
+        "secreción sanguinolenta",
+        "piel naranja",
+        "retracción",
+        "ganglio axilar"
+      ],
+      "src": [
+        "FDA-MQSA-001"
+      ]
+    },
+    "cuello_tiroides": {
+      "label": "cuello / tiroides / ganglios",
+      "symptoms": [
+        "nódulo tiroideo",
+        "ganglios",
+        "masa cuello",
+        "dolor cuello"
+      ],
+      "modalities": [
+        "ultrasonido",
+        "TAC",
+        "RM",
+        "biopsia guiada"
+      ],
+      "red": [
+        "dificultad respirar/tragar",
+        "crecimiento rápido",
+        "fiebre",
+        "masa dura fija",
+        "voz cambiada"
+      ],
+      "src": [
+        "ORIGINAL-IMAGING-001"
+      ]
+    },
+    "pediatria_imagen": {
+      "label": "imagen pediátrica",
+      "symptoms": [
+        "fiebre",
+        "dolor abdominal",
+        "trauma",
+        "cojera",
+        "tos",
+        "vómito"
+      ],
+      "modalities": [
+        "ultrasonido",
+        "radiografía",
+        "TAC si justificada",
+        "RM"
+      ],
+      "red": [
+        "dificultad respiratoria",
+        "letargo",
+        "deshidratación",
+        "trauma",
+        "menor 3 meses fiebre",
+        "dolor testicular"
+      ],
+      "src": [
+        "ORIGINAL-IMAGING-001"
+      ]
+    }
+  },
+  "safety_principles": {
+    "emergency_over_imaging": true,
+    "ai_does_not_interpret_images_definitively": true,
+    "contrast_requires_protocol": true,
+    "mri_implants_require_screening": true,
+    "pediatric_radiation_requires_justification": true,
+    "pregnancy_changes_modality_selection": true
+  }
+}

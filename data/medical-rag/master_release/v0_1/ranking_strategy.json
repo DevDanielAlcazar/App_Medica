@@ -1,0 +1,72 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "name": "golden_medical_rag_master_ranking_strategy",
+  "retrieval_pipeline": [
+    "normalize_language_and_region",
+    "detect_age_population_and_context",
+    "run_query_expansion_with_canonical_and_local_terms",
+    "retrieve_top_k_semantic",
+    "retrieve_top_k_keyword",
+    "merge_and_deduplicate_by_chunk_id",
+    "apply_safety_rerank",
+    "apply_population_guard",
+    "apply_domain_guard",
+    "select_evidence_pack",
+    "generate_with_fail_closed_policy"
+  ],
+  "priority_order": [
+    "S6 emergency/crisis/life-function threatening",
+    "S5 urgent/same-day/high-risk",
+    "pediatric safety",
+    "dose-engine contraindications and duplicate ingredients",
+    "active cancer treatment complications",
+    "imaging contrast/MRI/pregnancy/pediatric safety",
+    "multilingual unit/medication/resource ambiguity",
+    "specialty routing",
+    "general medicine/history",
+    "education and low-acuity guidance"
+  ],
+  "hard_overrides": {
+    "S6_requires_immediate_escalation": true,
+    "S5_requires_urgent_or_same_day_safety_net": true,
+    "pediatric_high_risk_cannot_use_adult_only_chunks": true,
+    "dose_calculation_requires_all_gates": true,
+    "local_resources_must_be_runtime_verified": true,
+    "no_definitive_diagnosis_from_imaging_or_oncology_red_flags": true,
+    "retrieval_empty_for_medical_decision_means_abstain_or_ask": true,
+    "production_allowed_false_means_review_required": true
+  },
+  "recommended_top_k": {
+    "initial_semantic": 30,
+    "initial_keyword": 20,
+    "post_rerank_context_pack": 8,
+    "minimum_safety_chunks_for_S5_S6": 2,
+    "minimum_domain_chunks": 2,
+    "minimum_governance_chunks_for_high_risk": 1
+  },
+  "rerank_weights_draft": {
+    "severity_S6": 1000,
+    "severity_S5": 700,
+    "red_flag_relevant": 250,
+    "population_match": 200,
+    "domain_match": 150,
+    "clinical_action_type_match": 100,
+    "language_region_match": 80,
+    "recency_or_reviewed_status": 50,
+    "semantic_score": 1
+  },
+  "do_not_rank_down": [
+    "pediatric safety gates",
+    "suicide/self-harm",
+    "sobredose/intoxication",
+    "difficulty breathing",
+    "stroke-like symptoms",
+    "chest pain red flags",
+    "anaphylaxis",
+    "active cancer fever",
+    "dose missing gates",
+    "abuse/safeguarding",
+    "pregnancy red flags"
+  ]
+}

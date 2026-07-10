@@ -1,0 +1,20 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "09_multilingual_regionalization",
+  "total_chunks": 233,
+  "region_count": 7,
+  "local_term_count": 14,
+  "unit_rule_count": 8,
+  "medication_synonym_count": 8,
+  "emergency_phrase_count": 6,
+  "governance_rule_count": 25,
+  "severity_distribution": {
+    "S3": 95,
+    "S4": 60,
+    "S5": 63,
+    "S6": 15
+  },
+  "production_allowed": false,
+  "quality_position": "Cross-cutting multilingual/regionalization layer. It preserves clinical severity while adapting language, units, medications and resources."
+}

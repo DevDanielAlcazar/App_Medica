@@ -1,0 +1,99 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "05_otc_symptomatic_recommendations",
+  "license_strategy": "Use official Drug Facts/product labels and original synthesis. Do not embed proprietary commercial dosing tables where terms prohibit AI/RAG use. Runtime must verify product-specific label.",
+  "sources": {
+    "ORIGINAL-OTC-001": {
+      "title": "Original OTC symptomatic recommendation and dosing governance framework",
+      "url": "internal://authored-framework/otc-symptomatic-recommendations-v0.1",
+      "organization": "Generated original synthesis for App_Medica",
+      "license_notes": "Original authored framework. Requires physician/pharmacist/legal review before production.",
+      "used_for": "OTC eligibility gates, dosing logic, contraindication gates, prescription scheduling support, RAG ranking rules."
+    },
+    "FDA-DRUGFACTS-001": {
+      "title": "FDA OTC Drug Facts Label Framework",
+      "url": "https://www.fda.gov/drugs/information-consumers-and-patients-drugs/understanding-over-counter-medicines",
+      "organization": "U.S. Food and Drug Administration",
+      "license_notes": "Official public health/regulatory source. Use requires final legal review.",
+      "used_for": "Drug Facts label, active ingredients, uses, warnings, directions, inactive ingredients."
+    },
+    "FDA-APAP-001": {
+      "title": "FDA acetaminophen safety communications and labeling principles",
+      "url": "https://www.fda.gov/drugs/information-drug-class/acetaminophen-information",
+      "organization": "U.S. Food and Drug Administration",
+      "license_notes": "Official public health/regulatory source. Final legal review required.",
+      "used_for": "Acetaminophen liver injury, duplicate ingredient and maximum-dose safety logic."
+    },
+    "FDA-NSAID-001": {
+      "title": "FDA NSAID safety and OTC label warnings",
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-strengthens-warning-non-aspirin-nonsteroidal-anti-inflammatory-drugs-nsaids",
+      "organization": "U.S. Food and Drug Administration",
+      "license_notes": "Official public health/regulatory source. Final legal review required.",
+      "used_for": "NSAID cardiovascular, GI bleeding, kidney and pregnancy-risk gates."
+    },
+    "FDA-DIPHEN-001": {
+      "title": "FDA warning on high-dose diphenhydramine",
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-warns-about-serious-problems-high-doses-allergy-medicine-diphenhydramine-benadryl",
+      "organization": "U.S. Food and Drug Administration",
+      "license_notes": "Official public health/regulatory source. Final legal review required.",
+      "used_for": "Diphenhydramine overdose, misuse, teen safety and high-dose toxicity gates."
+    },
+    "FDA-PHENYLEPHRINE-001": {
+      "title": "FDA oral phenylephrine OTC monograph proposal",
+      "url": "https://www.fda.gov/drugs/news-events-human-drugs/fda-proposes-ending-use-oral-phenylephrine-otc-monograph-nasal-decongestant-active-ingredient-after",
+      "organization": "U.S. Food and Drug Administration",
+      "license_notes": "Official public health/regulatory source. Final legal review required.",
+      "used_for": "Oral phenylephrine should not be preferred for decongestion due efficacy concerns."
+    },
+    "CDC-ORS-001": {
+      "title": "CDC oral rehydration / dehydration public-health guidance",
+      "url": "https://www.cdc.gov/cholera/treatment/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov public-health source. Final legal review required.",
+      "used_for": "Oral rehydration solution and dehydration escalation framing."
+    },
+    "CDC-FLU-PEDS-001": {
+      "title": "CDC flu emergency warning signs in children",
+      "url": "https://www.cdc.gov/flu/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov public-health source. Final legal review required.",
+      "used_for": "Pediatric red flags that override OTC recommendations."
+    },
+    "NIDDK-GASTRO-001": {
+      "title": "NIDDK viral gastroenteritis symptoms and causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK majority copyright-free policy; final legal review required.",
+      "used_for": "Vomiting/diarrhea/dehydration orientation."
+    },
+    "NIMH-SUICIDE-001": {
+      "title": "NIMH suicide prevention",
+      "url": "https://www.nimh.nih.gov/health/topics/suicide-prevention",
+      "organization": "National Institute of Mental Health",
+      "license_notes": "Official .gov source. Final legal review required.",
+      "used_for": "Medication misuse, overdose, adolescent self-harm and crisis escalation."
+    },
+    "DAILYMED-LABEL-001": {
+      "title": "DailyMed drug labeling database",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/",
+      "organization": "U.S. National Library of Medicine",
+      "license_notes": "Official label repository; product-specific labels vary and must be checked at runtime.",
+      "used_for": "Product-specific concentration, route, age band, warning and direction verification."
+    }
+  },
+  "excluded_sources": [
+    {
+      "title": "Unlicensed commercial dosing charts copied verbatim",
+      "reason": "Avoid copyright and product-specific drift. Store generic dosing logic plus runtime label verification."
+    },
+    {
+      "title": "Forums, social media, parent blogs, home remedy sites",
+      "reason": "Not acceptable for dosing evidence."
+    },
+    {
+      "title": "Non-regulated supplement/homeopathy claims",
+      "reason": "Not treated as equivalent evidence for OTC drug recommendation."
+    }
+  ]
+}

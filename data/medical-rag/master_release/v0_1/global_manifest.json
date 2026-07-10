@@ -1,0 +1,887 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "bundle_id": "11_master_release_bundle",
+  "description": "Master release bundle for Golden Medical RAG tomes available in this workspace.",
+  "available_tome_count": 9,
+  "load_order": [
+    "03_pediatrics",
+    "04_pediatrics_safe",
+    "05_otc_symptomatic_recommendations",
+    "06_frequent_specialties",
+    "07_imaging_orientation",
+    "08_oncology_red_flags",
+    "09_multilingual_regionalization",
+    "10_final_governance_evaluation",
+    "03_general_medicine_adult"
+  ],
+  "total_chunks_available": 4422,
+  "total_high_risk_chunks_S5_S6": 1230,
+  "severity_distribution": {
+    "S1": 5,
+    "S2": 598,
+    "S3": 1522,
+    "S4": 1067,
+    "S5": 693,
+    "S6": 537
+  },
+  "top_clinical_domains": {
+    "cardiovascular_dolor_toracico_agudo_presentacion_clinica": 1,
+    "cardiovascular_dolor_toracico_agudo_red_flags_escalacion": 1,
+    "cardiovascular_dolor_toracico_agudo_historia_dirigida": 1,
+    "cardiovascular_dolor_toracico_agudo_diferencial_peligroso": 1,
+    "cardiovascular_dolor_toracico_agudo_educacion_segura": 1,
+    "cardiovascular_dolor_toracico_agudo_handoff_clinico": 1,
+    "cardiovascular_dolor_toracico_agudo_limites_ia": 1,
+    "cardiovascular_dolor_toracico_agudo_seguimiento_y_reconsulta": 1,
+    "cardiovascular_angina_estable_conocida_presentacion_clinica": 1,
+    "cardiovascular_angina_estable_conocida_red_flags_escalacion": 1,
+    "cardiovascular_angina_estable_conocida_historia_dirigida": 1,
+    "cardiovascular_angina_estable_conocida_diferencial_peligroso": 1,
+    "cardiovascular_angina_estable_conocida_educacion_segura": 1,
+    "cardiovascular_angina_estable_conocida_handoff_clinico": 1,
+    "cardiovascular_angina_estable_conocida_limites_ia": 1,
+    "cardiovascular_angina_estable_conocida_seguimiento_y_reconsulta": 1,
+    "cardiovascular_hipertension_medida_en_casa_presentacion_clinica": 1,
+    "cardiovascular_hipertension_medida_en_casa_red_flags_escalacion": 1,
+    "cardiovascular_hipertension_medida_en_casa_historia_dirigida": 1,
+    "cardiovascular_hipertension_medida_en_casa_diferencial_peligroso": 1,
+    "cardiovascular_hipertension_medida_en_casa_educacion_segura": 1,
+    "cardiovascular_hipertension_medida_en_casa_handoff_clinico": 1,
+    "cardiovascular_hipertension_medida_en_casa_limites_ia": 1,
+    "cardiovascular_hipertension_medida_en_casa_seguimiento_y_reconsulta": 1,
+    "cardiovascular_palpitaciones_presentacion_clinica": 1,
+    "cardiovascular_palpitaciones_red_flags_escalacion": 1,
+    "cardiovascular_palpitaciones_historia_dirigida": 1,
+    "cardiovascular_palpitaciones_diferencial_peligroso": 1,
+    "cardiovascular_palpitaciones_educacion_segura": 1,
+    "cardiovascular_palpitaciones_handoff_clinico": 1
+  },
+  "top_action_types": {
+    "safety_trigger_detection": 123,
+    "collect_minimum_safe_data": 123,
+    "forbidden_response_pattern": 123,
+    "safe_message_template": 123,
+    "clinical_safety_handoff": 123,
+    "dangerous_differential_check": 113,
+    "differential_support": 93,
+    "history_collection": 93,
+    "safe_education": 93,
+    "clinical_summary_support": 93,
+    "ai_safety_boundary": 93,
+    "follow_up_safety_net": 93,
+    "pediatric_orientation": 92,
+    "pediatric_history_collection": 92,
+    "dangerous_pediatric_differential_check": 92,
+    "caregiver_safe_education": 92,
+    "pediatric_clinical_summary_support": 92,
+    "ai_pediatric_safety_boundary": 92,
+    "pediatric_follow_up_safety_net": 92,
+    "specialty_handoff": 90,
+    "same_day_or_emergency_triage": 78,
+    "hard_stop_or_escalate": 77,
+    "rag_governance_rule": 77,
+    "same_day_or_emergency_pediatric_triage": 66,
+    "specialty_candidate_routing": 57,
+    "urgent_override_before_referral": 57,
+    "routing_history_questions": 57,
+    "avoid_wrong_specialty_or_delay": 57,
+    "hard_stop_emergency_now": 56,
+    "emergency_now": 41
+  },
+  "source_id_distribution_top": {
+    "ORIGINAL-PEDS-SAFE-001": 894,
+    "ORIGINAL-ADULT-GM-001": 764,
+    "ORIGINAL-PEDS-001": 757,
+    "ORIGINAL-SPECIALTIES-001": 612,
+    "ORIGINAL-OTC-001": 452,
+    "FDA-DRUGFACTS-001": 432,
+    "DAILYMED-LABEL-001": 425,
+    "ORIGINAL-ONC-001": 265,
+    "ORIGINAL-GOV-EVAL-001": 250,
+    "CDC-DIAB-001": 233,
+    "ORIGINAL-MULTI-001": 233,
+    "CDC-FLU-001": 225,
+    "NHLBI-MI-001": 215,
+    "NIDDK-GASTRO-001": 208,
+    "ORIGINAL-IMAGING-001": 195,
+    "CDC-STROKE-001": 180,
+    "NCI-SYMPTOMS-001": 177,
+    "CDC-CHILD-ABUSE-001": 126,
+    "NIMH-SUICIDE-001": 126,
+    "CDC-STI-001": 95,
+    "NIST-AI-RMF-001": 94,
+    "CDC-RSV-001": 84,
+    "NHLBI-ASTHMA-001": 83,
+    "NHLBI-PNA-001": 80,
+    "CDC-CONCUSSION-001": 76,
+    "FDA-GMLP-001": 76,
+    "NIDDK-GERD-001": 70,
+    "WHO-AI-HEALTH-001": 45,
+    "NIMH-DEP-001": 40,
+    "NHLBI-ASTHMA-CHILD-001": 38,
+    "NCI-INFECTION-001": 33,
+    "NIDDK-STONES-001": 32,
+    "FDA-XRAY-001": 30,
+    "NIST-SI-001": 28,
+    "FDA-NSAID-001": 27,
+    "NIMH-ANX-001": 24,
+    "NHLBI-ASTHMA-SYM-001": 24,
+    "NCI-CT-001": 24,
+    "NHLBI-ASTHMA-ATTACK-001": 22,
+    "CDC-FLU-PEDS-001": 18,
+    "NIDDK-IBS-001": 16,
+    "NIDDK-CONST-001": 16,
+    "FDA-MQSA-001": 15,
+    "NIBIB-MRI-001": 13,
+    "NCI-MAMMO-001": 13,
+    "FDA-APAP-001": 9,
+    "FDA-DIPHEN-001": 9,
+    "FDA-PHENYLEPHRINE-001": 9,
+    "CDC-ORS-001": 9,
+    "NHLBI-HTN-001": 8
+  },
+  "tomes": [
+    {
+      "tome_id": "03_general_medicine_adult",
+      "source_folder": "golden_rag_medical_tome03_adult_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/03_general_medicine_adult/release",
+      "chunks_path": "data/medical-rag/tomes/03_general_medicine_adult/release/chunks.jsonl",
+      "chunk_count": 764,
+      "severity_distribution": {
+        "S2": 187,
+        "S3": 285,
+        "S4": 193,
+        "S5": 83,
+        "S6": 16
+      },
+      "population_distribution": {
+        "adult": 764,
+        "older_adult": 764
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/03_general_medicine_adult/release/chunks.jsonl",
+          "size_bytes": 2063178,
+          "sha256": "08ff6ad7e7a835833219a913bb3dc7416fbe8985039d66a438abb4dfe3dc43a7"
+        }
+      ],
+      "manifest_present": false,
+      "manifest_summary": null
+    },
+    {
+      "tome_id": "03_pediatrics",
+      "source_folder": "golden_rag_medical_tome03_pediatrics_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/03_pediatrics/release",
+      "chunks_path": "data/medical-rag/tomes/03_pediatrics/release/chunks.jsonl",
+      "chunk_count": 757,
+      "severity_distribution": {
+        "S2": 186,
+        "S3": 279,
+        "S4": 191,
+        "S5": 71,
+        "S6": 30
+      },
+      "population_distribution": {
+        "adolescent": 584,
+        "infant": 458,
+        "infant_0_28_days": 8,
+        "infant_under_3_months": 8,
+        "neonate": 151,
+        "pediatric": 757,
+        "preschool": 532,
+        "school_age": 603,
+        "toddler": 532
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/03_pediatrics/release/chunks.jsonl",
+          "size_bytes": 2339788,
+          "sha256": "661f3070663438a9d65c72ad75700d5f0c1f5181ebac898410a231c2298ecb4b"
+        }
+      ],
+      "manifest_present": false,
+      "manifest_summary": null
+    },
+    {
+      "tome_id": "04_pediatrics_safe",
+      "source_folder": "golden_rag_medical_tome04_pediatrics_safe_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/04_pediatrics_safe/release",
+      "chunks_path": "data/medical-rag/tomes/04_pediatrics_safe/release/chunks.jsonl",
+      "chunk_count": 894,
+      "severity_distribution": {
+        "S2": 3,
+        "S3": 286,
+        "S4": 190,
+        "S5": 194,
+        "S6": 221
+      },
+      "population_distribution": {
+        "adolescent": 693,
+        "infant": 597,
+        "infant_0_28_days": 7,
+        "infant_under_3_months": 14,
+        "neonate": 319,
+        "pediatric": 894,
+        "preschool": 611,
+        "school_age": 682,
+        "toddler": 632
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/04_pediatrics_safe/release/chunks.jsonl",
+          "size_bytes": 2838224,
+          "sha256": "c22cfa73adcf69d36c55331c91258efed9113345845806b8d25837240e04b212"
+        }
+      ],
+      "manifest_present": false,
+      "manifest_summary": null
+    },
+    {
+      "tome_id": "05_otc_symptomatic_recommendations",
+      "source_folder": "golden_rag_medical_tome05_otc_symptomatic_recommendations_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/05_otc_symptomatic_recommendations/release",
+      "chunks_path": "data/medical-rag/tomes/05_otc_symptomatic_recommendations/release/chunks.jsonl",
+      "chunk_count": 452,
+      "severity_distribution": {
+        "S2": 24,
+        "S3": 103,
+        "S4": 104,
+        "S5": 140,
+        "S6": 81
+      },
+      "population_distribution": {
+        "adolescent": 6,
+        "adult": 398,
+        "pediatric": 342
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/05_otc_symptomatic_recommendations/release/chunks.jsonl",
+          "size_bytes": 1514569,
+          "sha256": "17a4a5be999dde43f626bdf755578fa42272e3182f49c19c0df695cd15bf1b5e"
+        },
+        {
+          "filename": "otc_dosing_rules.json",
+          "relative_path": "data/medical-rag/tomes/05_otc_symptomatic_recommendations/release/otc_dosing_rules.json",
+          "size_bytes": 46369,
+          "sha256": "38937c35bf2e5366286a9be4ce0bfe54955769004c437887200a82eaa45464df"
+        }
+      ],
+      "manifest_present": false,
+      "manifest_summary": null
+    },
+    {
+      "tome_id": "06_frequent_specialties",
+      "source_folder": "golden_rag_medical_tome06_frequent_specialties_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/06_frequent_specialties/release",
+      "chunks_path": "data/medical-rag/tomes/06_frequent_specialties/release/chunks.jsonl",
+      "chunk_count": 612,
+      "severity_distribution": {
+        "S2": 137,
+        "S3": 244,
+        "S4": 131,
+        "S5": 7,
+        "S6": 93
+      },
+      "population_distribution": {
+        "adolescent": 54,
+        "adult": 594,
+        "older_adult": 594,
+        "pediatric": 567,
+        "pregnancy": 84
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/06_frequent_specialties/release/chunks.jsonl",
+          "size_bytes": 1491966,
+          "sha256": "aa33cce24a50ef034a786594bca2bc178abad8a69961644c696155dc355d1c71"
+        },
+        {
+          "filename": "specialty_routing_map.json",
+          "relative_path": "data/medical-rag/tomes/06_frequent_specialties/release/specialty_routing_map.json",
+          "size_bytes": 48207,
+          "sha256": "91f745757369d0d4d07af22d8e176f377ad5d25f3fc9277978efd540365c00d6"
+        },
+        {
+          "filename": "sources.json",
+          "relative_path": "data/medical-rag/tomes/06_frequent_specialties/release/sources.json",
+          "size_bytes": 2616,
+          "sha256": "9444c242ea8a770bfcd49b8d290ab2dca0b5707dc809b266a3cc2168ded97fbe"
+        },
+        {
+          "filename": "coverage_matrix.json",
+          "relative_path": "data/medical-rag/tomes/06_frequent_specialties/release/coverage_matrix.json",
+          "size_bytes": 461,
+          "sha256": "89c6afa5a1ff55fb913dbdff98be80cd55a04da349f2cb2c0f3a6cb41c3e101f"
+        },
+        {
+          "filename": "APPROVED_SCOPE.md",
+          "relative_path": "data/medical-rag/tomes/06_frequent_specialties/release/APPROVED_SCOPE.md",
+          "size_bytes": 1061,
+          "sha256": "e7440c149d7e5c4b8c9b4703b59fcfc6554852cf9cb9516c14c576711bc3e17c"
+        },
+        {
+          "filename": "RUNTIME_RULES.md",
+          "relative_path": "data/medical-rag/tomes/06_frequent_specialties/release/RUNTIME_RULES.md",
+          "size_bytes": 842,
+          "sha256": "b13aa95ae5fe0414271f9a443a5cae15944712776e0138584eb1c533a5f96718"
+        }
+      ],
+      "manifest_present": true,
+      "manifest_summary": {
+        "release_version": "0.1.0",
+        "created_at": "2026-07-09",
+        "tomes": {
+          "06_frequent_specialties": {
+            "chunks": 612,
+            "path": "data/medical-rag/tomes/06_frequent_specialties/release/chunks.jsonl",
+            "routing_map_path": "data/medical-rag/tomes/06_frequent_specialties/release/specialty_routing_map.json",
+            "production_allowed": false,
+            "specialty_count": 33,
+            "symptom_route_count": 57,
+            "severity_distribution": {
+              "S2": 137,
+              "S3": 244,
+              "S4": 131,
+              "S5": 7,
+              "S6": 93
+            }
+          }
+        },
+        "schema_keys": [
+          "chunk_id",
+          "tome_id",
+          "version",
+          "language",
+          "source_ids",
+          "license_status",
+          "clinical_status",
+          "legal_status",
+          "clinical_domain",
+          "population",
+          "severity_level",
+          "red_flag_relevant",
+          "clinical_action_type",
+          "must_ask",
+          "must_not_say",
+          "safe_user_message",
+          "internal_reasoning_summary",
+          "evidence_summary",
+          "retrieval_keywords",
+          "created_at",
+          "reviewed_at",
+          "reviewers",
+          "is_example_only",
+          "production_allowed",
+          "medical_review_status",
+          "legal_review_status",
+          "approval_evidence"
+        ],
+        "safety_position": "Specialty routing and handoff layer. Emergency and red-flag chunks must outrank all referral preparation chunks.",
+        "no_volume_padding": true
+      }
+    },
+    {
+      "tome_id": "07_imaging_orientation",
+      "source_folder": "golden_rag_medical_tome07_imaging_orientation_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/07_imaging_orientation/release",
+      "chunks_path": "data/medical-rag/tomes/07_imaging_orientation/release/chunks.jsonl",
+      "chunk_count": 195,
+      "severity_distribution": {
+        "S2": 36,
+        "S3": 74,
+        "S4": 49,
+        "S5": 10,
+        "S6": 26
+      },
+      "population_distribution": {
+        "adult": 195,
+        "older_adult": 195,
+        "pediatric": 175,
+        "pregnancy": 115
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/07_imaging_orientation/release/chunks.jsonl",
+          "size_bytes": 544584,
+          "sha256": "66c77739b8ab779e0ac5f0654f58c36f8913779db7b87744c00d3af10c22ac67"
+        },
+        {
+          "filename": "imaging_orientation_map.json",
+          "relative_path": "data/medical-rag/tomes/07_imaging_orientation/release/imaging_orientation_map.json",
+          "size_bytes": 17398,
+          "sha256": "a6557dcd46e1f867b85141f5d591ec7e0f6d552a66ab714f2c263cddae9a8d99"
+        },
+        {
+          "filename": "sources.json",
+          "relative_path": "data/medical-rag/tomes/07_imaging_orientation/release/sources.json",
+          "size_bytes": 2631,
+          "sha256": "cc2eccaf310a3c6d7c976fc295adafa0534b83f2f99bbff04e9fbb26f9a0b63b"
+        },
+        {
+          "filename": "coverage_matrix.json",
+          "relative_path": "data/medical-rag/tomes/07_imaging_orientation/release/coverage_matrix.json",
+          "size_bytes": 571,
+          "sha256": "3736a14aa2fd981f00cd95c629323758adedecde1323c6c6d6549312827e8b90"
+        },
+        {
+          "filename": "APPROVED_SCOPE.md",
+          "relative_path": "data/medical-rag/tomes/07_imaging_orientation/release/APPROVED_SCOPE.md",
+          "size_bytes": 1134,
+          "sha256": "44f36c0fbc135493c2e9af6e1ffea5acbc297f2248ed7624dfb9b8fc674a8f4d"
+        },
+        {
+          "filename": "RUNTIME_RULES.md",
+          "relative_path": "data/medical-rag/tomes/07_imaging_orientation/release/RUNTIME_RULES.md",
+          "size_bytes": 947,
+          "sha256": "2aaea38e485047c967c245b60a6da5b225b385b2f36ac3a24fc190d0e43fcf83"
+        }
+      ],
+      "manifest_present": true,
+      "manifest_summary": {
+        "release_version": "0.1.0",
+        "created_at": "2026-07-09",
+        "tomes": {
+          "07_imaging_orientation": {
+            "chunks": 195,
+            "path": "data/medical-rag/tomes/07_imaging_orientation/release/chunks.jsonl",
+            "imaging_map_path": "data/medical-rag/tomes/07_imaging_orientation/release/imaging_orientation_map.json",
+            "production_allowed": false,
+            "modality_count": 11,
+            "body_region_count": 10,
+            "severity_distribution": {
+              "S2": 36,
+              "S3": 74,
+              "S4": 49,
+              "S5": 10,
+              "S6": 26
+            }
+          }
+        },
+        "schema_keys": [
+          "chunk_id",
+          "tome_id",
+          "version",
+          "language",
+          "source_ids",
+          "license_status",
+          "clinical_status",
+          "legal_status",
+          "clinical_domain",
+          "population",
+          "severity_level",
+          "red_flag_relevant",
+          "clinical_action_type",
+          "must_ask",
+          "must_not_say",
+          "safe_user_message",
+          "internal_reasoning_summary",
+          "evidence_summary",
+          "retrieval_keywords",
+          "created_at",
+          "reviewed_at",
+          "reviewers",
+          "is_example_only",
+          "production_allowed",
+          "medical_review_status",
+          "legal_review_status",
+          "approval_evidence"
+        ],
+        "safety_position": "Imaging orientation layer. Emergency red flags outrank imaging preparation; AI must not interpret imaging as definitive diagnosis.",
+        "no_volume_padding": true
+      }
+    },
+    {
+      "tome_id": "08_oncology_red_flags",
+      "source_folder": "golden_rag_medical_tome08_oncology_red_flags_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/08_oncology_red_flags/release",
+      "chunks_path": "data/medical-rag/tomes/08_oncology_red_flags/release/chunks.jsonl",
+      "chunk_count": 265,
+      "severity_distribution": {
+        "S2": 20,
+        "S3": 111,
+        "S4": 56,
+        "S5": 64,
+        "S6": 14
+      },
+      "population_distribution": {
+        "adolescent": 21,
+        "adult": 265,
+        "older_adult": 260,
+        "pediatric": 163,
+        "pregnancy": 33
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/08_oncology_red_flags/release/chunks.jsonl",
+          "size_bytes": 732900,
+          "sha256": "b04c8b5056dc31d8bac21a6a7fe032ec1c4986581d059d4a3a9ec62a8397c832"
+        },
+        {
+          "filename": "oncology_red_flags_map.json",
+          "relative_path": "data/medical-rag/tomes/08_oncology_red_flags/release/oncology_red_flags_map.json",
+          "size_bytes": 22906,
+          "sha256": "89e3b94c4f6dd75be4815b61b2081ea2db39b4e0e520b6ff1f30fbf16f22e77a"
+        },
+        {
+          "filename": "sources.json",
+          "relative_path": "data/medical-rag/tomes/08_oncology_red_flags/release/sources.json",
+          "size_bytes": 3680,
+          "sha256": "c6f0e03b2db4e3469d6d3d8efe51466b5d01e4c7ac2ad7206b53c32970f881dd"
+        },
+        {
+          "filename": "coverage_matrix.json",
+          "relative_path": "data/medical-rag/tomes/08_oncology_red_flags/release/coverage_matrix.json",
+          "size_bytes": 558,
+          "sha256": "b5117120d14f89d99f102f1181060d0b723e95ee38f85a60723078a3c5e2c0aa"
+        },
+        {
+          "filename": "APPROVED_SCOPE.md",
+          "relative_path": "data/medical-rag/tomes/08_oncology_red_flags/release/APPROVED_SCOPE.md",
+          "size_bytes": 1355,
+          "sha256": "a1a7f187c70deff6a80df28b231ae07871f54064eb8debcc3afce89f0b55b287"
+        },
+        {
+          "filename": "RUNTIME_RULES.md",
+          "relative_path": "data/medical-rag/tomes/08_oncology_red_flags/release/RUNTIME_RULES.md",
+          "size_bytes": 1222,
+          "sha256": "343dfec3093f495e819b9a0dddfa74718c9daab797e273e7bef2a3030e923822"
+        }
+      ],
+      "manifest_present": true,
+      "manifest_summary": {
+        "release_version": "0.1.0",
+        "created_at": "2026-07-09",
+        "tomes": {
+          "08_oncology_red_flags": {
+            "chunks": 265,
+            "path": "data/medical-rag/tomes/08_oncology_red_flags/release/chunks.jsonl",
+            "oncology_map_path": "data/medical-rag/tomes/08_oncology_red_flags/release/oncology_red_flags_map.json",
+            "production_allowed": false,
+            "general_red_flag_count": 20,
+            "active_cancer_complication_count": 10,
+            "screening_module_count": 6,
+            "severity_distribution": {
+              "S2": 20,
+              "S3": 111,
+              "S4": 56,
+              "S5": 64,
+              "S6": 14
+            }
+          }
+        },
+        "schema_keys": [
+          "chunk_id",
+          "tome_id",
+          "version",
+          "language",
+          "source_ids",
+          "license_status",
+          "clinical_status",
+          "legal_status",
+          "clinical_domain",
+          "population",
+          "severity_level",
+          "red_flag_relevant",
+          "clinical_action_type",
+          "must_ask",
+          "must_not_say",
+          "safe_user_message",
+          "internal_reasoning_summary",
+          "evidence_summary",
+          "retrieval_keywords",
+          "created_at",
+          "reviewed_at",
+          "reviewers",
+          "is_example_only",
+          "production_allowed",
+          "medical_review_status",
+          "legal_review_status",
+          "approval_evidence"
+        ],
+        "safety_position": "Oncology red-flag layer. Does not diagnose cancer; escalates persistent/progressive symptoms and active-cancer emergencies.",
+        "no_volume_padding": true
+      }
+    },
+    {
+      "tome_id": "09_multilingual_regionalization",
+      "source_folder": "golden_rag_medical_tome09_multilingual_regionalization_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/09_multilingual_regionalization/release",
+      "chunks_path": "data/medical-rag/tomes/09_multilingual_regionalization/release/chunks.jsonl",
+      "chunk_count": 233,
+      "severity_distribution": {
+        "S3": 95,
+        "S4": 60,
+        "S5": 63,
+        "S6": 15
+      },
+      "population_distribution": {
+        "adult": 233,
+        "older_adult": 229,
+        "pediatric": 229,
+        "pregnancy": 209
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/09_multilingual_regionalization/release/chunks.jsonl",
+          "size_bytes": 602024,
+          "sha256": "81eaff4b2053ce1da7a14e14b4079abc5cf1f301a2e7f938246f3782819b45b5"
+        },
+        {
+          "filename": "regionalization_map.json",
+          "relative_path": "data/medical-rag/tomes/09_multilingual_regionalization/release/regionalization_map.json",
+          "size_bytes": 20716,
+          "sha256": "d71560b01991b3608755dcd257b4fdb97d5429e53ffadca894130bdcc6181fe7"
+        },
+        {
+          "filename": "sources.json",
+          "relative_path": "data/medical-rag/tomes/09_multilingual_regionalization/release/sources.json",
+          "size_bytes": 3157,
+          "sha256": "afbea02dc08a500968e9d07fa977e223e03324bcf4e859fea5a60a4e0b744077"
+        },
+        {
+          "filename": "coverage_matrix.json",
+          "relative_path": "data/medical-rag/tomes/09_multilingual_regionalization/release/coverage_matrix.json",
+          "size_bytes": 584,
+          "sha256": "fc539075db0bcb9ff873c0a38c7ccceaab6b9ebdbd7b8baa64a0888b78533bf5"
+        },
+        {
+          "filename": "APPROVED_SCOPE.md",
+          "relative_path": "data/medical-rag/tomes/09_multilingual_regionalization/release/APPROVED_SCOPE.md",
+          "size_bytes": 1507,
+          "sha256": "127684a8ed06dd57fb5d3eedc6a536f2966ea4abf7dcfc66c08152c7846a5a3c"
+        },
+        {
+          "filename": "RUNTIME_RULES.md",
+          "relative_path": "data/medical-rag/tomes/09_multilingual_regionalization/release/RUNTIME_RULES.md",
+          "size_bytes": 1191,
+          "sha256": "02253aa02bd74dd1c2e0180594945486d9203f84bbbe60cdebec9dbd77b3328e"
+        }
+      ],
+      "manifest_present": true,
+      "manifest_summary": {
+        "release_version": "0.1.0",
+        "created_at": "2026-07-09",
+        "tomes": {
+          "09_multilingual_regionalization": {
+            "chunks": 233,
+            "path": "data/medical-rag/tomes/09_multilingual_regionalization/release/chunks.jsonl",
+            "regionalization_map_path": "data/medical-rag/tomes/09_multilingual_regionalization/release/regionalization_map.json",
+            "production_allowed": false,
+            "region_count": 7,
+            "local_term_count": 14,
+            "unit_rule_count": 8,
+            "medication_synonym_count": 8,
+            "severity_distribution": {
+              "S3": 95,
+              "S4": 60,
+              "S5": 63,
+              "S6": 15
+            }
+          }
+        },
+        "schema_keys": [
+          "chunk_id",
+          "tome_id",
+          "version",
+          "language",
+          "source_ids",
+          "license_status",
+          "clinical_status",
+          "legal_status",
+          "clinical_domain",
+          "population",
+          "severity_level",
+          "red_flag_relevant",
+          "clinical_action_type",
+          "must_ask",
+          "must_not_say",
+          "safe_user_message",
+          "internal_reasoning_summary",
+          "evidence_summary",
+          "retrieval_keywords",
+          "created_at",
+          "reviewed_at",
+          "reviewers",
+          "is_example_only",
+          "production_allowed",
+          "medical_review_status",
+          "legal_review_status",
+          "approval_evidence"
+        ],
+        "safety_position": "Multilingual/regionalization layer. Clinical severity, red flags and medication safety must remain invariant across localization.",
+        "no_volume_padding": true
+      }
+    },
+    {
+      "tome_id": "10_final_governance_evaluation",
+      "source_folder": "golden_rag_medical_tome10_final_governance_evaluation_release_v0_1",
+      "release_dir": "data/medical-rag/tomes/10_final_governance_evaluation/release",
+      "chunks_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/chunks.jsonl",
+      "chunk_count": 250,
+      "severity_distribution": {
+        "S1": 5,
+        "S2": 5,
+        "S3": 45,
+        "S4": 93,
+        "S5": 61,
+        "S6": 41
+      },
+      "population_distribution": {
+        "adolescent": 18,
+        "adult": 232,
+        "older_adult": 232,
+        "pediatric": 241,
+        "pregnancy": 187
+      },
+      "production_allowed_count": 0,
+      "release_files": [
+        {
+          "filename": "chunks.jsonl",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/chunks.jsonl",
+          "size_bytes": 628913,
+          "sha256": "db27803be1e151fd277d9431d839dd3684a2dcbf469e7373dc541871b498247f"
+        },
+        {
+          "filename": "ranking_rules.json",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/ranking_rules.json",
+          "size_bytes": 1273,
+          "sha256": "88f1b00aee07fe36a53f6c8c1d3f6cb3ca92304277f3542fd29713c39929b9f7"
+        },
+        {
+          "filename": "acceptance_criteria.json",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/acceptance_criteria.json",
+          "size_bytes": 1483,
+          "sha256": "41220818a055c332ac3e07a7e9f778449dac81cd07a3eb57649d8233718052f4"
+        },
+        {
+          "filename": "clinical_safety_matrix.json",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/clinical_safety_matrix.json",
+          "size_bytes": 2984,
+          "sha256": "be461b2a8e1e707a0ce4989f68031356914e8506bc0ccda3d53d9d38a864e2e1"
+        },
+        {
+          "filename": "sources.json",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/sources.json",
+          "size_bytes": 3647,
+          "sha256": "ec4e7caf557b1b4041a7edae5bfce13f14bbee9936cc2ce6531b03b7f6bdcfe6"
+        },
+        {
+          "filename": "coverage_matrix.json",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/coverage_matrix.json",
+          "size_bytes": 570,
+          "sha256": "a7afc8251efc5a75fd7443730fc1a94cb84805b6532fcebc3e965aeb7d450321"
+        },
+        {
+          "filename": "APPROVED_SCOPE.md",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/APPROVED_SCOPE.md",
+          "size_bytes": 1484,
+          "sha256": "68258a3420057f1e93067e9f8a5b5201edaa7c8e78aba857584d85af02b36fc9"
+        },
+        {
+          "filename": "RUNTIME_RULES.md",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/RUNTIME_RULES.md",
+          "size_bytes": 1409,
+          "sha256": "afe064169ad324e75274efa8c6c5d7f4d03aa100556d5b318430924d747e00f6"
+        },
+        {
+          "filename": "PRODUCTION_READINESS_CHECKLIST.md",
+          "relative_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/PRODUCTION_READINESS_CHECKLIST.md",
+          "size_bytes": 1872,
+          "sha256": "17866fd5bec25b66ed70421dd57d5440588443736011b62d9b69b42e893f612a"
+        }
+      ],
+      "manifest_present": true,
+      "manifest_summary": {
+        "release_version": "0.1.0",
+        "created_at": "2026-07-09",
+        "tomes": {
+          "10_final_governance_evaluation": {
+            "chunks": 250,
+            "path": "data/medical-rag/tomes/10_final_governance_evaluation/release/chunks.jsonl",
+            "ranking_rules_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/ranking_rules.json",
+            "acceptance_criteria_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/acceptance_criteria.json",
+            "clinical_safety_matrix_path": "data/medical-rag/tomes/10_final_governance_evaluation/release/clinical_safety_matrix.json",
+            "rag_eval_cases_path": "data/medical-rag/evaluation/rag_eval_cases.jsonl",
+            "adversarial_tests_path": "data/medical-rag/evaluation/adversarial_prompt_tests.jsonl",
+            "production_allowed": false,
+            "governance_domain_count": 20,
+            "rag_eval_case_count": 80,
+            "adversarial_test_count": 12,
+            "severity_distribution": {
+              "S1": 5,
+              "S2": 5,
+              "S3": 45,
+              "S4": 93,
+              "S5": 61,
+              "S6": 41
+            }
+          }
+        },
+        "schema_keys": [
+          "chunk_id",
+          "tome_id",
+          "version",
+          "language",
+          "source_ids",
+          "license_status",
+          "clinical_status",
+          "legal_status",
+          "clinical_domain",
+          "population",
+          "severity_level",
+          "red_flag_relevant",
+          "clinical_action_type",
+          "must_ask",
+          "must_not_say",
+          "safe_user_message",
+          "internal_reasoning_summary",
+          "evidence_summary",
+          "retrieval_keywords",
+          "created_at",
+          "reviewed_at",
+          "reviewers",
+          "is_example_only",
+          "production_allowed",
+          "medical_review_status",
+          "legal_review_status",
+          "approval_evidence"
+        ],
+        "safety_position": "Final governance/evaluation layer. It does not approve production; it defines the evidence required to approve production.",
+        "no_volume_padding": true
+      }
+    }
+  ],
+  "missing_notes": [],
+  "production_status": {
+    "all_chunks_default_blocked": true,
+    "production_allowed": false,
+    "reason": "Master bundle is integration/evaluation package. It does not constitute medical, legal or regulatory approval."
+  },
+  "artifact_paths": {
+    "consolidated_chunks": "data/medical-rag/master_release/v0_1/all_available_chunks.consolidated.jsonl",
+    "high_risk_index": "data/medical-rag/master_release/v0_1/high_risk_chunks_index.jsonl",
+    "ranking_strategy": "data/medical-rag/master_release/v0_1/ranking_strategy.json",
+    "chunk_schema_contract": "data/medical-rag/schemas/chunk_schema_contract.json",
+    "ingestion_plan": "data/medical-rag/ingestion/VECTOR_DB_INGESTION_PLAN.md",
+    "repo_integration": "data/medical-rag/ops/REPO_INTEGRATION_GUIDE.md",
+    "runtime_rules": "data/medical-rag/master_release/v0_1/RUNTIME_MASTER_RULES.md"
+  }
+}

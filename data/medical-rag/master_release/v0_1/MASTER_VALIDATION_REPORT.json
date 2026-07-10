@@ -1,0 +1,36 @@
+{
+  "created_at": "2026-07-09",
+  "total_chunks_validated": 4422,
+  "unique_chunk_ids": 4422,
+  "patched_chunk_count": 16,
+  "patched_chunk_ids": [
+    "T05OTC-CH-000403-ES",
+    "T05OTC-CH-000404-ES",
+    "T05OTC-CH-000406-ES",
+    "T05OTC-CH-000407-ES",
+    "T05OTC-CH-000418-ES",
+    "T05OTC-CH-000419-ES",
+    "T05OTC-CH-000421-ES",
+    "T05OTC-CH-000422-ES",
+    "T05OTC-CH-000423-ES",
+    "T05OTC-CH-000424-ES",
+    "T05OTC-CH-000426-ES",
+    "T05OTC-CH-000427-ES",
+    "T05OTC-CH-000428-ES",
+    "T05OTC-CH-000429-ES",
+    "T05OTC-CH-000431-ES",
+    "T05OTC-CH-000432-ES"
+  ],
+  "errors": [],
+  "error_count": 0,
+  "status": "OK",
+  "severity_distribution": {
+    "S1": 5,
+    "S2": 598,
+    "S3": 1522,
+    "S4": 1067,
+    "S5": 693,
+    "S6": 537
+  },
+  "remediation_note": "Master bundle normalized S5/S6 red_flag_relevant metadata for validation consistency. Original source tome files were not rewritten."
+}
