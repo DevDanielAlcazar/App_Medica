@@ -142,5 +142,6 @@
 | 2026-07-10 | Gemini 3.1 Pro | Creación de `.env` para PostgreSQL |
 | 2026-07-10 | Jules | Creación de 4 componentes mock (ConversationalCareCanvas, ContextRail, ClinicalTimelineRiver, SafetyRibbon) |
 | 2026-07-10 | Claude Opus 4.6 | Auditoría profunda del proyecto completo. Detección de 10 problemas. Reescritura de master_status.md y task_UI_UX.md |
+| 2026-07-10 | Jules | Fase 0 completada: Inicialización de shadcn, configuración de fuentes, providers de tema e idioma, tipado, stores de Zustand y middleware de Next.js |
 
 *(Al finalizar una tarea, la IA en turno DEBE añadir una fila a esta tabla.)*
