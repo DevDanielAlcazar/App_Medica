@@ -1,0 +1,95 @@
+{
+  "release_version": "0.1.0",
+  "created_at": "2026-07-09",
+  "tome_id": "04_pediatrics_safe",
+  "license_strategy": "Safety-governance tomo built from original synthesis and selected official/public-domain-or-copyright-free sources. Do not embed proprietary pediatric manuals or sites with AI/RAG prohibitions. Final legal review required.",
+  "excluded_sources": [
+    {
+      "title": "AAP / HealthyChildren and proprietary pediatric references",
+      "reason": "Clinically valuable but not ingested due to licensing/copyright uncertainty for RAG embeddings.",
+      "status": "excluded_from_embedding_corpus"
+    },
+    {
+      "title": "MedlinePlus / A.D.A.M. pages",
+      "reason": "Known restrictions against automated extraction / AI dataset / RAG embedding use without express written consent.",
+      "status": "excluded_from_embedding_corpus"
+    },
+    {
+      "title": "Blogs, forums, commercial symptom checkers, social media",
+      "reason": "Not appropriate as source of pediatric safety policy for medical RAG.",
+      "status": "excluded_from_embedding_corpus"
+    }
+  ],
+  "sources": {
+    "ORIGINAL-PEDS-SAFE-001": {
+      "title": "Original pediatric safety and AI-response governance framework",
+      "url": "internal://authored-framework/pediatrics-safe-v0.1",
+      "organization": "Generated original synthesis for App_Medica",
+      "license_notes": "Original authored safety framework. Requires pediatrician, legal and child-safeguarding review.",
+      "used_for": "Safety gates, refusal/blocking logic, escalation, caregiver communication and PHI minimization."
+    },
+    "CDC-FLU-001": {
+      "title": "CDC - Signs and Symptoms of Flu",
+      "url": "https://www.cdc.gov/flu/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov page; final legal review required.",
+      "used_for": "Emergency pediatric warning signs: fast/trouble breathing, bluish lips/face, rib retractions, dehydration, not alert, seizures, any fever under 12 weeks."
+    },
+    "CDC-RSV-001": {
+      "title": "CDC - RSV in Infants and Young Children",
+      "url": "https://www.cdc.gov/rsv/infants-young-children/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov page; final legal review required.",
+      "used_for": "RSV infant risk, trouble breathing, dehydration/low intake and worsening symptoms."
+    },
+    "CDC-CONCUSSION-001": {
+      "title": "CDC HEADS UP - Signs and Symptoms of Concussion",
+      "url": "https://www.cdc.gov/heads-up/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov page; final legal review required.",
+      "used_for": "Concussion danger signs and post-head-injury escalation."
+    },
+    "NHLBI-ASTHMA-CHILD-001": {
+      "title": "NHLBI - Asthma in Children",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/children",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "Official .gov page; final legal review required.",
+      "used_for": "Pediatric asthma patterns and emergency concerns."
+    },
+    "NHLBI-ASTHMA-ATTACK-001": {
+      "title": "NHLBI - Asthma Attack",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/attacks",
+      "organization": "National Heart, Lung, and Blood Institute",
+      "license_notes": "Official .gov page; final legal review required.",
+      "used_for": "Asthma attack escalation and severe respiratory symptoms."
+    },
+    "CDC-DIAB-001": {
+      "title": "CDC - Symptoms of Diabetes",
+      "url": "https://www.cdc.gov/diabetes/signs-symptoms/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov page; final legal review required.",
+      "used_for": "Diabetes symptom recognition and metabolic red flags."
+    },
+    "NIDDK-GASTRO-001": {
+      "title": "NIDDK - Viral Gastroenteritis Symptoms and Causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes",
+      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "license_notes": "NIDDK majority copyright-free policy; final legal review required.",
+      "used_for": "Vomiting, diarrhea, dehydration context."
+    },
+    "NIMH-SUICIDE-001": {
+      "title": "NIMH - Suicide Prevention",
+      "url": "https://www.nimh.nih.gov/health/topics/suicide-prevention",
+      "organization": "National Institute of Mental Health",
+      "license_notes": "Official .gov page; final legal review required.",
+      "used_for": "Suicide risk escalation and crisis-resource boundary."
+    },
+    "CDC-CHILD-ABUSE-001": {
+      "title": "CDC - About Child Abuse and Neglect",
+      "url": "https://www.cdc.gov/child-abuse-neglect/about/index.html",
+      "organization": "Centers for Disease Control and Prevention",
+      "license_notes": "Official .gov page; final legal review required.",
+      "used_for": "Safeguarding, child abuse/neglect categories and harm/potential harm framing."
+    }
+  }
+}
