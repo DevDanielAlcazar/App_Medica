@@ -50,7 +50,8 @@ Para que el usuario sepa qué modelo elegir en las siguientes tareas, aquí est�
 5. **Cero Controlados:** Prohibición absoluta de recetar o recomendar medicamentos controlados. Solo OTC o antibióticos no controlados bajo estrictos guardrails y evidencia confirmada.
 6. **Aprobaciones (ConSafeDev):** Cualquier cambio sustancial en la lógica clínica o legal debe solicitarse al usuario para que obtenga la aprobación del Médico y el Abogado.
 7. **No asumas el Stack:** Revisa siempre los archivos de arquitectura (ej. `06_Arquitectura_Tecnica.md` y el `VOLCADO_COMPLETO...`) antes de escribir código.
-8. **Cobertura Exhaustiva (Calidad Gold):** Cada Tomo (especialidad) del RAG debe contener un objetivo de **~5,000 chunks de conocimiento (o más)** para garantizar que la IA cubra todo el espectro de la especialidad, utilizando un pipeline automatizado de minería de literatura científica.
+8. **Cobertura Exhaustiva (Calidad Gold):** Cada Tomo (especialidad) del RAG debe contener un objetivo de **~5,000 chunks de conocimiento (o más)** para garantizar que la IA cubra todo el espectro de la especialidad.
+9. **UI/UX No Genérico (Design System 2026):** Se prohíbe el uso de interfaces de chat genéricas. La app debe seguir estrictamente los patrones de `08_UI_UX_Design_System_2026.md`, incluyendo el **Conversational Care Canvas**, **Context Rail**, **Clinical Timeline River** y **Safety Ribbon**. Se requiere Glassmorphism, Dark Mode, animaciones Framer Motion y componentes premium tipo shadcn/ui.
 
 ---
 
@@ -60,11 +61,16 @@ Para que el usuario sepa qué modelo elegir en las siguientes tareas, aquí est�
 
 ---
 
-## 6. Próximo Lote de Tareas (Siguiente Paso)
-Ya que la base de datos de conocimiento clínico ha sido blindada y la **Aplicación Frontend Next.js está inicializada** con diseño Premium, el siguiente paso crítico es levantar la conexión a la base de datos de producción:
+## 6. Estado de Avance y Siguiente Paso (Handoff a Frontend/Jules)
+La base de datos de conocimiento clínico está al 100% aprobada y el entorno **Next.js está inicializado** (`/web`). El siguiente bloque de trabajo pesado es el despliegue del diseño y la base de datos.
 
-1.  **✅ Inicialización del Frontend:** Completado (Next.js, Tailwind v4, Glassmorphism, Dark Mode).
-2.  **Setup de Base de Datos y Backend:** Instalar Prisma o Drizzle ORM y configurar la conexión nativa a PostgreSQL para manejar los expedientes de pacientes y logs de chat.
-3.  **Integración RAG-Frontend:** Crear los endpoints `/api/chat` para que el Frontend hable con el motor RAG utilizando las reglas de los 11 Tomos aprobados.
+**Instrucciones para la siguiente IA (Jules):**
+1.  **Handoff de Base de Datos:** En la carpeta `/web` se dejó un archivo `.env` configurado para **PostgreSQL**. Debes instalar Prisma (o Drizzle) e inicializar los esquemas de bases de datos para guardar pacientes y expedientes.
+2.  **Construcción de Componentes Premium (Prioridad Alta):** El diseño base en `page.tsx` es solo un demo inicial. Tu deber es implementar los patrones arquitectónicos dictados en `08_UI_UX_Design_System_2026.md` (shadcn/ui, Radix, Tailwind v4). Debes crear los componentes:
+    - `Conversational Care Canvas`
+    - `Context Rail`
+    - `Clinical Timeline River`
+    - `Safety Ribbon`
+3.  **Cero Interfaces Genéricas:** Angélica Med NO es un chatbot. Es un centro de acompañamiento clínico. Usa Glassmorphism y micro-interacciones.
 
 *(Al finalizar una tarea, la IA en turno debe actualizar este documento para reflejar el progreso, marcando con un "✅" y moviendo la tarea de "Pendiente" a "Completada".)*
