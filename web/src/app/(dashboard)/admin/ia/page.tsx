@@ -281,6 +281,50 @@ export default function AdminIAPage() {
               </CardContent>
             </Card>
 
+            <Card className="glass-panel border-glass-border bg-background/25">
+              <CardHeader><CardTitle className="text-sm font-bold text-primary uppercase flex items-center gap-2"><RefreshCw className="w-4 h-4" />Sincronizar Modelos (Auto-Discovery)</CardTitle></CardHeader>
+              <CardContent>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex-1 space-y-1">
+                    <label className="text-[10px] font-bold text-muted-foreground uppercase">Proveedor a sincronizar</label>
+                    <select id="syncProvider" className="w-full bg-elevated/35 border border-glass-border text-foreground text-sm rounded-xl p-2.5 outline-none">
+                      <option value="">Seleccionar proveedor con API Key activa...</option>
+                      {providers.filter(p => p.apiKeys && p.apiKeys.length > 0).map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                    </select>
+                  </div>
+                  <div className="flex items-end">
+                    <Button
+                      type="button"
+                      onClick={async () => {
+                        const selectEl = document.getElementById("syncProvider") as HTMLSelectElement;
+                        const pId = selectEl.value;
+                        if (!pId) return toast.error("Selecciona un proveedor.");
+                        setSubmitting(true);
+                        try {
+                          const res = await fetch("/api/admin/ai/models/sync", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ providerId: pId })
+                          });
+                          const data = await res.json();
+                          if (!res.ok) throw new Error(data.error);
+                          toast.success(`Sincronización exitosa. ${data.importedCount} modelos importados (deshabilitados por defecto).`);
+                          loadAll();
+                        } catch(e: any) {
+                          toast.error(e.message);
+                        } finally {
+                          setSubmitting(false);
+                        }
+                      }}
+                      disabled={submitting}
+                      className="w-full sm:w-auto bg-secondary text-secondary-foreground rounded-xl gap-2 hover:bg-secondary/80">
+                      {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}Sincronizar
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {models.length === 0 ? (
               <div className="text-center py-12 border border-dashed border-glass-border rounded-2xl text-muted-foreground text-sm">No hay modelos configurados.</div>
             ) : (

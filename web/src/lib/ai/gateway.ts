@@ -16,7 +16,7 @@ export interface GatewayResponse {
 /**
  * Resuelve la API key del proveedor. Si es el placeholder, busca la variable de entorno correspondiente.
  */
-async function resolveApiKey(secret: string, providerName: string): Promise<string> {
+export async function resolveApiKey(secret: string, providerName: string): Promise<string> {
   if (secret === "env_key_placeholder") {
     const envVar = `${providerName.toUpperCase()}_API_KEY`;
     return process.env[envVar] || "";
