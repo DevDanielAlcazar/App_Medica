@@ -11,6 +11,7 @@ export interface TimelineEvent {
 
 export interface ClinicalCase {
   id: string;
+  title: string;
   status: CaseStatus;
   timeline: TimelineEvent[];
 }

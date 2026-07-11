@@ -3,20 +3,79 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Heart, Stethoscope, ArrowRight, ArrowLeft } from "lucide-react";
+import { Heart, Stethoscope, ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
+import { useUserStore } from "@/stores/userStore";
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
   const [role, setRole] = useState<"paciente" | "medico" | null>(null);
+  
+  // Estados para los campos de registro
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cedula, setCedula] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  
+  const { setUser } = useUserStore();
 
   const nextStep = () => setStep((s) => Math.min(s + 1, role === "medico" ? 3 : 2));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+
+  const handleRegister = async () => {
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, role, cedula }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Hubo un error al procesar el registro.");
+      }
+
+      if (role === "paciente") {
+        setSuccess("¡Cuenta de paciente creada! Iniciando sesión...");
+        
+        // Autologuear al paciente de inmediato
+        const loginRes = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+        const loginData = await loginRes.json();
+        
+        if (loginRes.ok) {
+          setUser(loginData.user, loginData.user.role);
+          window.location.href = "/paciente";
+        } else {
+          window.location.href = "/login";
+        }
+      } else {
+        setSuccess("¡Cuenta de médico registrada con éxito! Tu cédula profesional entrará en revisión humana. Redirigiendo al login...");
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 4000);
+      }
+    } catch (err: any) {
+      setError(err.message || "Ocurrió un error inesperado.");
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="w-full max-w-lg relative z-10 py-12">
@@ -44,7 +103,7 @@ export default function RegisterPage() {
 
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
-            {step > 1 && (
+            {step > 1 && !loading && (
               <button onClick={prevStep} className="text-muted-foreground hover:text-foreground">
                 <ArrowLeft className="w-5 h-5" />
               </button>
@@ -64,6 +123,18 @@ export default function RegisterPage() {
           </div>
         </div>
 
+        {error && (
+          <div className="mb-4 p-3 rounded-lg bg-destructive/10 text-destructive text-sm border border-destructive/20 text-center font-medium">
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div className="mb-4 p-3 rounded-lg bg-green-500/10 text-green-500 text-sm border border-green-500/20 text-center font-medium">
+            {success}
+          </div>
+        )}
+
         <div className="min-h-[300px]">
           <AnimatePresence mode="wait">
             {step === 1 && (
@@ -77,17 +148,37 @@ export default function RegisterPage() {
               >
                 <div className="space-y-2">
                   <Label htmlFor="name">Nombre completo</Label>
-                  <Input id="name" required />
+                  <Input 
+                    id="name" 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required 
+                    disabled={loading}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Correo electrónico</Label>
-                  <Input id="email" type="email" required />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required 
+                    disabled={loading}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password">Contraseña</Label>
-                  <Input id="password" type="password" required />
+                  <Input 
+                    id="password" 
+                    type="password" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required 
+                    disabled={loading}
+                  />
                 </div>
-                <Button type="submit" className="w-full mt-4">
+                <Button type="submit" className="w-full mt-4" disabled={loading}>
                   Continuar <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </motion.form>
@@ -111,6 +202,7 @@ export default function RegisterPage() {
                         ? "border-primary bg-primary/10 text-primary ring-2 ring-primary/20"
                         : "border-border hover:border-primary/50 text-muted-foreground"
                     )}
+                    disabled={loading}
                   >
                     <Heart className="w-8 h-8" />
                     <span className="font-semibold">Paciente</span>
@@ -123,17 +215,27 @@ export default function RegisterPage() {
                         ? "border-primary bg-primary/10 text-primary ring-2 ring-primary/20"
                         : "border-border hover:border-primary/50 text-muted-foreground"
                     )}
+                    disabled={loading}
                   >
                     <Stethoscope className="w-8 h-8" />
                     <span className="font-semibold">Médico</span>
                   </button>
                 </div>
                 <Button
-                  onClick={role === "medico" ? nextStep : undefined}
-                  disabled={!role}
+                  onClick={role === "medico" ? nextStep : handleRegister}
+                  disabled={!role || loading}
                   className="w-full"
                 >
-                  {role === "medico" ? "Continuar" : "Finalizar Registro"}
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Registrando...
+                    </>
+                  ) : role === "medico" ? (
+                    "Continuar"
+                  ) : (
+                    "Finalizar Registro"
+                  )}
                 </Button>
               </motion.div>
             )}
@@ -145,11 +247,18 @@ export default function RegisterPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-4"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={(e) => { e.preventDefault(); handleRegister(); }}
               >
                 <div className="space-y-2">
                   <Label htmlFor="cedula">Cédula Profesional</Label>
-                  <Input id="cedula" required />
+                  <Input 
+                    id="cedula" 
+                    placeholder="Escribe tu número de cédula"
+                    value={cedula}
+                    onChange={(e) => setCedula(e.target.value)}
+                    required 
+                    disabled={loading}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label>Documento de Identidad (INE/Pasaporte)</Label>
@@ -160,8 +269,15 @@ export default function RegisterPage() {
                     Tus documentos se almacenan de forma segura y cifrada.
                   </p>
                 </div>
-                <Button type="submit" className="w-full mt-4">
-                  Finalizar Registro
+                <Button type="submit" className="w-full mt-4" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Procesando médico...
+                    </>
+                  ) : (
+                    "Finalizar Registro"
+                  )}
                 </Button>
               </motion.form>
             )}
@@ -170,7 +286,7 @@ export default function RegisterPage() {
 
         <div className="mt-8 pt-4 border-t border-glass-border">
           <p className="text-xs text-center text-muted-foreground/80 leading-relaxed">
-            Al registrarte, aceptas nuestros <Link href="/terms" className="underline">Términos</Link> y <Link href="/privacy-policy" className="underline">Política de Privacidad</Link>.
+            Al registrarte, aceptas nuestros <Link href="/privacy-policy" className="underline">Términos</Link> y <Link href="/privacy-policy" className="underline">Política de Privacidad</Link>.
             <br/><br/>
             Angélica Med es un asistente informativo. No sustituye el diagnóstico ni tratamiento de un profesional de la salud.
           </p>

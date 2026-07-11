@@ -65,6 +65,12 @@ export async function POST(request: Request) {
     return response;
   } catch (error: any) {
     console.error("Error en login:", error);
+    if (error.code === "P1001" || error.message?.includes("Can't reach database")) {
+      return NextResponse.json(
+        { error: "Base de datos fuera de línea. Por favor verifica que tu túnel SSH (puerto 5433) esté activo." },
+        { status: 503 }
+      );
+    }
     return NextResponse.json(
       { error: "Error interno del servidor." },
       { status: 500 }

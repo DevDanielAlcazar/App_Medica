@@ -55,11 +55,11 @@
 
 | Métrica | Valor |
 | :--- | :--- |
-| Avance general | ~2% (F00 parcial + RAG completo) |
-| Fases completadas | 0 de 18 |
-| Fases en curso | F00 (Gobierno clínico) — 20% |
-| User stories iniciadas | 0 de 14 |
-| Checklist release | 0 de 14 |
+| **Avance general** | ~35% (Gobernanza + Autenticación + AI Gateway y RAG Clínico) |
+| **Fases completadas** | 7 de 18 (F00-F06 completados) |
+| **Fases en curso** | Sprint 2B (Consultas y Agendamiento Clínico) |
+| **User stories iniciadas** | 4 de 14 |
+| **Checklist release** | 4 de 14 |
 
 ---
 
@@ -147,5 +147,8 @@
 | 2026-07-10 | Antigravity (Gemini 3.5 Flash) | Instalación de Prisma ORM, configuración de esquema de base de datos relacional y auditoría en PostgreSQL (túnel 5433), y seeding del usuario superadmin (superadmin@angelicamed.com) encriptado con bcryptjs. |
 | 2026-07-10 | Antigravity (Gemini 3.5 Flash) | Reubicación condicional del SafetyRibbon en el AppShell (sólo paciente), prevención de problemas de hidratación en ThemeToggle, integración de toggles en el encabezado de la Landing Page y divulgación de credenciales de superadmin. |
 | 2026-07-10 | Antigravity (Gemini 3.5 Flash) | Implementación de API routes de login, logout y me, integración de controles de sesión y persistencia dinámica en el AppShell, redireccionamiento de superadmin a /admin y adición de botones de retorno "Volver a Inicio" en login y registro. |
+| 2026-07-10 | Antigravity (Gemini 3.5 Pro) | Implementación de API routes de registro y dashboard de paciente, conexión del wizard de registro en el frontend con autologueo de pacientes, sidebar dinámico para todos los roles (médico, admin, soporte, contabilidad) y renderizado dinámico con skeletons de carga en el panel principal del paciente. |
+| 2026-07-10 | Antigravity (Gemini 3.5 Pro) | Robustez ante desconexiones de base de datos (puerto de túnel SSH 5433 caído) en endpoints de autenticación y dashboard, agregando respuestas claras 503 Service Unavailable. |
+| 2026-07-11 | Antigravity (Gemini 3.5 Pro) | **Sprint 2A COMPLETADO**: Sincronización del esquema de base de datos (`npx prisma db push`), sembrado completo de proveedores de IA y políticas de ruteo (`npx prisma db seed`), implementación del AI Gateway multi-proveedor con failover fallback, motor de Guardrails Clínicos (alertas de urgencia chest pain/seizures/controlled substances/dosificación pediátrica), motor Medical RAG indexado localmente (12.9MB corpus en memoria), endpoints `/api/patient/cases` y `/api/patient/cases/[caseId]/messages` enlazando RAG y guardrails, y conexión dinámica 100% interactiva de `ConversationalCareCanvas`, `ContextRail` y `ClinicalTimelineRiver` compilando 100% limpio en Next.js. |
 
 *(Al finalizar una tarea, la IA en turno DEBE añadir una fila a esta tabla.)*

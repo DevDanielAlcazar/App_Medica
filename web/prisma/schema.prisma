@@ -112,3 +112,69 @@ model AuditLog {
   details   Json?
   createdAt DateTime @default(now())
 }
+
+model AiProvider {
+  id                 String     @id @default(uuid())
+  name               String     @unique // e.g. "openai", "anthropic", "custom"
+  protocol           String     // "openai", "claude", "generic"
+  baseUrl            String
+  modelsEndpoint     String?
+  completionEndpoint String
+  status             String     @default("active") // active, inactive
+  priority           Int        @default(1)
+  timeoutMs          Int        @default(10000)
+  supportsStreaming  Boolean    @default(true)
+  supportsVision     Boolean    @default(false)
+  supportsTools      Boolean    @default(false)
+  regionPolicy       String?
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  
+  apiKeys            AiApiKey[]
+  models             AiModel[]
+}
+
+model AiApiKey {
+  id              String     @id @default(uuid())
+  providerId      String
+  provider        AiProvider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  label           String
+  encryptedSecret String
+  status          String     @default("active") // active, inactive
+  rateLimit       Int?
+  monthlyBudget   Float?
+  createdBy       String?
+  rotatedAt       DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+}
+
+model AiModel {
+  id                     String     @id @default(uuid())
+  providerId             String
+  provider               AiProvider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  modelName              String
+  displayName            String
+  capabilities           String[]
+  maxContext             Int        @default(8192)
+  enabled                Boolean    @default(true)
+  clinicalAllowed        Boolean    @default(false)
+  costTier               String     @default("medium")
+  latencyTier            String     @default("medium")
+  createdAt              DateTime   @default(now())
+  updatedAt              DateTime   @updatedAt
+}
+
+model RoutingPolicy {
+  id                     String     @id @default(uuid())
+  useCase                String     @unique
+  riskLevel              String     @default("low")
+  requiredCapabilities   String[]
+  allowedModels          String[]
+  fallbackChain          String[]
+  maxCost                String     @default("medium")
+  maxLatency             String     @default("medium")
+  requireClinicalApproved Boolean    @default(false)
+  createdAt              DateTime   @default(now())
+  updatedAt              DateTime   @updatedAt
+}

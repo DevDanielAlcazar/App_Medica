@@ -5,13 +5,29 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/stores/userStore";
 import { useUiStore } from "@/stores/uiStore";
-import { Home, Calendar, CreditCard, Activity, Stethoscope, ShieldCheck, HeartPulse, UserCircle, MessageSquare } from "lucide-react";
+import { 
+  Home, 
+  Calendar, 
+  CreditCard, 
+  Activity, 
+  Stethoscope, 
+  ShieldCheck, 
+  HeartPulse, 
+  UserCircle, 
+  MessageSquare,
+  Users,
+  Settings,
+  Mail,
+  AlertOctagon,
+  FileSpreadsheet
+} from "lucide-react";
 
 export function Sidebar() {
   const pathname = usePathname();
   const { role } = useUserStore();
   const { sidebarOpen } = useUiStore();
 
+  // 1. Enlaces para Paciente
   const patientLinks = [
     { href: "/paciente", label: "Inicio", icon: Home },
     { href: "/paciente/consulta", label: "Consulta", icon: Stethoscope },
@@ -23,7 +39,51 @@ export function Sidebar() {
     { href: "/paciente/perfil", label: "Perfil", icon: UserCircle },
   ];
 
-  const links = role === "paciente" ? patientLinks : []; // Expand for other roles in next phases
+  // 2. Enlaces para Médico
+  const doctorLinks = [
+    { href: "/medico", label: "Inicio", icon: Home },
+    { href: "/medico/verificacion", label: "Verificación", icon: ShieldCheck },
+    { href: "/medico/agenda", label: "Agenda", icon: Calendar },
+    { href: "/medico/citas", label: "Citas", icon: Activity },
+    { href: "/medico/pagos", label: "Pagos", icon: CreditCard },
+    { href: "/medico/perfil", label: "Perfil", icon: UserCircle },
+  ];
+
+  // 3. Enlaces para Administrador y Superadministrador
+  const adminLinks = [
+    { href: "/admin", label: "Inicio", icon: Home },
+    { href: "/admin/usuarios", label: "Usuarios", icon: Users },
+    { href: "/admin/ia", label: "Config IA", icon: Settings },
+    { href: "/admin/planes", label: "Planes", icon: HeartPulse },
+    { href: "/admin/stripe", label: "Stripe", icon: CreditCard },
+    { href: "/admin/gmail", label: "Gmail SMTP", icon: Mail },
+    { href: "/admin/anuncios", label: "Anuncios", icon: MessageSquare },
+    { href: "/admin/permisos", label: "Permisos", icon: ShieldCheck },
+  ];
+
+  // 4. Enlaces para Soporte
+  const supportLinks = [
+    { href: "/soporte", label: "Inicio", icon: Home },
+    { href: "/soporte/tickets", label: "Tickets", icon: MessageSquare },
+    { href: "/soporte/usuarios", label: "Usuarios", icon: Users },
+    { href: "/soporte/compensaciones", label: "Compensaciones", icon: CreditCard },
+  ];
+
+  // 5. Enlaces para Contabilidad
+  const accountingLinks = [
+    { href: "/contabilidad", label: "Inicio", icon: Home },
+    { href: "/contabilidad/pagos-medicos", label: "Pagos Médicos", icon: CreditCard },
+    { href: "/contabilidad/cortes", label: "Cortes", icon: Calendar },
+    { href: "/contabilidad/penalizaciones", label: "Penalizaciones", icon: AlertOctagon },
+    { href: "/contabilidad/reportes", label: "Reportes", icon: FileSpreadsheet },
+  ];
+
+  // Asignación dinámica de enlaces basados en el rol activo del store
+  let links = patientLinks; // default fallback
+  if (role === "medico") links = doctorLinks;
+  else if (role === "admin" || role === "superadmin") links = adminLinks;
+  else if (role === "soporte") links = supportLinks;
+  else if (role === "contabilidad") links = accountingLinks;
 
   return (
     <aside className={cn(
