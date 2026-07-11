@@ -1,7 +1,7 @@
 # Radiografía y Control de Estado Maestro — Angélica Med
 
-> **Última Actualización:** 2026-07-10 18:50 CST  
-> **Actualizado por:** Antigravity (Claude Opus 4.6)  
+> **Última Actualización:** 2026-07-11 16:00 CST  
+> **Actualizado por:** Antigravity (Claude Sonnet 4.6 Thinking)  
 > **Propósito:** Archivo maestro de avance y gobernanza. Cualquier IA que asuma el proyecto **DEBE** leer este archivo primero.
 
 ---
@@ -55,11 +55,11 @@
 
 | Métrica | Valor |
 | :--- | :--- |
-| **Avance general** | ~88% (RAG + Wallet + Citas + Validación + Admin Panel completo) |
-| **Fases completadas** | 11 de 18 (F00-F06 + Sprint 2B-5 completados) |
-| **Fases en curso** | Sprint 6 (Motor clínico avanzado: Recomendaciones PDF, Guardrails Pediátricos, Evidencias en chat) |
-| **User stories iniciadas** | 12 de 14 |
-| **Checklist release** | 12 de 14 |
+| **Avance general** | ~91% (RAG + Wallet + Citas + Validación + Admin Panel + AI Chat funcional) |
+| **Fases completadas** | 12 de 18 (F00-F06 + Sprint 2B-6 completados) |
+| **Fases en curso** | Sprint 7 (Recomendaciones PDF, UI polish final, Tests E2E) |
+| **User stories iniciadas** | 13 de 14 |
+| **Checklist release** | 13 de 14 |
 
 ---
 
@@ -160,3 +160,4 @@
 
 *(Al finalizar una tarea, la IA en turno DEBE añadir una fila a esta tabla.)*
 | 2026-07-11 | Jules | Resolución de errores de protocolo "generic" en `routeAiRequest` del AI Gateway mapeando correctamente el protocolo a OpenAi y formateo correcto de URLs al concatenar bases de proveedores personalizados para prevenir 404s en las peticiones a Modelos. Adicionalmente, creación del endpoint backend `DELETE` para Modelos para remover modelos indeseados en el panel de administrador. |
+| 2026-07-11 | Antigravity (Claude Sonnet 4.6 Thinking) | **Sprint 6 COMPLETADO — Fix AI Chat + Auto-discovery Selectivo + RAG Mejorado**: (1) Fix crítico del AI Gateway: causa raíz del error era que la política `clinical_triage` tenía `allowedModels: ["gpt-4o", "claude-3-5-sonnet-20241022"]` pero el admin configuró proveedores externos (Poolside, Opencode, Groq) cuyos modelos no coincidían, causando 0 candidatos y error. Fix: fallback inteligente en `gateway.ts` — si los `allowedModels` de la política no coinciden con ningún modelo en el sistema, ignora el filtro y usa cualquier modelo habilitado con `clinicalAllowed=true`; (2) Auto-discovery ahora es de 2 pasos: GET `/api/admin/ai/models/sync?providerId=x` devuelve lista de modelos sin guardar, luego POST `/api/admin/ai/models/sync` solo importa los `selectedModelIds` elegidos. La UI muestra checkboxes con buscador por palabras clave (ej: "free"); (3) Botón Eliminar agregado en cada model card de la lista de modelos; (4) RAG mejorado: límite de 5 chunks (antes 3), normalización de acentos en búsqueda, más campos contextuales inyectados (`internal_reasoning_summary`, `clinical_action_type`, `population`, bandera roja), instrucción obligatoria de hacer preguntas `must_ask` antes de orientar. |

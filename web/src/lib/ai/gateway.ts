@@ -175,8 +175,11 @@ export async function routeAiRequest(
     }> = [];
 
     // Función auxiliar para agregar candidatos permitidos para un proveedor determinado
-    const addCandidatesForProvider = (provider: typeof activeProviders[0]) => {
+    const addCandidatesForProvider = (provider: typeof activeProviders[0], ignorePolicyFilter: boolean = false) => {
       const allowedModels = provider.models.filter((m) => {
+        if (ignorePolicyFilter) {
+          return policy.requireClinicalApproved ? m.clinicalAllowed : true;
+        }
         // Verificar si la política limita los modelos permitidos
         if (policy.allowedModels.length > 0 && !policy.allowedModels.includes(m.modelName)) {
           return false;
@@ -207,15 +210,12 @@ export async function routeAiRequest(
       addCandidatesForProvider(provider);
     }
 
-    // Si después de probar la cadena preferida no tenemos candidatos (o como respaldo final),
-    // agregamos CUALQUIER otro proveedor activo configurado en el sistema con API Keys activas.
-    const preferredNames = new Set(policy.fallbackChain);
-    const backupProviders = activeProviders.filter(
-      (p) => !preferredNames.has(p.name) && p.apiKeys.length > 0
-    );
-
-    for (const provider of backupProviders) {
-      addCandidatesForProvider(provider);
+    // Si después de probar la cadena preferida no tenemos candidatos, intentamos con cualquier modelo que cumpla requisitos
+    if (candidates.length === 0) {
+      for (const provider of activeProviders) {
+        if (provider.apiKeys.length === 0) continue;
+        addCandidatesForProvider(provider, true);
+      }
     }
 
     if (candidates.length === 0) {

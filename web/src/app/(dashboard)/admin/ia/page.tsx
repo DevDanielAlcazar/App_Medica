@@ -9,7 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import {
   Loader2, Plus, Trash2, Bot, Key, Cpu, GitBranch,
-  CheckCircle2, XCircle, RefreshCw, Shield, Zap, Eye, EyeOff, AlertCircle
+  CheckCircle2, XCircle, RefreshCw, Shield, Zap, Eye, EyeOff,
+  AlertCircle, Search, Download, ChevronDown, ChevronUp
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -19,6 +20,7 @@ interface Provider { id: string; name: string; protocol: string; baseUrl: string
 interface ApiKey { id: string; label: string; encryptedSecret: string; status: string; rateLimit: number | null; monthlyBudget: number | null; provider: { name: string }; }
 interface AiModel { id: string; modelName: string; displayName: string; enabled: boolean; clinicalAllowed: boolean; costTier: string; latencyTier: string; capabilities: string[]; provider: { name: string; status: string }; }
 interface Policy { id: string; useCase: string; riskLevel: string; allowedModels: string[]; fallbackChain: string[]; maxCost: string; maxLatency: string; requireClinicalApproved: boolean; }
+interface RemoteModel { id: string; alreadyImported: boolean; }
 
 export default function AdminIAPage() {
   const [providers, setProviders] = useState<Provider[]>([]);
@@ -35,6 +37,17 @@ export default function AdminIAPage() {
   const [newPolicy, setNewPolicy] = useState({ useCase: "", riskLevel: "low", requireClinicalApproved: false });
 
   const [submitting, setSubmitting] = useState(false);
+
+  /* Auto-discovery state */
+  const [syncProviderId, setSyncProviderId] = useState("");
+  const [discoveredModels, setDiscoveredModels] = useState<RemoteModel[] | null>(null);
+  const [discoverySearch, setDiscoverySearch] = useState("");
+  const [selectedModels, setSelectedModels] = useState<Set<string>>(new Set());
+  const [discovering, setDiscovering] = useState(false);
+  const [importing, setImporting] = useState(false);
+
+  /* Models search */
+  const [modelSearch, setModelSearch] = useState("");
 
   const loadAll = async () => {
     setLoading(true);
@@ -114,6 +127,79 @@ export default function AdminIAPage() {
       loadAll();
     } catch (e: any) { toast.error(e.message); } finally { setSubmitting(false); }
   };
+  const handleDeleteModel = async (id: string, name: string) => {
+    if (!confirm(`¿Eliminar el modelo "${name}"? Esta acción no se puede deshacer.`)) return;
+    const res = await fetch(`/api/admin/ai/models?id=${id}`, { method: "DELETE" });
+    const data = await res.json();
+    if (!res.ok) { toast.error(data.error || "Error al eliminar modelo."); return; }
+    toast.success(`Modelo "${name}" eliminado.`);
+    setModels(prev => prev.filter(m => m.id !== id));
+  };
+
+  /* ─── Auto-discovery ────────────────────────────────────── */
+  const handleDiscoverModels = async () => {
+    if (!syncProviderId) { toast.error("Selecciona un proveedor."); return; }
+    setDiscovering(true);
+    setDiscoveredModels(null);
+    setSelectedModels(new Set());
+    setDiscoverySearch("");
+    try {
+      const res = await fetch(`/api/admin/ai/models/sync?providerId=${syncProviderId}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      setDiscoveredModels(data.models);
+      const newOnes = data.models.filter((m: RemoteModel) => !m.alreadyImported).map((m: RemoteModel) => m.id);
+      setSelectedModels(new Set(newOnes)); // Pre-seleccionar solo los nuevos
+      toast.success(`${data.models.length} modelos descubiertos. ${newOnes.length} nuevos disponibles para importar.`);
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setDiscovering(false);
+    }
+  };
+
+  const handleImportSelected = async () => {
+    if (selectedModels.size === 0) { toast.error("Selecciona al menos un modelo para importar."); return; }
+    setImporting(true);
+    try {
+      const res = await fetch("/api/admin/ai/models/sync", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ providerId: syncProviderId, selectedModelIds: Array.from(selectedModels) }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      toast.success(`${data.importedCount} modelo(s) importados exitosamente (deshabilitados por defecto, habilítalos en la lista).`);
+      setDiscoveredModels(null);
+      setSelectedModels(new Set());
+      loadAll();
+    } catch (e: any) {
+      toast.error(e.message);
+    } finally {
+      setImporting(false);
+    }
+  };
+
+  const toggleModelSelection = (modelId: string) => {
+    setSelectedModels(prev => {
+      const next = new Set(prev);
+      if (next.has(modelId)) next.delete(modelId);
+      else next.add(modelId);
+      return next;
+    });
+  };
+
+  const selectAllVisible = () => {
+    if (!discoveredModels) return;
+    const visible = filteredDiscovered.filter(m => !m.alreadyImported).map(m => m.id);
+    setSelectedModels(new Set(visible));
+  };
+
+  const deselectAll = () => setSelectedModels(new Set());
+
+  const filteredDiscovered = discoveredModels?.filter(m =>
+    !discoverySearch || m.id.toLowerCase().includes(discoverySearch.toLowerCase())
+  ) ?? [];
 
   /* ─── Políticas ─────────────────────────────────────────── */
   const handleAddPolicy = async (e: React.FormEvent) => {
@@ -132,6 +218,11 @@ export default function AdminIAPage() {
     await fetch(`/api/admin/ai/policies?id=${id}`, { method: "DELETE" });
     toast.success("Política eliminada."); loadAll();
   };
+
+  // Filtered models for list
+  const filteredModels = models.filter(m =>
+    !modelSearch || m.modelName.toLowerCase().includes(modelSearch.toLowerCase()) || m.displayName.toLowerCase().includes(modelSearch.toLowerCase()) || m.provider?.name.toLowerCase().includes(modelSearch.toLowerCase())
+  );
 
   /* ─── Render ─────────────────────────────────────────────── */
   return (
@@ -281,13 +372,19 @@ export default function AdminIAPage() {
               </CardContent>
             </Card>
 
+            {/* ── AUTO-DISCOVERY (2 pasos) ── */}
             <Card className="glass-panel border-glass-border bg-background/25">
               <CardHeader><CardTitle className="text-sm font-bold text-primary uppercase flex items-center gap-2"><RefreshCw className="w-4 h-4" />Sincronizar Modelos (Auto-Discovery)</CardTitle></CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
+                {/* Paso 1: Seleccionar proveedor y descubrir */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <div className="flex-1 space-y-1">
                     <label className="text-[10px] font-bold text-muted-foreground uppercase">Proveedor a sincronizar</label>
-                    <select id="syncProvider" className="w-full bg-elevated/35 border border-glass-border text-foreground text-sm rounded-xl p-2.5 outline-none">
+                    <select
+                      value={syncProviderId}
+                      onChange={e => { setSyncProviderId(e.target.value); setDiscoveredModels(null); setSelectedModels(new Set()); }}
+                      className="w-full bg-elevated/35 border border-glass-border text-foreground text-sm rounded-xl p-2.5 outline-none"
+                    >
                       <option value="">Seleccionar proveedor con API Key activa...</option>
                       {providers.filter(p => p.apiKeys && p.apiKeys.length > 0).map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                     </select>
@@ -295,41 +392,118 @@ export default function AdminIAPage() {
                   <div className="flex items-end">
                     <Button
                       type="button"
-                      onClick={async () => {
-                        const selectEl = document.getElementById("syncProvider") as HTMLSelectElement;
-                        const pId = selectEl.value;
-                        if (!pId) return toast.error("Selecciona un proveedor.");
-                        setSubmitting(true);
-                        try {
-                          const res = await fetch("/api/admin/ai/models/sync", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ providerId: pId })
-                          });
-                          const data = await res.json();
-                          if (!res.ok) throw new Error(data.error);
-                          toast.success(`Sincronización exitosa. ${data.importedCount} modelos importados (deshabilitados por defecto).`);
-                          loadAll();
-                        } catch(e: any) {
-                          toast.error(e.message);
-                        } finally {
-                          setSubmitting(false);
-                        }
-                      }}
-                      disabled={submitting}
-                      className="w-full sm:w-auto bg-secondary text-secondary-foreground rounded-xl gap-2 hover:bg-secondary/80">
-                      {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}Sincronizar
+                      onClick={handleDiscoverModels}
+                      disabled={discovering || !syncProviderId}
+                      className="w-full sm:w-auto bg-secondary text-secondary-foreground rounded-xl gap-2 hover:bg-secondary/80"
+                    >
+                      {discovering ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
+                      Descubrir modelos
                     </Button>
                   </div>
                 </div>
+
+                {/* Paso 2: Lista de modelos descubiertos con checkboxes */}
+                <AnimatePresence>
+                  {discoveredModels !== null && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="space-y-3 border border-glass-border rounded-xl p-4 bg-background/30"
+                    >
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-semibold text-foreground">
+                            {discoveredModels.length} modelos encontrados
+                          </span>
+                          <Badge variant="outline" className="text-[9px] border-emerald-500/30 text-emerald-500 bg-emerald-500/10">
+                            {discoveredModels.filter(m => !m.alreadyImported).length} nuevos
+                          </Badge>
+                          <Badge variant="outline" className="text-[9px] border-glass-border text-muted-foreground">
+                            {discoveredModels.filter(m => m.alreadyImported).length} ya importados
+                          </Badge>
+                        </div>
+                        <div className="flex gap-2">
+                          <button type="button" onClick={selectAllVisible} className="text-[10px] text-primary hover:underline">Selec. nuevos</button>
+                          <span className="text-muted-foreground text-[10px]">|</span>
+                          <button type="button" onClick={deselectAll} className="text-[10px] text-muted-foreground hover:underline">Deseleccionar todo</button>
+                        </div>
+                      </div>
+
+                      {/* Buscador */}
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                        <Input
+                          value={discoverySearch}
+                          onChange={e => setDiscoverySearch(e.target.value)}
+                          placeholder="Buscar por nombre (ej: free, fast, claude...)"
+                          className="pl-8 rounded-xl border-glass-border bg-elevated/30 text-xs h-9"
+                        />
+                      </div>
+
+                      {/* Lista de modelos con checkboxes */}
+                      <div className="max-h-64 overflow-y-auto space-y-1 pr-1">
+                        {filteredDiscovered.length === 0 ? (
+                          <p className="text-xs text-muted-foreground text-center py-4">No se encontraron modelos con ese filtro.</p>
+                        ) : (
+                          filteredDiscovered.map(m => (
+                            <label
+                              key={m.id}
+                              className={`flex items-center gap-3 p-2.5 rounded-xl cursor-pointer transition-colors hover:bg-elevated/30 ${m.alreadyImported ? "opacity-50" : ""}`}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={selectedModels.has(m.id)}
+                                onChange={() => !m.alreadyImported && toggleModelSelection(m.id)}
+                                disabled={m.alreadyImported}
+                                className="w-4 h-4 accent-primary rounded"
+                              />
+                              <span className="font-mono text-xs text-foreground flex-1">{m.id}</span>
+                              {m.alreadyImported && (
+                                <Badge variant="outline" className="text-[9px] border-glass-border text-muted-foreground shrink-0">ya importado</Badge>
+                              )}
+                            </label>
+                          ))
+                        )}
+                      </div>
+
+                      {/* Botón de importar */}
+                      <div className="flex items-center justify-between pt-2 border-t border-glass-border">
+                        <span className="text-xs text-muted-foreground">{selectedModels.size} modelo(s) seleccionado(s)</span>
+                        <Button
+                          type="button"
+                          onClick={handleImportSelected}
+                          disabled={importing || selectedModels.size === 0}
+                          className="bg-primary text-primary-foreground rounded-xl gap-2 text-xs"
+                        >
+                          {importing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Download className="w-3.5 h-3.5" />}
+                          Importar seleccionados
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </CardContent>
             </Card>
 
-            {models.length === 0 ? (
-              <div className="text-center py-12 border border-dashed border-glass-border rounded-2xl text-muted-foreground text-sm">No hay modelos configurados.</div>
+            {/* Buscador de modelos existentes */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                value={modelSearch}
+                onChange={e => setModelSearch(e.target.value)}
+                placeholder="Buscar en modelos configurados (nombre, proveedor, ID)..."
+                className="pl-10 rounded-xl border-glass-border bg-background/30"
+              />
+            </div>
+
+            {filteredModels.length === 0 ? (
+              <div className="text-center py-12 border border-dashed border-glass-border rounded-2xl text-muted-foreground text-sm">
+                {modelSearch ? "No se encontraron modelos con ese filtro." : "No hay modelos configurados."}
+              </div>
             ) : (
               <div className="grid gap-3">
-                {models.map(m => (
+                {filteredModels.map(m => (
                   <Card key={m.id} className="glass-panel border-glass-border bg-background/25 hover:border-primary/20 transition-colors">
                     <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div className="space-y-1.5 flex-1">
@@ -343,7 +517,7 @@ export default function AdminIAPage() {
                           <span>Latencia: {m.latencyTier}</span>
                         </div>
                       </div>
-                      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                      <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-muted-foreground">Activo</span>
                           <Switch checked={m.enabled} onCheckedChange={v => handleToggleModel(m.id, "enabled", v)} />
@@ -353,6 +527,15 @@ export default function AdminIAPage() {
                           <span className="text-xs text-muted-foreground">Uso clínico</span>
                           <Switch checked={m.clinicalAllowed} onCheckedChange={v => handleToggleModel(m.id, "clinicalAllowed", v)} />
                         </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleDeleteModel(m.id, m.modelName)}
+                          className="text-destructive hover:bg-destructive/10 rounded-lg gap-1 self-end sm:self-auto h-8 px-2"
+                          title="Eliminar modelo"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>
@@ -381,6 +564,18 @@ export default function AdminIAPage() {
               </CardContent>
             </Card>
 
+            {/* Nota informativa sobre la política clinical_triage */}
+            <Card className="border-amber-500/20 bg-amber-500/5 glass-panel">
+              <CardContent className="p-4 flex items-start gap-3">
+                <AlertCircle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                <div className="text-xs text-muted-foreground space-y-1">
+                  <p className="font-semibold text-amber-500">Importante sobre la política <span className="font-mono">clinical_triage</span></p>
+                  <p>Si el chat de IA no funciona, verifica que la política <span className="font-mono">clinical_triage</span> tenga <span className="font-mono">allowedModels</span> vacío (permite cualquier modelo clínico) o que contenga los IDs exactos de los modelos configurados con <strong>Uso clínico</strong> activado.</p>
+                  <p>El gateway de IA aplica un fallback inteligente: si ningún modelo del sistema coincide con <span className="font-mono">allowedModels</span>, usará automáticamente cualquier modelo habilitado.</p>
+                </div>
+              </CardContent>
+            </Card>
+
             {policies.length === 0 ? (
               <div className="text-center py-12 border border-dashed border-glass-border rounded-2xl text-muted-foreground text-sm">No hay políticas de ruteo configuradas.</div>
             ) : (
@@ -396,7 +591,8 @@ export default function AdminIAPage() {
                         </div>
                         <p className="text-[10px] text-muted-foreground">
                           Costo: {p.maxCost} · Latencia: {p.maxLatency}
-                          {p.allowedModels.length > 0 && ` · ${p.allowedModels.length} modelo(s)`}
+                          {p.allowedModels.length > 0 && ` · Modelos: ${p.allowedModels.join(", ")}`}
+                          {p.fallbackChain.length > 0 && ` · Cadena: ${p.fallbackChain.join(" → ")}`}
                         </p>
                       </div>
                       <Button variant="ghost" size="sm" onClick={() => handleDeletePolicy(p.id)} className="text-destructive hover:bg-destructive/10 rounded-lg gap-1 self-end sm:self-center">

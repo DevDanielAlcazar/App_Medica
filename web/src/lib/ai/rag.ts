@@ -99,7 +99,7 @@ function extractQueryKeywords(query: string): string[] {
  */
 export async function searchMedicalKnowledge(
   userQuery: string,
-  limit = 3
+  limit = 5
 ): Promise<string> {
   try {
     const corpus = await loadRagCorpus();
@@ -114,7 +114,7 @@ export async function searchMedicalKnowledge(
     const scoredChunks = corpus.map((chunk) => {
       let score = 0;
       
-      // 1. Coincidencia con retrieval_keywords
+      // 1. Coincidencia con retrieval_keywords (normalizando acentos para mejor matching)
       const normalizedKeywords = (chunk.retrieval_keywords || []).map((k) =>
         k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       );
@@ -126,15 +126,21 @@ export async function searchMedicalKnowledge(
         );
         if (matchesKeyword) score += 3; // Peso alto por palabra clave de recuperación directa
         
-        // 2. Coincidencia en el dominio clínico o descripción
-        const domainLower = chunk.clinical_domain?.toLowerCase() || "";
+        // 2. Coincidencia en el dominio clínico (también normalizado)
+        const domainLower = (chunk.clinical_domain || "")
+          .toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         if (domainLower.includes(kw)) score += 2;
 
         // 3. Coincidencia general en el contenido seguro de la guía
-        const messageLower = chunk.safe_user_message?.toLowerCase() || "";
-        const evidenceLower = chunk.evidence_summary?.toLowerCase() || "";
+        const messageLower = (chunk.safe_user_message || "")
+          .toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const evidenceLower = (chunk.evidence_summary || "")
+          .toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const reasoningLower = (chunk.internal_reasoning_summary || "")
+          .toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         if (messageLower.includes(kw)) score += 1;
         if (evidenceLower.includes(kw)) score += 1;
+        if (reasoningLower.includes(kw)) score += 0.5;
       }
 
       // Boost extra para casos de banderas rojas clínicas relevantes
@@ -156,19 +162,40 @@ export async function searchMedicalKnowledge(
       return "";
     }
 
-    console.log(`[RAG Engine] Encontrados ${hits.length} Chunks relevantes.`);
+    console.log(`[RAG Engine] Encontrados ${hits.length} Chunks relevantes (scores: ${hits.map(h => h.score.toFixed(1)).join(", ")}).`);
 
     // Construir el bloque de contexto estructurado para inyectar en el prompt
     let contextBlock = "\n=== CONTEXTO MÉDICO DE SOPORTE (RAG - GUÍAS DE PRÁCTICA CLÍNICA VIGENTES) ===\n";
     hits.forEach((hit, index) => {
       const c = hit.chunk;
-      contextBlock += `\n[Fuente clínica #${index + 1}: ${c.clinical_domain} (Nivel Severidad: ${c.severity_level})]\n`;
-      contextBlock += `- Lineamientos seguros para la IA: ${c.safe_user_message}\n`;
-      contextBlock += `- Restricciones (Lo que la IA NO debe decir/asumir): ${c.must_not_say.join(" | ")}\n`;
-      contextBlock += `- Preguntas requeridas para descartar riesgo: ${c.must_ask.join(" | ")}\n`;
-      contextBlock += `- Resumen de evidencia: ${c.evidence_summary}\n`;
+      contextBlock += `\n[Fuente clínica #${index + 1}: ${c.clinical_domain} (Severidad: ${c.severity_level}`;
+      if (c.population && c.population.length > 0) {
+        contextBlock += ` | Población: ${c.population.join(", ")}`;
+      }
+      if (c.red_flag_relevant) {
+        contextBlock += ` | ⚠️ BANDERA ROJA`;
+      }
+      contextBlock += `)]\n`;
+      contextBlock += `- Orientación segura: ${c.safe_user_message}\n`;
+      if (c.internal_reasoning_summary) {
+        contextBlock += `- Razonamiento clínico: ${c.internal_reasoning_summary}\n`;
+      }
+      contextBlock += `- Evidencia: ${c.evidence_summary}\n`;
+      if (c.must_ask && c.must_ask.length > 0) {
+        contextBlock += `- ❓ PREGUNTAR AL PACIENTE (obligatorio): ${c.must_ask.join(" | ")}\n`;
+      }
+      if (c.must_not_say && c.must_not_say.length > 0) {
+        contextBlock += `- 🚫 NUNCA DECIR/ASUMIR: ${c.must_not_say.join(" | ")}\n`;
+      }
+      if (c.clinical_action_type) {
+        contextBlock += `- Acción clínica: ${c.clinical_action_type}\n`;
+      }
     });
     contextBlock += "\n===========================================================================\n";
+    contextBlock += "INSTRUCCIÓN OBLIGATORIA: Usa el contexto clínico anterior para orientar al paciente con precisión. " +
+      "Si hay preguntas marcadas como 'PREGUNTAR AL PACIENTE', hazlas antes de continuar con la orientación. " +
+      "Respeta estrictamente las restricciones 'NUNCA DECIR/ASUMIR'. " +
+      "Cita brevemente la fuente clínica cuando sea relevante para dar confianza al paciente.\n";
 
     return contextBlock;
   } catch (error) {
