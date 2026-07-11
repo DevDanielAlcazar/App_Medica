@@ -32,6 +32,36 @@ async function main() {
     console.log(`El usuario superadmin ya existe: ${existingUser.email}`);
   }
 
+  // 1.5 Sembrar un médico verificado (activo) para poder agendar citas
+  const doctorEmail = "doctor.ramirez@angelicamed.com";
+  const existingDoctor = await prisma.user.findUnique({
+    where: { email: doctorEmail }
+  });
+
+  if (!existingDoctor) {
+    const hashedDocPassword = await bcrypt.hash("DoctorRamirez2026!", 10);
+    const doctor = await prisma.user.create({
+      data: {
+        email: doctorEmail,
+        password: hashedDocPassword,
+        name: "Dr. Ramírez",
+        role: "medico",
+        doctorProfile: {
+          create: {
+            cedula: "CED-12345678",
+            verificationStatus: "activo",
+            bankName: "Banco de Salud",
+            bankAccountName: "Ramirez Gomez",
+            clabe: "123456789012345678",
+          }
+        }
+      }
+    });
+    console.log(`Usuario médico Dr. Ramírez creado exitosamente: ${doctor.email}`);
+  } else {
+    console.log(`El usuario médico Dr. Ramírez ya existe: ${existingDoctor.email}`);
+  }
+
   // 2. Sembrar proveedores de IA por defecto
   const providers = [
     {

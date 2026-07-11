@@ -14,4 +14,6 @@ export interface ClinicalCase {
   title: string;
   status: CaseStatus;
   timeline: TimelineEvent[];
+  createdAt: string;
+  updatedAt: string;
 }

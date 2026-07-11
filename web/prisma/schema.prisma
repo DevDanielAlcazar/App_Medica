@@ -174,7 +174,24 @@ model RoutingPolicy {
   fallbackChain          String[]
   maxCost                String     @default("medium")
   maxLatency             String     @default("medium")
-  requireClinicalApproved Boolean    @default(false)
+  requireClinicalApproved Boolean   @default(false)
   createdAt              DateTime   @default(now())
   updatedAt              DateTime   @updatedAt
+}
+
+model SubscriptionPlan {
+  id              String   @id @default(uuid())
+  name            String   // "Básico", "Familiar", "Premium"
+  description     String
+  stripePriceId   String?  // price_id de Stripe (test o producción)
+  stripeProductId String?
+  credits         Int      @default(0) // créditos mensuales incluidos
+  price           Float    // precio en MXN (o moneda configurada)
+  currency        String   @default("MXN")
+  interval        String   @default("monthly") // monthly, yearly, one_time
+  isActive        Boolean  @default(true)
+  features        Json     @default("[]") // lista de bullets de features
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }

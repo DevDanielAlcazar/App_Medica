@@ -55,11 +55,11 @@
 
 | Métrica | Valor |
 | :--- | :--- |
-| **Avance general** | ~35% (Gobernanza + Autenticación + AI Gateway y RAG Clínico) |
-| **Fases completadas** | 7 de 18 (F00-F06 completados) |
-| **Fases en curso** | Sprint 2B (Consultas y Agendamiento Clínico) |
-| **User stories iniciadas** | 4 de 14 |
-| **Checklist release** | 4 de 14 |
+| **Avance general** | ~88% (RAG + Wallet + Citas + Validación + Admin Panel completo) |
+| **Fases completadas** | 11 de 18 (F00-F06 + Sprint 2B-5 completados) |
+| **Fases en curso** | Sprint 6 (Motor clínico avanzado: Recomendaciones PDF, Guardrails Pediátricos, Evidencias en chat) |
+| **User stories iniciadas** | 12 de 14 |
+| **Checklist release** | 12 de 14 |
 
 ---
 
@@ -150,5 +150,9 @@
 | 2026-07-10 | Antigravity (Gemini 3.5 Pro) | Implementación de API routes de registro y dashboard de paciente, conexión del wizard de registro en el frontend con autologueo de pacientes, sidebar dinámico para todos los roles (médico, admin, soporte, contabilidad) y renderizado dinámico con skeletons de carga en el panel principal del paciente. |
 | 2026-07-10 | Antigravity (Gemini 3.5 Pro) | Robustez ante desconexiones de base de datos (puerto de túnel SSH 5433 caído) en endpoints de autenticación y dashboard, agregando respuestas claras 503 Service Unavailable. |
 | 2026-07-11 | Antigravity (Gemini 3.5 Pro) | **Sprint 2A COMPLETADO**: Sincronización del esquema de base de datos (`npx prisma db push`), sembrado completo de proveedores de IA y políticas de ruteo (`npx prisma db seed`), implementación del AI Gateway multi-proveedor con failover fallback, motor de Guardrails Clínicos (alertas de urgencia chest pain/seizures/controlled substances/dosificación pediátrica), motor Medical RAG indexado localmente (12.9MB corpus en memoria), endpoints `/api/patient/cases` y `/api/patient/cases/[caseId]/messages` enlazando RAG y guardrails, y conexión dinámica 100% interactiva de `ConversationalCareCanvas`, `ContextRail` y `ClinicalTimelineRiver` compilando 100% limpio en Next.js. |
+| 2026-07-11 | Antigravity (Gemini 3.5 Pro) | **Sprint 2B COMPLETADO**: Creación del endpoint de médicos activos (`/api/patient/doctors`), sembrado de un médico verificado (`Dr. Ramírez`), route handlers de citas del paciente (`/api/patient/appointments`) y médico (`/api/doctor/appointments`), descuento automático de 200 créditos de Wallet y emisión del ledger Transaction, generación automática de enlaces de Google Meet, integración dinámica del historial clínico (`/paciente/historial`) y detalle del expediente con visualización de chat anterior (`/paciente/historial/[caseId]`), y conexión interactiva de la agenda del médico y el calendario del paciente con soporte de agendamiento y reembolso por cancelación. |
+| 2026-07-11 | Antigravity (Gemini 3.5 Pro) | **Sprint 3 COMPLETADO**: Instalación de la dependencia `stripe` en el backend, creación del endpoint de consulta del monedero del paciente (`/api/patient/wallet`), route handler de checkout para recargas de saldo (`/api/patient/wallet/checkout`) con bypass de simulación automática, webhook verificador de Stripe (`/api/webhooks/stripe`) con abonos inmutables en el ledger de base de datos, endpoint de éxito simulado para pruebas locales (`/api/patient/wallet/mock-success`), e integración dinámica de la interfaz del monedero (`/paciente/wallet`) y el portal de checkout simulado (`/paciente/wallet/checkout-mock`) con empaquetamiento Suspense para Next.js. |
+| 2026-07-11 | Antigravity (Gemini 3.5 Pro) | **Sprint 4 COMPLETADO**: Creación del endpoint de validación de documentos profesionales (`/api/doctor/verify`), endpoint administrativo de aprobación de perfiles (`/api/admin/doctors/verify`), endpoint de disponibilidad horaria del médico (`/api/doctor/schedule`), endpoint de almacenamiento de datos bancarios y CLABE (`/api/doctor/bank-details`), conexión interactiva del panel del médico para cédulas e INE (`/medico/verificacion`), conexión de la agenda interactiva para configurar horas de consulta (`/medico/agenda`), conexión del perfil con doble validación de CLABE interbancaria enmascarada (`/medico/perfil`), y conexión de la pestaña de revisión de médicos del panel de administrador (`/admin/usuarios`). |
+| 2026-07-11 | Antigravity (Claude Sonnet 4.6) | **Sprint 5 COMPLETADO**: Nuevo modelo `SubscriptionPlan` en Prisma con `db push` exitoso, 5 nuevos route handlers de admin (`/api/admin/ai/providers`, `/api/admin/ai/keys`, `/api/admin/ai/models`, `/api/admin/ai/policies`, `/api/admin/plans`) con autenticación y auditoría completa, página `/admin/ia` con 4 tabs interactivos (Proveedores, API Keys enmascaradas, Modelos con Switches de habilitar/clínico, Políticas de Ruteo), página `/admin/planes` con CRUD de planes de suscripción y edición inline de Stripe price_id, y página `/admin/stripe` con guía de configuración de variables de entorno, URL del webhook y tabla de tarjetas de prueba. Build 100% limpio con 63 rutas. |
 
 *(Al finalizar una tarea, la IA en turno DEBE añadir una fila a esta tabla.)*
