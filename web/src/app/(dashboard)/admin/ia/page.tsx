@@ -102,6 +102,16 @@ export default function AdminIAPage() {
     if (!res.ok) { toast.error(data.error); return; }
     setModels(prev => prev.map(m => m.id === modelId ? { ...m, [field]: value } : m));
   };
+
+  const handleDeleteModel = async (id: string) => {
+    if (!confirm("¿Eliminar este modelo?")) return;
+    try {
+      const res = await fetch(`/api/admin/ai/models?id=${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error((await res.json()).error);
+      toast.success("Modelo eliminado.");
+      loadAll();
+    } catch (e: any) { toast.error(e.message); }
+  };
   const handleAddModel = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -354,6 +364,9 @@ export default function AdminIAPage() {
                           <Switch checked={m.clinicalAllowed} onCheckedChange={v => handleToggleModel(m.id, "clinicalAllowed", v)} />
                         </div>
                       </div>
+                      <Button variant="ghost" size="sm" onClick={() => handleDeleteModel(m.id)} className="text-destructive hover:bg-destructive/10 rounded-lg gap-1 self-end sm:self-center ml-auto">
+                        <Trash2 className="w-3.5 h-3.5" /> Eliminar
+                      </Button>
                     </CardContent>
                   </Card>
                 ))}
