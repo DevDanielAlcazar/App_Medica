@@ -30,7 +30,7 @@ export default function AdminIAPage() {
   const [loading, setLoading] = useState(true);
 
   /* Forms */
-  const [newProv, setNewProv] = useState({ name: "", protocol: "openai", baseUrl: "", completionEndpoint: "/v1/chat/completions" });
+  const [newProv, setNewProv] = useState({ name: "", protocol: "openai", baseUrl: "", completionEndpoint: "/chat/completions" });
   const [newKey, setNewKey] = useState({ providerId: "", label: "", secret: "", rateLimit: "", monthlyBudget: "" });
   const [showSecret, setShowSecret] = useState(false);
   const [newModel, setNewModel] = useState({ providerId: "", modelName: "", displayName: "" });
@@ -80,7 +80,7 @@ export default function AdminIAPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       toast.success("Proveedor creado.");
-      setNewProv({ name: "", protocol: "openai", baseUrl: "", completionEndpoint: "/v1/chat/completions" });
+      setNewProv({ name: "", protocol: "openai", baseUrl: "", completionEndpoint: "/chat/completions" });
       loadAll();
     } catch (e: any) { toast.error(e.message); } finally { setSubmitting(false); }
   };
@@ -270,7 +270,11 @@ export default function AdminIAPage() {
                     </select>
                   </div>
                   <div className="space-y-1"><label className="text-[10px] font-bold text-muted-foreground uppercase">Base URL</label><Input value={newProv.baseUrl} onChange={e => setNewProv(p => ({ ...p, baseUrl: e.target.value }))} placeholder="https://api.openai.com" required className="rounded-xl border-glass-border bg-elevated/35" /></div>
-                  <div className="space-y-1 sm:col-span-2"><label className="text-[10px] font-bold text-muted-foreground uppercase">Endpoint de completions</label><Input value={newProv.completionEndpoint} onChange={e => setNewProv(p => ({ ...p, completionEndpoint: e.target.value }))} placeholder="/v1/chat/completions" required className="rounded-xl border-glass-border bg-elevated/35" /></div>
+                  <div className="space-y-1 sm:col-span-2">
+                    <label className="text-[10px] font-bold text-muted-foreground uppercase">Endpoint de completions</label>
+                    <Input value={newProv.completionEndpoint} onChange={e => setNewProv(p => ({ ...p, completionEndpoint: e.target.value }))} placeholder="/chat/completions" required className="rounded-xl border-glass-border bg-elevated/35" />
+                    <p className="text-[9px] text-muted-foreground">Solo el sufijo: <span className="font-mono">/chat/completions</span>. La Base URL ya incluye el prefijo de versión (ej: <span className="font-mono">/v1</span>).</p>
+                  </div>
                   <div className="flex items-end"><Button type="submit" disabled={submitting} className="w-full bg-primary text-primary-foreground rounded-xl gap-2">{submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}Agregar</Button></div>
                 </form>
               </CardContent>

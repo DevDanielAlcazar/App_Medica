@@ -163,8 +163,9 @@ export async function POST(
 
       timelineUpdate = timelineEvent;
     } else {
-      // 5. Si pasa el guardrail, realizar búsqueda RAG en base de conocimiento
-      const ragContext = await searchMedicalKnowledge(content);
+      // 5. Si pasa el guardrail, realizar búsqueda RAG usando el historial completo de la conversación
+      // para no perder el contexto médico original si el paciente responde corto (ej. "no, ninguno").
+      const ragContext = await searchMedicalKnowledge(fullTextHistory);
 
       // 6. Preparar el Prompt del Sistema Clínico (Reglas de Gobernanza Médica)
       const systemPrompt = `Eres Angélica, un asistente clínico de inteligencia artificial diseñado para orientar a pacientes con rigor clínico.
@@ -174,8 +175,9 @@ NORMAS INQUEBRANTABLES:
 - NUNCA indiques antibióticos ni tratamientos de especialidad sin confirmación física.
 - Si el paciente presenta fatiga severa, dolor de pecho u opresión, recomiéndale llamar al 911 de inmediato.
 - Sé claro, comprensivo y utiliza un tono profesional pero empático.
+- CONTINUIDAD DE LA CHARLA: Analiza detenidamente el historial de la conversación. NO repitas preguntas que el paciente ya respondió anteriormente ni lo trates como un caso nuevo en cada mensaje. Las preguntas sugeridas por la guía (RAG) son solo si no tienes esa información todavía.
 
-${ragContext ? ragContext : "No se encontró contexto clínico específico para este síntoma en los tomos. Orienta al paciente de manera conservadora y pregúntale más detalles."}
+${ragContext ? ragContext : "No se encontró contexto clínico específico para este síntoma. Mantén la continuidad de la conversación y orienta al paciente de manera conservadora."}
 `;
 
       // 7. Preparar la cadena de mensajes para el AI Gateway

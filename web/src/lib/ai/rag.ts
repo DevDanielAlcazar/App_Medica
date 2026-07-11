@@ -192,10 +192,11 @@ export async function searchMedicalKnowledge(
       }
     });
     contextBlock += "\n===========================================================================\n";
-    contextBlock += "INSTRUCCIÓN OBLIGATORIA: Usa el contexto clínico anterior para orientar al paciente con precisión. " +
-      "Si hay preguntas marcadas como 'PREGUNTAR AL PACIENTE', hazlas antes de continuar con la orientación. " +
+    contextBlock += "INSTRUCCIÓN OBLIGATORIA: Usa el contexto clínico anterior como tu guía principal. " +
+      "Las preguntas marcadas como 'PREGUNTAR AL PACIENTE' son fundamentales, PERO PRIMERO REVISA EL HISTORIAL DE LA CHARLA: " +
+      "si el paciente ya respondió esa información, NO la vuelvas a preguntar. " +
       "Respeta estrictamente las restricciones 'NUNCA DECIR/ASUMIR'. " +
-      "Cita brevemente la fuente clínica cuando sea relevante para dar confianza al paciente.\n";
+      "Cita brevemente la fuente clínica cuando sea relevante.\n";
 
     return contextBlock;
   } catch (error) {
