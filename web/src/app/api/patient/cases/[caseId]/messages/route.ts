@@ -66,7 +66,7 @@ export async function POST(
     }
 
     const userId = token.replace("session-token-", "");
-    const { content } = await request.json();
+    const { content, attachments } = await request.json();
 
     if (!content || !content.trim()) {
       return NextResponse.json(
@@ -108,8 +108,19 @@ export async function POST(
       detectedWeight = parseFloat(weightMatch[1]);
     }
 
+    // Buscar alergias (ej. "alérgico a la penicilina", "alergia a las sulfas", "alergico al paracetamol")
+    const patientAllergies: string[] = [];
+    const allergyRegex = /(?:alergico\s+a\s+la|alergico\s+a|alergia\s+a\s+la|alergia\s+a|alergico\s+al|alergia\s+al)\s+([a-zñáéíóú]+)/gi;
+    let match;
+    while ((match = allergyRegex.exec(fullTextHistory)) !== null) {
+      const allergyItem = match[1].toLowerCase().trim();
+      if (allergyItem && allergyItem.length > 2 && !patientAllergies.includes(allergyItem)) {
+        patientAllergies.push(allergyItem);
+      }
+    }
+
     // 4. Evaluar GUARDRAILS CLÍNICOS
-    const guardrailResult = evaluateClinicalGuardrails(content, detectedAge, detectedWeight);
+    const guardrailResult = evaluateClinicalGuardrails(content, detectedAge, detectedWeight, patientAllergies);
 
     // Guardar el mensaje del usuario en la base de datos de inmediato
     const userMessage = await prisma.message.create({
@@ -117,6 +128,7 @@ export async function POST(
         caseId,
         sender: "user",
         content,
+        attachments: attachments || [],
       },
     });
 

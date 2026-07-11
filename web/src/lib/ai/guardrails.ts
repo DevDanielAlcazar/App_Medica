@@ -48,7 +48,8 @@ const CONTROLLED_SUBSTANCES = [
 export function evaluateClinicalGuardrails(
   messageContent: string,
   patientAge?: number,
-  patientWeight?: number
+  patientWeight?: number,
+  patientAllergies?: string[]
 ): GuardrailResult {
   const contentLower = messageContent.toLowerCase();
 
@@ -80,7 +81,61 @@ export function evaluateClinicalGuardrails(
     };
   }
 
-  // 3. Validar REGLAS DE PEDIATRÍA (Evitar dosificaciones ciegas en menores)
+  // 3. Guardrail G-005: ADVERTENCIA EN EMBARAZO (Automedicación con alto riesgo)
+  const isPregnancyKeywords = ["embarazada", "embarazo", "gestacion", "gestando", "meses de embarazo", "semanas de embarazo"].some(
+    (kw) => contentLower.includes(kw)
+  );
+  if (isPregnancyKeywords) {
+    const isAskingMedication = ["tomar", "puedo tomar", "dosis", "pastilla", "medicamento", "ibuprofeno", "aspirina", "naproxeno"].some(
+      (kw) => contentLower.includes(kw)
+    );
+    if (isAskingMedication) {
+      return {
+        passed: false,
+        riskLevel: "warning",
+        blockedReason: "Solicitud de automedicación durante estado de embarazo.",
+        autoResponse: "🤰 ADVERTENCIA DE SEGURIDAD EN EL EMBARAZO: Durante la gestación, la automedicación representa un riesgo sumamente elevado para el feto y la madre. Ciertos analgésicos comunes de venta libre (como el ibuprofeno, naproxeno o la aspirina) están contraindicados. Por favor, consulta directamente a tu ginecólogo u obstetra antes de ingerir cualquier tipo de fármaco.",
+        notes: "Pregnancy Safety: Bloqueo de recomendación de fármacos durante embarazo."
+      };
+    }
+  }
+
+  // 4. Guardrail G-006: ALERGIAS DECLARADAS Y ALERTAS CRUZADAS
+  if (patientAllergies && patientAllergies.length > 0) {
+    const detectedAllergyAlert = patientAllergies.find((allergy) =>
+      contentLower.includes(allergy.toLowerCase())
+    );
+    
+    // Si menciona el alérgeno en la misma pregunta del medicamento a tomar
+    if (detectedAllergyAlert) {
+      return {
+        passed: false,
+        riskLevel: "warning",
+        blockedReason: `El paciente tiene registrada una alergia a: ${detectedAllergyAlert}`,
+        autoResponse: `⚠️ ALERTA DE ALERGIA DETECTADA: Tienes registrada una alergia activa a "${detectedAllergyAlert}". Por seguridad clínica estricta, no debes consumir este medicamento ni compuestos que lo contengan. Te recomendamos consultar una alternativa segura con tu médico especialista.`,
+        notes: `Allergy Safety: Mención de medicamento alérgico registrado.`
+      };
+    }
+
+    // Alerta de alergia cruzada genérica (Penicilinas -> Cefalosporinas)
+    const mentionsPenicillinAllergy = patientAllergies.some(a => a.toLowerCase().includes("penicilina"));
+    if (mentionsPenicillinAllergy) {
+      const mentionsCephalosporins = ["cefalexina", "ceftriaxona", "cefadroxilo", "cefaclor"].some(
+        (kw) => contentLower.includes(kw)
+      );
+      if (mentionsCephalosporins) {
+        return {
+          passed: false,
+          riskLevel: "warning",
+          blockedReason: "Riesgo de reactividad alérgica cruzada (Penicilinas -> Cefalosporinas).",
+          autoResponse: "⚠️ ADVERTENCIA DE ALERGIA CRUZADA: Has registrado alergia a las Penicilinas. El medicamento por el que consultas pertenece a las Cefalosporinas, las cuales presentan riesgo de reacción alérgica cruzada en pacientes hipersensibles a la penicilina. Por favor, evita su uso hasta confirmación por tu médico tratante.",
+          notes: "Allergy Safety: Posible alergia cruzada detectada."
+        };
+      }
+    }
+  }
+
+  // 5. Validar REGLAS DE PEDIATRÍA (Evitar dosificaciones ciegas en menores)
   const isPediatricKeywords = ["hijo", "hija", "bebe", "niño", "niña", "pequeño", "meses", "años de edad"].some(
     (kw) => contentLower.includes(kw)
   );
@@ -88,11 +143,9 @@ export function evaluateClinicalGuardrails(
   const isUnderage = patientAge !== undefined && patientAge < 12;
 
   if (isUnderage || isPediatricKeywords) {
-    // Si falta el peso o la edad exacta, bloquear cualquier recomendación cuantitativa de dosis
     const hasWeight = patientWeight !== undefined && patientWeight > 0;
     const hasAge = patientAge !== undefined && patientAge > 0;
     
-    // Si la persona pregunta explícitamente por "dosis", "cuanto le doy", "cuantos ml", "cuantos mg"
     const isAskingDosage = ["dosis", "cuanto le doy", "ml", "mg", "darle", "tomar", "jarabe"].some((kw) =>
       contentLower.includes(kw)
     );
@@ -114,3 +167,4 @@ export function evaluateClinicalGuardrails(
     riskLevel: "safe",
   };
 }
+

@@ -5,15 +5,42 @@ import Link from "next/link";
 import { useCaseStore } from "@/stores/caseStore";
 import { useUserStore } from "@/stores/userStore";
 import { motion } from "framer-motion";
-import { Send, Paperclip, Calendar, FolderOpen, Stethoscope, Loader2 } from "lucide-react";
+import { Send, Paperclip, Calendar, FolderOpen, Stethoscope, Loader2, FileText, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import ActionReceipt from "./clinical/ActionReceipt";
 
 interface Message {
   id: string;
   sender: string;
   content: string;
   createdAt: string;
+  attachments?: Array<{
+    url: string;
+    name: string;
+    type: string;
+    size: number;
+  }>;
+}
+
+function parseActionReceipt(content: string): { cleanContent: string; receipt: any | null } {
+  const regex = /\[ACTION_RECEIPT:(symptom|allergy|medication|history):([^:]+):([^\]]+)\]/i;
+  const match = content.match(regex);
+  if (match) {
+    const cleanContent = content.replace(regex, "").trim();
+    return {
+      cleanContent,
+      receipt: {
+        id: crypto.randomUUID(),
+        type: match[1] as any,
+        title: match[2].trim(),
+        value: match[3].trim(),
+        suggestedAt: new Date().toISOString(),
+      }
+    };
+  }
+  return { cleanContent: content, receipt: null };
 }
 
 export function ConversationalCareCanvas({ className }: { className?: string }) {
@@ -24,9 +51,11 @@ export function ConversationalCareCanvas({ className }: { className?: string }) 
   const [inputText, setInputText] = useState("");
   const [loadingCase, setLoadingCase] = useState(true);
   const [sending, setSending] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
   const chatEndRef = useRef<HTMLDivElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // 1. Cargar o crear un caso clínico activo al montar
   useEffect(() => {
@@ -99,6 +128,66 @@ export function ConversationalCareCanvas({ className }: { className?: string }) 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !activeCase) return;
+
+    setUploading(true);
+    setError("");
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      // Subir archivo al endpoint
+      const uploadRes = await fetch(`/api/patient/cases/${activeCase.id}/attachments`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const uploadData = await uploadRes.json();
+      if (!uploadRes.ok) {
+        throw new Error(uploadData.error || "Error al subir el archivo.");
+      }
+
+      // Enviar el mensaje con el archivo inyectado
+      const fileUrl = uploadData.url;
+      const messageContent = `Adjunto documento clínico: ${file.name}`;
+      
+      setSending(true);
+
+      const res = await fetch(`/api/patient/cases/${activeCase.id}/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: messageContent,
+          attachments: [{
+            url: fileUrl,
+            name: file.name,
+            type: file.type,
+            size: file.size,
+          }],
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Error al enviar el mensaje con adjunto.");
+      }
+
+      // Agregar los mensajes a la lista
+      setMessages((prev) => [...prev, ...data.messages]);
+      toast.success("Documento clínico adjuntado correctamente.");
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Error al procesar el archivo.");
+    } finally {
+      setUploading(false);
+      setSending(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
 
   // 3. Enviar un nuevo mensaje
   const handleSendMessage = async (e: React.FormEvent) => {
@@ -211,33 +300,73 @@ export function ConversationalCareCanvas({ className }: { className?: string }) 
           </div>
         )}
 
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={cn(
-              "flex flex-col gap-2 max-w-[80%]",
-              msg.sender === "user" ? "self-end items-end" : "self-start items-start"
-            )}
-          >
-            <span className="text-xs text-muted-foreground ml-2">
-              {msg.sender === "user" ? "Tú" : "Asistente Clínico"} •{" "}
-              {new Date(msg.createdAt).toLocaleTimeString("es-ES", {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </span>
+        {messages.map((msg) => {
+          const { cleanContent, receipt } = parseActionReceipt(msg.content);
+          return (
             <div
+              key={msg.id}
               className={cn(
-                "p-4 rounded-2xl shadow-sm text-sm leading-relaxed whitespace-pre-line border",
-                msg.sender === "user"
-                  ? "bg-primary text-primary-foreground rounded-tr-none border-primary/20"
-                  : "bg-elevated text-foreground rounded-tl-none border-glass-border"
+                "flex flex-col gap-2 max-w-[80%]",
+                msg.sender === "user" ? "self-end items-end" : "self-start items-start"
               )}
             >
-              {msg.content}
+              <span className="text-xs text-muted-foreground ml-2">
+                {msg.sender === "user" ? "Tú" : "Asistente Clínico"} •{" "}
+                {new Date(msg.createdAt).toLocaleTimeString("es-ES", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </span>
+              <div
+                className={cn(
+                  "p-4 rounded-2xl shadow-sm text-sm leading-relaxed whitespace-pre-line border",
+                  msg.sender === "user"
+                    ? "bg-primary text-primary-foreground rounded-tr-none border-primary/20"
+                    : "bg-elevated text-foreground rounded-tl-none border-glass-border"
+                )}
+              >
+                {cleanContent}
+
+                {/* Renderizar adjuntos si existen */}
+                {msg.attachments && msg.attachments.length > 0 && (
+                  <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-glass-border/30">
+                    {msg.attachments.map((att, idx) => {
+                      const isImage = att.type.startsWith("image/");
+                      return (
+                        <div key={idx} className="flex items-center gap-2 bg-background/30 p-2 rounded-xl border border-glass-border">
+                          {isImage ? (
+                            <ImageIcon className="w-4 h-4 text-primary" />
+                          ) : (
+                            <FileText className="w-4 h-4 text-secondary" />
+                          )}
+                          <a
+                            href={att.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-primary hover:underline truncate max-w-[200px]"
+                          >
+                            {att.name}
+                          </a>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Renderizar Action Receipt interactivo si aplica */}
+              {receipt && msg.sender === "assistant" && activeCase && (
+                <ActionReceipt
+                  receipt={receipt}
+                  caseId={activeCase.id}
+                  onProcessed={() => {
+                    // Opcionalmente recargar mensajes o actualizar
+                  }}
+                />
+              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
 
         {sending && (
           <div className="flex flex-col gap-2 max-w-[80%] self-start items-start">
@@ -263,8 +392,24 @@ export function ConversationalCareCanvas({ className }: { className?: string }) 
       {/* Input Area */}
       <form onSubmit={handleSendMessage} className="p-4 bg-background/50 border-t border-glass-border backdrop-blur-md">
         <div className="relative flex items-end gap-2 bg-elevated rounded-2xl p-2 border border-glass-border focus-within:border-primary/50 transition-colors">
-          <button type="button" className="p-3 text-muted-foreground hover:text-foreground transition-colors rounded-xl hover:bg-background/50">
-            <Paperclip className="w-5 h-5" />
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            className="hidden"
+            accept="image/*,application/pdf"
+          />
+          <button
+            type="button"
+            disabled={uploading || sending}
+            onClick={() => fileInputRef.current?.click()}
+            className="p-3 text-muted-foreground hover:text-foreground transition-colors rounded-xl hover:bg-background/50 disabled:opacity-50"
+          >
+            {uploading ? (
+              <Loader2 className="w-5 h-5 animate-spin text-primary" />
+            ) : (
+              <Paperclip className="w-5 h-5" />
+            )}
           </button>
           <textarea
             placeholder="Describe tus síntomas (ej. fiebre, dolor, edad de la persona)..."

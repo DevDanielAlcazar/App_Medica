@@ -174,12 +174,8 @@ export async function routeAiRequest(
       apiKey: string;
     }> = [];
 
-    // Priorizar los proveedores según el orden de fallbackChain de la política
-    for (const fallbackProviderName of policy.fallbackChain) {
-      const provider = activeProviders.find((p) => p.name === fallbackProviderName);
-      if (!provider || provider.apiKeys.length === 0) continue;
-
-      // Filtrar modelos del proveedor permitidos por la política
+    // Función auxiliar para agregar candidatos permitidos para un proveedor determinado
+    const addCandidatesForProvider = (provider: typeof activeProviders[0]) => {
       const allowedModels = provider.models.filter((m) => {
         // Verificar si la política limita los modelos permitidos
         if (policy.allowedModels.length > 0 && !policy.allowedModels.includes(m.modelName)) {
@@ -193,16 +189,37 @@ export async function routeAiRequest(
       });
 
       for (const m of allowedModels) {
-        candidates.push({
-          provider,
-          model: m,
-          apiKey: provider.apiKeys[0].encryptedSecret,
-        });
+        // Agregar un candidato por CADA API key activa registrada para este proveedor
+        for (const key of provider.apiKeys) {
+          candidates.push({
+            provider,
+            model: m,
+            apiKey: key.encryptedSecret,
+          });
+        }
       }
+    };
+
+    // Primero agregamos los proveedores especificados en el fallbackChain de la política
+    for (const fallbackProviderName of policy.fallbackChain) {
+      const provider = activeProviders.find((p) => p.name === fallbackProviderName);
+      if (!provider || provider.apiKeys.length === 0) continue;
+      addCandidatesForProvider(provider);
+    }
+
+    // Si después de probar la cadena preferida no tenemos candidatos (o como respaldo final),
+    // agregamos CUALQUIER otro proveedor activo configurado en el sistema con API Keys activas.
+    const preferredNames = new Set(policy.fallbackChain);
+    const backupProviders = activeProviders.filter(
+      (p) => !preferredNames.has(p.name) && p.apiKeys.length > 0
+    );
+
+    for (const provider of backupProviders) {
+      addCandidatesForProvider(provider);
     }
 
     if (candidates.length === 0) {
-      throw new Error(`No hay modelos de IA disponibles u homologados clínicamente para el caso de uso: ${useCase}`);
+      throw new Error(`No hay modelos de IA disponibles o con API keys configuradas en el sistema para el caso de uso: ${useCase}`);
     }
 
     // 4. Intentar llamadas en secuencia (Failover Loop)
