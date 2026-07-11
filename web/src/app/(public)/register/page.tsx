@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
+import { LanguageToggle } from "@/components/shared/LanguageToggle";
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
@@ -17,7 +19,22 @@ export default function RegisterPage() {
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
 
   return (
-    <div className="w-full max-w-lg relative z-10">
+    <div className="w-full max-w-lg relative z-10 py-12">
+      {/* Botones de Navegación Superiores */}
+      <div className="absolute top-0 left-0">
+        <Link 
+          href="/" 
+          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors bg-background/50 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-glass-border shadow-sm"
+        >
+          <ArrowLeft className="w-4 h-4" /> Volver a Inicio
+        </Link>
+      </div>
+
+      <div className="absolute top-0 right-0 flex items-center gap-2">
+        <ThemeToggle />
+        <LanguageToggle />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

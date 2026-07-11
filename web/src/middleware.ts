@@ -36,7 +36,8 @@ export function middleware(request: NextRequest) {
   if (isAuthenticated) {
     // If accessing public routes while authenticated, redirect to their dashboard
     if (pathname === '/login' || pathname === '/register' || pathname === '/') {
-      return NextResponse.redirect(new URL(`/${userRole}`, request.url));
+      const redirectUrl = userRole === 'superadmin' ? '/admin' : `/${userRole}`;
+      return NextResponse.redirect(new URL(redirectUrl, request.url));
     }
 
     // Role-based authorization

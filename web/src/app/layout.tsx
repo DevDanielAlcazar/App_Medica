@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
-import { SafetyRibbon } from "@/components/SafetyRibbon";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/ThemeProvider";
@@ -29,7 +28,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LanguageProvider>
-            <SafetyRibbon status="warning" />
             <div className="flex-1 overflow-hidden">
               {children}
             </div>

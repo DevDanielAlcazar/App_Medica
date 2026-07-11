@@ -7,9 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LogOut, Trash2, Download } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
-  const { user } = useUserStore();
+  const { user, logout } = useUserStore();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      logout();
+      window.location.href = "/login";
+    } catch (err) {
+      console.error("Error al cerrar sesión:", err);
+    }
+  };
 
   return (
     <div className="max-w-3xl mx-auto z-10 relative space-y-8">
@@ -72,7 +84,11 @@ export default function ProfilePage() {
       </div>
 
       <div className="pt-4 border-t border-glass-border">
-        <Button variant="ghost" className="text-muted-foreground hover:text-foreground gap-2">
+        <Button 
+          variant="ghost" 
+          className="text-muted-foreground hover:text-foreground gap-2"
+          onClick={handleLogout}
+        >
           <LogOut className="w-4 h-4" /> Cerrar Sesión
         </Button>
       </div>

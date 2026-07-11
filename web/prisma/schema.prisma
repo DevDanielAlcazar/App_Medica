@@ -1,0 +1,114 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                 String         @id @default(uuid())
+  email              String         @unique
+  password           String
+  name               String
+  role               String         @default("paciente") // paciente, medico, admin, superadmin
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  
+  doctorProfile      DoctorProfile?
+  cases              ClinicalCase[]
+  wallet             Wallet?
+  appointments       Appointment[]  @relation("PatientAppointments")
+  doctorAppointments Appointment[]  @relation("DoctorAppointments")
+  auditLogs          AuditLog[]
+}
+
+model DoctorProfile {
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cedula             String?  @unique
+  ineFront           String?
+  ineBack            String?
+  verificationStatus String   @default("pendiente") // pendiente, en_revision, activo, rechazado
+  bankName           String?
+  bankAccountName    String?
+  clabe              String?
+  schedule           Json?    // Almacena bloques de disponibilidad
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model ClinicalCase {
+  id           String        @id @default(uuid())
+  userId       String
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title        String
+  status       String        @default("en_analisis") // en_analisis, enfermo, derivado, en_tratamiento, curado, archivado
+  timeline     Json          @default("[]") // Lista de eventos en formato JSON
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  
+  messages     Message[]
+  appointments Appointment[]
+}
+
+model Message {
+  id           String       @id @default(uuid())
+  caseId       String
+  clinicalCase ClinicalCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  sender       String       // user, assistant
+  content      String
+  attachments  Json         @default("[]") // Lista de adjuntos en formato JSON
+  createdAt    DateTime     @default(now())
+}
+
+model Appointment {
+  id           String        @id @default(uuid())
+  patientId    String
+  patient      User          @relation("PatientAppointments", fields: [patientId], references: [id], onDelete: Cascade)
+  doctorId     String
+  doctor       User          @relation("DoctorAppointments", fields: [doctorId], references: [id], onDelete: Cascade)
+  caseId       String?
+  clinicalCase ClinicalCase? @relation(fields: [caseId], references: [id], onDelete: SetNull)
+  dateTime     DateTime
+  meetLink     String?
+  status       String        @default("pending") // pending, confirmed, completed, cancelled
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Wallet {
+  id           String        @id @default(uuid())
+  userId       String        @unique
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  balance      Int           @default(0) // en créditos
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  transactions Transaction[]
+}
+
+model Transaction {
+  id          String   @id @default(uuid())
+  walletId    String
+  wallet      Wallet   @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  amount      Int
+  type        String   // in, out
+  description String
+  status      String   @default("completed") // pending, completed, failed
+  createdAt   DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  role      String?
+  action    String
+  entity    String
+  ip        String?
+  details   Json?
+  createdAt DateTime @default(now())
+}

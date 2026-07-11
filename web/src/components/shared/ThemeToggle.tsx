@@ -7,7 +7,25 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 export function ThemeToggle() {
+  const [mounted, setMounted] = React.useState(false);
   const { theme, setTheme } = useTheme();
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Button
+        variant="ghost"
+        size="icon"
+        className="relative overflow-hidden w-9 h-9"
+        disabled
+      >
+        <Sun className="h-5 w-5 opacity-50" />
+      </Button>
+    );
+  }
 
   return (
     <Button

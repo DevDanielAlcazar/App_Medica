@@ -17,7 +17,7 @@
 | **Stack Frontend** | Next.js App Router + TypeScript + Tailwind v4 + shadcn/ui + Framer Motion |
 | **Stack Backend** | Node.js TypeScript modular (bounded contexts) |
 | **Base de Datos** | PostgreSQL (confirmado, Firebase descartado) |
-| **ORM** | Prisma (pendiente de inicializar) |
+| **ORM** | Prisma (inicializado y enlazado a PostgreSQL) |
 | **Pagos** | Stripe (live para producción) |
 | **Videollamadas** | Google Meet API |
 | **Deploy** | Debian + PM2 + Cloudflare Tunnel |
@@ -42,7 +42,7 @@
 
 1. **Componentes son MOCKS:** Los 4 componentes de Jules tienen datos hardcodeados. No hay estado, no hay API, no hay interactividad real.
 2. **No existe estructura de rutas:** Solo hay `page.tsx` en la raíz. No existen `/auth`, `/dashboard/paciente`, `/dashboard/medico`, `/dashboard/admin`.
-3. **No hay Prisma/ORM:** La base de datos no está inicializada.
+3. **Prisma/ORM Inicializado:** Base de datos relacional conectada y poblada con el primer superadmin.
 4. **No hay shadcn/ui:** Los componentes usan clases CSS manuales, no shadcn.
 5. **No hay ThemeToggle:** Dark mode está hardcodeado en `layout.tsx`.
 6. **No hay i18n:** No hay implementación de ES/EN.
@@ -144,5 +144,8 @@
 | 2026-07-10 | Claude Opus 4.6 | Auditoría profunda del proyecto completo. Detección de 10 problemas. Reescritura de master_status.md y task_UI_UX.md |
 | 2026-07-10 | Jules | Fase 0 completada: Inicialización de shadcn, configuración de fuentes, providers de tema e idioma, tipado, stores de Zustand y middleware de Next.js |
 | 2026-07-10 | Jules | Fases 1-6 completadas: Rutas públicas, Auth, AppShell, Dashboards de Paciente, Médico, Admin, Soporte y Contabilidad implementados. Prisma inicializado. PWA Manifest creado. |
+| 2026-07-10 | Antigravity (Gemini 3.5 Flash) | Instalación de Prisma ORM, configuración de esquema de base de datos relacional y auditoría en PostgreSQL (túnel 5433), y seeding del usuario superadmin (superadmin@angelicamed.com) encriptado con bcryptjs. |
+| 2026-07-10 | Antigravity (Gemini 3.5 Flash) | Reubicación condicional del SafetyRibbon en el AppShell (sólo paciente), prevención de problemas de hidratación en ThemeToggle, integración de toggles en el encabezado de la Landing Page y divulgación de credenciales de superadmin. |
+| 2026-07-10 | Antigravity (Gemini 3.5 Flash) | Implementación de API routes de login, logout y me, integración de controles de sesión y persistencia dinámica en el AppShell, redireccionamiento de superadmin a /admin y adición de botones de retorno "Volver a Inicio" en login y registro. |
 
 *(Al finalizar una tarea, la IA en turno DEBE añadir una fila a esta tabla.)*

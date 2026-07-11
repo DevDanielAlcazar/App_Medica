@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Stethoscope, Activity } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
+import { LanguageToggle } from "@/components/shared/LanguageToggle";
 
 export default function Home() {
   return (
@@ -23,6 +25,8 @@ export default function Home() {
             <a href="#contact" className="hover:text-foreground transition-colors">Contacto</a>
           </nav>
           <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <LanguageToggle />
             <Link href="/login">
               <Button variant="ghost">Iniciar Sesión</Button>
             </Link>
