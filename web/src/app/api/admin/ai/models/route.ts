@@ -96,3 +96,31 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Error al crear modelo." }, { status: 500 });
   }
 }
+
+/** DELETE /api/admin/ai/models?id=xxx — Eliminar modelo */
+export async function DELETE(req: Request) {
+  try {
+    const admin = await getAdminUser();
+    if (!admin) return NextResponse.json({ error: "No autorizado." }, { status: 403 });
+
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    if (!id) return NextResponse.json({ error: "ID de modelo requerido." }, { status: 400 });
+
+    await prisma.aiModel.delete({ where: { id } });
+
+    await prisma.auditLog.create({
+      data: {
+        userId: admin.id,
+        action: "AI_MODEL_DELETED",
+        entity: "AiModel",
+        details: { modelId: id },
+      },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (e: any) {
+    console.error(e);
+    return NextResponse.json({ error: "Error al eliminar modelo." }, { status: 500 });
+  }
+}

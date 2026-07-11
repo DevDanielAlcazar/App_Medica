@@ -39,7 +39,7 @@ async function callOpenAi(
   const id = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    const url = `${baseUrl}${endpoint}`;
+    const url = baseUrl.replace(/\/$/, "") + (endpoint.startsWith("/") ? endpoint : "/" + endpoint);
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -88,7 +88,7 @@ async function callClaude(
   const id = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    const url = `${baseUrl}${endpoint}`;
+    const url = baseUrl.replace(/\/$/, "") + (endpoint.startsWith("/") ? endpoint : "/" + endpoint);
 
     // Extraer el system prompt si existe
     const systemMessage = messages.find((m) => m.role === "system")?.content;
@@ -237,7 +237,7 @@ export async function routeAiRequest(
         }
 
         let responseText = "";
-        if (provider.protocol === "openai") {
+        if (provider.protocol === "openai" || provider.protocol === "generic") {
           responseText = await callOpenAi(
             provider.baseUrl,
             provider.completionEndpoint,
