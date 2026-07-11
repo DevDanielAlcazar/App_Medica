@@ -159,3 +159,4 @@
 | 2026-07-11 | Jules | Exportación de `resolveApiKey` y creación de endpoint de auto-descubrimiento (sincronización) de modelos en el panel de administrador `/admin/ia` (`/api/admin/ai/models/sync`), evitando que el administrador deba escribir los modelos manualmente propiciando errores 404 del modelo de IA. |
 
 *(Al finalizar una tarea, la IA en turno DEBE añadir una fila a esta tabla.)*
+| 2026-07-11 | Jules | Resolución de errores de protocolo "generic" en `routeAiRequest` del AI Gateway mapeando correctamente el protocolo a OpenAi y formateo correcto de URLs al concatenar bases de proveedores personalizados para prevenir 404s en las peticiones a Modelos. Adicionalmente, creación del endpoint backend `DELETE` para Modelos para remover modelos indeseados en el panel de administrador. |
