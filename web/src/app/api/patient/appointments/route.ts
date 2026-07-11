@@ -75,32 +75,54 @@ export async function POST(request: Request) {
     const patientId = token.replace("session-token-", "");
     const { doctorId, dateTime, caseId } = await request.json();
 
-    if (!doctorId || !dateTime) {
+    if (!dateTime) {
       return NextResponse.json(
-        { error: "El doctor y la fecha/hora son obligatorios." },
+        { error: "La fecha y hora son obligatorias." },
         { status: 400 }
       );
     }
 
-    // 1. Validar existencia y verificación del médico
-    const doctor = await prisma.user.findFirst({
-      where: {
-        id: doctorId,
-        role: "medico",
-        doctorProfile: {
-          verificationStatus: "activo",
-        },
-      },
-      include: {
-        doctorProfile: true,
-      },
-    });
+    let targetDoctorId: string | null = null;
+    let doctorName = "Médico por asignar";
 
-    if (!doctor) {
-      return NextResponse.json(
-        { error: "El médico seleccionado no está disponible o no ha sido verificado." },
-        { status: 404 }
-      );
+    if (doctorId === "random") {
+      // Buscar todos los médicos verificados activos
+      const activeDoctors = await prisma.user.findMany({
+        where: {
+          role: "medico",
+          doctorProfile: {
+            verificationStatus: "activo",
+          },
+        },
+      });
+      if (activeDoctors.length > 0) {
+        const randomDoc = activeDoctors[Math.floor(Math.random() * activeDoctors.length)];
+        targetDoctorId = randomDoc.id;
+        doctorName = randomDoc.name;
+      } else {
+        targetDoctorId = null;
+        doctorName = "Médico por asignar";
+      }
+    } else if (doctorId && doctorId !== "none" && doctorId !== "sin_medico") {
+      // Validar existencia y verificación del médico específico
+      const doctor = await prisma.user.findFirst({
+        where: {
+          id: doctorId,
+          role: "medico",
+          doctorProfile: {
+            verificationStatus: "activo",
+          },
+        },
+      });
+
+      if (!doctor) {
+        return NextResponse.json(
+          { error: "El médico seleccionado no está disponible o no ha sido verificado." },
+          { status: 404 }
+        );
+      }
+      targetDoctorId = doctor.id;
+      doctorName = doctor.name;
     }
 
     // 2. Validar que el paciente tenga Wallet y saldo suficiente
@@ -133,7 +155,7 @@ export async function POST(request: Request) {
           walletId: patientWallet.id,
           amount: -APPOINTMENT_COST,
           type: "out",
-          description: `Pago de cita médica virtual con ${doctor.name}`,
+          description: `Pago de cita médica virtual - ${doctorName}`,
           status: "completed",
         },
       });
@@ -143,12 +165,12 @@ export async function POST(request: Request) {
       const appointment = await tx.appointment.create({
         data: {
           patientId,
-          doctorId,
+          doctorId: targetDoctorId,
           caseId: caseId || null,
           dateTime: new Date(dateTime),
           meetLink,
           status: "confirmed", // Cita pagada queda confirmada
-          notes: "Cita pagada con créditos de Wallet.",
+          notes: `Cita pagada con créditos de Wallet. Asignado a: ${doctorName}`,
         },
       });
 
@@ -171,7 +193,7 @@ export async function POST(request: Request) {
             type: "check",
             timestamp: new Date().toISOString(),
             title: "Cita Programada",
-            description: `Se agendó una cita virtual con ${doctor.name} para el ${dateFormatted}. Enlace de Meet asignado.`,
+            description: `Se agendó una cita virtual con ${doctorName} para el ${dateFormatted}. Enlace de Meet asignado.`,
             severity: "low" as const,
           };
 
@@ -194,7 +216,7 @@ export async function POST(request: Request) {
           entity: "Appointment",
           details: {
             appointmentId: appointment.id,
-            doctorId: doctor.id,
+            doctorId: targetDoctorId,
             cost: APPOINTMENT_COST,
           },
         },

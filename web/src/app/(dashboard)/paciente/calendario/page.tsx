@@ -15,10 +15,10 @@ interface Appointment {
   meetLink: string | null;
   status: string;
   notes: string | null;
-  doctor: {
+  doctor?: {
     name: string;
     email: string;
-  };
+  } | null;
   clinicalCase?: {
     id: string;
     title: string;
@@ -50,7 +50,7 @@ export default function CalendarPage() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   
   // Formulario de Reserva
-  const [selectedDoctorId, setSelectedDoctorId] = useState("");
+  const [selectedDoctorId, setSelectedDoctorId] = useState("random");
   const [appointmentTime, setAppointmentTime] = useState("09:00");
   const [selectedCaseId, setSelectedCaseId] = useState("");
   const [bookingLoading, setBookingLoading] = useState(false);
@@ -71,9 +71,6 @@ export default function CalendarPage() {
         const docData = await docRes.json();
         if (docData.success) {
           setDoctors(docData.doctors);
-          if (docData.doctors.length > 0) {
-            setSelectedDoctorId(docData.doctors[0].id);
-          }
         }
 
         // Cargar casos activos
@@ -207,7 +204,7 @@ export default function CalendarPage() {
                       <div className="space-y-1">
                         <span className="flex items-center gap-2 text-foreground font-semibold">
                           <div className={`w-2 h-2 rounded-full ${e.status === 'confirmed' ? 'bg-primary' : 'bg-destructive'}`} />
-                          {e.doctor.name}
+                          {e.doctor ? `Dr. ${e.doctor.name}` : "Médico por asignar"}
                         </span>
                         <span className="text-xs text-muted-foreground block">
                           Estatus: {e.status === "confirmed" ? "Confirmada y Pagada" : e.status}
@@ -288,23 +285,19 @@ export default function CalendarPage() {
                 {/* Selección de Médico */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-muted-foreground uppercase">Médico Especialista</label>
-                  {doctors.length === 0 ? (
-                    <div className="text-xs text-destructive bg-destructive/10 p-2.5 rounded-lg border border-destructive/20">
-                      No hay médicos verificados disponibles en este momento.
-                    </div>
-                  ) : (
-                    <select
-                      value={selectedDoctorId}
-                      onChange={(e) => setSelectedDoctorId(e.target.value)}
-                      className="w-full bg-elevated border border-glass-border text-foreground text-sm rounded-xl p-3 outline-none focus:border-primary/50"
-                    >
-                      {doctors.map((d) => (
-                        <option key={d.id} value={d.id}>
-                          {d.name}
-                        </option>
-                      ))}
-                    </select>
-                  )}
+                  <select
+                    value={selectedDoctorId}
+                    onChange={(e) => setSelectedDoctorId(e.target.value)}
+                    className="w-full bg-elevated border border-glass-border text-foreground text-sm rounded-xl p-3 outline-none focus:border-primary/50"
+                  >
+                    <option value="random">⚡ Asignación aleatoria (Médico disponible)</option>
+                    <option value="sin_medico">👤 Sin médico (Queda libre para auto-asignación)</option>
+                    {doctors.map((d) => (
+                      <option key={d.id} value={d.id}>
+                        Dr. {d.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 {/* Selección de Hora */}
@@ -354,7 +347,7 @@ export default function CalendarPage() {
                 {/* Botón de Confirmación */}
                 <Button
                   type="submit"
-                  disabled={bookingLoading || doctors.length === 0 || (walletBalance !== null && walletBalance < 200)}
+                  disabled={bookingLoading || (walletBalance !== null && walletBalance < 200)}
                   className="w-full py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl shadow-lg shadow-primary/20 gap-2"
                 >
                   {bookingLoading ? (

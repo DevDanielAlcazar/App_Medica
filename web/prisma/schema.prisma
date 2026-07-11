@@ -68,8 +68,8 @@ model Appointment {
   id           String        @id @default(uuid())
   patientId    String
   patient      User          @relation("PatientAppointments", fields: [patientId], references: [id], onDelete: Cascade)
-  doctorId     String
-  doctor       User          @relation("DoctorAppointments", fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId     String?
+  doctor       User?         @relation("DoctorAppointments", fields: [doctorId], references: [id], onDelete: SetNull)
   caseId       String?
   clinicalCase ClinicalCase? @relation(fields: [caseId], references: [id], onDelete: SetNull)
   dateTime     DateTime

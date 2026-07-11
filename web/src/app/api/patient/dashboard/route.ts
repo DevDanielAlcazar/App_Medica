@@ -86,7 +86,7 @@ export async function GET() {
         activeCasesCount,
         nextAppointment: nextAppointment ? {
           id: nextAppointment.id,
-          doctorName: nextAppointment.doctor.name,
+          doctorName: nextAppointment.doctor ? nextAppointment.doctor.name : "Médico por asignar",
           dateTime: nextAppointment.dateTime,
         } : null,
         recentActivity,
