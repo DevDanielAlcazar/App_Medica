@@ -9,7 +9,7 @@ import { Check, X, ShieldAlert, ShieldCheck, Loader2, RefreshCw } from "lucide-r
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { useTranslation } from "@/lib/i18n/config";
 
 interface PermissionMatrixData {
   matrix: Record<string, Record<string, boolean>>;
@@ -42,24 +42,27 @@ const ROLE_LABELS: Record<string, string> = {
 };
 
 export function PermissionMatrix() {
-  const { locale } = useLanguage();
+  const { t } = useTranslation();
   const [data, setData] = useState<PermissionMatrixData | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [connectionError, setConnectionError] = useState(false);
 
   const loadPermissions = async () => {
     try {
       setLoading(true);
+      setConnectionError(false);
       const res = await fetch("/api/admin/permisos");
       const json = await res.json();
       if (json.success) {
         setData(json);
       } else {
-        toast.error(json.error || "Error al cargar permisos.");
+        toast.error(json.error || t("admin.error_load_permissions"));
       }
     } catch (err) {
       console.error(err);
-      toast.error("Error de conexión.");
+      setConnectionError(true);
+      toast.error(t("admin.error_connection"));
     } finally {
       setLoading(false);
     }
@@ -89,6 +92,7 @@ export function PermissionMatrix() {
   const handleSave = async () => {
     if (!data) return;
     setSaving(true);
+    setConnectionError(false);
 
     const permissions = [];
     for (const role of data.roles) {
@@ -105,12 +109,13 @@ export function PermissionMatrix() {
       });
 
       if (res.ok) {
-        toast.success(locale === "es" ? "Permisos actualizados." : "Permissions updated.");
+        toast.success(t("admin.permissions_updated"));
       } else {
-        toast.error(locale === "es" ? "Error al guardar." : "Failed to save.");
+        toast.error(t("admin.error_save"));
       }
     } catch (err) {
-      toast.error(locale === "es" ? "Error de conexión." : "Connection error.");
+      setConnectionError(true);
+      toast.error(t("admin.error_connection"));
     } finally {
       setSaving(false);
     }
@@ -129,29 +134,27 @@ export function PermissionMatrix() {
       <Card className="glass-panel border-glass-border">
         <CardContent className="py-12 text-center">
           <p className="text-muted-foreground">
-            {locale === "es" ? "No se pudieron cargar los permisos." : "Could not load permissions."}
+            {t("admin.no_permissions")}
           </p>
         </CardContent>
       </Card>
     );
   }
 
-  const actionKeys = Object.keys(ACTION_LABELS);
-
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-outfit font-bold">
-          {locale === "es" ? "Matriz de Permisos" : "Permission Matrix"}
+          {t("admin.permission_matrix")}
         </h2>
         <div className="flex gap-2">
           <Button variant="outline" onClick={loadPermissions} disabled={loading}>
             <RefreshCw className="w-4 h-4 mr-2" />
-            {locale === "es" ? "Recargar" : "Refresh"}
+            {t("admin.refresh")}
           </Button>
           <Button onClick={handleSave} disabled={saving}>
             {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-            {locale === "es" ? "Guardar Cambios" : "Save Changes"}
+            {t("admin.save_changes")}
           </Button>
         </div>
       </div>
@@ -162,7 +165,7 @@ export function PermissionMatrix() {
             <thead>
               <tr className="border-b border-glass-border">
                 <th className="sticky left-0 bg-surface z-10 p-4 text-left font-semibold min-w-[200px]">
-                  {locale === "es" ? "Acción / Rol" : "Action / Role"}
+                  {t("admin.action_role")}
                 </th>
                 {data.roles.map((role) => (
                   <th key={role} className="p-2 text-center min-w-[120px]">
@@ -180,7 +183,7 @@ export function PermissionMatrix() {
               </tr>
             </thead>
             <tbody>
-              {actionKeys.map((actionKey, idx) => {
+              {Object.keys(ACTION_LABELS).map((actionKey, idx) => {
                 const info = ACTION_LABELS[actionKey] || { label: actionKey, description: "" };
                 return (
                   <motion.tr
@@ -232,14 +235,12 @@ export function PermissionMatrix() {
       <Card className="glass-panel border-glass-border">
         <CardHeader>
           <CardTitle className="text-sm">
-            {locale === "es" ? "Nota" : "Note"}
+            {t("admin.note")}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-xs text-muted-foreground">
-            {locale === "es"
-              ? "Los permisos de superadmin son inmutables y siempre tienen acceso total. Use los switches para modificar otros roles."
-              : "Superadmin permissions are immutable and always have full access. Use switches to modify other roles."}
+            {t("admin.superadmin_note")}
           </p>
         </CardContent>
       </Card>

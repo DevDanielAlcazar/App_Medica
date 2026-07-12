@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useUiStore } from "@/stores/uiStore";
 import { useUserStore } from "@/stores/userStore";
 import { useCaseStore } from "@/stores/caseStore";
@@ -7,12 +8,13 @@ import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
 import { MobileBottomBar } from "./MobileBottomBar";
 import { SafetyRibbon } from "../SafetyRibbon";
-import { useEffect } from "react";
+import { useTranslation } from "@/lib/i18n/config";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const { sidebarOpen } = useUiStore();
   const { role, user, setUser } = useUserStore();
   const { safetyStatus } = useCaseStore();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!user) {
@@ -21,16 +23,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           if (res.ok) {
             return res.json();
           }
-          throw new Error("No autenticado");
+          throw new Error(t("auth.not_authenticated"));
         })
         .then((data) => {
           setUser(data.user, data.user.role);
         })
         .catch((err) => {
-          console.error("Error al cargar sesión:", err);
+          console.error(t("auth.session_error"), err);
         });
     }
-  }, [user, setUser]);
+  }, [user, setUser, t]);
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">

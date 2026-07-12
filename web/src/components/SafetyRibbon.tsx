@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ShieldAlert, ShieldCheck, Shield } from "lucide-react";
+import { useTranslation } from "@/lib/i18n/config";
 
 interface SafetyRibbonProps {
   status: "safe" | "warning" | "danger";
@@ -7,24 +8,26 @@ interface SafetyRibbonProps {
 }
 
 export function SafetyRibbon({ status, className }: SafetyRibbonProps) {
+  const { t } = useTranslation();
+  
   const statusConfig = {
     safe: {
       color: "bg-success/20 text-success border-success/30",
       icon: ShieldCheck,
-      text: "Seguimiento General",
-      description: "Sin red flags detectadas."
+      text: t("safety.general_followup"),
+      description: t("safety.safe_description")
     },
     warning: {
       color: "bg-warning/20 text-warning border-warning/30",
       icon: Shield,
-      text: "Vigilancia Requerida",
-      description: "Atención a evolución de síntomas."
+      text: t("safety.vigilance_required"),
+      description: t("safety.warning_description")
     },
     danger: {
       color: "bg-danger/20 text-danger border-danger/30",
       icon: ShieldAlert,
-      text: "Derivación Urgente",
-      description: "Requiere atención médica presencial."
+      text: t("safety.urgent_referral"),
+      description: t("safety.danger_description")
     }
   };
 

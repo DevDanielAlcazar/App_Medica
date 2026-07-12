@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Calendar, CreditCard, Users, ShieldCheck, Clock } from "lucide-react";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { Loader2, Calendar, CreditCard, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n/config";
 
 interface DoctorDashboardData {
   todayAppointments: number;
@@ -14,15 +14,22 @@ interface DoctorDashboardData {
   monthlyEarnings: number;
 }
 
-const STATUS_LABELS: Record<string, { label: string; color: string }> = {
-  activo: { label: "Verificado", color: "bg-emerald-100 text-emerald-800 border-emerald-200" },
-  en_revision: { label: "En Revisión", color: "bg-amber-100 text-amber-800 border-amber-200" },
-  pendiente: { label: "Pendiente", color: "bg-blue-100 text-blue-800 border-blue-200" },
-  rechazado: { label: "Rechazado", color: "bg-destructive/10 text-destructive" },
+const STATUS_LABELS: Record<string, { color: string }> = {
+  activo: { color: "bg-emerald-100 text-emerald-800 border-emerald-200" },
+  en_revision: { color: "bg-amber-100 text-amber-800 border-amber-200" },
+  pendiente: { color: "bg-blue-100 text-blue-800 border-blue-200" },
+  rechazado: { color: "bg-destructive/10 text-destructive" },
+};
+
+const STATUS_KEYS: Record<string, string> = {
+  activo: "doctor.status_verified",
+  en_revision: "doctor.status_review",
+  pendiente: "doctor.status_pending",
+  rechazado: "doctor.status_rejected",
 };
 
 export function DoctorDashboard() {
-  const { locale } = useLanguage();
+  const { t } = useTranslation();
   const [data, setData] = useState<DoctorDashboardData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -38,19 +45,19 @@ export function DoctorDashboard() {
 
   const stats = [
     {
-      title: locale === "es" ? "Citas Hoy" : "Today's Appointments",
+      title: t("doctor.today_appointments"),
       value: data?.todayAppointments ?? 0,
       icon: Calendar,
       color: "text-primary",
     },
     {
-      title: locale === "es" ? "Pagos Pendientes" : "Pending Payouts",
+      title: t("doctor.pending_payouts"),
       value: data?.pendingPayouts ?? 0,
       icon: CreditCard,
       color: "text-warning",
     },
     {
-      title: locale === "es" ? "Ganancias del Mes" : "Monthly Earnings",
+      title: t("doctor.monthly_earnings"),
       value: `$${data?.monthlyEarnings?.toLocaleString() ?? "0"}`,
       icon: ShieldCheck,
       color: "text-emerald-500",
@@ -69,12 +76,10 @@ export function DoctorDashboard() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-outfit font-bold">
-          {locale === "es" ? "Panel del Médico" : "Doctor Dashboard"}
+          {t("doctor.title")}
         </h1>
         <p className="text-muted-foreground">
-          {locale === "es"
-            ? "Resumen de tu actividad y métricas"
-            : "Summary of your activity and metrics"}
+          {t("doctor.subtitle")}
         </p>
       </div>
 
@@ -97,7 +102,7 @@ export function DoctorDashboard() {
       <Card className="glass-panel border-glass-border">
         <CardHeader>
           <CardTitle className="text-sm">
-            {locale === "es" ? "Estado de Verificación" : "Verification Status"}
+            {t("doctor.verification_status")}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -107,14 +112,12 @@ export function DoctorDashboard() {
                 STATUS_LABELS[data?.verificationStatus || "pendiente"]?.color || ""
               )}
             >
-              {STATUS_LABELS[data?.verificationStatus || "pendiente"]?.label || "Pendiente"}
+              {t(STATUS_KEYS[data?.verificationStatus || "pendiente"] || "doctor.status_pending")}
             </Badge>
           </div>
           {data?.verificationStatus !== "activo" && (
             <p className="text-xs text-muted-foreground mt-2">
-              {locale === "es"
-                ? "Completa tu verificación en "
-                : "Complete your verification at "}
+              {t("doctor.verification_link")}{" "}
               <a href="/medico/verificacion" className="text-primary underline">
                 /medico/verificacion
               </a>

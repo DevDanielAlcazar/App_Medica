@@ -118,8 +118,8 @@
 - [x] **B1**: Crear API endpoint `/api/patient/nutrition` que genere planes nutricionales por IA basados en casos activos
 - [x] **B2**: Conectar `nutricion/page.tsx` al endpoint de nutrición (remover datos hardcodeados)
 - [x] **B3**: Expandir `MOTIVATIONAL_PHRASES` de 10 a 365+ frases empáticas de salud (actualmente 100 frases)
-- [ ] **B4**: Completar cobertura i18n — auditar TODAS las páginas y migrar strings hardcodeadas a `t('key')`
-- [ ] **B5**: Verificar que `en.json` y `es.json` tengan keys idénticas (hoy ambas tienen 76, pero faltan muchas)
+- [x] **B4**: Completar cobertura i18n — auditar TODAS las páginas y migrar strings hardcodeadas a `t('key')`
+- [x] **B5**: Verificar que `en.json` y `es.json` tengan keys idénticas (109 keys sincronizados)
 
 ### Iteración C — Features Faltantes del Tracker (Prioridad Alta)
 

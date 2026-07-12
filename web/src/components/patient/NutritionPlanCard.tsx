@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Coffee, Utensils, Apple } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { useTranslation } from "@/lib/i18n/config";
 
 interface DayPlan {
   day: string;
@@ -15,8 +16,15 @@ interface DayPlan {
   };
 }
 
+const MEAL_KEY_LABELS: Record<string, string> = {
+  desayuno: "nutrition.breakfast",
+  comida: "nutrition.lunch",
+  cena: "nutrition.dinner",
+};
+
 export function NutritionPlanCard({ plan, loading }: { plan: DayPlan[] | null; loading: boolean }) {
   const { locale } = useLanguage();
+  const { t } = useTranslation();
 
   if (loading) {
     return (
@@ -43,7 +51,7 @@ export function NutritionPlanCard({ plan, loading }: { plan: DayPlan[] | null; l
   if (!plan || plan.length === 0) {
     return (
       <div className="p-8 text-center text-muted-foreground">
-        {locale === "es" ? "No se pudo generar el plan nutricional." : "Could not generate nutrition plan."}
+        {t("nutrition.no_plan")}
       </div>
     );
   }
@@ -64,9 +72,7 @@ export function NutritionPlanCard({ plan, loading }: { plan: DayPlan[] | null; l
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Icon className="w-5 h-5 text-primary" />
-                  {locale === "es"
-                    ? meal.charAt(0).toUpperCase() + meal.slice(1)
-                    : meal.charAt(0).toUpperCase() + meal.slice(1)}
+                  {t(MEAL_KEY_LABELS[meal])}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -80,9 +86,7 @@ export function NutritionPlanCard({ plan, loading }: { plan: DayPlan[] | null; l
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold">
-          {locale === "es" ? "Plan Semanal" : "Weekly Plan"}
-        </h3>
+        <h3 className="text-lg font-semibold">{t("nutrition.weekly_plan")}</h3>
         <div className="grid gap-3">
           {plan.map((dayPlan) => (
             <Card key={dayPlan.day} className="glass-panel border-glass-border">
@@ -91,19 +95,19 @@ export function NutritionPlanCard({ plan, loading }: { plan: DayPlan[] | null; l
                 <div className="space-y-1 text-sm">
                   <p>
                     <span className="text-primary font-medium">
-                      {locale === "es" ? "Desayuno:" : "Breakfast:"}
+                      {t("nutrition.breakfast_label")}
                     </span>{" "}
                     {dayPlan.meals.desayuno}
                   </p>
                   <p>
                     <span className="text-primary font-medium">
-                      {locale === "es" ? "Comida:" : "Lunch:"}
+                      {t("nutrition.lunch_label")}
                     </span>{" "}
                     {dayPlan.meals.comida}
                   </p>
                   <p>
                     <span className="text-primary font-medium">
-                      {locale === "es" ? "Cena:" : "Dinner:"}
+                      {t("nutrition.dinner_label")}
                     </span>{" "}
                     {dayPlan.meals.cena}
                   </p>
@@ -115,13 +119,11 @@ export function NutritionPlanCard({ plan, loading }: { plan: DayPlan[] | null; l
       </div>
 
       <div className="p-4 bg-primary/10 border border-primary/20 rounded-xl text-sm">
-        <strong>{locale === "es" ? "Nota de Angélica:" : "Angelica's Note:"}</strong>{" "}
-        {locale === "es"
-          ? "Este plan se adapta a tus condiciones clínicas. Evita alimentos no recomendados y mantén el registro actualizado."
-          : "This plan adapts to your clinical conditions. Avoid non-recommended foods and keep your records updated."}
+        <strong>{t("nutrition.note")}</strong>{" "}
+        {t("nutrition.note_description")}
         <br />
         <span className="text-xs text-muted-foreground italic">
-          {locale === "es" ? "Plan orientativo. Consulte a su nutriólogo." : "Orientaional plan. Consult your nutritionist."}
+          {t("nutrition.disclaimer")}
         </span>
       </div>
     </div>
