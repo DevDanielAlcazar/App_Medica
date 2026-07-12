@@ -10,7 +10,7 @@ async function checkAdminAuth() {
 
   const userId = token.replace("session-token-", "");
   const user = await prisma.user.findUnique({ where: { id: userId } });
-  if (!user || user.role !== "admin") return null;
+  if (!user || (user.role !== "admin" && user.role !== "superadmin")) return null;
 
   return user;
 }
@@ -75,6 +75,30 @@ export async function GET() {
       }
     });
 
+    // 7. Contability data
+    const paidPayouts = await prisma.payout.aggregate({
+      where: { status: "paid" },
+      _sum: { amount: true }
+    });
+
+    const pendingPayouts = await prisma.payout.aggregate({
+      where: { status: "pending" },
+      _sum: { amount: true }
+    });
+
+    const penaltiesAgg = await prisma.payout.aggregate({
+      where: { status: "paid", penaltyAmount: { gt: 0 } },
+      _sum: { penaltyAmount: true }
+    });
+
+    const cycles = await prisma.accountingCycle.findMany({
+      orderBy: { startDate: "desc" },
+      take: 10,
+      include: {
+        _count: { select: { payouts: true } }
+      }
+    });
+
     return NextResponse.json({
       success: true,
       stats: {
@@ -87,7 +111,11 @@ export async function GET() {
         aiProvidersCount,
         aiModelsCount,
         totalRevenue,
-        eligiblePurgeCount
+        eligiblePurgeCount,
+        totalPaid: paidPayouts._sum.amount || 0,
+        totalPending: pendingPayouts._sum.amount || 0,
+        totalPenalties: penaltiesAgg._sum.penaltyAmount || 0,
+        cycles
       }
     });
   } catch (error: any) {

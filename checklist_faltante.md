@@ -45,15 +45,15 @@
 
 | Componente | Estado |
 |---|---|
-| **Contabilidad (Dashboard principal)** | Placeholder ("Contenido en desarrollo") |
-| **Contabilidad / Pagos a Médicos** | Placeholder |
-| **Contabilidad / Cortes** | Placeholder |
-| **Contabilidad / Penalizaciones** | Placeholder |
-| **Contabilidad / Reportes** | Placeholder |
+| **Contabilidad (Dashboard principal)** | ✅ **Implementado** (2026-07-12 - dashboard stats, AccountingCyclesList) |
+| **Contabilidad / Pagos a Médicos** | ✅ **Implementado** (2026-07-12 - DoctorPaymentsTable con cambio de estados) |
+| **Contabilidad / Cortes** | ✅ **Implementado** (2026-07-12 - AccountingCyclesList con CRUD) |
+| **Contabilidad / Penalizaciones** | ✅ **Implementado** (2026-07-12 - PenaltyTracker) |
+| **Contabilidad / Reportes** | ✅ **Implementado** (2026-07-12 - generador JSON simulado) |
 | **Admin / Anuncios** | ✅ **Implementado** (2026-07-12 - AnnouncementManager.tsx, API route) |
 | **Admin / Permisos** | ✅ **Implementado** (2026-07-12 - PermissionMatrix.tsx, API route, Permission model) |
-| **Médico / Home** | Placeholder |
-| **Dashboard Médico dashboard** | Placeholder |
+| **Médico / Home** | ✅ **Implementado** (2026-07-12 - DoctorDashboard con API route) |
+| **Dashboard Médico dashboard** | ✅ **Implementado** (2026-07-12) |
 
 ---
 
@@ -106,12 +106,12 @@
 
 - [x] **A1**: Implementar `/admin/anuncios` — CRUD de anuncios globales con targeting por rol
 - [x] **A2**: Implementar `/admin/permisos` — Matriz de permisos (rows=roles, cols=acciones)
-- [ ] **A3**: Implementar Dashboard Contabilidad `/contabilidad` — Resumen financiero con métricas reales
-- [ ] **A4**: Implementar `/contabilidad/pagos-medicos` — Tabla con filtros, cambios de estado, comentarios
-- [ ] **A5**: Implementar `/contabilidad/cortes` — Timeline de periodos de corte quincenales/mensuales
-- [ ] **A6**: Implementar `/contabilidad/penalizaciones` — Tabla de penalizaciones con tipos y estados
-- [ ] **A7**: Implementar `/contabilidad/reportes` — Generador de reportes CSVs/PDFs con filtro por fecha
-- [ ] **A8**: Implementar Dashboard Médico Home (`/medico`) — Agenda del día, métricas, estado verificación
+- [x] **A3**: Implementar Dashboard Contabilidad `/contabilidad` — Resumen financiero con métricas reales
+- [x] **A4**: Implementar `/contabilidad/pagos-medicos` — Tabla con filtros, cambios de estado, comentarios
+- [x] **A5**: Implementar `/contabilidad/cortes` — Timeline de periodos de corte quincenales/mensuales
+- [x] **A6**: Implementar `/contabilidad/penalizaciones` — Tabla de penalizaciones con tipos y estados
+- [x] **A7**: Implementar `/contabilidad/reportes` — Generador de reportes CSVs/PDFs con filtro por fecha
+- [x] **A8**: Implementar Dashboard Médico Home (`/medico`) — Agenda del día, métricas, estado verificación
 
 ### Iteración B — Conectar lo que está hardcodeado (Prioridad Alta)
 

@@ -259,7 +259,8 @@ model DoctorTransaction {
   amount      Float
   type        String        // 'earning', 'withdrawal', 'penalty'
   description String
-  status      String        @default("completed") // pending, completed, failed
+  status      String        @default("completed") // pending, review, paid, cancelled
+  comment     String?
   createdAt   DateTime      @default(now())
 }
 
@@ -284,10 +285,11 @@ model Payout {
   amount        Float
   penaltyAmount Float           @default(0)
   penaltyReason String?
-  status        String          @default("pending") // pending, processing, completed, failed
+  status        String          @default("pending") // pending, review, paid, cancelled
   clabe         String?
   bankName      String?
   receiptUrl    String?
+  comment       String?
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
 }
