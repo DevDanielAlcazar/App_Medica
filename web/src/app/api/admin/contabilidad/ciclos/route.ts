@@ -1,11 +1,21 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
-import { getUserAuth } from "@/lib/auth"; // Assuming an auth helper exists, fallback to standard if not
+import { cookies } from "next/headers";
+import { prisma } from "@/lib/prisma";
+
+async function getAdminUser() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth-token")?.value;
+  if (!token) return null;
+  const userId = token.replace("session-token-", "");
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+  if (!user || (user.role !== "admin" && user.role !== "superadmin")) return null;
+  return user;
+}
 
 export async function GET(request: Request) {
   try {
-    const user = await getUserAuth(request);
-    if (!user || user.role !== "admin") {
+    const user = await getAdminUser();
+    if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -30,8 +40,8 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const user = await getUserAuth(request);
-    if (!user || user.role !== "admin") {
+    const user = await getAdminUser();
+    if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

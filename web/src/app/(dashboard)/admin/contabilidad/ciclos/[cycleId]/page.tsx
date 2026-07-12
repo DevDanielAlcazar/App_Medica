@@ -50,9 +50,9 @@ export default function CycleDetailPage({ params }: { params: Promise<{ cycleId:
   return (
     <div className="p-8 space-y-6">
       <div className="flex items-center gap-4 mb-6">
-        <Button variant="ghost" size="icon" asChild>
-          <a href="/admin/contabilidad"><ArrowLeft className="h-5 w-5" /></a>
-        </Button>
+        <a href="/admin/contabilidad" className="inline-flex items-center justify-center rounded-lg p-2 hover:bg-muted transition-colors">
+          <ArrowLeft className="h-5 w-5" />
+        </a>
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Detalle del Ciclo</h1>
           <p className="text-muted-foreground">ID: {cycleId}</p>

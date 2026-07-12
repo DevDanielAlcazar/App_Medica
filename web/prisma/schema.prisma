@@ -291,3 +291,29 @@ model Payout {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
 }
+
+model Announcement {
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  audience    String   @default("all") // all, paciente, medico, admin, soporte, contabilidad
+  startDate   DateTime @default(now())
+  endDate     DateTime?
+  priority    Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdBy   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Permission {
+  id          String   @id @default(uuid())
+  role        String   // paciente, medico, admin, superadmin, soporte, contabilidad
+  actionKey   String
+  description String?
+  isGranted   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([role, actionKey])
+}

@@ -1,11 +1,21 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
-import { getUserAuth } from "@/lib/auth";
+import { cookies } from "next/headers";
+import { prisma } from "@/lib/prisma";
+
+async function getDoctorUser() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth-token")?.value;
+  if (!token) return null;
+  const userId = token.replace("session-token-", "");
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+  if (!user || user.role !== "medico") return null;
+  return user;
+}
 
 export async function GET(request: Request) {
   try {
-    const user = await getUserAuth(request);
-    if (!user || user.role !== "medico") {
+    const user = await getDoctorUser();
+    if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -45,8 +55,8 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const user = await getUserAuth(request);
-    if (!user || user.role !== "medico") {
+    const user = await getDoctorUser();
+    if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

@@ -106,9 +106,12 @@ export default function ContabilidadDashboard() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={`/admin/contabilidad/ciclos/${cycle.id}`}>Ver Detalle</a>
-                      </Button>
+                      <a 
+                        href={`/admin/contabilidad/ciclos/${cycle.id}`}
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-input bg-background hover:bg-muted h-8 px-3"
+                      >
+                        Ver Detalle
+                      </a>
                     </td>
                   </tr>
                 ))}
