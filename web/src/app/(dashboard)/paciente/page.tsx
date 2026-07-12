@@ -9,6 +9,8 @@ import { ArrowRight, Activity, Calendar as CalendarIcon, CreditCard } from "luci
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+import { useLanguage } from "@/providers/LanguageProvider";
+
 interface DashboardData {
   balance: number;
   activeCasesCount: number;
@@ -28,6 +30,7 @@ export default function PatientHomePage() {
   const { user } = useUserStore();
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t, locale } = useLanguage();
 
   useEffect(() => {
     fetch("/api/patient/dashboard")
@@ -62,7 +65,7 @@ export default function PatientHomePage() {
     <div className="max-w-5xl mx-auto space-y-6 z-10 relative">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <h1 className="text-3xl font-outfit font-bold mb-2">
-          Buenos días, {user?.name || "Paciente"}.
+          {t("dashboard.welcome_back").replace("%name%", user?.name || "")}
         </h1>
         <p className="text-muted-foreground text-lg">{phrase}</p>
       </motion.div>
@@ -76,7 +79,7 @@ export default function PatientHomePage() {
         <motion.div variants={item}>
           <Card className="glass-panel border-glass-border h-full hover:border-primary/50 transition-colors">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Casos Activos</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">{t("dashboard.active_cases")}</CardTitle>
               <Activity className="w-4 h-4 text-primary" />
             </CardHeader>
             <CardContent>
@@ -85,7 +88,9 @@ export default function PatientHomePage() {
               ) : (
                 <div className="text-2xl font-bold">{data?.activeCasesCount ?? 0}</div>
               )}
-              <p className="text-xs text-muted-foreground mt-1">Casos clínicos en curso</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                {locale === "es" ? "Casos clínicos en curso" : "Ongoing clinical cases"}
+              </p>
             </CardContent>
           </Card>
         </motion.div>
@@ -93,7 +98,7 @@ export default function PatientHomePage() {
         <motion.div variants={item}>
           <Card className="glass-panel border-glass-border h-full hover:border-primary/50 transition-colors">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Próxima Cita</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">{t("dashboard.next_appointment")}</CardTitle>
               <CalendarIcon className="w-4 h-4 text-primary" />
             </CardHeader>
             <CardContent>
@@ -106,7 +111,7 @@ export default function PatientHomePage() {
                 <>
                   <div className="text-xl font-bold line-clamp-1">Dr. {data.nextAppointment.doctorName}</div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {new Date(data.nextAppointment.dateTime).toLocaleDateString("es-ES", {
+                    {new Date(data.nextAppointment.dateTime).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                       day: "numeric",
                       month: "short",
                       hour: "2-digit",
@@ -116,8 +121,12 @@ export default function PatientHomePage() {
                 </>
               ) : (
                 <>
-                  <div className="text-sm font-semibold text-muted-foreground">Sin citas programadas</div>
-                  <p className="text-xs text-muted-foreground mt-1">Citas médicas pendientes</p>
+                  <div className="text-sm font-semibold text-muted-foreground">
+                    {locale === "es" ? "Sin citas programadas" : "No scheduled appointments"}
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {locale === "es" ? "Citas médicas pendientes" : "Pending medical appointments"}
+                  </p>
                 </>
               )}
             </CardContent>
@@ -127,17 +136,19 @@ export default function PatientHomePage() {
         <motion.div variants={item}>
           <Card className="glass-panel border-glass-border h-full hover:border-primary/50 transition-colors">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Saldo Wallet</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">{t("dashboard.wallet_balance")}</CardTitle>
               <CreditCard className="w-4 h-4 text-primary" />
             </CardHeader>
             <CardContent>
               {loading ? (
                 <div className="animate-pulse h-8 bg-muted rounded w-24" />
               ) : (
-                <div className="text-2xl font-bold">{data?.balance ?? 0} Créditos</div>
+                <div className="text-2xl font-bold">
+                  {data?.balance ?? 0} {locale === "es" ? "Créditos" : "Credits"}
+                </div>
               )}
               <Link href="/paciente/wallet" className="text-xs text-primary hover:underline mt-1 block">
-                Comprar más
+                {locale === "es" ? "Comprar más" : "Top up wallet"}
               </Link>
             </CardContent>
           </Card>
@@ -152,7 +163,7 @@ export default function PatientHomePage() {
       >
         <Link href="/paciente/consulta" className="block w-full">
           <Button size="lg" className="w-full py-8 text-xl rounded-2xl bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 shadow-lg group">
-            Iniciar Nueva Consulta
+            {t("dashboard.new_consult_btn")}
             <ArrowRight className="ml-4 w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </Button>
         </Link>
@@ -163,7 +174,7 @@ export default function PatientHomePage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <h2 className="font-outfit font-bold text-xl mt-12 mb-4">Actividad Reciente</h2>
+        <h2 className="font-outfit font-bold text-xl mt-12 mb-4">{t("dashboard.recent_activity")}</h2>
         <div className="space-y-3">
           {loading ? (
             [1, 2, 3].map((i) => (
@@ -180,7 +191,7 @@ export default function PatientHomePage() {
                   <span className="text-sm">{activity.action}</span>
                 </div>
                 <span className="text-xs text-muted-foreground">
-                  {new Date(activity.updatedAt).toLocaleDateString("es-ES", {
+                  {new Date(activity.updatedAt).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                     day: "numeric",
                     month: "short",
                     hour: "2-digit",
@@ -191,7 +202,7 @@ export default function PatientHomePage() {
             ))
           ) : (
             <div className="glass-panel p-6 rounded-xl border border-glass-border text-center text-sm text-muted-foreground">
-              No tienes actividad clínica reciente.
+              {t("dashboard.no_activity")}
             </div>
           )}
         </div>

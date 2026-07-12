@@ -225,6 +225,40 @@ export async function POST(request: Request) {
       return { appointment, walletBalance: updatedWallet.balance };
     });
 
+    // Enviar correos electrónicos de confirmación en segundo plano de forma asíncrona
+    try {
+      const [patientUser, doctorUser, caseObj] = await Promise.all([
+        prisma.user.findUnique({ where: { id: patientId } }),
+        targetDoctorId ? prisma.user.findUnique({ where: { id: targetDoctorId } }) : null,
+        caseId ? prisma.clinicalCase.findUnique({ where: { id: caseId } }) : null,
+      ]);
+
+      const { sendAppointmentConfirmationEmail, sendDoctorAssignmentEmail } = await import("@/lib/services/email");
+
+      if (patientUser) {
+        sendAppointmentConfirmationEmail({
+          to: patientUser.email,
+          patientName: patientUser.name,
+          doctorName: doctorName,
+          dateTime: dateTime,
+          meetLink: result.appointment.meetLink,
+          caseTitle: caseObj?.title || null
+        }).catch(err => console.error("Error al enviar correo de confirmación al paciente:", err));
+      }
+
+      if (doctorUser) {
+        sendDoctorAssignmentEmail({
+          to: doctorUser.email,
+          doctorName: doctorName,
+          patientName: patientUser?.name || "Paciente",
+          dateTime: dateTime,
+          meetLink: result.appointment.meetLink
+        }).catch(err => console.error("Error al enviar correo de asignación al médico:", err));
+      }
+    } catch (err) {
+      console.error("Error al disparar flujos de email de cita:", err);
+    }
+
     return NextResponse.json({
       success: true,
       appointment: result.appointment,

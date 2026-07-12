@@ -54,42 +54,214 @@ export default function CaseDetailPage({ params }: { params: Promise<{ caseId: s
           <head>
             <title>Recomendación Sintomatológica - ${rec.title}</title>
             <style>
-              body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333; padding: 40px; line-height: 1.6; }
-              .header { border-bottom: 2px solid #5F69F8; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
-              .logo { font-size: 24px; font-weight: bold; color: #5F69F8; }
-              .title { font-size: 18px; font-weight: bold; margin-top: 10px; }
-              .meta { font-size: 12px; color: #666; margin-bottom: 20px; }
-              .section { margin-bottom: 25px; }
-              .section-title { font-size: 13px; font-weight: bold; text-transform: uppercase; color: #5F69F8; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 10px; }
-              .badge { display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: bold; border-radius: 20px; }
-              .badge-alta { background-color: #fee2e2; color: #ef4444; }
-              .badge-media { background-color: #fef3c7; color: #d97706; }
-              .badge-baja { background-color: #d1fae5; color: #059669; }
-              .disclaimer { background-color: #f9fafb; border: 1px solid #e5e7eb; border-left: 4px solid #9ca3af; padding: 15px; font-size: 11px; color: #4b5563; border-radius: 8px; margin-top: 40px; }
-              .guidelines { padding-left: 20px; }
-              .red-flags { color: #ef4444; font-weight: bold; }
+              @page {
+                size: portrait;
+                margin: 20mm;
+              }
+              body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                color: #1f2937;
+                line-height: 1.5;
+                font-size: 11pt;
+                margin: 0;
+                padding: 0;
+              }
+              .letterhead-bar {
+                height: 4px;
+                background: linear-gradient(90deg, #5F69F8, #a855f7);
+                margin-bottom: 25px;
+              }
+              .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                border-bottom: 1px solid #e5e7eb;
+                padding-bottom: 15px;
+                margin-bottom: 20px;
+              }
+              .logo-container {
+                display: flex;
+                flex-direction: column;
+              }
+              .logo {
+                font-size: 20pt;
+                font-weight: 800;
+                letter-spacing: -0.025em;
+                color: #5F69F8;
+              }
+              .logo span {
+                color: #a855f7;
+              }
+              .doc-type {
+                font-size: 9pt;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: #6b7280;
+                margin-top: 2px;
+                font-weight: 700;
+              }
+              .badge {
+                display: inline-block;
+                padding: 5px 12px;
+                font-size: 9pt;
+                font-weight: 700;
+                border-radius: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+              }
+              .badge-alta { background-color: #fee2e2; color: #ef4444; border: 1px solid #fecaca; }
+              .badge-media { background-color: #fef3c7; color: #d97706; border: 1px solid #fde68a; }
+              .badge-baja { background-color: #d1fae5; color: #059669; border: 1px solid #a7f3d0; }
+              
+              .meta-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                background-color: #f9fafb;
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 25px;
+                font-size: 9.5pt;
+              }
+              .meta-item {
+                display: flex;
+                flex-direction: column;
+              }
+              .meta-label {
+                color: #6b7280;
+                font-size: 8pt;
+                text-transform: uppercase;
+                font-weight: 700;
+                margin-bottom: 2px;
+              }
+              .meta-value {
+                font-weight: 600;
+                color: #374151;
+              }
+
+              .section {
+                margin-bottom: 25px;
+                page-break-inside: avoid;
+              }
+              .section-title {
+                font-size: 10pt;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: #5F69F8;
+                border-bottom: 1px solid #e5e7eb;
+                padding-bottom: 4px;
+                margin-bottom: 12px;
+              }
+              
+              ul {
+                margin: 0;
+                padding-left: 20px;
+              }
+              li {
+                margin-bottom: 6px;
+              }
+              p {
+                margin: 0 0 10px 0;
+              }
+
+              .red-flags-box {
+                background-color: #fff5f5;
+                border: 1px solid #fecaca;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 25px;
+                page-break-inside: avoid;
+              }
+              .red-flags-title {
+                color: #dc2626;
+                font-weight: 700;
+                font-size: 10.5pt;
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+              }
+              .red-flags-list {
+                color: #b91c1c;
+                margin: 0;
+                padding-left: 20px;
+                font-size: 10pt;
+              }
+
+              .disclaimer-box {
+                background-color: #f3f4f6;
+                border: 1px solid #e5e7eb;
+                border-left: 4px solid #9ca3af;
+                padding: 15px;
+                font-size: 8.5pt;
+                color: #4b5563;
+                border-radius: 6px;
+                margin-top: 40px;
+                page-break-inside: avoid;
+              }
+              
+              .watermark-footer {
+                margin-top: 30px;
+                text-align: center;
+                font-size: 8pt;
+                color: #9ca3af;
+                border-top: 1px dashed #e5e7eb;
+                padding-top: 15px;
+                page-break-inside: avoid;
+              }
+
               @media print {
-                body { padding: 20px; }
-                .no-print { display: none; }
+                body {
+                  color: #000;
+                  font-size: 10.5pt;
+                }
+                .meta-grid {
+                  background-color: #fff !important;
+                  border: 1px solid #ccc;
+                }
+                .red-flags-box {
+                  background-color: #fff !important;
+                  border: 1px solid #faa;
+                }
+                .disclaimer-box {
+                  background-color: #fff !important;
+                  border: 1px solid #ccc;
+                  border-left: 4px solid #666;
+                }
               }
             </style>
           </head>
           <body>
+            <div class="letterhead-bar"></div>
+            
             <div class="header">
-              <div>
-                <div class="logo">Angélica Med</div>
-                <div class="title">RECOMENDACIÓN SINTOMATOLÓGICA PRELIMINAR</div>
+              <div class="logo-container">
+                <div class="logo">Angélica<span>Med</span></div>
+                <div class="doc-type">Recomendación Sintomatológica Preliminar</div>
               </div>
               <div>
                 <span class="badge badge-${rec.severity.toLowerCase()}">${rec.severity} Prioridad</span>
               </div>
             </div>
 
-            <div class="meta">
-              <strong>ID del Expediente:</strong> ${rec.caseId}<br>
-              <strong>Paciente:</strong> ${rec.patientName}<br>
-              <strong>Fecha de Emisión:</strong> ${new Date(rec.date).toLocaleString("es-ES")}<br>
-              <strong>Título de la consulta:</strong> ${rec.title}
+            <div class="meta-grid">
+              <div class="meta-item">
+                <span class="meta-label">Expediente Clínico ID</span>
+                <span class="meta-value" style="font-family: monospace; font-size: 8.5pt;">${rec.caseId}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Paciente</span>
+                <span class="meta-value">${rec.patientName}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Fecha de Emisión</span>
+                <span class="meta-value">${new Date(rec.date).toLocaleString("es-ES")}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Caso/Consulta</span>
+                <span class="meta-value">${rec.title}</span>
+              </div>
             </div>
 
             <div class="section">
@@ -100,31 +272,35 @@ export default function CaseDetailPage({ params }: { params: Promise<{ caseId: s
             </div>
 
             <div class="section">
-              <div class="section-title">Sospechas de Orientación AI y Resumen Clínico</div>
-              <p>${rec.summary}</p>
+              <div class="section-title">Resumen de Orientación y Diagnósticos Diferenciales</div>
+              <p style="white-space: pre-line;">${rec.summary}</p>
             </div>
 
             <div class="section">
-              <div class="section-title">Acción Recomendada</div>
+              <div class="section-title">Plan de Acción Recomendado</div>
               <p><strong>${rec.actionRequired}</strong></p>
             </div>
 
             <div class="section">
-              <div class="section-title">Lineamientos de Medicamentos Sugeridos (Venta Libre - OTC)</div>
+              <div class="section-title">Lineamientos de Medicación Sugerida (Venta Libre - OTC)</div>
               <ul>
                 ${rec.otcGuidelines.map((g: string) => `<li>${g}</li>`).join("")}
               </ul>
             </div>
 
-            <div class="section">
-              <div class="section-title" style="color: #ef4444;">Señales de Alarma Críticas (Acudir a Urgencias)</div>
-              <ul class="red-flags">
+            <div class="red-flags-box">
+              <div class="red-flags-title">⚠️ SEÑALES DE ALARMA CRÍTICAS (ACUDIR A URGENCIAS)</div>
+              <ul class="red-flags-list">
                 ${rec.redFlags.map((f: string) => `<li>${f}</li>`).join("")}
               </ul>
             </div>
 
-            <div class="disclaimer">
-              <strong>Aviso Legal Importante:</strong> ${rec.disclaimer}
+            <div class="disclaimer-box">
+              <strong>Nota de Responsabilidad Médica:</strong> ${rec.disclaimer}
+            </div>
+
+            <div class="watermark-footer">
+              Generado por Angélica Med AI Clinical Assistant • Cumplimiento NOM-024-SSA3-2012 y LFPDPPP
             </div>
 
             <script>

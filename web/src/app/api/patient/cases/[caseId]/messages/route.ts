@@ -163,11 +163,24 @@ export async function POST(
 
       timelineUpdate = timelineEvent;
     } else {
-      // 5. Si pasa el guardrail, realizar búsqueda RAG usando el historial completo de la conversación
-      // para no perder el contexto médico original si el paciente responde corto (ej. "no, ninguno").
+      // 5. Determinar si se requiere búsqueda médica en la web (frescura REQ-029)
+      const queryLower = content.toLowerCase();
+      const needsWebSearch = /\b(actualiz|recient|internet|web|busc|guias|oms|cdc|2026|covid|dengue|vacuna|nuev)/.test(queryLower);
+      
+      let webContext = "";
+      if (needsWebSearch) {
+        try {
+          const { searchMedicalWeb } = await import("@/lib/services/webSearch");
+          webContext = await searchMedicalWeb(content);
+        } catch (err) {
+          console.error("Error al ejecutar búsqueda web médica:", err);
+        }
+      }
+
+      // 6. Realizar búsqueda RAG usando el historial completo de la conversación
       const ragContext = await searchMedicalKnowledge(fullTextHistory);
 
-      // 6. Preparar el Prompt del Sistema Clínico (Reglas de Gobernanza Médica)
+      // 7. Preparar el Prompt del Sistema Clínico (Reglas de Gobernanza Médica)
       const systemPrompt = `Eres Angélica, un asistente clínico de inteligencia artificial diseñado para orientar a pacientes con rigor clínico.
 NORMAS INQUEBRANTABLES:
 - NUNCA diagnostiques de forma definitiva. Tu sospecha debe plantearse como diferencial o condicional ("La sospecha es X, pero requieres confirmación presencial o estudios").
@@ -176,11 +189,19 @@ NORMAS INQUEBRANTABLES:
 - Si el paciente presenta fatiga severa, dolor de pecho u opresión, recomiéndale llamar al 911 de inmediato.
 - Sé claro, comprensivo y utiliza un tono profesional pero empático.
 - CONTINUIDAD DE LA CHARLA: Analiza detenidamente el historial de la conversación. NO repitas preguntas que el paciente ya respondió anteriormente ni lo trates como un caso nuevo en cada mensaje. Las preguntas sugeridas por la guía (RAG) son solo si no tienes esa información todavía.
+- ETIQUETAS DE RECOMENDACIÓN CLÍNICA (OBLIGATORIO):
+  Al final de tu respuesta, debes incluir exactamente una de las siguientes etiquetas en una nueva línea si se cumplen las condiciones:
+  * Si el paciente tiene una situación de riesgo grave ACTUAL (dolor torácico severo, falta de aire súbita, desmayo, etc.) y recomiendas que vaya de inmediato a urgencias/hospital, agrega: [RECOMENDACION: URGENCIAS]
+  * Si consideras que el paciente no está en peligro inmediato pero sus síntomas ameritan ser revisados de forma rutinaria/preventiva por un médico en consulta física presencial, agrega: [RECOMENDACION: CONSULTA_MEDICA]
+  * Si no consideras necesaria una derivación o el caso se puede vigilar en casa por el momento, no agregues ninguna etiqueta.
+  * NOTA: Los discursos preventivos generales tipo "si empeora vaya a urgencias" NO activan la etiqueta de URGENCIAS. Solo actívala si el cuadro actual del paciente es una urgencia hoy.
 
 ${ragContext ? ragContext : "No se encontró contexto clínico específico para este síntoma. Mantén la continuidad de la conversación y orienta al paciente de manera conservadora."}
+
+${webContext ? webContext : ""}
 `;
 
-      // 7. Preparar la cadena de mensajes para el AI Gateway
+      // 8. Preparar la cadena de mensajes para el AI Gateway
       const apiMessages: ChatMessage[] = [
         { role: "system", content: systemPrompt },
         ...messageHistory.map((m) => ({
@@ -196,32 +217,36 @@ ${ragContext ? ragContext : "No se encontró contexto clínico específico para 
       if (!aiResponse.success) {
         assistantResponseText = "Lo sentimos, el asistente clínico está experimentando dificultades técnicas temporales. Por favor, reintenta en un momento.";
       } else {
-        assistantResponseText = aiResponse.content;
-
-        // 9. Extraer/Sugerir automáticamente notas de evolución clínica para la línea de tiempo
-        // Si la IA sugiere que el paciente acuda al doctor, agregamos el hito al timeline
-        const contentLower = assistantResponseText.toLowerCase();
+        let rawResponse = aiResponse.content;
         let timelineEvent = null;
+        let finalStatus = clinicalCase.status;
 
-        if (contentLower.includes("urgencias") || contentLower.includes("911")) {
+        // Parsear y remover las etiquetas de recomendación clínica
+        if (rawResponse.includes("[RECOMENDACION: URGENCIAS]")) {
+          rawResponse = rawResponse.replace("[RECOMENDACION: URGENCIAS]", "").trim();
           timelineEvent = {
             id: crypto.randomUUID(),
             type: "alert",
             timestamp: new Date().toISOString(),
             title: "Derivación Urgente",
-            description: "El asistente recomendó atención médica en sala de urgencias de inmediato.",
+            description: "El asistente recomendó atención médica en sala de urgencias de inmediato debido a la gravedad de los síntomas.",
             severity: "high" as const,
           };
-        } else if (contentLower.includes("médico presencial") || contentLower.includes("consulta física")) {
+          finalStatus = "derivado";
+        } else if (rawResponse.includes("[RECOMENDACION: CONSULTA_MEDICA]")) {
+          rawResponse = rawResponse.replace("[RECOMENDACION: CONSULTA_MEDICA]", "").trim();
           timelineEvent = {
             id: crypto.randomUUID(),
             type: "check",
             timestamp: new Date().toISOString(),
             title: "Recomendación Médica",
-            description: "El asistente orientó a buscar consulta presencial no urgente.",
+            description: "El asistente recomendó programar una consulta médica presencial no urgente para valoración física.",
             severity: "medium" as const,
           };
+          finalStatus = "en_tratamiento"; // Actualizar a estado en tratamiento/revisión
         }
+
+        assistantResponseText = rawResponse;
 
         if (timelineEvent) {
           const updatedTimeline = [...(clinicalCase.timeline as any[]), timelineEvent];
@@ -229,7 +254,7 @@ ${ragContext ? ragContext : "No se encontró contexto clínico específico para 
             where: { id: caseId },
             data: {
               timeline: updatedTimeline,
-              status: contentLower.includes("urgencias") ? "derivado" : clinicalCase.status,
+              status: finalStatus,
             },
           });
           timelineUpdate = timelineEvent;

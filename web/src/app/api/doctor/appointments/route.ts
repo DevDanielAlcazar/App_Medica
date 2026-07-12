@@ -179,6 +179,24 @@ export async function PUT(request: Request) {
       });
     });
 
+    // Enviar correo electrónico de cancelación al paciente en segundo plano
+    try {
+      const doctorUser = await prisma.user.findUnique({ where: { id: doctorId } });
+      const doctorName = doctorUser?.name || "Médico";
+
+      const { sendAppointmentCancellationEmail } = await import("@/lib/services/email");
+
+      sendAppointmentCancellationEmail({
+        to: appointment.patient.email,
+        patientName: appointment.patient.name,
+        doctorName: doctorName,
+        dateTime: appointment.dateTime.toISOString(),
+        refundAmount: APPOINTMENT_REFUND
+      }).catch(err => console.error("Error al enviar correo de cancelación:", err));
+    } catch (err) {
+      console.error("Error al disparar flujo de email de cancelación:", err);
+    }
+
     return NextResponse.json({ success: true, message: "Cita cancelada y créditos reembolsados." });
   } catch (error: any) {
     console.error("Error al cancelar cita:", error);

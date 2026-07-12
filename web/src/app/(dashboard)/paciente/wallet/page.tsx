@@ -19,6 +19,8 @@ interface Transaction {
   status: string;
 }
 
+import { useLanguage } from "@/providers/LanguageProvider";
+
 function WalletPageContent() {
   const searchParams = useSearchParams();
 
@@ -31,6 +33,7 @@ function WalletPageContent() {
   const [modalOpen, setModalOpen] = useState(false);
   const [buyingOption, setBuyingOption] = useState<number | null>(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const { t, locale } = useLanguage();
 
   // 1. Cargar datos del Wallet
   const loadWalletData = async () => {
@@ -42,11 +45,11 @@ function WalletPageContent() {
         setBalance(data.balance);
         setTransactions(data.transactions);
       } else {
-        toast.error(data.error || "No se pudo obtener el saldo de tu billetera.");
+        toast.error(data.error || (locale === "es" ? "No se pudo obtener el saldo de tu billetera." : "Could not retrieve wallet balance."));
       }
     } catch (err) {
       console.error(err);
-      toast.error("Error de conexión al cargar la billetera.");
+      toast.error(locale === "es" ? "Error de conexión al cargar la billetera." : "Connection error loading wallet.");
     } finally {
       setLoading(false);
     }
@@ -57,10 +60,10 @@ function WalletPageContent() {
 
     // Mostrar notificaciones de éxito o cancelación basadas en query params
     if (searchParams.get("success")) {
-      toast.success("¡Tu pago ha sido procesado! Los créditos han sido añadidos.");
+      toast.success(locale === "es" ? "¡Tu pago ha sido procesado! Los créditos han sido añadidos." : "Your payment was processed! Credits have been added.");
     }
     if (searchParams.get("cancel")) {
-      toast.error("El proceso de pago fue cancelado.");
+      toast.error(locale === "es" ? "El proceso de pago fue cancelado." : "The payment process was cancelled.");
     }
   }, [searchParams]);
 
@@ -94,12 +97,12 @@ function WalletPageContent() {
 
   return (
     <div className="max-w-4xl mx-auto z-10 relative space-y-6">
-      <h1 className="text-3xl font-outfit font-bold">Wallet y Créditos</h1>
+      <h1 className="text-3xl font-outfit font-bold">{t("wallet.title")}</h1>
 
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20 gap-3 text-muted-foreground">
           <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          <span>Consultando tu saldo y transacciones contables...</span>
+          <span>{locale === "es" ? "Consultando tu saldo y transacciones contables..." : "Retrieving balance and ledger transactions..."}</span>
         </div>
       ) : (
         <>
@@ -108,13 +111,13 @@ function WalletPageContent() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -z-10" />
             <CardContent className="p-8 flex flex-col md:flex-row justify-between items-center gap-6">
               <div>
-                <p className="text-xs text-muted-foreground font-semibold mb-1 uppercase tracking-wider">Saldo Disponible</p>
+                <p className="text-xs text-muted-foreground font-semibold mb-1 uppercase tracking-wider">{t("wallet.balance_credits")}</p>
                 <h2 className="text-5xl font-bold font-outfit flex items-end gap-2 text-foreground">
-                  {balance ?? 0} <span className="text-xl text-primary font-normal pb-1">créditos</span>
+                  {balance ?? 0} <span className="text-xl text-primary font-normal pb-1">{locale === "es" ? "créditos" : "credits"}</span>
                 </h2>
               </div>
               <Button onClick={() => setModalOpen(true)} size="lg" className="w-full md:w-auto gap-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 rounded-xl">
-                <Plus className="w-5 h-5" /> Comprar Créditos
+                <Plus className="w-5 h-5" /> {t("wallet.buy_credits")}
               </Button>
             </CardContent>
           </Card>
@@ -123,29 +126,29 @@ function WalletPageContent() {
           <div className="glass-panel rounded-2xl border border-glass-border p-6 bg-background/25">
             <h3 className="font-semibold text-lg mb-4 flex items-center gap-2 text-foreground">
               <CreditCard className="w-5 h-5 text-muted-foreground" />
-              Historial de Movimientos Ledger
+              {t("wallet.ledger_history")}
             </h3>
 
             {transactions.length === 0 ? (
               <div className="text-center py-10 text-xs text-muted-foreground border border-dashed border-glass-border rounded-xl">
-                No se registran movimientos en tu cuenta contable.
+                {locale === "es" ? "No se registran movimientos en tu cuenta contable." : "No transactions recorded on this account."}
               </div>
             ) : (
               <div className="rounded-xl border border-glass-border overflow-hidden">
                 <Table>
                   <TableHeader className="bg-muted/30">
                     <TableRow>
-                      <TableHead>Fecha</TableHead>
-                      <TableHead>Concepto</TableHead>
-                      <TableHead>Monto</TableHead>
-                      <TableHead>Estado</TableHead>
+                      <TableHead>{t("wallet.date")}</TableHead>
+                      <TableHead>{t("wallet.concept")}</TableHead>
+                      <TableHead>{t("wallet.amount")}</TableHead>
+                      <TableHead>{t("wallet.status")}</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {transactions.map((t) => (
                       <TableRow key={t.id} className="hover:bg-background/20 transition-colors">
                         <TableCell className="text-muted-foreground text-xs">
-                          {new Date(t.createdAt).toLocaleDateString("es-ES", {
+                          {new Date(t.createdAt).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                             day: "numeric",
                             month: "short",
                             year: "numeric",
@@ -164,7 +167,7 @@ function WalletPageContent() {
                         </TableCell>
                         <TableCell>
                           <Badge variant="outline" className={`text-[10px] uppercase font-bold rounded-full ${t.status === 'completed' ? 'border-emerald-500/30 text-emerald-500 bg-emerald-500/10' : 'border-glass-border text-muted-foreground'}`}>
-                            {t.status === "completed" ? "completado" : t.status}
+                            {t.status === "completed" ? (locale === "es" ? "completado" : "completed") : t.status}
                           </Badge>
                         </TableCell>
                       </TableRow>
@@ -196,7 +199,7 @@ function WalletPageContent() {
               className="relative glass-panel bg-background/95 w-full max-w-lg p-6 rounded-2xl border border-glass-border shadow-2xl space-y-6 z-10"
             >
               <div className="flex justify-between items-center pb-3 border-b border-glass-border">
-                <h3 className="text-xl font-bold text-foreground">Comprar Créditos</h3>
+                <h3 className="text-xl font-bold text-foreground">{t("wallet.buy_credits")}</h3>
                 <button onClick={() => setModalOpen(false)} className="text-muted-foreground hover:text-foreground">
                   <X className="w-5 h-5" />
                 </button>
@@ -206,9 +209,13 @@ function WalletPageContent() {
                 {/* Paquete 1: 200 cr */}
                 <div className="glass-panel bg-background/30 hover:border-primary/50 transition-all border border-glass-border p-4 rounded-xl flex flex-col justify-between h-[180px]">
                   <div>
-                    <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider">Básico</h4>
+                    <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider">
+                      {locale === "es" ? "Básico" : "Basic"}
+                    </h4>
                     <span className="text-2xl font-bold text-foreground block mt-2">200 cr</span>
-                    <span className="text-xs text-muted-foreground mt-1 block">Ideal para 1 consulta virtual</span>
+                    <span className="text-xs text-muted-foreground mt-1 block">
+                      {locale === "es" ? "Ideal para 1 consulta virtual" : "Ideal for 1 virtual consultation"}
+                    </span>
                   </div>
                   <Button
                     onClick={() => handlePurchase(200)}
@@ -218,7 +225,7 @@ function WalletPageContent() {
                     {checkoutLoading && buyingOption === 200 ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
                     ) : (
-                      "Comprar por $200 MXN"
+                      locale === "es" ? "Comprar por $200 MXN" : "Buy for $200 MXN"
                     )}
                   </Button>
                 </div>
@@ -226,12 +233,14 @@ function WalletPageContent() {
                 {/* Paquete 2: 500 cr */}
                 <div className="glass-panel bg-primary/5 hover:border-primary/50 border-2 border-primary/40 transition-all p-4 rounded-xl flex flex-col justify-between h-[180px] relative overflow-hidden">
                   <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[8px] font-bold py-0.5 px-2 rounded-bl-lg uppercase">
-                    10% Ahorro
+                    {locale === "es" ? "10% Ahorro" : "10% Savings"}
                   </div>
                   <div>
                     <h4 className="font-semibold text-sm text-primary uppercase tracking-wider">Premium</h4>
                     <span className="text-2xl font-bold text-foreground block mt-2">500 cr</span>
-                    <span className="text-xs text-muted-foreground mt-1 block">Ideal para 2.5 consultas</span>
+                    <span className="text-xs text-muted-foreground mt-1 block">
+                      {locale === "es" ? "Ideal para 2.5 consultas" : "Ideal for 2.5 consultations"}
+                    </span>
                   </div>
                   <Button
                     onClick={() => handlePurchase(500)}
@@ -241,7 +250,7 @@ function WalletPageContent() {
                     {checkoutLoading && buyingOption === 500 ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
                     ) : (
-                      "Comprar por $450 MXN"
+                      locale === "es" ? "Comprar por $450 MXN" : "Buy for $450 MXN"
                     )}
                   </Button>
                 </div>
@@ -249,12 +258,14 @@ function WalletPageContent() {
                 {/* Paquete 3: 1000 cr */}
                 <div className="glass-panel bg-background/30 hover:border-primary/50 transition-all border border-glass-border p-4 rounded-xl flex flex-col justify-between h-[180px] relative overflow-hidden">
                   <div className="absolute top-0 right-0 bg-secondary text-white text-[8px] font-bold py-0.5 px-2 rounded-bl-lg uppercase">
-                    20% Ahorro
+                    {locale === "es" ? "20% Ahorro" : "20% Savings"}
                   </div>
                   <div>
                     <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider">Elite</h4>
                     <span className="text-2xl font-bold text-foreground block mt-2">1000 cr</span>
-                    <span className="text-xs text-muted-foreground mt-1 block">Ideal para 5 consultas</span>
+                    <span className="text-xs text-muted-foreground mt-1 block">
+                      {locale === "es" ? "Ideal para 5 consultas" : "Ideal for 5 consultations"}
+                    </span>
                   </div>
                   <Button
                     onClick={() => handlePurchase(1000)}
@@ -264,7 +275,7 @@ function WalletPageContent() {
                     {checkoutLoading && buyingOption === 1000 ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
                     ) : (
-                      "Comprar por $800 MXN"
+                      locale === "es" ? "Comprar por $800 MXN" : "Buy for $800 MXN"
                     )}
                   </Button>
                 </div>
@@ -273,7 +284,7 @@ function WalletPageContent() {
               <div className="flex gap-2 p-3 bg-muted/30 border border-glass-border rounded-xl text-[10px] text-muted-foreground leading-relaxed items-start">
                 <ShieldCheck className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                 <span>
-                  <strong>Pago Seguro:</strong> Todas las transacciones son encriptadas de forma segura de extremo a extremo a través de Stripe. Tus datos financieros nunca tocan nuestros servidores.
+                  <strong>{locale === "es" ? "Pago Seguro:" : "Secure Payment:"}</strong> {locale === "es" ? "Todas las transacciones son encriptadas de forma segura de extremo a extremo a través de Stripe. Tus datos financieros nunca tocan nuestros servidores." : "All transactions are securely encrypted end-to-end via Stripe. Your financial details never touch our servers."}
                 </span>
               </div>
             </motion.div>

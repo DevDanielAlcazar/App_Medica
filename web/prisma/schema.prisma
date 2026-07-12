@@ -22,6 +22,9 @@ model User {
   appointments       Appointment[]  @relation("PatientAppointments")
   doctorAppointments Appointment[]  @relation("DoctorAppointments")
   auditLogs          AuditLog[]
+  medicationReminders MedicationReminder[]
+  supportTickets      SupportTicket[]      @relation("UserTickets")
+  ticketMessages      TicketMessage[]      @relation("SenderMessages")
 }
 
 model DoctorProfile {
@@ -194,4 +197,53 @@ model SubscriptionPlan {
   sortOrder       Int      @default(0)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+}
+
+model SystemSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model MedicationReminder {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  medication  String
+  dosage      String
+  frequency   String   // ej: "cada 8 horas"
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SearchCache {
+  query     String   @id
+  response  String
+  createdAt DateTime @default(now())
+}
+
+model SupportTicket {
+  id          String          @id @default(uuid())
+  userId      String
+  user        User            @relation(name: "UserTickets", fields: [userId], references: [id], onDelete: Cascade)
+  subject     String
+  description String
+  status      String          @default("open") // open, in_progress, resolved, closed
+  category    String          @default("other") // wallet, appointment, assistant, other
+  priority    String          @default("low") // low, medium, high, critical
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  messages    TicketMessage[]
+}
+
+model TicketMessage {
+  id        String        @id @default(uuid())
+  ticketId  String
+  ticket    SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  senderId  String
+  sender    User          @relation(name: "SenderMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime      @default(now())
 }

@@ -40,13 +40,17 @@ export async function GET(
     // 3. Estructuración inteligente básica del reporte basada en el caso
     const symptoms: string[] = [];
     
-    // Buscar palabras comunes de síntomas en el historial
+    // Buscar palabras comunes de síntomas en el historial de forma segura con límites de palabra
     const textToAnalyze = userMessages.map(m => m.content).join(" ").toLowerCase();
-    if (textToAnalyze.includes("fiebre") || textToAnalyze.includes("calentura")) symptoms.push("Fiebre");
-    if (textToAnalyze.includes("tos") || textToAnalyze.includes("garganta")) symptoms.push("Tos / Dolor de garganta");
-    if (textToAnalyze.includes("cabeza") || textToAnalyze.includes("migraña")) symptoms.push("Cefalea (Dolor de cabeza)");
-    if (textToAnalyze.includes("estomago") || textToAnalyze.includes("diarrea") || textToAnalyze.includes("vomito")) symptoms.push("Malestar gastrointestinal");
-    if (textToAnalyze.includes("pecho") || textToAnalyze.includes("respirar")) symptoms.push("Dificultad respiratoria / Opresión torácica");
+    const cleanText = textToAnalyze
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, ""); // Quitar acentos
+
+    if (/\b(fiebre|calentura)\b/i.test(cleanText)) symptoms.push("Fiebre");
+    if (/\b(tos|garganta)\b/i.test(cleanText)) symptoms.push("Tos / Dolor de garganta");
+    if (/\b(cabeza|migrana)\b/i.test(cleanText)) symptoms.push("Cefalea (Dolor de cabeza)");
+    if (/\b(estomago|diarrea|vomito)\b/i.test(cleanText)) symptoms.push("Malestar gastrointestinal");
+    if (/\b(pecho|respirar)\b/i.test(cleanText)) symptoms.push("Dificultad respiratoria / Opresión torácica");
     
     if (symptoms.length === 0) symptoms.push("Sintomatología general bajo análisis");
 

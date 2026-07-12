@@ -5,14 +5,17 @@ import { usePathname } from "next/navigation";
 import { Home, Stethoscope, Activity, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import { useLanguage } from "@/providers/LanguageProvider";
+
 export function MobileBottomBar() {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   const links = [
-    { href: "/paciente", label: "Inicio", icon: Home },
-    { href: "/paciente/consulta", label: "Consulta", icon: Stethoscope },
-    { href: "/paciente/historial", label: "Historial", icon: Activity },
-    { href: "/paciente/calendario", label: "Calendario", icon: Calendar },
+    { href: "/paciente", label: t("nav.home"), icon: Home },
+    { href: "/paciente/consulta", label: t("nav.consulta"), icon: Stethoscope },
+    { href: "/paciente/historial", label: t("nav.historial"), icon: Activity },
+    { href: "/paciente/calendario", label: t("nav.calendario"), icon: Calendar },
   ];
 
   return (

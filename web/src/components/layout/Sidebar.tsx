@@ -22,10 +22,27 @@ import {
   FileSpreadsheet
 } from "lucide-react";
 
+import { useLanguage } from "@/providers/LanguageProvider";
+
 export function Sidebar() {
   const pathname = usePathname();
   const { role } = useUserStore();
   const { sidebarOpen } = useUiStore();
+  const { t } = useLanguage();
+
+  const getLabel = (label: string) => {
+    switch (label) {
+      case "Inicio": return t("nav.home");
+      case "Consulta": return t("nav.consulta");
+      case "Historial": return t("nav.historial");
+      case "Calendario": return t("nav.calendario");
+      case "Wallet": return t("nav.wallet");
+      case "Nutrición": return t("nav.nutricion");
+      case "Soporte": return t("nav.soporte");
+      case "Perfil": return t("nav.perfil");
+      default: return label;
+    }
+  };
 
   // 1. Enlaces para Paciente
   const patientLinks = [
@@ -105,10 +122,10 @@ export function Sidebar() {
                   "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors hover:bg-muted/50",
                   pathname === link.href ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground"
                 )}
-                title={!sidebarOpen ? link.label : undefined}
+                title={!sidebarOpen ? getLabel(link.label) : undefined}
               >
                 <link.icon className="w-5 h-5 shrink-0" />
-                {sidebarOpen && <span>{link.label}</span>}
+                {sidebarOpen && <span>{getLabel(link.label)}</span>}
               </Link>
             </li>
           ))}
