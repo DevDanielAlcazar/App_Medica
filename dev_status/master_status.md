@@ -55,7 +55,7 @@
 
 | Métrica | Valor |
 | :--- | :--- |
-| **Avance general** | ~100% (RAG + Wallet + Citas + Validación + Admin Panel + AI Chat + Sprints 7-10 completados) |
+| **Avance general** | ~100% (RAG + Wallet + Citas + Validación + Admin Panel + AI Chat + Sprints 7-11 completados) |
 | **Fases completadas** | 17 de 18 (F00-F06 + Sprints 2B-10 completados) |
 | **Fases en curso** | Ninguna (Listos para lanzamiento) |
 | **User stories iniciadas** | 14 de 14 |

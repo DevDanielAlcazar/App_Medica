@@ -39,8 +39,12 @@ model DoctorProfile {
   bankAccountName    String?
   clabe              String?
   schedule           Json?    // Almacena bloques de disponibilidad
+  balance            Float    @default(0) // Ganancias en MXN sin retirar
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
+
+  transactions       DoctorTransaction[]
+  payouts            Payout[]
 }
 
 model ClinicalCase {
@@ -246,4 +250,44 @@ model TicketMessage {
   sender    User          @relation(name: "SenderMessages", fields: [senderId], references: [id], onDelete: Cascade)
   content   String
   createdAt DateTime      @default(now())
+}
+
+model DoctorTransaction {
+  id          String        @id @default(uuid())
+  doctorId    String
+  doctor      DoctorProfile @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  amount      Float
+  type        String        // 'earning', 'withdrawal', 'penalty'
+  description String
+  status      String        @default("completed") // pending, completed, failed
+  createdAt   DateTime      @default(now())
+}
+
+model AccountingCycle {
+  id          String   @id @default(uuid())
+  periodName  String   // e.g. "Semana 23, 2026"
+  startDate   DateTime
+  endDate     DateTime
+  status      String   @default("open") // open, closed, paid
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  payouts     Payout[]
+}
+
+model Payout {
+  id            String          @id @default(uuid())
+  doctorId      String
+  doctor        DoctorProfile   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  cycleId       String?
+  cycle         AccountingCycle? @relation(fields: [cycleId], references: [id], onDelete: SetNull)
+  amount        Float
+  penaltyAmount Float           @default(0)
+  penaltyReason String?
+  status        String          @default("pending") // pending, processing, completed, failed
+  clabe         String?
+  bankName      String?
+  receiptUrl    String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 }
