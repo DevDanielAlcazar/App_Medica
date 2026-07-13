@@ -145,10 +145,10 @@
 
 ### Iteración E — QA y Hardening (Prioridad Alta para Release)
 
-- [ ] **E1**: **Pruebas Clínicas Adversariales** — Suite automatizada que pruebe red flags, controlados, pediatría, derivación (existe test-clinical-flow.ts pero ampliar cobertura)
-- [ ] **E2**: **Pruebas de Accesibilidad WCAG 2.2 AA** — Auditoría con axe-core o similar
-- [ ] **E3**: **Pruebas de Seguridad** — Revisar cifrado, RBAC, logs sin PHI, eliminación
-- [ ] **E4**: **Pruebas de Pagos** — Stripe webhook idempotencia, wallet ledger, reembolsos
+- [x] **E1**: **Pruebas Clínicas Adversariales** — Suite automatizada que pruebe red flags, controlados, pediatría, derivación (existe test-clinical-flow.ts pero ampliar cobertura)
+- [x] **E2**: **Pruebas de Accesibilidad WCAG 2.2 AA** — Auditoría con axe-core o similar
+- [x] **E3**: **Pruebas de Seguridad** — Revisar cifrado, RBAC, logs sin PHI, eliminación
+- [x] **E4**: **Pruebas de Pagos** — Stripe webhook idempotencia, wallet ledger, reembolsos
 - [ ] **E5**: **Load Test** — Pruebas de carga en servidor local Debian
 - [ ] **E6**: **Pruebas Responsive** — Verificar 360px, 768px, 1024px, 1440px sin overflow
 
