@@ -149,19 +149,15 @@
 - [x] **E2**: **Pruebas de Accesibilidad WCAG 2.2 AA** — Auditoría con axe-core o similar
 - [x] **E3**: **Pruebas de Seguridad** — Revisar cifrado, RBAC, logs sin PHI, eliminación
 - [x] **E4**: **Pruebas de Pagos** — Stripe webhook idempotencia, wallet ledger, reembolsos
-- [ ] **E5**: **Load Test** — Pruebas de carga en servidor local Debian
-- [ ] **E6**: **Pruebas Responsive** — Verificar 360px, 768px, 1024px, 1440px sin overflow
+- [x] **E5**: **Load Test** — Pruebas de carga en servidor local Debian
+- [x] **E6**: **Pruebas Responsive** — Verificar 360px, 768px, 1024px, 1440px sin overflow
 
-### Iteración F — Infraestructura y DevOps (Prioridad Alta)
+### Iteración F — Infraestructura y DevOps (Prioridad Alta - En Espera de Deploy LAN)
 
-- [ ] **F1**: Crear `ecosystem.config.js` para PM2 (instances, logs rotados, restart policy)
-- [ ] **F2**: Configurar Cloudflare Tunnel (`cloudflared` como servicio Linux)
-- [ ] **F3**: Crear healthcheck endpoint completo (`/api/health`) que verifique DB, IA gateway, colas
-- [ ] **F4**: Script de deploy: `git pull → npm install → build → migrate → pm2 reload`
-- [ ] **F5**: Configurar backups automáticos de PostgreSQL
-- [ ] **F6**: Configurar monitoreo (logs centralizados, alertas)
-- [ ] **F7**: Crear `.env.production` template con todas las variables necesarias
-- [ ] **F8**: Configurar CI/CD (GitHub Actions o similar)
+- [ ] **F1**: Auditoría de Puertos y PM2 (Script para listar procesos de PM2 actuales del usuario 'daniel' o 'root', y verificar puertos libres en el servidor LAN para evitar choques)
+- [ ] **F2**: Preparación de Variables de Entorno de Producción (Ajustar URLs, túneles y puertos seguros)
+- [ ] **F3**: Radiografía Final de Código (Auditoría completa antes de tocar el servidor)
+- [ ] **F4**: Despliegue Manual Controlado (Start de PM2 y Cloudflare solo tras validación)
 
 ### Iteración G — Gates de Release (Prioridad Crítica)
 

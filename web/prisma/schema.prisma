@@ -12,7 +12,7 @@ model User {
   email              String         @unique
   password           String
   name               String
-  role               String         @default("paciente") // paciente, medico, admin, superadmin
+  role               String         @default("paciente") // paciente, medico, admin, superadmin, banned, suspended
   planId             String?
   plan               SubscriptionPlan? @relation(fields: [planId], references: [id])
   googleAccessToken  String?

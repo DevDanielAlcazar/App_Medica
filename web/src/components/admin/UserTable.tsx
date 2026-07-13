@@ -1,19 +1,27 @@
 "use client";
 
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { FileText, UserCheck, Loader2, ShieldCheck, XCircle } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { FileText, UserCheck, Loader2, ShieldCheck, XCircle, Users, Edit, Trash2, Ban } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-interface Doctor {
+interface User {
   id: string;
   name: string;
   email: string;
+  role: string;
+  planId?: string;
+  createdAt: string;
   doctorProfile?: {
     cedula: string | null;
     verificationStatus: string;
@@ -21,13 +29,20 @@ interface Doctor {
 }
 
 interface UserTableProps {
-  users: Doctor[];
+  users: User[];
   onVerify: (doctorId: string, status: "activo" | "rechazado") => Promise<void>;
   updatingId: string | null;
+  onRefresh?: () => void;
 }
 
-export function UserTable({ users, onVerify, updatingId }: UserTableProps) {
+export function UserTable({ users, onVerify, updatingId, onRefresh }: UserTableProps) {
   const { locale } = useLanguage();
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [createForm, setCreateForm] = useState({ email: "", password: "", name: "", role: "paciente" });
+  const [editForm, setEditForm] = useState({ name: "", email: "", role: "paciente" });
+  const [actionLoading, setActionLoading] = useState<string | null>(null);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -47,11 +62,80 @@ export function UserTable({ users, onVerify, updatingId }: UserTableProps) {
       case "activo":
         return "Activo";
       case "en_revision":
-        return "En Revisión";
+        return "En Revision";
       case "rechazado":
         return "Rechazado";
       default:
         return "Pendiente";
+    }
+  };
+
+  const handleCreateUser = async () => {
+    try {
+      const res = await fetch("/api/admin/usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(createForm),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Error al crear usuario");
+      toast.success("Usuario creado exitosamente");
+      setShowCreateModal(false);
+      setCreateForm({ email: "", password: "", name: "", role: "paciente" });
+      onRefresh?.();
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleUpdateUser = async () => {
+    if (!editingUser) return;
+    try {
+      const res = await fetch("/api/admin/usuarios", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: editingUser.id, action: "update", ...editForm }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Error al actualizar");
+      toast.success("Usuario actualizado");
+      setShowEditModal(false);
+      onRefresh?.();
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleBanUser = async (userId: string) => {
+    setActionLoading(userId);
+    try {
+      const res = await fetch("/api/admin/usuarios", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, action: "ban" }),
+      });
+      if (!res.ok) throw new Error("Error al banear");
+      toast.success("Usuario baneado");
+      onRefresh?.();
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleDeleteUser = async (userId: string) => {
+    if (!confirm("Eliminar usuario? Esta accion no se puede deshacer.")) return;
+    setActionLoading(userId);
+    try {
+      const res = await fetch(`/api/admin/usuarios?id=${userId}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Error al eliminar");
+      toast.success("Usuario eliminado");
+      onRefresh?.();
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setActionLoading(null);
     }
   };
 
@@ -64,10 +148,10 @@ export function UserTable({ users, onVerify, updatingId }: UserTableProps) {
       <Tabs defaultValue="verify" className="w-full">
         <TabsList className="border-b border-glass-border rounded-none bg-transparent h-12 p-0 space-x-6 mb-6">
           <TabsTrigger value="verify" className="data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none bg-transparent px-0 text-sm font-semibold">
-            {locale === "es" ? "Verificación Médica" : "Doctor Verification"} ({pendingDoctors.length})
+            {locale === "es" ? "Verificacion Medica" : "Doctor Verification"} ({pendingDoctors.length})
           </TabsTrigger>
           <TabsTrigger value="doctors" className="data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none bg-transparent px-0 text-sm font-semibold">
-            {locale === "es" ? "Médicos Registrados" : "Registered Doctors"}
+            {locale === "es" ? "Medicos Registrados" : "Registered Doctors"}
           </TabsTrigger>
         </TabsList>
 
@@ -81,7 +165,7 @@ export function UserTable({ users, onVerify, updatingId }: UserTableProps) {
                     {locale === "es" ? "Sin solicitudes pendientes" : "No pending requests"}
                   </h3>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {locale === "es" ? "No hay médicos con documentación profesional pendiente de revisar en este momento." : "No doctors with pending professional documentation."}
+                    {locale === "es" ? "No hay medicos con documentacion profesional pendiente de revisar en este momento." : "No doctors with pending professional documentation."}
                   </p>
                 </div>
               </CardContent>
@@ -136,6 +220,47 @@ export function UserTable({ users, onVerify, updatingId }: UserTableProps) {
         </TabsContent>
 
         <TabsContent value="doctors" className="space-y-4">
+          <div className="flex justify-end mb-4">
+            <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
+              <DialogTrigger>
+                <Button size="sm" className="gap-2">
+                  <Users className="w-4 h-4" /> Nuevo Usuario
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>{locale === "es" ? "Crear Usuario Manual" : "Create User"}</DialogTitle>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid gap-2">
+                    <Label>{locale === "es" ? "Nombre" : "Name"}</Label>
+                    <Input value={createForm.name} onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })} />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>{locale === "es" ? "Email" : "Email"}</Label>
+                    <Input type="email" value={createForm.email} onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })} />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>{locale === "es" ? "Contrasena" : "Password"}</Label>
+                    <Input type="password" value={createForm.password} onChange={(e) => setCreateForm({ ...createForm, password: e.target.value })} />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>{locale === "es" ? "Rol" : "Role"}</Label>
+                    <Select onValueChange={(v: string | null) => v && setCreateForm({ ...createForm, role: v })}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="paciente">Paciente</SelectItem>
+                        <SelectItem value="medico">Medico</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Button onClick={handleCreateUser}>{locale === "es" ? "Crear" : "Create"}</Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+
           <Card className="glass-panel border-glass-border bg-background/25">
             <CardContent className="p-0">
               <Table>
@@ -143,8 +268,9 @@ export function UserTable({ users, onVerify, updatingId }: UserTableProps) {
                   <TableRow>
                     <TableHead>{locale === "es" ? "Nombre" : "Name"}</TableHead>
                     <TableHead>{locale === "es" ? "Email" : "Email"}</TableHead>
-                    <TableHead>{locale === "es" ? "Cédula" : "License"}</TableHead>
+                    <TableHead>{locale === "es" ? "Cedula" : "License"}</TableHead>
                     <TableHead>{locale === "es" ? "Estado" : "Status"}</TableHead>
+                    <TableHead>Acciones</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -158,6 +284,19 @@ export function UserTable({ users, onVerify, updatingId }: UserTableProps) {
                           {getStatusLabel(doc.doctorProfile?.verificationStatus || "")}
                         </Badge>
                       </TableCell>
+                      <TableCell>
+                        <div className="flex gap-2">
+                          <Button size="sm" onClick={() => { setEditingUser(doc); setEditForm({ name: doc.name, email: doc.email, role: doc.role }); setShowEditModal(true); }}>
+                            <Edit className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="ghost" onClick={() => handleBanUser(doc.id)} disabled={actionLoading === doc.id}>
+                            <Ban className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="ghost" onClick={() => handleDeleteUser(doc.id)} disabled={actionLoading === doc.id}>
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -166,6 +305,36 @@ export function UserTable({ users, onVerify, updatingId }: UserTableProps) {
           </Card>
         </TabsContent>
       </Tabs>
+
+      <Dialog open={showEditModal} onOpenChange={setShowEditModal}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{locale === "es" ? "Editar Usuario" : "Edit User"}</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label>{locale === "es" ? "Nombre" : "Name"}</Label>
+              <Input value={editForm.name} onChange={(e) => setEditForm({ ...editForm, name: e.target.value })} />
+            </div>
+            <div className="grid gap-2">
+              <Label>{locale === "es" ? "Email" : "Email"}</Label>
+              <Input type="email" value={editForm.email} onChange={(e) => setEditForm({ ...editForm, email: e.target.value })} />
+            </div>
+            <div className="grid gap-2">
+              <Label>{locale === "es" ? "Rol" : "Role"}</Label>
+              <Select onValueChange={(v: string | null) => v && setEditForm({ ...editForm, role: v })}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="paciente">Paciente</SelectItem>
+                  <SelectItem value="medico">Medico</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button onClick={handleUpdateUser}>{locale === "es" ? "Guardar" : "Save"}</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
