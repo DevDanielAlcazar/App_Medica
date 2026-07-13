@@ -47,7 +47,7 @@
   "history.download_report": "Generar Reporte PDF",
   "history.share": "Compartir",
   "history.back_to_history": "Volver al historial",
-  
+
   "status.en_analisis": "En Análisis",
   "status.derivado": "Derivado a Físico",
   "status.en_tratamiento": "En Tratamiento",
@@ -119,5 +119,14 @@
   "nutrition.note": "Nota de Angélica:",
   "nutrition.note_description": "Este plan se adapta a tus condiciones clínicas. Evita alimentos no recomendados y mantén el registro actualizado.",
   "nutrition.disclaimer": "Plan orientativo. Consulte a su nutriólogo.",
-  "nutrition.subtitle": "Generado por IA basado en tu historial clínico."
+  "nutrition.subtitle": "Generado por IA basado en tu historial clínico.",
+
+  "patient.location_share": "Compartir Ubicación",
+  "patient.location_permission": "Se necesita permiso para acceder a tu ubicación.",
+  "patient.get_location": "Obtener Ubicación",
+  "patient.coordinates": "Coordenadas",
+  "patient.expiry_hours": "Válido por",
+  "patient.share_link": "Enlace para compartir",
+  "patient.expires_at": "Expira a las",
+  "patient.location_disclaimer": "Este enlace es temporal y expirará. Compartir solo con personal médico de confianza."
 }

@@ -34,6 +34,16 @@ export default function CaseDetailPage({ params }: { params: Promise<{ caseId: s
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteConfirmationText, setDeleteConfirmationText] = useState("");
 
+  const handleShareWhatsApp = async () => {
+    const shareText = encodeURIComponent(
+      `Estado de salud actualizado - Angélica Med\n` +
+      `Caso: ${activeCase?.title || "Consulta médica"}\n` +
+      `Estado: ${activeCase?.status || "en_analisis"}\n` +
+      `https://angelicamed.com/paciente/historial/${caseId}`
+    );
+    window.open(`https://wa.me/?text=${shareText}`, "_blank");
+  };
+
   const handleGenerateReport = async () => {
     setPrinting(true);
     try {
@@ -432,7 +442,7 @@ export default function CaseDetailPage({ params }: { params: Promise<{ caseId: s
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2" onClick={handleShareWhatsApp}>
               <Share2 className="w-4 h-4" /> Compartir
             </Button>
             <Button onClick={handleGenerateReport} disabled={printing} className="gap-2 bg-primary hover:bg-primary/90 text-white rounded-xl">
