@@ -13,6 +13,11 @@ model User {
   password           String
   name               String
   role               String         @default("paciente") // paciente, medico, admin, superadmin
+  planId             String?
+  plan               SubscriptionPlan? @relation(fields: [planId], references: [id])
+  googleAccessToken  String?
+  googleRefreshToken String?
+  googleTokenExpiry  DateTime?
   createdAt          DateTime       @default(now())
   updatedAt          DateTime       @updatedAt
   
@@ -25,6 +30,7 @@ model User {
   medicationReminders MedicationReminder[]
   supportTickets      SupportTicket[]      @relation("UserTickets")
   ticketMessages      TicketMessage[]      @relation("SenderMessages")
+  pushSubscriptions  PushSubscription[]
 }
 
 model DoctorProfile {
@@ -201,12 +207,25 @@ model SubscriptionPlan {
   sortOrder       Int      @default(0)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+
+  users           User[]
 }
 
 model SystemSetting {
   key       String   @id
   value     String
   updatedAt DateTime @updatedAt
+}
+
+model PushSubscription {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  endpoint      String   @unique
+  publicKey     String
+  authToken     String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model MedicationReminder {

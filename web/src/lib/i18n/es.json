@@ -107,6 +107,7 @@
   "admin.error_connection": "Error de conexión.",
   "admin.no_permissions": "No se pudieron cargar los permisos.",
   "admin.permissions_updated": "Permisos actualizados.",
+  "admin.assign_plans": "Asignar Planes a Usuarios",
 
   "nutrition.breakfast": "Desayuno",
   "nutrition.lunch": "Comida",

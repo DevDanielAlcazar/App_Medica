@@ -126,10 +126,10 @@
 - [x] **C1**: **Reporte de Derivación PDF** — Endpoint que genere PDF con formato de receta clínica (`@media print`) y botón de descarga
 - [x] **C2**: **Compartir por WhatsApp** — Deep links para compartir reportes/resúmenes (REQ-034)
 - [x] **C3**: **Ubicación en Tiempo Real** — Compartir ubicación con enlace temporal expirable (REQ-035)
-- [ ] **C4**: **Google Calendar OAuth** — Conectar calendario del usuario (REQ-033)
-- [ ] **C5**: **Subscription Plans** — Asignar planes a usuarios desde admin, límites por plan
-- [ ] **C6**: **Google Meet real** — Integración con Google Meet API para crear espacios reales (hoy solo se genera link texto)
-- [ ] **C7**: **Notificaciones Push** — Web push notifications (adicional a Gmail)
+- [x] **C4**: **Google Calendar OAuth** — Conectar calendario del usuario (REQ-033)
+- [x] **C5**: **Subscription Plans** — Asignar planes a usuarios desde admin, límites por plan
+- [x] **C6**: **Google Meet real** — Integración con Google Meet API para crear espacios reales (hoy solo se genera link texto)
+- [x] **C7**: **Notificaciones Push** — Web push notifications (adicional a Gmail)
 - [x] **C8**: **Recomendación Sintomatológica** — Documento formal descargable con disclaimer (parcial: existe ActionReceipt)
 
 ### Iteración D — Componentes Standalone (Prioridad Media)

@@ -1,13 +1,52 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
+import { google } from "googleapis";
 
-// Costo fijo de la cita en créditos
 const APPOINTMENT_COST = 200;
 
-/**
- * Genera un enlace simulado de Google Meet
- */
+async function createGoogleMeetSpace(): Promise<string | null> {
+  try {
+    const credentials = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+    if (!credentials) throw new Error("No service account credentials");
+
+    const auth = new google.auth.GoogleAuth({
+      credentials: JSON.parse(credentials),
+      scopes: ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/calendar.events"],
+    });
+
+    const calendar = google.calendar({ version: "v3", auth });
+    const response = await calendar.events.insert({
+      calendarId: "primary",
+      requestBody: {
+        summary: "Cita médica virtual - Angélica Med",
+        conferenceData: {
+          createRequest: {
+            requestId: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+            conferenceSolutionKey: {
+              type: "hangoutsMeet" as const,
+            },
+          },
+        },
+        start: {
+          dateTime: new Date().toISOString(),
+          timeZone: "America/Mexico_City",
+        },
+        end: {
+          dateTime: new Date(Date.now() + 3600000).toISOString(),
+          timeZone: "America/Mexico_City",
+        },
+      },
+      conferenceDataVersion: 1,
+    });
+
+    return response.data.conferenceData?.entryPoints?.[0]?.uri || null;
+  } catch (err) {
+    console.error("Google Meet API error, falling back to mock:", err);
+    return null;
+  }
+}
+
 function generateMeetLink(): string {
   const chars = "abcdefghijklmnopqrstuvwxyz";
   const gen = (len: number) => Array.from({ length: len }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
@@ -161,7 +200,7 @@ export async function POST(request: Request) {
       });
 
       // c. Generar enlace de Meet y crear la cita
-      const meetLink = generateMeetLink();
+      const meetLink = await createGoogleMeetSpace() || generateMeetLink();
       const appointment = await tx.appointment.create({
         data: {
           patientId,
