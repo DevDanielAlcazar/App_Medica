@@ -286,13 +286,13 @@ export function UserTable({ users, onVerify, updatingId, onRefresh }: UserTableP
                       </TableCell>
                       <TableCell>
                         <div className="flex gap-2">
-                          <Button size="sm" onClick={() => { setEditingUser(doc); setEditForm({ name: doc.name, email: doc.email, role: doc.role }); setShowEditModal(true); }}>
+                          <Button size="sm" aria-label="Editar" onClick={() => { setEditingUser(doc); setEditForm({ name: doc.name, email: doc.email, role: doc.role }); setShowEditModal(true); }}>
                             <Edit className="w-3 h-3" />
                           </Button>
-                          <Button size="sm" variant="ghost" onClick={() => handleBanUser(doc.id)} disabled={actionLoading === doc.id}>
+                          <Button size="sm" variant="ghost" aria-label="Banear" onClick={() => handleBanUser(doc.id)} disabled={actionLoading === doc.id}>
                             <Ban className="w-3 h-3" />
                           </Button>
-                          <Button size="sm" variant="ghost" onClick={() => handleDeleteUser(doc.id)} disabled={actionLoading === doc.id}>
+                          <Button size="sm" variant="ghost" aria-label="Eliminar" onClick={() => handleDeleteUser(doc.id)} disabled={actionLoading === doc.id}>
                             <Trash2 className="w-3 h-3" />
                           </Button>
                         </div>

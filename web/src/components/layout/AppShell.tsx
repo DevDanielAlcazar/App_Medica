@@ -36,11 +36,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded">
+        Saltar al contenido principal
+      </a>
       <Sidebar />
       <div className="flex flex-col flex-1 w-full overflow-hidden transition-all">
         <Header />
         {role === "paciente" && <SafetyRibbon status={safetyStatus} />}
-        <main className="flex-1 overflow-auto bg-muted/10 relative p-4 lg:p-6 pb-20 md:pb-6">
+        <main id="main-content" className="flex-1 overflow-auto bg-muted/10 relative p-4 lg:p-6 pb-20 md:pb-6">
           {children}
         </main>
         <MobileBottomBar />

@@ -170,14 +170,14 @@
 
 ### Iteración H — UI/UX Polish (Prioridad Media)
 
-- [ ] **H1**: Crear `components/shared/RegionDetectorNotice.tsx`
-- [ ] **H2**: Crear `components/shared/MotivationalGreeting.tsx`
-- [ ] **H3**: Crear `components/layout/BreadcrumbNav.tsx`
-- [ ] **H4**: Verificar animaciones Framer Motion en todas las transiciones de página
-- [ ] **H5**: Verificar `prefers-reduced-motion` en animaciones
-- [ ] **H6**: Implementar skip-to-content link en AppShell
-- [ ] **H7**: Verificar contraste WCAG AA sobre glassmorphism
-- [ ] **H8**: Auditoría de `aria-label`, roles ARIA, focus rings
+- [x] **H1**: Crear `components/shared/RegionDetectorNotice.tsx`
+- [x] **H2**: Crear `components/shared/MotivationalGreeting.tsx`
+- [x] **H3**: Crear `components/layout/BreadcrumbNav.tsx`
+- [x] **H4**: Verificar animaciones Framer Motion en todas las transiciones de página
+- [x] **H5**: Verificar `prefers-reduced-motion` en animaciones
+- [x] **H6**: Implementar skip-to-content link en AppShell
+- [x] **H7**: Verificar contraste WCAG AA sobre glassmorphism
+- [x] **H8**: Auditoría de `aria-label`, roles ARIA, focus rings
 
 ---
 
