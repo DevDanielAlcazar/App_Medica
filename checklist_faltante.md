@@ -134,14 +134,14 @@
 
 ### Iteración D — Componentes Standalone (Prioridad Media)
 
-- [ ] **D1**: Crear `components/patient/AppointmentScheduler.tsx` (select+fecha)
-- [ ] **D2**: Crear `components/patient/MeetJoinCard.tsx` (card con link Meet)
-- [ ] **D3**: Crear `components/patient/WalletLedger.tsx`
-- [ ] **D4**: Crear `components/patient/RecommendationCard.tsx`
-- [ ] **D5**: Crear `components/patient/HumanReferralReportButton.tsx`
-- [ ] **D6**: Crear `components/patient/NutritionPlanCard.tsx`
-- [ ] **D7**: Crear `components/patient/EvidenceDropzone.tsx`
-- [ ] **D8**: Extraer lógica inline de páginas admin a componentes standalone (ver deuda técnica)
+- [x] **D1**: Crear `components/patient/AppointmentScheduler.tsx` (select+fecha)
+- [x] **D2**: Crear `components/patient/MeetJoinCard.tsx` (card con link Meet)
+- [x] **D3**: Crear `components/patient/WalletLedger.tsx`
+- [x] **D4**: Crear `components/patient/RecommendationCard.tsx`
+- [x] **D5**: Crear `components/patient/HumanReferralReportButton.tsx`
+- [x] **D6**: Crear `components/patient/NutritionPlanCard.tsx`
+- [x] **D7**: Crear `components/patient/EvidenceDropzone.tsx`
+- [x] **D8**: Extraer lógica inline de páginas admin a componentes standalone (ver deuda técnica)
 
 ### Iteración E — QA y Hardening (Prioridad Alta para Release)
 
