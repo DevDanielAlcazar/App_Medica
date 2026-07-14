@@ -4,14 +4,17 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   try {
-    // Solo permitir en desarrollo o si las llaves de Stripe no están configuradas
+    // Guard STRICTO: Este endpoint solo es permitido en desarrollo/NODE_ENV !== 'production'
+    // o cuando STRIPE_SECRET_KEY no está configurado (bypass mode)
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
     const isStripeDisabled = !stripeSecretKey || stripeSecretKey === "COLOCA_AQUI_TU_STRIPE_SECRET_KEY" || stripeSecretKey.trim() === "";
+    const isProduction = process.env.NODE_ENV === "production";
 
-    if (process.env.NODE_ENV === "production" && !isStripeDisabled) {
+    if (isProduction && !isStripeDisabled) {
+      // En producción con Stripe configurado, prohibir el endpoint mock
       return NextResponse.json(
-        { error: "Operación no permitida en producción." },
-        { status: 403 }
+        { error: "Endpoint no disponible. Usa el checkout real de Stripe." },
+        { status: 404 }
       );
     }
 

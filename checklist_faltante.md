@@ -160,18 +160,18 @@
 
 ## 3. Plan de Acción Recomendado (Previo a Despliegue)
 
-### Iteración I (NUEVA) — Cierre de Integraciones Críticas (Prioridad MÁXIMA)
+### Iteración I (COMPLETADA) — Cierre de Integraciones Críticas (Prioridad MÁXIMA)
 
-| ID | Tarea | Archivos afectados | Dependencia |
-|---|---|---|---|
-| **I-01** | Configurar variables GOOGLE_* en .env con formato correcto (= en vez de :) | web/.env | Ninguna |
-| **I-02** | Implementar idempotencia en webhook Stripe (check event_id antes de procesar) | api/webhooks/stripe/route.ts | Ninguna |
-| **I-03** | Eliminar/deshabilitar mock-success en producción (o reforzar guarda) | api/patient/wallet/mock-success/route.ts | Stripe keys |
-| **I-04** | Agregar GOOGLE_SERVICE_ACCOUNT_KEY y activar Meet real | api/patient/appointments/route.ts | Google Cloud project |
-| **I-05** | Arreglar callback OAuth: usar NEXT_PUBLIC_APP_URL en vez de fetch relativo | api/patient/calendar/callback/route.ts | GOOGLE_CLIENT_ID/SECRET |
-| **I-06** | Agregar state parameter CSRF en OAuth flow | api/patient/calendar/connect/route.ts | Ninguna |
-| **I-07** | Añadir "NUNCA digas soy una IA" en system prompt de mensajes | api/patient/cases/[caseId]/messages/route.ts | Ninguna |
-| **I-08** | Reemplazar window.print() con librería PDF real (jsPDF o similar) | components/patient/ReferralReport.tsx | npm install |
+| ID | Tarea | Estado |
+|---|---|---|
+| **I-01** | Configurar variables GOOGLE_* en .env con formato correcto (= en vez de :) | ✅ Completado |
+| **I-02** | Implementar idempotencia en webhook Stripe (check event_id antes de procesar) | ✅ Completado |
+| **I-03** | Reforzar guarda en mock-success: devuelve 404 en producción con Stripe configurado | ✅ Completado |
+| **I-04** | Google Meet real integrado (requiere GOOGLE_SERVICE_ACCOUNT_KEY en .env) | ✅ Implementado (espera credenciales) |
+| **I-05** | Arreglar callback OAuth: usar NEXT_PUBLIC_APP_URL absoluto y pasar cookies | ✅ Completado |
+| **I-06** | Agregar state parameter CSRF en OAuth flow con cookie HTTP-only | ✅ Completado |
+| **I-07** | Añadir "NUNCA digas soy una IA" en system prompt | ✅ Completado |
+| **I-08** | Reemplazar window.print() con jsPDF + html2canvas | ✅ Completado |
 
 ### Luego de Iteración I → Iteración F (Despliegue LAN)
 

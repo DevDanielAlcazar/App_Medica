@@ -45,6 +45,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ received: true });
     }
 
+    // Idempotency check: verificar si este evento ya fue procesado
+    const existingLog = await prisma.auditLog.findFirst({
+      where: {
+        details: {
+          path: ["stripeEventId"],
+          equals: event.id,
+        },
+      },
+    });
+
+    if (existingLog) {
+      console.log(`[Stripe Webhook] Evento ${event.id} ya procesado. Ignorando.`);
+      return NextResponse.json({ received: true });
+    }
+
     const creditsNum = parseInt(creditsStr, 10);
 
     if (isNaN(creditsNum) || creditsNum <= 0) {
@@ -90,19 +105,20 @@ export async function POST(request: Request) {
           },
         });
 
-        await tx.auditLog.create({
-          data: {
-            userId,
-            action: "WALLET_STRIPE_RECHARGE",
-            entity: "Wallet",
-            details: {
-              credits: creditsNum,
-              stripeSessionId: session.id,
-              previousBalance: wallet.balance,
-              newBalance: updatedWallet.balance,
-            },
-          },
-        });
+await tx.auditLog.create({
+           data: {
+             userId,
+             action: "WALLET_STRIPE_RECHARGE",
+             entity: "Wallet",
+             details: {
+               credits: creditsNum,
+               stripeSessionId: session.id,
+               stripeEventId: event.id,
+               previousBalance: wallet.balance,
+               newBalance: updatedWallet.balance,
+             },
+           },
+         });
       });
 
       console.log(`[Stripe Webhook] Abono completado exitosamente para el usuario: ${userId}`);

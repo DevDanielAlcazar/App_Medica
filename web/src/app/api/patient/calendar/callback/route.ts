@@ -5,6 +5,13 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const code = searchParams.get("code");
   const error = searchParams.get("error");
+  const state = searchParams.get("state");
+
+  // CSRF state validation
+  const storedState = req.cookies.get("gcal_oauth_state")?.value;
+  if (state !== storedState) {
+    return Response.json({ error: "CSRF state mismatch" }, { status: 403 });
+  }
 
   if (error) {
     return new Response(null, {
@@ -32,7 +39,13 @@ export async function GET(req: NextRequest) {
 
     const tokens = await tokenRes.json();
 
-    const sessionRes = await fetch("/api/auth/me");
+    // Use absolute URL for server-side fetch
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const sessionRes = await fetch(`${appUrl}/api/auth/me`, {
+      headers: {
+        cookie: req.headers.get("cookie") || "",
+      },
+    });
     const session = await sessionRes.json();
     if (!session?.user?.id) {
       return new Response(null, {
@@ -51,10 +64,13 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    return new Response(null, {
+    // Limpiar la cookie de state
+    const response = new Response(null, {
       status: 302,
       headers: { Location: `/paciente/perfil?success=calendar_connected` },
     });
+    response.cookies.delete("gcal_oauth_state");
+    return response;
   } catch (err) {
     console.error("Calendar callback error:", err);
     return new Response(null, {
