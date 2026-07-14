@@ -90,8 +90,8 @@ export function ReferralReport() {
         format: "letter",
       });
       
-      const pdfWidth = pdf.internal.getWidth();
-      const pdfHeight = pdf.internal.getHeight();
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
       const imgProps = (canvas as any).width && (canvas as any).height 
         ? { width: canvas.width, height: canvas.height } 
         : { width: 0, height: 0 };

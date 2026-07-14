@@ -15,7 +15,7 @@ export function MotivationalGreeting({ userName }: { userName?: string }) {
     else if (hour < 18) timeGreeting = locale === "es" ? "Buenas tardes" : "Good afternoon";
     else timeGreeting = locale === "es" ? "Buenas noches" : "Good evening";
 
-    const dayOfYear = new Date().getDayOfYear ? new Date().getDayOfYear() : Math.floor((new Date().getTime() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+    const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
     const phrase = MOTIVATIONAL_PHRASES[dayOfYear % MOTIVATIONAL_PHRASES.length] || "Tu salud es tu mayor tesoro. Hoy es un buen día para cuidarte.";
 
     setGreeting(`${timeGreeting}${userName ? ", " + userName : ""}. ${phrase}`);

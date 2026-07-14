@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { randomBytes } from "crypto";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
   authUrl.searchParams.set("state", state);
 
   // Crear respuesta con cookie HTTP-only del state
-  const response = Response.redirect(authUrl.toString());
+  const response = NextResponse.redirect(authUrl.toString());
   response.cookies.set("gcal_oauth_state", state, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

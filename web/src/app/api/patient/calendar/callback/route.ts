@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(req: NextRequest) {
@@ -65,10 +65,7 @@ export async function GET(req: NextRequest) {
     });
 
     // Limpiar la cookie de state
-    const response = new Response(null, {
-      status: 302,
-      headers: { Location: `/paciente/perfil?success=calendar_connected` },
-    });
+    const response = NextResponse.redirect(new URL("/paciente/perfil?success=calendar_connected", process.env.NEXT_PUBLIC_APP_URL));
     response.cookies.delete("gcal_oauth_state");
     return response;
   } catch (err) {

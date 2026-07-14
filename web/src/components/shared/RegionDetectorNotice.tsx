@@ -26,7 +26,7 @@ export function RegionDetectorNotice() {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>
+        <TooltipTrigger>
           <Badge variant="outline" className="fixed bottom-4 right-4 z-40 bg-background/80 backdrop-blur-sm border-glass-border">
             <MapPin className="w-3 h-3 mr-1" />
             {region}
