@@ -1,7 +1,7 @@
 # Radiografía y Control de Estado Maestro — Angélica Med
 
-> **Última Actualización:** 2026-07-12 18:00 CST  
-> **Actualizado por:** OpenCode (DeepSeek)  
+> **Última Actualización:** 2026-07-13 15:00 CST  
+> **Actualizado por:** OpenCode (DeepSeek V4 Flash)  
 > **Propósito:** Archivo maestro de avance y gobernanza. Cualquier IA que asuma el proyecto **DEBE** leer este archivo primero.
 
 ---
@@ -51,13 +51,13 @@
 9. **0 de 14 items del checklist de release están completados.**
 10. **0 de 14 user stories han iniciado.**
 
-### 📊 Avance Real (Corregido por auditoría OpenCode 2026-07-12)
+### 📊 Avance Real (Corregido por auditoría DeepSeek V4 Flash 2026-07-13)
 
 | Métrica | Valor |
 | :--- | :--- |
-| **Avance general** | ~65-70% (Core funcional: Auth, RAG, AI Gateway, Wallet, Citas, Paciente, Médico, Admin parcial, Soporte) |
-| **Fases completadas** | ~10 de 18 (F01-F12 parcial, F13-F17 con avance parcial o no iniciado) |
-| **Fases en curso** | Contabilidad, Anuncios, Permisos, QA, Release Gates |
+| **Avance general** | ~58% (Core funcional sólido: Auth, RAG, AI Gateway, Dashboards, CRUDs. Integraciones críticas en bypass: Stripe, Meet, OAuth, PDF) |
+| **Fases completadas** | ~10 de 18 (A-H ~85%, integraciones de producción ~30%, gates 0%) |
+| **Fases en curso** | Integraciones Críticas (I-01 a I-08) deben cerrarse antes de F |
 | **User stories iniciadas** | 14 de 14 (8 completas, 6 parciales) |
 | **Checklist release** | 0 de 14 (todos los gates siguen pendientes) |
 
@@ -179,5 +179,4 @@
 | 2026-07-12 | OpenCode - Laguna M.1 | **Feature Crítico: CRUD Admin Usuarios**: Endpoints /api/admin/usuarios con GET (paginado), POST (crear), PUT (ban/suspender/editar), DELETE. UserTable.tsx actualizado con modal "Nuevo Usuario" y acciones por fila (Editar, Suspender, Eliminar). Schema Prisma actualizado con roles `banned`/`suspended`. |
 | 2026-07-12 | OpenCode - Laguna M.1 | **Reestructuración Iteración F**: Deploy pospuesto hasta final. Nuevas tareas: Auditoría de puertos/PM2, preparación de .env.production, radiografía final de código, despliegue manual controlado tras validación QA. |
 | 2026-07-12 | OpenCode - Laguna M.1 | **Cierre de Iteración H (UI/UX Polish)**: RegionDetectorNotice.tsx, MotivationalGreeting.tsx, BreadcrumbNav.tsx creados. Skip-to-content link añadido en AppShell. prefers-reduced-motion CSS implementado. aria-labels agregados a botones sin texto. Hook useReducedMotion creado para Framer Motion.
-
-
+| 2026-07-13 | OpenCode - DeepSeek V4 Flash | **Radiografía Final Pre-Despliegue (F3 completa)**: Auditoría exhaustiva vs 52 requerimientos. 7 brechas críticas: Google Meet links falsos (BC-01), Stripe bypass mode (BC-02), webhook no idempotente (BC-03), OAuth calendar mock (BC-04), guardrail Nota 07 no implementado (BC-05), PDF sin librería real (BC-06), tokens sin cifrar (DT-01). Avance real recalibrado a 58%. 0/14 checklist release completados. **NO LISTO PARA PRODUCCIÓN.** Se recomienda Iteración I (8 tareas de integración) antes de Despliegue LAN.

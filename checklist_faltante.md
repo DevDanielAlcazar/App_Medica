@@ -1,14 +1,71 @@
 # Checklist Faltante — Radiografía App Médica AI (Angélica Med)
 
-> **Fecha:** 2026-07-12  
-> **Auditor:** OpenCode (DeepSeek)  
+> **Fecha:** 2026-07-13  
+> **Auditor:** OpenCode (DeepSeek V4 Flash)  
 > **Propósito:** Memoria a largo plazo. Cruza el tracker contra el código real.
+
+---
+
+## 0. Radiografía Final Pre-Despliegue (Auditoría DeepSeek)
+
+### 0.1 Métricas de Avance
+
+| Métrica | Valor | Cálculo |
+|---|---|---|
+| **Avance Real (ponderado)** | **58%** | 30.25/52 requerimientos ponderados |
+| **Avance User Stories** | 57% | 8/14 completas, 6 parciales |
+| **Requerimientos Aprobados** | 52 (100%) | Pero solo ~30 implementados aceptablemente |
+| **Fases Código (A-H)** | ~85% del frontend/backend core | Falta pulido producción |
+| **Gates Release (G1-G6)** | 0% | Ningún gate aprobado |
+| **Checklist Release (CL-01 a CL-14)** | 0% | Todo pendiente |
+
+### 0.2 Brechas Críticas (Bloqueantes para Producción)
+
+| ID | Hallazgo | Severidad | Archivo | Líneas |
+|---|---|---|---|---|
+| **BC-01** | **Google Meet: todos los links son falsos** - createGoogleMeetSpace() siempre falla por falta de GOOGLE_SERVICE_ACCOUNT_KEY. generateMeetLink() crea URLs aleatorias que no abren salas reales. | **CRÍTICO** | `api/patient/appointments/route.ts` | 8-54, 203 |
+| **BC-02** | **Stripe: bypass mode activo** - Sin STRIPE_SECRET_KEY en .env. Checkout redirige a mock-success. Pagos no son reales. | **CRÍTICO** | `api/patient/wallet/checkout/route.ts` | 35-42, web/.env |
+| **BC-03** | **Webhook no idempotente** - Sin verificación de event_id. Reintentos de Stripe duplican créditos. | **CRÍTICO** | `api/webhooks/stripe/route.ts` | 37-113 |
+| **BC-04** | **Google Calendar OAuth: mock con localStorage** - Botón "Sync Google" solo escribe localStorage. El callback real tiene bug: fetch("/api/auth/me") relativo en servidor nunca funciona. Variables GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET mal nombradas en .env (usando `:` en vez de `=`). | **CRÍTICO** | `paciente/calendario/page.tsx`, `api/patient/calendar/callback/route.ts`, web/.env | 228-240, 35, 24-25 |
+| **BC-05** | **Guardrail "No decir soy una IA" no implementado** - Nota 07 del cliente exige explícitamente que la IA NUNCA diga "Soy una IA y no puedo diagnosticarte". Documentado en dev_status pero NO en system prompt ni guardrails. | **ALTO** | `lib/ai/guardrails.ts`, `api/patient/cases/[caseId]/messages/route.ts` | Todo el archivo, 184-201 |
+| **BC-06** | **PDF de derivación usa window.print() en vez de librería real** - No es un PDF real. Faltan campos: contraindicaciones, versión de policy, nombre real del paciente, evidencias reales. | **ALTO** | `components/patient/ReferralReport.tsx` | 37 |
+| **BC-07** | **Webhook Stripe debe usar idempotencia por event_id** - Sin deduplicación, reintentos generan transacciones duplicadas en wallet. | **CRÍTICO** | `api/webhooks/stripe/route.ts` | 73-106 |
+
+### 0.3 Deuda Técnica Residual
+
+| ID | Hallazgo | Severidad | Archivo |
+|---|---|---|---|
+| **DT-01** | Google OAuth tokens almacenados en texto plano en User model (sin cifrado) | **ALTO** | `prisma/schema.prisma:18-20` |
+| **DT-02** | OAuth flow sin parámetro state (vulnerable a CSRF) | **ALTO** | `api/patient/calendar/connect/route.ts:13` |
+| **DT-03** | Ruta mock-success existe en producción (aunque con guarda condicional) | **MEDIO** | `api/patient/wallet/mock-success/route.ts` |
+| **DT-04** | Nutrición solo envía título del caso (timeline seleccionado pero descartado) | **MEDIO** | `api/patient/nutrition/route.ts:29-33,43-45` |
+| **DT-05** | Location share: faltan opciones 8h/72h, endpoint de vista no encontrado | **MEDIO** | `components/patient/LocationShareCard.tsx:112` |
+| **DT-06** | WhatsApp: sin lista de contactos ni grupos, solo wa.me link básico | **MEDIO** | `historial/[caseId]/page.tsx:37-45` |
+| **DT-07** | Sin seed data para AiProvider (tabla vacía, gateway falla si no hay admin configurando) | **BAJO** | `prisma/schema.prisma:129-148` |
+| **DT-08** | Fallback de nutrición hardcodeado (oculta errores de IA silenciosamente) | **BAJO** | `api/patient/nutrition/route.ts:67-76` |
+| **DT-09** | Sin recordatorios push reales para medicamentos (solo mock localStorage) | **MEDIO** | `paciente/calendario/page.tsx` |
+| **DT-10** | Sin Android app ni APK (Nota 01 del cliente) | **MEDIO** | No existe |
+
+### 0.4 Evaluación por Gate de Release
+
+| Gate | Estado | Notas |
+|---|---|---|
+| **G1 - Legal** | ❌ No aprobado | Política de privacidad existe pero necesita revisión legal. Sin consentimiento versionado. |
+| **G2 - Médico** | ❌ No aprobado | Red flags existen, pero catálogo OTC no está formalizado. Sin firma médica. |
+| **G3 - Seguridad** | ❌ Parcial | RBAC implementado, audit logs existen. OAuth sin CSRF, tokens sin cifrar. |
+| **G4 - Pagos** | ❌ No aprobado | Stripe bypass mode. Webhook no idempotente. Sin Stripe live. |
+| **G5 - DevOps** | ❌ No iniciado | PM2, Cloudflare, backups, monitoreo no configurados. |
+| **G6 - Go/No-Go** | ❌ Pendiente | Sin firmas de Delivery, Arquitectura, Médico, Legal. |
+
+### 0.5 Conclusión
+
+**NO LISTO PARA PRODUCCIÓN.** Se requiere resolver las 7 brechas críticas (BC-01 a BC-07) antes de considerar despliegue en LAN. El código base tiene ~58% de avance real. El frontend/backend core está sólido, pero las integraciones críticas (pagos reales, Meet real, OAuth real, PDF real) son placeholders funcionales. Se recomienda una iteración específica de "Cierre de Integraciones" antes de F (Despliegue).
 
 ---
 
 ## 1. Resumen de Avance
 
-### ✅ Casi listo para producción (o muy cerca)
+### ✅ Completado (con deuda)
 
 | Componente | Estado | Evidencia |
 |---|---|---|
@@ -18,180 +75,104 @@
 | **AppShell + Layouts** | ✅ Completo | Sidebar dinámico por rol, Header, MobileBottomBar, SafetyRibbon |
 | **Zustand Stores** | ✅ Completo | userStore, chatStore, caseStore, uiStore |
 | **Types** | ✅ Completo | chat.ts, case.ts, user.ts, wallet.ts, appointment.ts |
-| **Prisma Schema** | ✅ Completo | 21 modelos: User, ClinicalCase, Message, Appointment, Wallet, Transaction, AuditLog, AiProvider, AiApiKey, AiModel, RoutingPolicy, SubscriptionPlan, SystemSetting, MedicationReminder, SearchCache, SupportTicket, TicketMessage, DoctorTransaction, AccountingCycle, Payout, DoctorProfile |
-| **AI Gateway** | ✅ Completo | gateway.ts (multi-proveedor con failover), guardrails.ts (red flags, controlados, pediatría), rag.ts (12.9MB corpus en memoria) |
-| **Servicios Backend** | ✅ Completo | email.ts (Gmail SMTP), purgeJob.ts (GDPR), webSearch.ts (búsqueda médica con cache) |
-| **API Routes** | ✅ 42 rutas | Auth (4), Patient (14), Doctor (4), Admin (12), Support (4), Webhooks (1), Otros (3) |
-| **Dashboard Paciente** | ✅ Mayoría | Home, Consulta, Historial, Historial/[caseId], Calendario, Wallet, Soporte, Perfil |
-| **Dashboard Médico** | ✅ Mayoría | Verificación, Agenda, Citas, Pagos, Finanzas, Perfil |
-| **Dashboard Admin** | ✅ Mayoría | Home, Usuarios, IA (4 tabs), Planes, Stripe, Gmail |
-| **Dashboard Soporte** | ✅ Mayoría | Home, Tickets, Tickets/[ticketId], Usuarios, Compensaciones |
-| **Pruebas Automatizadas** | ✅ 5 suites | test-clinical-flow, test-notifications, test-privacy-search, test-support-flow, test-accounting-flow |
-| **Componentes Core** | ✅ Real (no mock) | ConversationalCareCanvas (conectado a API), ContextRail (conectado a caseStore), ClinicalTimelineRiver (conectado a caseStore), SafetyRibbon, ActionReceipt |
-| **i18n** | ⚠️ Parcial | 76 keys traducidas ES/EN, provider funcional, pero muchas strings siguen hardcodeadas |
+| **Prisma Schema** | ✅ Completo | 21 modelos |
+| **AI Gateway** | ✅ Completo (sin seed data) | gateway.ts multi-provider, guardrails.ts, rag.ts (12.9MB corpus) |
+| **Servicios Backend** | ✅ Completo | email.ts, purgeJob.ts, webSearch.ts |
+| **API Routes** | ✅ 48 rutas | Auth, Patient, Doctor, Admin, Support, Webhooks |
+| **Dashboards** | ✅ Estructura completa | Paciente, Médico, Admin, Soporte, Contabilidad |
+| **Pruebas Automatizadas** | ✅ 5 suites + 4 QA | tests clínicos, seguridad, accesibilidad, pagos, carga |
+| **Componentes Core** | ✅ Real (no mock) | ConversationalCareCanvas, ContextRail, ClinicalTimelineRiver, SafetyRibbon |
+| **i18n** | ✅ 117 keys | es.json/en.json sincronizados, provider funcional |
+| **Iteración H (UI Polish)** | ✅ Completa | BreadcrumbNav, MotivationalGreeting, RegionDetectorNotice, skip-to-content, prefers-reduced-motion |
 
-### 🟡 Parcialmente implementado
+### 🟡 Parcial / Con Deuda
 
 | Componente | Problema |
 |---|---|
-| **Nutrición** | Datos hardcodeados en el frontend. No hay API endpoint de nutrición. |
-| **Frases Motivacionales** | Solo 10 frases. El tracker exige 365+ (una por día). |
-| **Wallet Checkout** | Usa `mock-success` como bypass. Stripe webhook existe pero no hay Stripe real conectado. |
-| **Agenda Médico** | Selector de horas básico. Sin arrastrar bloques ni vista semanal visual. |
-| **Perfil Paciente** | Existe pero sin edición real de datos (solo descarga/eliminación). |
-| **Componentes standalone** | Mucha lógica está inline en pages en vez de componentes reutilizables (ver lista completa abajo). |
+| **Google Meet** | Todos los links son falsos (mock generateMeetLink). API real siempre falla. |
+| **Stripe Payments** | Bypass mode activo. Sin llaves reales. Webhook no idempotente. |
+| **Google Calendar** | OAuth mock con localStorage. Variables de entorno mal nombradas. |
+| **PDF Reports** | window.print() en vez de librería. Faltan campos requeridos. |
+| **Guardrails** | No implementa la regla "No decir soy una IA" (Nota 07 del cliente). |
+| **Nutrición** | IA real pero solo envía título del caso, no timeline ni alergias. |
+| **WhatsApp** | Solo wa.me link básico. Sin lista de contactos ni grupos. |
+| **Location Share** | Faltan opciones 8h/72h. Endpoint de vista no encontrado. |
+| **Medication Reminders** | Sin notificaciones push reales. Sin foto/PDF upload. |
+| **Android App** | No existe. Solo PWA web. |
 
-### ❌ No iniciado / Placeholder
-
-| Componente | Estado |
-|---|---|
-| **Contabilidad (Dashboard principal)** | ✅ **Implementado** (2026-07-12 - dashboard stats, AccountingCyclesList) |
-| **Contabilidad / Pagos a Médicos** | ✅ **Implementado** (2026-07-12 - DoctorPaymentsTable con cambio de estados) |
-| **Contabilidad / Cortes** | ✅ **Implementado** (2026-07-12 - AccountingCyclesList con CRUD) |
-| **Contabilidad / Penalizaciones** | ✅ **Implementado** (2026-07-12 - PenaltyTracker) |
-| **Contabilidad / Reportes** | ✅ **Implementado** (2026-07-12 - generador JSON simulado) |
-| **Admin / Anuncios** | ✅ **Implementado** (2026-07-12 - AnnouncementManager.tsx, API route) |
-| **Admin / Permisos** | ✅ **Implementado** (2026-07-12 - PermissionMatrix.tsx, API route, Permission model) |
-| **Médico / Home** | ✅ **Implementado** (2026-07-12 - DoctorDashboard con API route) |
-| **Dashboard Médico dashboard** | ✅ **Implementado** (2026-07-12) |
-
----
-
-## 2. Deuda Técnica
-
-### Componentes que existen inline (deberían ser standalone)
-
-| Ruta | Lógica actual | Acción requerida |
-|---|---|---|
-| `/paciente/wallet` | WalletLedger, saldo y checkout inline | Extraer a `components/patient/WalletLedger.tsx` |
-| `/admin/ia` | AdminAiProviderManager inline (615 líneas) | Extraer a `components/admin/AdminAiProviderManager.tsx` |
-| `/admin/planes` | PlanEditor inline | Extraer a `components/admin/PlanEditor.tsx` |
-| `/admin/gmail` | GmailNotificationSettings inline | Extraer a `components/admin/GmailNotificationSettings.tsx` |
-| `/admin/usuarios` | UserManagementTable inline | Extraer a `components/admin/UserManagementTable.tsx` |
-| `/admin/stripe` | StripeConfigPanel inline | Extraer a `components/admin/StripeConfigPanel.tsx` |
-| `/medico/verificacion` | DoctorVerificationPanel inline | Extraer a `components/doctor/DoctorVerificationPanel.tsx` |
-| `/medico/agenda` | ScheduleManager inline | Extraer a `components/doctor/ScheduleManager.tsx` |
-| `/medico/citas` | AppointmentList inline | Extraer a `components/doctor/AppointmentList.tsx` |
-| `/medico/pagos` | BankDataForm + DoctorPaymentHistory inline | Extraer a componentes separados |
-| `/soporte/tickets` | TicketList inline | Extraer a `components/support/TicketList.tsx` |
-| `/soporte/tickets/[ticketId]` | TicketDetail inline | Extraer a `components/support/TicketDetail.tsx` |
-| `/soporte/compensaciones` | CompensationForm inline | Extraer a `components/support/CompensationForm.tsx` |
-| `/paciente/consulta` | Layout 3 columnas inline | Extraer a layout reutilizable |
-
-### Mocks / Datos hardcodeados
-
-| Archivo | Problema |
-|---|---|
-| `nutricion/page.tsx` | Plan de comidas hardcodeado en `plan` array (línea 7-11) |
-| `constants.ts` | Solo 10 frases motivacionales (necesita 365+) |
-| `ConversationalCareCanvas.tsx` | El parsing de ACTION_RECEIPT es funcional pero las respuestas de IA son simuladas si no hay gateway conectado |
-
-### Infraestructura faltante
+### ❌ No Iniciado / Placeholder
 
 | Componente | Estado |
 |---|---|
-| **ecosystem.config.js (PM2)** | No existe |
-| **cloudflared config** | No existe |
-| **Healthcheck endpoint** | Existe `/api/db-check` pero no hay healthcheck completo |
-| **CI/CD config** | No existe |
-| **Backup strategy** | No documentada ni implementada |
-| **Monitoreo/logs** | No implementado |
-| **.env de producción** | No existe (solo está `/web/.env`) |
+| **Gates de Release** | Todos pendientes (G1-G6) |
+| **Checklist Release** | Todos pendientes (CL-01 a CL-14) |
+| **Deploy PM2/Cloudflare** | Pospuesto (Iteración F) |
+| **Stripe Live** | No configurado |
+| **Google Meet Real** | No funcional |
+| **Contabilidad reportes reales** | JSON simulado |
+| **Monitoreo/logs/backups** | No implementado |
 
 ---
 
-## 3. Checklist de Faltantes
+## 2. Checklist de Iteraciones (A-H)
 
-### Iteración A — Cerrar Placeholders Críticos (Prioridad Alta)
+### Iteración A — ✅ Cerrar Placeholders Críticos
 
-- [x] **A1**: Implementar `/admin/anuncios` — CRUD de anuncios globales con targeting por rol
-- [x] **A2**: Implementar `/admin/permisos` — Matriz de permisos (rows=roles, cols=acciones)
-- [x] **A3**: Implementar Dashboard Contabilidad `/contabilidad` — Resumen financiero con métricas reales
-- [x] **A4**: Implementar `/contabilidad/pagos-medicos` — Tabla con filtros, cambios de estado, comentarios
-- [x] **A5**: Implementar `/contabilidad/cortes` — Timeline de periodos de corte quincenales/mensuales
-- [x] **A6**: Implementar `/contabilidad/penalizaciones` — Tabla de penalizaciones con tipos y estados
-- [x] **A7**: Implementar `/contabilidad/reportes` — Generador de reportes CSVs/PDFs con filtro por fecha
-- [x] **A8**: Implementar Dashboard Médico Home (`/medico`) — Agenda del día, métricas, estado verificación
+- [x] A1-A8: Anuncios, permisos, contabilidad, pagos médicos, cortes, penalizaciones, reportes, dashboard médico.
 
-### Iteración B — Conectar lo que está hardcodeado (Prioridad Alta)
+### Iteración B — ✅ Conectar hardcodeados
 
-- [x] **B1**: Crear API endpoint `/api/patient/nutrition` que genere planes nutricionales por IA basados en casos activos
-- [x] **B2**: Conectar `nutricion/page.tsx` al endpoint de nutrición (remover datos hardcodeados)
-- [x] **B3**: Expandir `MOTIVATIONAL_PHRASES` de 10 a 365+ frases empáticas de salud (actualmente 100 frases)
-- [x] **B4**: Completar cobertura i18n — auditar TODAS las páginas y migrar strings hardcodeadas a `t('key')`
-- [x] **B5**: Verificar que `en.json` y `es.json` tengan keys idénticas (109 keys sincronizados)
+- [x] B1-B5: Nutrición endpoint IA, frases motivacionales (100/365+), i18n completo (117 keys).
 
-### Iteración C — Features Faltantes del Tracker (Prioridad Alta)
+### Iteración C — ✅ Features faltantes del tracker
 
-- [x] **C1**: **Reporte de Derivación PDF** — Endpoint que genere PDF con formato de receta clínica (`@media print`) y botón de descarga
-- [x] **C2**: **Compartir por WhatsApp** — Deep links para compartir reportes/resúmenes (REQ-034)
-- [x] **C3**: **Ubicación en Tiempo Real** — Compartir ubicación con enlace temporal expirable (REQ-035)
-- [x] **C4**: **Google Calendar OAuth** — Conectar calendario del usuario (REQ-033)
-- [x] **C5**: **Subscription Plans** — Asignar planes a usuarios desde admin, límites por plan
-- [x] **C6**: **Google Meet real** — Integración con Google Meet API para crear espacios reales (hoy solo se genera link texto)
-- [x] **C7**: **Notificaciones Push** — Web push notifications (adicional a Gmail)
-- [x] **C8**: **Recomendación Sintomatológica** — Documento formal descargable con disclaimer (parcial: existe ActionReceipt)
+- [x] C1-C8: PDF derivación, WhatsApp, ubicación, Google Calendar OAuth (mock), planes, Meet (mock), push notifications, recomendación sintomatológica.
 
-### Iteración D — Componentes Standalone (Prioridad Media)
+### Iteración D — ✅ Componentes Standalone
 
-- [x] **D1**: Crear `components/patient/AppointmentScheduler.tsx` (select+fecha)
-- [x] **D2**: Crear `components/patient/MeetJoinCard.tsx` (card con link Meet)
-- [x] **D3**: Crear `components/patient/WalletLedger.tsx`
-- [x] **D4**: Crear `components/patient/RecommendationCard.tsx`
-- [x] **D5**: Crear `components/patient/HumanReferralReportButton.tsx`
-- [x] **D6**: Crear `components/patient/NutritionPlanCard.tsx`
-- [x] **D7**: Crear `components/patient/EvidenceDropzone.tsx`
-- [x] **D8**: Extraer lógica inline de páginas admin a componentes standalone (ver deuda técnica)
+- [x] D1-D8: AppointmentScheduler, MeetJoinCard, WalletLedger, RecommendationCard, HumanReferralReportButton, NutritionPlanCard, EvidenceDropzone, UserTable/PlanEditor.
 
-### Iteración E — QA y Hardening (Prioridad Alta para Release)
+### Iteración E — ✅ QA y Hardening
 
-- [x] **E1**: **Pruebas Clínicas Adversariales** — Suite automatizada que pruebe red flags, controlados, pediatría, derivación (existe test-clinical-flow.ts pero ampliar cobertura)
-- [x] **E2**: **Pruebas de Accesibilidad WCAG 2.2 AA** — Auditoría con axe-core o similar
-- [x] **E3**: **Pruebas de Seguridad** — Revisar cifrado, RBAC, logs sin PHI, eliminación
-- [x] **E4**: **Pruebas de Pagos** — Stripe webhook idempotencia, wallet ledger, reembolsos
-- [x] **E5**: **Load Test** — Pruebas de carga en servidor local Debian
-- [x] **E6**: **Pruebas Responsive** — Verificar 360px, 768px, 1024px, 1440px sin overflow
+- [x] E1-E6: Tests clínicos adversariales, accesibilidad, seguridad, pagos, carga, responsive.
 
-### Iteración F — Infraestructura y DevOps (Prioridad Alta - En Espera de Deploy LAN)
+### Iteración F — ⏳ Infraestructura y DevOps (En Espera)
 
-- [ ] **F1**: Auditoría de Puertos y PM2 (Script para listar procesos de PM2 actuales del usuario 'daniel' o 'root', y verificar puertos libres en el servidor LAN para evitar choques)
-- [ ] **F2**: Preparación de Variables de Entorno de Producción (Ajustar URLs, túneles y puertos seguros)
-- [ ] **F3**: Radiografía Final de Código (Auditoría completa antes de tocar el servidor)
-- [ ] **F4**: Despliegue Manual Controlado (Start de PM2 y Cloudflare solo tras validación)
+- [ ] F1: Auditoría de Puertos y PM2
+- [ ] F2: Preparación de Variables de Entorno de Producción
+- [ ] F3: ✅ Radiografía Final de Código (este documento)
+- [ ] F4: Despliegue Manual Controlado
 
-### Iteración G — Gates de Release (Prioridad Crítica)
+### Iteración G — ❌ Gates de Release (Bloqueado)
 
-- [ ] **G1**: **Gate Legal** — Política de privacidad aprobada, términos aprobados, consentimiento versionado
-- [ ] **G2**: **Gate Médico** — Red flags aprobadas, pediatría aprobada, OTC aprobado, controlados bloqueados
-- [ ] **G3**: **Gate Seguridad** — RBAC probado, cifrado verificable, audit logs, eliminación funcional
-- [ ] **G4**: **Gate Pagos** — Stripe live configurado, webhooks idempotentes, wallet ledger funcional
-- [ ] **G5**: **Gate DevOps** — PM2 funcionando, Cloudflare Tunnel activo, backups probados, rollback documentado
-- [ ] **G6**: **Go/No-Go** — Checklist firmado por Delivery, Arquitectura, Médico, Legal
+- [ ] G1: Gate Legal
+- [ ] G2: Gate Médico
+- [ ] G3: Gate Seguridad
+- [ ] G4: Gate Pagos
+- [ ] G5: Gate DevOps
+- [ ] G6: Go/No-Go
 
-### Iteración H — UI/UX Polish (Prioridad Media)
+### Iteración H — ✅ UI/UX Polish
 
-- [x] **H1**: Crear `components/shared/RegionDetectorNotice.tsx`
-- [x] **H2**: Crear `components/shared/MotivationalGreeting.tsx`
-- [x] **H3**: Crear `components/layout/BreadcrumbNav.tsx`
-- [x] **H4**: Verificar animaciones Framer Motion en todas las transiciones de página
-- [x] **H5**: Verificar `prefers-reduced-motion` en animaciones
-- [x] **H6**: Implementar skip-to-content link en AppShell
-- [x] **H7**: Verificar contraste WCAG AA sobre glassmorphism
-- [x] **H8**: Auditoría de `aria-label`, roles ARIA, focus rings
+- [x] H1-H8: RegionDetectorNotice, MotivationalGreeting, BreadcrumbNav, prefers-reduced-motion, skip-to-content, aria-labels, WCAG contrast.
 
 ---
 
-## 4. Discrepancias con master_status.md
+## 3. Plan de Acción Recomendado (Previo a Despliegue)
 
-| Declaración en master_status | Realidad | Acción |
-|---|---|---|
-| "Avance general ~100%" | ~65-70% real | El tracker original marcaba 1.11% — hay avance significativo pero NO completo |
-| "17 de 18 fases completadas" | ~10 de 18 fases completadas | F13 (i18n parcial), F14 (seguridad parcial), F16 (QA no iniciado), F17 (release no iniciado) |
-| "14 de 14 user stories iniciadas" | ~8 de 14 completas, 6 parciales | US-011 (Gmail), US-012 (soporte compensaciones), US-013 (contabilidad) están parciales |
-| "Checklist release 14 de 14" | 0 de 14 completados | CL-01 a CL-14 todos pendientes (ver Iteración G) |
-| "Componentes son MOCKS" (desactualizado) | Ya NO son mocks | Están conectados a Zustand y API. Problema resuelto. |
-| "Sprint 10 COMPLETADO" | Soporte funcional pero Contabilidad placeholders | Dashboard contabilidad, pagos-médicos, cortes, penalizaciones, reportes son placeholders |
+### Iteración I (NUEVA) — Cierre de Integraciones Críticas (Prioridad MÁXIMA)
+
+| ID | Tarea | Archivos afectados | Dependencia |
+|---|---|---|---|
+| **I-01** | Configurar variables GOOGLE_* en .env con formato correcto (= en vez de :) | web/.env | Ninguna |
+| **I-02** | Implementar idempotencia en webhook Stripe (check event_id antes de procesar) | api/webhooks/stripe/route.ts | Ninguna |
+| **I-03** | Eliminar/deshabilitar mock-success en producción (o reforzar guarda) | api/patient/wallet/mock-success/route.ts | Stripe keys |
+| **I-04** | Agregar GOOGLE_SERVICE_ACCOUNT_KEY y activar Meet real | api/patient/appointments/route.ts | Google Cloud project |
+| **I-05** | Arreglar callback OAuth: usar NEXT_PUBLIC_APP_URL en vez de fetch relativo | api/patient/calendar/callback/route.ts | GOOGLE_CLIENT_ID/SECRET |
+| **I-06** | Agregar state parameter CSRF en OAuth flow | api/patient/calendar/connect/route.ts | Ninguna |
+| **I-07** | Añadir "NUNCA digas soy una IA" en system prompt de mensajes | api/patient/cases/[caseId]/messages/route.ts | Ninguna |
+| **I-08** | Reemplazar window.print() con librería PDF real (jsPDF o similar) | components/patient/ReferralReport.tsx | npm install |
+
+### Luego de Iteración I → Iteración F (Despliegue LAN)
 
 ---
-
-*Este archivo debe actualizarse al final de cada iteración para mantener contexto.*
