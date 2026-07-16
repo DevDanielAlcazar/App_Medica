@@ -55,27 +55,27 @@ export function ClinicalTimelineRiver({ className }: { className?: string }) {
     <motion.div
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      className={cn("glass-panel flex flex-col h-full rounded-2xl p-6 gap-6 overflow-y-auto border border-glass-border", className)}
+      className={cn("glass-panel flex flex-col h-full rounded-2xl p-3 sm:p-4 md:p-6 gap-3 sm:gap-4 md:gap-6 overflow-y-auto border border-glass-border w-full", className)}
     >
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center justify-between mb-1 sm:mb-2">
         <h2 className="text-sm font-semibold text-foreground">Timeline Clínico</h2>
         <span className="text-xs text-muted-foreground">Flujo activo</span>
       </div>
 
-      <div className="relative border-l-2 border-glass-border ml-3 flex flex-col gap-6">
+      <div className="relative border-l-2 border-glass-border ml-2 sm:ml-3 flex flex-col gap-3 sm:gap-4 md:gap-6">
         {events.length === 0 ? (
-          <div className="text-center py-8 text-xs text-muted-foreground">
+          <div className="text-center py-4 sm:py-6 md:py-8 text-xs text-muted-foreground px-2">
             Línea de tiempo clínica vacía. Inicia el diálogo para registrar eventos.
           </div>
         ) : (
           events.map((ev, index) => (
-            <div key={ev.id || index} className="relative pl-6">
+            <div key={ev.id || index} className="relative pl-4 sm:pl-6">
               {/* Icono del Hito */}
-              <div className="absolute -left-[13px] top-1 w-6 h-6 rounded-full bg-background border-2 border-glass-border flex items-center justify-center">
+              <div className="absolute -left-2 sm:-left-[13px] top-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-background border-2 border-glass-border flex items-center justify-center">
                 {getEventIcon(ev.type, ev.title)}
               </div>
               
-              <p className="text-[10px] text-muted-foreground mb-1">
+              <p className="text-[10px] sm:text-xs text-muted-foreground mb-0.5 sm:mb-1">
                 {new Date(ev.timestamp).toLocaleDateString("es-ES", {
                   day: "numeric",
                   month: "short",
@@ -84,7 +84,7 @@ export function ClinicalTimelineRiver({ className }: { className?: string }) {
                 })}
               </p>
               
-              <div className={cn("p-3 rounded-xl border text-xs leading-relaxed", getEventBg(ev.severity, ev.title))}>
+              <div className={cn("p-2 sm:p-3 rounded-xl border text-xs leading-relaxed", getEventBg(ev.severity, ev.title))}>
                 <span className="font-semibold block mb-0.5">{ev.title}</span>
                 <span className="text-muted-foreground">{ev.description}</span>
               </div>

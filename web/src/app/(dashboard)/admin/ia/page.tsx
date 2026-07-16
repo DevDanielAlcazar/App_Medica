@@ -12,8 +12,19 @@ import {
   CheckCircle2, XCircle, RefreshCw, Shield, Zap, Eye, EyeOff,
   AlertCircle, Search, Download, ChevronDown, ChevronUp
 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
+
+const USE_CASE_OPTIONS = [
+  { value: "clinical_consultation", label: "Consulta Clínica" },
+  { value: "clinical_triage", label: "Triage Clínico" },
+  { value: "pediatric_consultation", label: "Consulta Pediátrica" },
+  { value: "pediatric_triage", label: "Triage Pediátrico" },
+  { value: "nutrition_plan", label: "Plan Nutricional" },
+  { value: "followup", label: "Seguimiento" },
+  { value: "derivation", label: "Derivación" },
+];
 
 /* ─── Tipos ─────────────────────────────────────────────── */
 interface Provider { id: string; name: string; protocol: string; baseUrl: string; completionEndpoint: string; status: string; priority: number; supportsStreaming: boolean; supportsVision: boolean; supportsTools: boolean; apiKeys: ApiKey[]; models: AiModel[]; }
@@ -35,6 +46,9 @@ export default function AdminIAPage() {
   const [showSecret, setShowSecret] = useState(false);
   const [newModel, setNewModel] = useState({ providerId: "", modelName: "", displayName: "" });
   const [newPolicy, setNewPolicy] = useState({ useCase: "", riskLevel: "low", requireClinicalApproved: false });
+  const handleSetUseCase = (v: string | null) => {
+    if (v) setNewPolicy(p => ({ ...p, useCase: v }));
+  };
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -553,8 +567,22 @@ export default function AdminIAPage() {
             <Card className="glass-panel border-glass-border bg-background/25">
               <CardHeader><CardTitle className="text-sm font-bold text-primary uppercase flex items-center gap-2"><Plus className="w-4 h-4" />Nueva Política de Ruteo</CardTitle></CardHeader>
               <CardContent>
-                <form onSubmit={handleAddPolicy} className="grid grid-cols-1 sm:grid-cols-4 gap-3">
-                  <div className="space-y-1 sm:col-span-2"><label className="text-[10px] font-bold text-muted-foreground uppercase">Caso de Uso (ID único)</label><Input value={newPolicy.useCase} onChange={e => setNewPolicy(p => ({ ...p, useCase: e.target.value }))} placeholder="clinical_consultation, pediatric_triage..." required className="rounded-xl border-glass-border bg-elevated/35 font-mono text-xs" /></div>
+<form onSubmit={handleAddPolicy} className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                  <div className="space-y-1 sm:col-span-2">
+                    <label className="text-[10px] font-bold text-muted-foreground uppercase">Caso de Uso (ID único)</label>
+                    <Select value={newPolicy.useCase} onValueChange={handleSetUseCase}>
+                      <SelectTrigger className="rounded-xl border-glass-border bg-elevated/35 font-mono text-xs">
+                        <SelectValue placeholder="Seleccionar caso de uso..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {USE_CASE_OPTIONS.map(opt => (
+                          <SelectItem key={opt.value} value={opt.value} className="font-mono text-xs">
+                            {opt.label} ({opt.value})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                   <div className="space-y-1"><label className="text-[10px] font-bold text-muted-foreground uppercase">Nivel de Riesgo</label>
                     <select value={newPolicy.riskLevel} onChange={e => setNewPolicy(p => ({ ...p, riskLevel: e.target.value }))} className="w-full bg-elevated/35 border border-glass-border text-foreground text-sm rounded-xl p-2.5 outline-none">
                       <option value="low">Bajo</option><option value="medium">Medio</option><option value="high">Alto</option>

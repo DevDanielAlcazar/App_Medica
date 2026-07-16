@@ -10,13 +10,10 @@ interface SafetyRibbonProps {
 export function SafetyRibbon({ status, className }: SafetyRibbonProps) {
   const { t } = useTranslation();
   
+  // No mostrar banner cuando el status es "safe"
+  if (status === "safe") return null;
+  
   const statusConfig = {
-    safe: {
-      color: "bg-success/20 text-success border-success/30",
-      icon: ShieldCheck,
-      text: t("safety.general_followup"),
-      description: t("safety.safe_description")
-    },
     warning: {
       color: "bg-warning/20 text-warning border-warning/30",
       icon: Shield,

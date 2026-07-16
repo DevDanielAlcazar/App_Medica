@@ -69,6 +69,7 @@ export function Sidebar() {
   // 3. Enlaces para Administrador y Superadministrador
   const adminLinks = [
     { href: "/admin", label: "Inicio", icon: Home },
+    { href: "/admin/perfil", label: "Perfil", icon: UserCircle },
     { href: "/admin/usuarios", label: "Usuarios", icon: Users },
     { href: "/admin/ia", label: "Config IA", icon: Settings },
     { href: "/admin/planes", label: "Planes", icon: HeartPulse },

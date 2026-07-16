@@ -187,3 +187,8 @@ Se otorga luz verde para proceder con la **Iteración F (Despliegue LAN)**.
 ### Luego de Iteración I → Iteración F (Despliegue LAN)
 
 ---
+
+### Iteración J - Correcciones Humanas (QA)
+
+- [x] J1: Fixes Críticos UI/UX y Navegación - Glassmorfismo reducido en Dropdowns, notificaciones funcionales, enlace Perfil admin corregido, botones Landing Page arreglados, SafetyRibbon no muestra banner verde fijo, ClinicalTimelineRiver responsivo
+- [x] J2: Desbloqueo Administrativo - DropdownMenu con acciones (Eliminar/Suspender/Banear) en UserTable, campo Caso de Uso como Select en IA Policies, datos bancarios movidos a pestaña Pagos del médico

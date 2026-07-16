@@ -9,7 +9,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, UserCheck, Loader2, ShieldCheck, XCircle, Users, Edit, Trash2, Ban } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { FileText, UserCheck, Loader2, ShieldCheck, XCircle, Users, Edit, Trash2, Ban, MoreVertical, Pause } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -131,6 +137,24 @@ export function UserTable({ users, onVerify, updatingId, onRefresh }: UserTableP
       const res = await fetch(`/api/admin/usuarios?id=${userId}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Error al eliminar");
       toast.success("Usuario eliminado");
+      onRefresh?.();
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleSuspendUser = async (userId: string) => {
+    setActionLoading(userId);
+    try {
+      const res = await fetch("/api/admin/usuarios", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, action: "suspend" }),
+      });
+      if (!res.ok) throw new Error("Error al suspender");
+      toast.success("Usuario suspendido");
       onRefresh?.();
     } catch (err: any) {
       toast.error(err.message);
@@ -284,18 +308,28 @@ export function UserTable({ users, onVerify, updatingId, onRefresh }: UserTableP
                           {getStatusLabel(doc.doctorProfile?.verificationStatus || "")}
                         </Badge>
                       </TableCell>
-                      <TableCell>
-                        <div className="flex gap-2">
-                          <Button size="sm" aria-label="Editar" onClick={() => { setEditingUser(doc); setEditForm({ name: doc.name, email: doc.email, role: doc.role }); setShowEditModal(true); }}>
-                            <Edit className="w-3 h-3" />
-                          </Button>
-                          <Button size="sm" variant="ghost" aria-label="Banear" onClick={() => handleBanUser(doc.id)} disabled={actionLoading === doc.id}>
-                            <Ban className="w-3 h-3" />
-                          </Button>
-                          <Button size="sm" variant="ghost" aria-label="Eliminar" onClick={() => handleDeleteUser(doc.id)} disabled={actionLoading === doc.id}>
-                            <Trash2 className="w-3 h-3" />
-                          </Button>
-                        </div>
+<TableCell>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger>
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <MoreVertical className="w-4 h-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="w-48 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md z-50 border-glass-border">
+                            <DropdownMenuItem onClick={() => { setEditingUser(doc); setEditForm({ name: doc.name, email: doc.email, role: doc.role }); setShowEditModal(true); }}>
+                              <Edit className="mr-2 h-4 w-4" /> Editar
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleSuspendUser(doc.id)} disabled={actionLoading === doc.id}>
+                              <Pause className="mr-2 h-4 w-4" /> Suspender
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleBanUser(doc.id)} disabled={actionLoading === doc.id} className="text-destructive focus:text-destructive">
+                              <Ban className="mr-2 h-4 w-4" /> Banear
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleDeleteUser(doc.id)} disabled={actionLoading === doc.id} className="text-destructive focus:text-destructive">
+                              <Trash2 className="mr-2 h-4 w-4" /> Eliminar
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </TableCell>
                     </TableRow>
                   ))}

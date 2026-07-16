@@ -57,18 +57,18 @@ export default function Home() {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
               Asistente médico impulsado por inteligencia artificial con rigor clínico, diseñado para pacientes y profesionales de la salud.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/register">
-                <Button size="lg" className="w-full sm:w-auto gap-2">
-                  Comenzar Ahora <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-              <Link href="/login">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  Agendar Demo
-                </Button>
-              </Link>
-            </div>
+<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+               <Link href="/register">
+                 <Button size="lg" className="w-full sm:w-auto gap-2">
+                   Comenzar Ahora <ArrowRight className="w-4 h-4" />
+                 </Button>
+               </Link>
+               <Link href="/login">
+                 <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                   Inicia sesión
+                 </Button>
+               </Link>
+             </div>
           </motion.div>
         </div>
       </section>
